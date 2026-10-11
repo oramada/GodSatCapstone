@@ -30,7 +30,7 @@ analysis = ["scikit-learn>=1.3"]
 godsat = "godsat.cli:main"
 
 [tool.setuptools]
-packages = ["godsat"]
+packages = ["godsat", "scripts"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
