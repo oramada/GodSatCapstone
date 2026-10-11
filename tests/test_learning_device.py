@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 import torch
 
-from godsat.experiment import run_treatment
+from godsat.experiment import device_provenance, runtime_provenance, run_treatment, scenario_fingerprint
 from godsat.learning import compute_device, evaluate, train
 
 
@@ -60,12 +60,31 @@ def test_cpu_device_is_the_default():
     assert compute_device({}).type == 'cpu'
 
 
+def test_auto_device_uses_cpu_when_no_accelerator_is_available(monkeypatch):
+    monkeypatch.setattr(torch.cuda, 'is_available', lambda: False)
+    if getattr(torch.backends, 'mps', None):
+        monkeypatch.setattr(torch.backends.mps, 'is_available', lambda: False)
+
+    assert compute_device({'compute_device': 'auto'}).type == 'cpu'
+
+
+def test_unavailable_cuda_fails_with_actionable_error():
+    if torch.cuda.is_available():
+        pytest.skip('CUDA is available on this machine')
+
+    with pytest.raises(RuntimeError, match='CUDA was requested but is unavailable'):
+        compute_device({'compute_device': 'cuda'})
+
+
 def test_cached_cpu_treatment_is_upgraded_with_compute_provenance(tmp_path):
     config = _config('cpu')
     hp = _hyperparameters()
-    signature = hashlib.sha256(
-        json.dumps({'hp': hp, 'config': config, 'seed': 123}, sort_keys=True).encode()
-    ).hexdigest()
+    signature = hashlib.sha256(json.dumps({
+        'hp': hp, 'config': config, 'seed': 123,
+        'runtime': runtime_provenance(),
+        'device': device_provenance(config),
+        'scenario_sha256': scenario_fingerprint({}),
+    }, sort_keys=True).encode()).hexdigest()
     runs = tmp_path / 'runs'
     runs.mkdir()
     record_path = runs / 'cached.json'
@@ -77,7 +96,33 @@ def test_cached_cpu_treatment_is_upgraded_with_compute_provenance(tmp_path):
     assert record['compute_device'] == 'cpu'
     assert record['gpu_hours'] == 0.0
     assert record['gpu_active_seconds'] == 0.0
+    assert record['runtime']['python']
+    assert record['device_provenance']['selected'] == 'cpu'
     assert persisted == record
+
+
+def test_cpu_training_and_evaluation_work_without_external_data():
+    scenario = _tiny_scenario()
+    config = _config('cpu')
+    hp = _hyperparameters()
+
+    model, history, _, accelerator_seconds = train([scenario], config, hp, 321, episodes=1)
+    metrics, _, evaluation_accelerator_seconds = evaluate(model, [scenario], config, hp, 654)
+
+    assert next(model.parameters()).device.type == 'cpu'
+    assert len(history) == 1
+    assert np.isfinite(history[0]['loss'])
+    assert accelerator_seconds == evaluation_accelerator_seconds == 0.0
+    assert all(np.isfinite(value) for value in metrics.values())
+
+
+def test_scenario_fingerprint_changes_when_state_data_changes():
+    first = _tiny_scenario()
+    second = _tiny_scenario()
+    second['states'] = second['states'].copy()
+    second['states'][0, 0, 0] += 1
+
+    assert scenario_fingerprint({'train': [first]}) != scenario_fingerprint({'train': [second]})
 
 
 @pytest.mark.skipif(not torch.backends.mps.is_available(), reason='Apple MPS is unavailable')

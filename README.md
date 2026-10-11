@@ -13,29 +13,59 @@ The PDF's Results section still contains placeholders for its tables and plots e
 
 The repository also includes a separate controlled simulation of independent and burst sensor outages. That extension measures average policy-response changes by outage rate, mode, orbit regime, and date. It does not find which relative sensor-target geometries make an outage most valuable or costly. The PDF mentions expanding to additional LEO multi-target geometries as future work, but it does not connect that to dropout.
 
-## Get set up
+## Set up on a student computer
 
-Use Python 3.9 or newer. The full archive download is about **4.41 GB** before the derived cohort and experiment outputs; allow additional disk space for those generated files.
+The supported baseline is **Python 3.11** on x86-64 Windows 10/11, x86-64 or ARM64 Linux, or Apple Silicon macOS 14+. The test workflow runs on Windows, Linux, and Apple Silicon macOS, plus Python 3.13 on Linux. This follows [PyTorch's published binary platform matrix](https://github.com/pytorch/pytorch/blob/main/RELEASE.md#hardware--software-support-in-binary-build-matrix). A GPU is optional: CPU is the portable baseline, while `auto` uses CUDA or Apple MPS when PyTorch reports one as available. Current official PyTorch wheels do not support Intel Macs; see the [upstream Intel Mac note](https://github.com/pytorch/pytorch/issues/169874) and the Conda-forge setup below.
+
+Install Python 3.11, then clone the repository. AWP is not needed for the paper campaign, so a regular clone is enough:
 
 ```bash
-git clone --recurse-submodules https://github.com/oramada/GodSatFactorial.git
+git clone https://github.com/oramada/GodSatFactorial.git
 cd GodSatFactorial
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e ".[test]"
-pytest -q
-godsat --help
 ```
 
-The `--recurse-submodules` option checks out the pinned, optional AWP source under `vendor/AWP`. The main SGP4 study and tests do not require AWP. For AWP propagation commands, install its Python dependencies with `python -m pip install -e ".[awp]"`; see [the AWP notes](docs/awp.md) for its separate licensing status.
+On macOS or Linux:
+
+```bash
+python3.11 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -e ".[test]"
+.venv/bin/python -m pytest -q
+.venv/bin/python -m godsat doctor
+```
+
+On Windows PowerShell:
+
+```powershell
+py -3.11 -m venv .venv
+.venv\Scripts\python.exe -m pip install --upgrade pip
+.venv\Scripts\python.exe -m pip install -e ".[test]"
+.venv\Scripts\python.exe -m pytest -q
+.venv\Scripts\python.exe -m godsat doctor
+```
+
+On an Intel Mac, create the environment with Miniforge/Conda-forge so it can supply its maintained PyTorch build, then install the repository without asking pip to replace that build:
+
+```bash
+conda create -n godsat -c conda-forge python=3.11 "pytorch>=2.8,<3" duckdb matplotlib numpy pyarrow pytz scipy sgp4 pytest pip
+conda activate godsat
+python -m pip install --no-deps -e .
+python -m pytest -q
+python -m godsat doctor
+```
+
+`python -m godsat doctor` reports the Python/platform/device, checks local archive sizes and cohort files, and prints the next data-preparation commands. Add `--require-data` to make it exit with an error until those inputs are ready. It checks sizes only; the fetch script verifies the pinned SHA-256 hashes.
+
+The full archive download is about **4.41 GB**. The filtered historical cohort adds roughly 1.6 GB in the reference run, before local scenarios, Python packages, and experiment outputs. Plan for at least 10 GB of free disk space. `--recurse-submodules` is only needed for the optional AWP source under `vendor/AWP`; the main SGP4 study and tests do not require AWP. For AWP propagation commands, install its Python dependencies with `python -m pip install -e ".[awp]"`; see [the AWP notes](docs/awp.md) for its separate licensing status.
 
 ## Download and prepare the data
 
 ```bash
-python scripts/fetch_four_year_data.py
-python scripts/export_current.py
+.venv/bin/python scripts/fetch_four_year_data.py
+.venv/bin/python scripts/export_current.py
 ```
+
+In PowerShell, use `.venv\Scripts\python.exe` in place of `.venv/bin/python` in these commands and the examples below.
 
 The first command downloads five pinned annual Parquet files from the [Space-Track TLE history mirror](https://huggingface.co/datasets/juliensimon/space-track-tle-history) and verifies their expected sizes and SHA-256 hashes. It also retrieves a SATCAT snapshot from [CelesTrak](https://celestrak.org/pub/satcat.csv), records its retrieval time and hash, and keeps that snapshot locally. Use `--refresh-catalog` when you intentionally want a newer catalog snapshot. See [data sources and limits](docs/data-sources.md).
 
@@ -43,31 +73,33 @@ The second command builds `data/current_payload_orbit_history.parquet` from hist
 
 The archive is about 4.41 GB on download. The current-payload derived Parquet is additional (roughly 1.6 GB in the reference run). To use all catalog objects instead of the filtered sensor cohort, set `"sensor_cohort": "all"` in a copied config; do not edit the checked-in baseline when running a variant.
 
-To reconstruct SGP4 TEME state vectors at all source element epochs for the full catalog, run `python scripts/export_state_vectors.py --cohort all`. This creates another multi-gigabyte local dataset of irregularly sampled states. It is not a continuous or measured trajectory; see [data source limits](docs/data-sources.md).
+To reconstruct SGP4 TEME state vectors at all source element epochs for the full catalog, run `.venv/bin/python scripts/export_state_vectors.py --cohort all`. This creates another multi-gigabyte local dataset of irregularly sampled states. It is not a continuous or measured trajectory; see [data source limits](docs/data-sources.md).
 
 ## Run the student study
 
-The checked-in CPU config can run on a regular workstation. The complete campaign is substantial: it trains the baseline and factorial treatments, fits the response surface, runs the search comparison, and retrains validation seeds.
+The checked-in CPU config runs without a GPU. The complete campaign is substantial: it trains the baseline and factorial treatments, fits the response surface, runs the search comparison, and retrains validation seeds. Keep the config at `cpu` for the closest cross-machine comparison. Pass `--device auto` before the subcommand if you want to use an available CUDA or Apple MPS accelerator; it may select different hardware on different computers.
 
 ```bash
-godsat --config configs/paper-exact-cpu.json campaign \
+.venv/bin/python -m godsat --config configs/paper-exact-cpu.json campaign \
   --output outputs/paper-exact-cpu \
   --center-replicates 3
-python scripts/audit_campaign.py --output outputs/paper-exact-cpu
+.venv/bin/python scripts/audit_campaign.py --output outputs/paper-exact-cpu
 ```
+
+For PowerShell, replace `.venv/bin/python` with `.venv\Scripts\python.exe`. In the Intel Mac Conda environment, use `python -m godsat` and `python` after activation.
 
 The campaign writes its configurations, metrics, and report under `outputs/`. The three center replicates improve pure-error estimation. Use `--center-replicates 1` for the smaller protocol described in the paper. Outputs can be shared separately; they are intentionally ignored by Git.
 
 To measure the modeled effect of dropout, run the intervention against the DOE-recommended checkpoints saved by that campaign:
 
 ```bash
-godsat --config configs/paper-exact-cpu.json dropout-study \
+.venv/bin/python -m godsat --config configs/paper-exact-cpu.json dropout-study \
   --baseline-output outputs/paper-exact-cpu \
   --output outputs/dropout-study \
   --replicates 20 \
   --dates quarterly
-python scripts/audit_dropout_results.py --output outputs/dropout-study
-python scripts/analyze_dropout.py outputs/dropout-study
+.venv/bin/python scripts/audit_dropout_results.py --output outputs/dropout-study
+.venv/bin/python scripts/analyze_dropout.py outputs/dropout-study
 ```
 
 This is a controlled simulation with frozen policies and synthetic outage assumptions. A quarterly, all-regime run can take substantial time; its results estimate the simulator's response, not real-world sensor effectiveness.
@@ -75,7 +107,7 @@ This is a controlled simulation with frozen policies and synthetic outage assump
 For an optional AWP check after preparing data:
 
 ```bash
-godsat --config configs/paper-exact-cpu.json awp-check --date 2026-10-01T00:00:00Z
+.venv/bin/python -m godsat --config configs/paper-exact-cpu.json awp-check --date 2026-10-01T00:00:00Z
 ```
 
 AWP comparison is a propagation-model sensitivity check. It is not an independent measurement of orbit error. AWP also does not replace the archived TLE source.

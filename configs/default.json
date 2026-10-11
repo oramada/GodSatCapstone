@@ -67,5 +67,6 @@
   ],
   "sensor_cohort": "current_payload",
   "target_cohort": "all",
-  "allow_non_payload_sensor_hosts": false
+  "allow_non_payload_sensor_hosts": false,
+  "compute_device": "cpu"
 }

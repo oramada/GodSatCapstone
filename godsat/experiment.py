@@ -1,5 +1,6 @@
 import csv
 import hashlib
+import importlib.metadata
 import json
 import os
 import pathlib
@@ -11,10 +12,52 @@ import torch
 from scipy.stats import norm, t as student_t
 from .orbits import ROOT
 from .scenario import prepare, load
-from .learning import train,evaluate
+from .learning import train,evaluate,compute_device
 from .design import FACTORS,decode,encode,screening,screening_analysis,ccd,fit_surface
 
 RESPONSES=['objective','custody_continuity','slew_energy_proxy','false_track_proxy','wall_seconds','gpu_hours']
+
+def runtime_provenance():
+    package_names = ['duckdb', 'matplotlib', 'numpy', 'pyarrow', 'pytz', 'scipy', 'sgp4', 'torch']
+    source_digest = hashlib.sha256()
+    for source in sorted((ROOT / 'godsat').glob('*.py')):
+        source_digest.update(source.name.encode())
+        source_digest.update(source.read_bytes())
+    return {
+        'godsat_factorial': importlib.metadata.version('godsat-factorial'),
+        'source_sha256': source_digest.hexdigest(),
+        'python': platform.python_version(),
+        'python_implementation': platform.python_implementation(),
+        'platform': platform.platform(),
+        'machine': platform.machine(),
+        'packages': {name: importlib.metadata.version(name) for name in package_names},
+    }
+
+def device_provenance(config):
+    device = compute_device(config)
+    result = {'requested': config.get('compute_device', 'cpu'), 'selected': str(device)}
+    if device.type == 'cuda':
+        result['accelerator'] = torch.cuda.get_device_name(device)
+        result['compute_capability'] = list(torch.cuda.get_device_capability(device))
+    return result
+
+def scenario_fingerprint(scenarios):
+    """Hash every array used by the experiment so changed data invalidates caches."""
+    digest = hashlib.sha256()
+    for split in sorted(scenarios):
+        for index, scenario in enumerate(scenarios[split]):
+            for key in sorted(scenario):
+                value = scenario[key]
+                if not isinstance(value, np.ndarray):
+                    continue
+                array = np.ascontiguousarray(value)
+                header = json.dumps({
+                    'split': split, 'index': index, 'key': key,
+                    'dtype': array.dtype.str, 'shape': array.shape,
+                }, sort_keys=True).encode()
+                digest.update(header)
+                digest.update(array.tobytes())
+    return digest.hexdigest()
 
 def write_json(path,obj):
     path=pathlib.Path(path);path.parent.mkdir(parents=True,exist_ok=True)
@@ -82,18 +125,22 @@ def cost_performance_ratios(validation):
 
 def run_treatment(name,hp,scenarios,config,folder,seed,force=False):
     path=folder/'runs'/(name+'.json');checkpoint=folder/'models'/(name+'.pt')
-    signature=hashlib.sha256(json.dumps({'hp':hp,'config':config,'seed':seed},sort_keys=True).encode()).hexdigest()
+    runtime=runtime_provenance()
+    device=device_provenance(config)
+    scenario_sha256=config.get('_scenario_sha256') or scenario_fingerprint(scenarios)
+    signature=hashlib.sha256(json.dumps({
+        'hp':hp,'config':config,'seed':seed,'runtime':runtime,
+        'device':device,'scenario_sha256':scenario_sha256,
+    },sort_keys=True).encode()).hexdigest()
     if path.exists() and not force:
         record=json.loads(path.read_text())
         if record['signature']!=signature:
-            # Earlier campaign versions included this design-level field in
-            # every treatment signature. It does not alter a treatment's model.
-            legacy_signatures={hashlib.sha256(json.dumps({'hp':hp,'config':{**config,'response_surface_center_replicates':n},'seed':seed},sort_keys=True).encode()).hexdigest() for n in range(1,5)}
-            if record['signature'] not in legacy_signatures: raise ValueError('Resume config differs: use a new output folder')
+            raise ValueError('Resume config, scenario data, or software/device runtime differs: use a new output folder')
         original_keys=set(record)
         record.setdefault('compute_device','cpu');record.setdefault('gpu_hours',0.)
         record.setdefault('gpu_active_seconds',record['gpu_hours']*3600.)
         record.setdefault('energy_estimate_kwh',None)
+        record.setdefault('runtime',runtime);record.setdefault('device_provenance',device)
         if set(record)!=original_keys:
             write_json(path,record)
         return record
@@ -105,9 +152,10 @@ def run_treatment(name,hp,scenarios,config,folder,seed,force=False):
     record={'name':name,'hyperparameters':hp,'seed':seed,'signature':signature,**metrics,
         'wall_seconds':wall,'train_seconds':train_seconds,'cpu_seconds':time.process_time()-cpu_start,
         'gpu_active_seconds':gpu_seconds,'gpu_hours':gpu_seconds/3600.,
-        'compute_device':str(model.actor[0].weight.device),'energy_estimate_kwh':None,
-        'energy_estimate_note':'No calibrated machine power measurement; GPU active time is measured with MPS events when using Apple MPS.',
-        'node':socket.gethostname(),'python':platform.python_version(),'torch':torch.__version__,
+        'compute_device':str(model.actor[0].weight.device),'device_provenance':device,'energy_estimate_kwh':None,
+        'energy_estimate_note':'No calibrated machine power measurement; accelerator active time is measured with CUDA or MPS events when available.',
+        'node':socket.gethostname(),'runtime':runtime,
+        'python':platform.python_version(),'torch':torch.__version__,
         'numpy':np.__version__,'timestamp_utc':__import__('datetime').datetime.now(__import__('datetime').timezone.utc).isoformat(),
         'training_history':history}
     checkpoint.parent.mkdir(parents=True,exist_ok=True);torch.save({'hp':hp,'obs_dim':model.actor[0].in_features,'actions':model.actor[-1].out_features,'state_dict':{k:v.detach().cpu() for k,v in model.state_dict().items()}},checkpoint)
@@ -158,8 +206,10 @@ def campaign(config,folder,center_replicates=1,force=False):
         for date in config[split+'_dates'] for regime in config.get(split+'_regimes',['leo'])]
         for split in ['training','validation','test']}
     scenarios['train']=scenarios.pop('training')
+    scenario_sha256=scenario_fingerprint(scenarios)
+    execution_config={**config,'_scenario_sha256':scenario_sha256}
     x,order=screening(config['design_seed']);screen=[]
-    for i,row in enumerate(x): screen.append(run_treatment(f'screen_{i:02d}',decode(row),scenarios,config,folder,config['training_seed'],force))
+    for i,row in enumerate(x): screen.append(run_treatment(f'screen_{i:02d}',decode(row),scenarios,execution_config,folder,config['training_seed'],force))
     design_rows=[dict(run=i,standard_order=int(order[i]),**{chr(65+j):float(v) for j,v in enumerate(row)},**decode(row)) for i,row in enumerate(x)]
     export_csv(folder/'screening_design.csv',design_rows)
     analyses={metric:screening_analysis(x,[r[metric] for r in screen]) for metric in RESPONSES}
@@ -169,7 +219,7 @@ def campaign(config,folder,center_replicates=1,force=False):
         full=np.zeros(7);full[selection]=p
         seed=config['training_seed']
         if np.all(p==0):seed+=center_number*7919;center_number+=1
-        responses.append(run_treatment(f'rsm_{i:02d}',decode(full),scenarios,config,folder,seed,force))
+        responses.append(run_treatment(f'rsm_{i:02d}',decode(full),scenarios,execution_config,folder,seed,force))
     export_csv(folder/'rsm_design.csv',[dict(run=i,x1=float(p[0]),x2=float(p[1]),x3=float(p[2]),**r['hyperparameters']) for i,(p,r) in enumerate(zip(local,responses))])
     surfaces={m:fit_surface(local,[r[m] for r in responses]) for m in RESPONSES}
     write_json(folder/'response_surfaces.json',surfaces)
@@ -177,14 +227,14 @@ def campaign(config,folder,center_replicates=1,force=False):
     bo=[];rng=np.random.default_rng(config['design_seed'])
     # Matched treatment budget: 31 for exact paper design; augmented design matches its larger actual count.
     for i in range(len(screen)+len(responses)):
-        coded=bayesian_candidates(bo,rng);bo.append(run_treatment(f'bo_{i:02d}',decode(coded),scenarios,config,folder,config['training_seed'],force))
+        coded=bayesian_candidates(bo,rng);bo.append(run_treatment(f'bo_{i:02d}',decode(coded),scenarios,execution_config,folder,config['training_seed'],force))
     bo_best=max(bo,key=lambda r:r['objective'])['hyperparameters']
     configs={'baseline':config['baseline'],'doe_recommended':recommended,'bayesian_best':bo_best}
     validation=[]
     # Retrain from scratch for all five seeds. Test dates were never used in fitting or selection.
     for label,hp in configs.items():
         for seed in config['validation_seeds']:
-            r=run_treatment(f'validate_{label}_{seed}',hp,scenarios,config,folder,seed,force)
+            r=run_treatment(f'validate_{label}_{seed}',hp,scenarios,execution_config,folder,seed,force)
             checkpoint=folder/'models'/(r['name']+'.pt')
             from .learning import Agent
             saved=torch.load(checkpoint,map_location='cpu',weights_only=True)
@@ -239,7 +289,11 @@ def campaign(config,folder,center_replicates=1,force=False):
         'sensor_host_status_interpretation':(
             'Current active-GP/SATCAT snapshot backcast through the archive; does not establish historical operating status.'
             if config.get('sensor_cohort')=='current_active_payload' else None),
-        'compute_device':config.get('compute_device','cpu'),
+        'compute_device':device_provenance(config)['selected'],
+        'compute_device_requested':config.get('compute_device','cpu'),
+        'device_provenance':device_provenance(config),
+        'scenario_sha256':scenario_sha256,
+        'runtime':runtime_provenance(),
         'total_gpu_hours':float(sum(r.get('gpu_hours',0.) for r in all_runs)+sum(r.get('gpu_hours',0.) for r in validation if r['configuration'] in configs)),
         'energy_estimates_available':False,
         'target_cohort':config.get('target_cohort','current_payload'),

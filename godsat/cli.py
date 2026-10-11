@@ -17,16 +17,27 @@ def config(path,quick=False):
     return c
 
 def main():
-    p=argparse.ArgumentParser(description='GoDSAT research system using historical orbit data and AWP')
+    p=argparse.ArgumentParser(description='Portable GoDSAT paper-study runner; AWP checks are optional')
     p.add_argument('--config',default=str(ROOT/'configs/default.json'))
+    p.add_argument('--device',choices=['cpu','cuda','mps','auto'],help='override the config device; auto prefers CUDA, then Apple MPS, then CPU')
     sub=p.add_subparsers(dest='command',required=True)
+    doctor=sub.add_parser('doctor',help='check the Python runtime, compute device, and local study data')
+    doctor.add_argument('--require-data',action='store_true',help='exit nonzero unless the configured study data is ready')
     prep=sub.add_parser('prepare');prep.add_argument('--quick',action='store_true');prep.add_argument('--date');prep.add_argument('--regime',choices=['leo','meo','geo','heo','all'],default='leo')
     run=sub.add_parser('campaign');run.add_argument('--quick',action='store_true');run.add_argument('--output',default=str(ROOT/'outputs/research'));run.add_argument('--center-replicates',type=int,default=1)
     awp=sub.add_parser('awp-check');awp.add_argument('--date',default='2026-10-01T00:00:00Z');awp.add_argument('--regime',choices=['leo','meo','geo','heo'],default='leo');awp.add_argument('--norad',type=int,help='propagate this payload ID instead of the scenario-selected first sensor');awp.add_argument('--drag',action='store_true',help='add AWP atmospheric drag with a documented nominal ballistic coefficient');awp.add_argument('--output')
     server=sub.add_parser('serve');server.add_argument('--output',default=str(ROOT/'outputs/quick'));server.add_argument('--port',type=int,default=8765)
     dropout=sub.add_parser('dropout-study');dropout.add_argument('--baseline-output',default=str(ROOT/'outputs/full-paper-study'));dropout.add_argument('--output',default=str(ROOT/'outputs/dropout-study'));dropout.add_argument('--replicates',type=int,default=20);dropout.add_argument('--dates',help='comma-separated UTC dates, or quarterly/monthly for a four-year historical grid')
     args=p.parse_args();c=config(args.config,getattr(args,'quick',False))
-    if args.command=='prepare':
+    if args.device:c['compute_device']=args.device
+    if args.command=='doctor':
+        from .diagnostics import environment_report
+        report=environment_report(c)
+        print(json.dumps(report,indent=2))
+        if (not report['python_supported'] or report['compute_device_error']
+                or (args.require_data and not report['data_ready'])):
+            raise SystemExit(1)
+    elif args.command=='prepare':
         dates=[args.date] if args.date else sum((c[split+'_dates'] for split in ['training','validation','test']),[])
         for date in dates:print(prepare(date,c,regime=args.regime),flush=True)
     elif args.command=='campaign':

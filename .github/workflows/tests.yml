@@ -6,14 +6,28 @@ on:
 
 jobs:
   unit-tests:
-    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            python-version: "3.11"
+          - os: ubuntu-24.04
+            python-version: "3.13"
+          - os: macos-14
+            python-version: "3.11"
+          - os: windows-2022
+            python-version: "3.11"
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
           cache: pip
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e ".[test]"
-      - run: pytest -q
-      - run: godsat --help
+      - run: python -m pip check
+      - run: python -m pytest -q
+      - run: python -m godsat --help
+      - run: python -m godsat doctor

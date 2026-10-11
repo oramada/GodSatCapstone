@@ -6,25 +6,44 @@ from torch import nn
 from torch.distributions import Categorical
 from .environment import TaskingEnv
 
-def configure(seed):
+def configure(seed,device):
     torch.set_num_threads(1)
     torch.manual_seed(seed);np.random.seed(seed)
-    torch.use_deterministic_algorithms(True)
+    # Current MPS builds lack deterministic implementations for some gradient
+    # operations (notably scatter_reduce). Preserve seeded runs but surface a
+    # warning on MPS; keep strict determinism for CPU and CUDA.
+    torch.use_deterministic_algorithms(True,warn_only=device.type=='mps')
 
 def compute_device(config):
     name=config.get('compute_device','cpu')
+    if name == 'auto':
+        if torch.cuda.is_available():
+            name = 'cuda'
+        elif getattr(torch.backends, 'mps', None) and torch.backends.mps.is_available():
+            name = 'mps'
+        else:
+            name = 'cpu'
     device=torch.device(name)
+    if device.type=='mps' and not getattr(torch.backends, 'mps', None):
+        raise RuntimeError('MPS was requested but is unavailable in this PyTorch runtime')
     if device.type=='mps' and not torch.backends.mps.is_available():
         raise RuntimeError('MPS was requested but is unavailable in this PyTorch runtime')
-    if device.type not in {'cpu','mps'}:
-        raise ValueError('compute_device must be cpu or mps')
+    if device.type=='cuda' and not torch.cuda.is_available():
+        raise RuntimeError('CUDA was requested but is unavailable in this PyTorch runtime')
+    if device.type not in {'cpu','mps','cuda'}:
+        raise ValueError('compute_device must be cpu, cuda, mps, or auto')
     return device
 
 def _timed(function,device):
-    if device.type!='mps':return function(),0.
-    start=torch.mps.Event(enable_timing=True);end=torch.mps.Event(enable_timing=True)
-    start.record();result=function();end.record();torch.mps.synchronize()
-    return result,float(start.elapsed_time(end))/1000.
+    if device.type=='mps':
+        start=torch.mps.Event(enable_timing=True);end=torch.mps.Event(enable_timing=True)
+        start.record();result=function();end.record();torch.mps.synchronize()
+        return result,float(start.elapsed_time(end))/1000.
+    if device.type=='cuda':
+        start=torch.cuda.Event(enable_timing=True);end=torch.cuda.Event(enable_timing=True)
+        start.record();result=function();end.record();torch.cuda.synchronize(device)
+        return result,float(start.elapsed_time(end))/1000.
+    return function(),0.
 
 class Agent(nn.Module):
     def __init__(self,obs_dim,actions,hp):
@@ -52,8 +71,9 @@ class Agent(nn.Module):
             for t,p in zip(self.target_critic.parameters(),self.critic.parameters()): t.lerp_(p,tau)
 
 def train(scenarios,config,hp,seed,episodes=None):
-    configure(seed);start=time.perf_counter();episodes=episodes or config['training_episodes']
-    device=compute_device(config);gpu_seconds=0.
+    device=compute_device(config)
+    configure(seed,device);start=time.perf_counter();episodes=episodes or config['training_episodes']
+    gpu_seconds=0.
     sample=TaskingEnv(scenarios[0],config,hp['claim_resolution'],seed)
     ob,_=sample.reset();model=Agent(ob.shape[-1],sample.k+1,hp).to(device)
     optimizer=torch.optim.Adam(list(model.actor.parameters())+list(model.critic.parameters()),lr=hp['learning_rate'])
