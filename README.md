@@ -1,15 +1,17 @@
 # GodSatFactorial
 
-A reproducible student starter repository for studying satellite sensor tasking and the effect of sensor dropout. It contains the Python code, experiment configs, data-fetch scripts, and tests. The multi-gigabyte orbital archive and generated results are downloaded or created locally; they are not stored in Git.
+A reproducible student starter for the supplied paper's hyperparameter design-of-experiments study, with a separate simulated sensor-dropout extension. It contains the Python code, experiment configs, data-fetch scripts, and tests. The multi-gigabyte orbital archive and generated results are downloaded or created locally; they are not stored in Git.
 
-## What the study asks
+## What the supplied paper studies
 
-The paper describes a seven-factor hyperparameter screen followed by a response-surface optimization of the leading factors. This starter turns that into two practical questions for students:
+The paper is about hyperparameter optimization, not satellite or sensor dropout. It studies seven GoDSAT agent hyperparameters using a 16-run fractional-factorial screen, then a 15-run response-surface design over the leading factors, with validation and a matched-budget Bayesian-optimization comparison. It does not state two formal numbered research questions. A useful teaching breakdown is:
 
-1. Which agent-training settings have the largest effect on the simulated tasking outcomes?
-2. Which settings perform best, and how do the designed experiment and an equal-budget Bayesian search compare?
+1. Which agent-training settings have the largest effect on simulated tasking outcomes?
+2. Which settings perform best, and how does the designed experiment compare with equal-budget Bayesian optimization?
 
-The paper does not state these as numbered research questions, so this is an operational interpretation. The code is a runnable research implementation, not a claim of exact reproduction of the original GoDSAT agent or of the paper's unfinished numerical results. Read [the study protocol](docs/study-protocol.md) before interpreting results.
+The PDF's Results section still contains placeholders for its tables and plots even though its abstract and conclusion state numerical improvement claims. Those claims cannot be audited from the supplied results section. This repository is a runnable student implementation, not an exact reproduction of the original GoDSAT agent or a verification of the paper's claims. Read [the study protocol](docs/study-protocol.md) before interpreting results.
+
+The repository also includes a separate controlled simulation of independent and burst sensor outages. That extension measures average policy-response changes by outage rate, mode, orbit regime, and date. It does not find which relative sensor-target geometries make an outage most valuable or costly. The PDF mentions expanding to additional LEO multi-target geometries as future work, but it does not connect that to dropout.
 
 ## Get set up
 

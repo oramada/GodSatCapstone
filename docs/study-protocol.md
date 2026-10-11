@@ -1,13 +1,15 @@
 # Study protocol and interpretation
 
-## Questions represented by this starter
+## Scope of the supplied paper
 
-The supplied paper motivates systematic hyperparameter optimization but does not label two formal research questions. This repository treats the intended questions as:
+The paper studies hyperparameter optimization for GoDSAT tasking agents. It does not include satellite/sensor dropout as a research question, and it does not rank outage value by sensor-target geometry. It does not label formal numbered research questions. A useful teaching breakdown of its scope is:
 
 1. Which of seven agent hyperparameters most influence tasking performance?
 2. Which settings optimize that performance, and how do factorial/response-surface design and an equal-budget Bayesian search compare?
 
-The implementation is a student research seed. It does not establish that the Python actor-critic implementation is the original GoDSAT implementation, and the paper itself leaves numerical results as placeholders. Treat results generated here as new simulation results and report the implementation and assumptions.
+The protocol is a 16-run resolution-IV fractional-factorial screen over seven factors, followed by a 15-run face-centered response-surface design over the three leading factors. The paper also describes five-seed validation and a Bayesian-optimization comparison with a 31-run budget. It names custody continuity, slew energy, false-track rate, and GPU-hours as responses. The Results section contains a placeholder for numerical tables and plots, although the abstract and conclusion state improvement claims; those claims are not auditable from the supplied results section.
+
+This implementation is a student research seed. It does not establish that the Python actor-critic implementation is the original GoDSAT implementation. Treat outputs as new simulation results and report the implementation and assumptions.
 
 ## Experiment stages
 
@@ -15,9 +17,11 @@ The `campaign` command performs a 16-run, resolution-IV fractional-factorial scr
 
 Training dates, a later validation date, and a held-out test date are specified in `configs/paper-exact-cpu.json`. These are short sampled episodes drawn from the four-year archive, not four years of continuous agent training. Factor effects apply to this simulator, its selected scenarios, and its reward/response definitions.
 
-## Dropout question
+## Separate simulated dropout extension
 
-The separate `dropout-study` command tests simulated independent and burst dropout across configured rates and orbit regimes. It reports changes in custody continuity and other simulator responses relative to zero dropout. This measures the simulated effect of missing sensor observations under the selected policy and assumptions. It is not a field estimate of real sensor dropout effectiveness unless the dropout and sensor models are calibrated against representative observations.
+The `dropout-study` command is an extension beyond the supplied paper. It tests simulated independent and burst sensor outages across configured rates, orbit regimes, and dates, then reports aggregate response changes relative to zero dropout. It neither uses measured outage telemetry nor identifies the most valuable or harmful sensor-target geometries.
+
+To answer a geometry-specific dropout question, a follow-on study needs to define what makes a dropout valuable, preserve paired outage/no-outage trials, and report effects within geometry groups such as range, line-of-sight margin, slew angle, field-of-regard margin, and target contention. Those grouped estimates are not currently implemented. The PDF's future-work note about adding LEO multi-target geometries is separate from its hyperparameter study and does not specify an outage analysis.
 
 ## Reproducibility and limits
 

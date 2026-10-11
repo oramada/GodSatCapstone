@@ -101,10 +101,10 @@ def parse_response_row(row):
 
 
 def run_dropout_study(config, baseline_output, output, rates=None, replicates=20):
-    """Evaluate the paper's selected policy across historical dates/outage scenarios.
+    """Evaluate a DOE-recommended policy across historical outage scenarios.
 
-    No dropout model is trained into the policy; this is an intervention study
-    that holds tasking policy, orbital scenario, and random seed paired fixed.
+    This separate extension does not train dropout into the policy; it holds the
+    policy and orbital scenario fixed and pairs the random seed across rates.
     """
     baseline_output = pathlib.Path(baseline_output)
     out = pathlib.Path(output); out.mkdir(parents=True, exist_ok=True)
