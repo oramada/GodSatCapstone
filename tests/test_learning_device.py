@@ -1,6 +1,7 @@
 import math
 import hashlib
 import json
+import os
 
 import numpy as np
 import pytest
@@ -125,7 +126,10 @@ def test_scenario_fingerprint_changes_when_state_data_changes():
     assert scenario_fingerprint({'train': [first]}) != scenario_fingerprint({'train': [second]})
 
 
-@pytest.mark.skipif(not torch.backends.mps.is_available(), reason='Apple MPS is unavailable')
+@pytest.mark.skipif(
+    not torch.backends.mps.is_available() or os.environ.get('GITHUB_ACTIONS') == 'true',
+    reason='Apple MPS is unavailable or not allocatable on GitHub-hosted runners',
+)
 def test_mps_training_is_repeatable_and_records_device_active_time():
     config = _config('mps')
     scenario = _tiny_scenario()
