@@ -1,0 +1,30 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Downloaded source data and derived trajectories are fetched locally.
+/data/raw/*.parquet
+/data/raw/satcat.csv
+/data/raw/satcat-manifest.json
+/data/current_payload_orbit_history.parquet
+/data/current_payload_orbit_history.manifest.json
+/data/scenarios/
+/data/historical_state_vectors_all/
+/data/historical_state_vectors_current_payload/
+/data/ground_sensor/
+/outputs/
+
+# Training checkpoints and local experiment artifacts.
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.parquet

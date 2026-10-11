@@ -1,0 +1,3 @@
+[submodule "vendor/AWP"]
+	path = vendor/AWP
+	url = https://github.com/alfonsogonzalez/AWP.git

@@ -1,0 +1,2 @@
+# Core study runtime and test suite. Optional extras are documented in README.md.
+-e .[test]

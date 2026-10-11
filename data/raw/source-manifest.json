@@ -1,0 +1,66 @@
+{
+  "repository": "juliensimon/space-track-tle-history",
+  "revision": "974246e5ff943175a4a736047a87668fa0361850",
+  "files": [
+    {
+      "type": "file",
+      "oid": "3d901fa0aae9dd2bb38b37d616c49dee7630acab",
+      "size": 861096390,
+      "lfs": {
+        "oid": "737c5dc91e494038dbed65c169a19de7cbec458b818deaeb7769688e040ac87e",
+        "size": 861096390,
+        "pointerSize": 134
+      },
+      "xetHash": "8b38515ba4939ff52f3019cae26d9ecdf0bcb3860bf585c97eb4abb0ba494d09",
+      "path": "data/tle_2022.parquet"
+    },
+    {
+      "type": "file",
+      "oid": "5883b79c3e3a265c4e305774fb72fd53e11dd8c8",
+      "size": 789607664,
+      "lfs": {
+        "oid": "2803aaa935b40980ee734b138c44bccb513840d97386d324ad52932c4928cfdc",
+        "size": 789607664,
+        "pointerSize": 134
+      },
+      "xetHash": "884ebc4afee681dce413ca4cc8dc75dc67c2f74fa835500c617081eb26ec0e45",
+      "path": "data/tle_2023.parquet"
+    },
+    {
+      "type": "file",
+      "oid": "65d298c0a81deb4d092cfa0930b421d17ead1078",
+      "size": 979014651,
+      "lfs": {
+        "oid": "862740092876cfd22675b66a87d6ab570d31e714411bf575c227224e9a87a741",
+        "size": 979014651,
+        "pointerSize": 134
+      },
+      "xetHash": "7c3e4512c4461ceb1765cdcc803512072feb942eae96fb53a52c52e8cbe44305",
+      "path": "data/tle_2024.parquet"
+    },
+    {
+      "type": "file",
+      "oid": "cb4454087d5183d6a3563cc40071be610065b3b2",
+      "size": 1035604690,
+      "lfs": {
+        "oid": "9e9339cdbfc536cb91a1b5a26c898f193fdb683202f1cb1ceb7cee8bda81f64e",
+        "size": 1035604690,
+        "pointerSize": 135
+      },
+      "xetHash": "dc48bc06ddcf265de231ae791c8fe0df5aab50827f13f13c6ce035a154a39b05",
+      "path": "data/tle_2025.parquet"
+    },
+    {
+      "type": "file",
+      "oid": "4d8002249748bc8ba40c32486b4dd19723d29a00",
+      "size": 743493583,
+      "lfs": {
+        "oid": "9f99aacf685d879af6e01dd81a07da7d98ce67d600732b2a6403e0b0218ff23a",
+        "size": 743493583,
+        "pointerSize": 134
+      },
+      "xetHash": "3bdfef9793110f4cdae76a38a0aa4deab2eef214b9d6a7d55606ab6b7700c8ef",
+      "path": "data/tle_2026.parquet"
+    }
+  ]
+}
