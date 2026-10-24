@@ -1,0 +1,23 @@
+{
+  "status": "completed_valid",
+  "audited_utc": "2026-10-10T14:53:50.790164+00:00",
+  "design_signature": "81b7e6e6ad21b4cccf834b9dc8a0789ffeab1f0c2130dc03bec39f9b0732c652",
+  "date_count": 17,
+  "regime_count": 4,
+  "outage_mode_count": 2,
+  "rate_count": 6,
+  "replicate_count": 20,
+  "model_seed_count": 5,
+  "expected_cells": 68,
+  "completed_cells": 68,
+  "expected_treatment_rows": 81600,
+  "rows_read": 81600,
+  "unique_valid_rows": 81600,
+  "missing_rows": 0,
+  "duplicate_rows": 0,
+  "unexpected_rows": 0,
+  "malformed_rows": 0,
+  "changed_while_reading": false,
+  "summary_present": true,
+  "issues": []
+}

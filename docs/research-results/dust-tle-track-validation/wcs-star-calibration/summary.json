@@ -1,0 +1,433 @@
+{
+  "archive_md5": "a31b62290eface15e519ed954124d59c",
+  "best_global_shift_for_corr_field_coordinates": "dx-1_dy-1",
+  "frame_count": 1148,
+  "interpretation_limit": "This validates WCS against matched stars for the Corr coordinate convention; it does not establish the pixel origin used by MOT RSO labels or provide NORAD identities.",
+  "per_frame_csv": "per_frame_wcs_star_residuals.csv",
+  "per_session": [
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 41,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 566.7499374738077,
+        "dx+0_dy+1": 875.9335945097529,
+        "dx+0_dy-1": 418.4498811170158,
+        "dx+1_dy+0": 871.5013133563946,
+        "dx+1_dy+1": 1102.603243752276,
+        "dx+1_dy-1": 775.509357613038,
+        "dx-1_dy+0": 399.10995731328677,
+        "dx-1_dy+1": 770.8010345263092,
+        "dx-1_dy-1": 159.74749911469956
+      },
+      "session": "2023_01_16",
+      "star_match_count": 1651
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 61,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 1044.3945650481182,
+        "dx+0_dy+1": 1221.816643216066,
+        "dx+0_dy-1": 979.5948923095086,
+        "dx+1_dy+0": 1363.2901583433616,
+        "dx+1_dy+1": 1514.280088563125,
+        "dx+1_dy-1": 1310.9879351194143,
+        "dx-1_dy+0": 763.0472845467216,
+        "dx-1_dy+1": 968.6429321449605,
+        "dx-1_dy-1": 691.1542522602817
+      },
+      "session": "2023_01_21",
+      "star_match_count": 2402
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 51,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 587.8513310538297,
+        "dx+0_dy+1": 897.3752488018214,
+        "dx+0_dy-1": 431.18420966283895,
+        "dx+1_dy+0": 888.8118158060272,
+        "dx+1_dy+1": 1123.104771977575,
+        "dx+1_dy-1": 790.48146238568,
+        "dx-1_dy+0": 415.17262851847113,
+        "dx-1_dy+1": 788.0601382840241,
+        "dx-1_dy-1": 163.7735828167059
+      },
+      "session": "2023_01_25",
+      "star_match_count": 1147
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 95,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 586.8928122099699,
+        "dx+0_dy+1": 897.8429501145827,
+        "dx+0_dy-1": 427.7423026145916,
+        "dx+1_dy+0": 881.8462518319875,
+        "dx+1_dy+1": 1115.8146030797068,
+        "dx+1_dy-1": 781.778704197179,
+        "dx-1_dy+0": 426.21977256320395,
+        "dx-1_dy+1": 794.3859178913813,
+        "dx-1_dy-1": 176.81864341065352
+      },
+      "session": "2023_03_31",
+      "star_match_count": 2722
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 124,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 568.4198384864487,
+        "dx+0_dy+1": 883.364666974525,
+        "dx+0_dy-1": 412.4872260954901,
+        "dx+1_dy+0": 871.0643262712839,
+        "dx+1_dy+1": 1107.7965215969682,
+        "dx+1_dy-1": 770.8049993876195,
+        "dx-1_dy+0": 404.56560192227454,
+        "dx-1_dy+1": 777.8705163037346,
+        "dx-1_dy-1": 155.17715887369863
+      },
+      "session": "2023_05_31",
+      "star_match_count": 3421
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 66,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 586.7196272288744,
+        "dx+0_dy+1": 888.4849381974846,
+        "dx+0_dy-1": 437.85989881846444,
+        "dx+1_dy+0": 892.8521726977699,
+        "dx+1_dy+1": 1119.502768808305,
+        "dx+1_dy-1": 793.0874662469457,
+        "dx-1_dy+0": 411.23005186823866,
+        "dx-1_dy+1": 775.4999438687178,
+        "dx-1_dy-1": 178.05924839869687
+      },
+      "session": "2023_06_03",
+      "star_match_count": 1908
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 7,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 638.2977961660157,
+        "dx+0_dy+1": 911.0265260174879,
+        "dx+0_dy-1": 488.2557497106296,
+        "dx+1_dy+0": 905.130100875999,
+        "dx+1_dy+1": 1148.8384934611618,
+        "dx+1_dy-1": 811.4468356941031,
+        "dx-1_dy+0": 465.26453323986584,
+        "dx-1_dy+1": 818.8481726525777,
+        "dx-1_dy-1": 265.84963215594354
+      },
+      "session": "2023_06_20",
+      "star_match_count": 161
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 112,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 627.4821323877283,
+        "dx+0_dy+1": 936.51581665609,
+        "dx+0_dy-1": 460.55418489221097,
+        "dx+1_dy+0": 924.440767747298,
+        "dx+1_dy+1": 1158.84689562627,
+        "dx+1_dy-1": 813.2593996579853,
+        "dx-1_dy+0": 463.36234491873245,
+        "dx-1_dy+1": 828.4868399258422,
+        "dx-1_dy-1": 208.78740023082003
+      },
+      "session": "2023_07_19",
+      "star_match_count": 3308
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 24,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 583.2084872260647,
+        "dx+0_dy+1": 894.3465592734855,
+        "dx+0_dy-1": 427.04211243585274,
+        "dx+1_dy+0": 885.8850183054222,
+        "dx+1_dy+1": 1113.5529622902725,
+        "dx+1_dy-1": 783.6321274695123,
+        "dx-1_dy+0": 423.6596663907862,
+        "dx-1_dy+1": 784.3487142612498,
+        "dx-1_dy-1": 188.72139202497826
+      },
+      "session": "2023_08_04a",
+      "star_match_count": 809
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 68,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 571.8259430683357,
+        "dx+0_dy+1": 880.0068234760801,
+        "dx+0_dy-1": 427.7903935217987,
+        "dx+1_dy+0": 873.0926481216716,
+        "dx+1_dy+1": 1104.9097576715267,
+        "dx+1_dy-1": 777.1333709620158,
+        "dx-1_dy+0": 416.731617287514,
+        "dx-1_dy+1": 781.5293670008057,
+        "dx-1_dy-1": 191.89313490297764
+      },
+      "session": "2023_08_04b",
+      "star_match_count": 2115
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 35,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 588.366278236302,
+        "dx+0_dy+1": 892.7114122794438,
+        "dx+0_dy-1": 435.132745231141,
+        "dx+1_dy+0": 880.5645057535509,
+        "dx+1_dy+1": 1114.0775250738009,
+        "dx+1_dy-1": 784.8451736348824,
+        "dx-1_dy+0": 425.96522323388825,
+        "dx-1_dy+1": 789.1146139363866,
+        "dx-1_dy-1": 204.24257553495022
+      },
+      "session": "2023_08_05a",
+      "star_match_count": 1196
+    },
+    {
+      "dataset_set": "SET 1",
+      "frame_count": 36,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 564.9688603648359,
+        "dx+0_dy+1": 878.5040053679693,
+        "dx+0_dy-1": 405.8269018704465,
+        "dx+1_dy+0": 864.0126017397802,
+        "dx+1_dy+1": 1099.7146873310644,
+        "dx+1_dy-1": 769.1723588920881,
+        "dx-1_dy+0": 407.4617061641065,
+        "dx-1_dy+1": 772.6441329040435,
+        "dx-1_dy-1": 162.4991478005732
+      },
+      "session": "2023_08_05b",
+      "star_match_count": 823
+    },
+    {
+      "dataset_set": "SET 2",
+      "frame_count": 45,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 572.1286359148655,
+        "dx+0_dy+1": 881.8936676035752,
+        "dx+0_dy-1": 407.3584882481497,
+        "dx+1_dy+0": 869.4292006338145,
+        "dx+1_dy+1": 1103.2709777948826,
+        "dx+1_dy-1": 762.1542891360727,
+        "dx-1_dy+0": 409.8855779880782,
+        "dx-1_dy+1": 779.0469355141086,
+        "dx-1_dy-1": 159.612025392538
+      },
+      "session": "2023_02_21",
+      "star_match_count": 1044
+    },
+    {
+      "dataset_set": "SET 2",
+      "frame_count": 37,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 561.4329390919734,
+        "dx+0_dy+1": 867.9397121309681,
+        "dx+0_dy-1": 424.237930149991,
+        "dx+1_dy+0": 866.7556272334933,
+        "dx+1_dy+1": 1095.2621611340933,
+        "dx+1_dy-1": 779.1182937164933,
+        "dx-1_dy+0": 389.2916657317037,
+        "dx-1_dy+1": 757.624584286262,
+        "dx-1_dy-1": 178.48650791537983
+      },
+      "session": "2023_03_16",
+      "star_match_count": 1074
+    },
+    {
+      "dataset_set": "SET 2",
+      "frame_count": 16,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 573.1479304642603,
+        "dx+0_dy+1": 887.2858032409307,
+        "dx+0_dy-1": 410.5709484513584,
+        "dx+1_dy+0": 871.8273754395565,
+        "dx+1_dy+1": 1105.7436776639643,
+        "dx+1_dy-1": 765.4293596901134,
+        "dx-1_dy+0": 437.700576111302,
+        "dx-1_dy+1": 796.2270431217154,
+        "dx-1_dy-1": 201.10755448048516
+      },
+      "session": "2023_03_26",
+      "star_match_count": 366
+    },
+    {
+      "dataset_set": "SET 2",
+      "frame_count": 38,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 571.6787971247622,
+        "dx+0_dy+1": 877.9605083888835,
+        "dx+0_dy-1": 422.5752288813354,
+        "dx+1_dy+0": 876.679036139509,
+        "dx+1_dy+1": 1104.02793523321,
+        "dx+1_dy-1": 776.5175822614619,
+        "dx-1_dy+0": 407.44700784849556,
+        "dx-1_dy+1": 771.3299799624788,
+        "dx-1_dy-1": 180.84993108002763
+      },
+      "session": "2023_04_22",
+      "star_match_count": 1140
+    },
+    {
+      "dataset_set": "SET 2",
+      "frame_count": 50,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 589.2483361488441,
+        "dx+0_dy+1": 906.3220439506192,
+        "dx+0_dy-1": 417.00100624922413,
+        "dx+1_dy+0": 876.8563241415565,
+        "dx+1_dy+1": 1120.0836361471543,
+        "dx+1_dy-1": 767.1414416100888,
+        "dx-1_dy+0": 449.8406314400069,
+        "dx-1_dy+1": 815.6870163689111,
+        "dx-1_dy-1": 202.31140934142766
+      },
+      "session": "2023_05_08",
+      "star_match_count": 1600
+    },
+    {
+      "dataset_set": "SET 2",
+      "frame_count": 50,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 583.9619441356173,
+        "dx+0_dy+1": 884.8449314843939,
+        "dx+0_dy-1": 436.8827291770783,
+        "dx+1_dy+0": 888.1713832463375,
+        "dx+1_dy+1": 1110.8318109904205,
+        "dx+1_dy-1": 787.5173494074,
+        "dx-1_dy+0": 415.6182096594445,
+        "dx-1_dy+1": 778.4082753386347,
+        "dx-1_dy-1": 194.93822199468173
+      },
+      "session": "2023_05_10",
+      "star_match_count": 1605
+    },
+    {
+      "dataset_set": "SET 2",
+      "frame_count": 50,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 583.9619441356173,
+        "dx+0_dy+1": 884.8449314843939,
+        "dx+0_dy-1": 436.8827291770783,
+        "dx+1_dy+0": 888.1713832463375,
+        "dx+1_dy+1": 1110.8318109904205,
+        "dx+1_dy-1": 787.5173494074,
+        "dx-1_dy+0": 415.6182096594445,
+        "dx-1_dy+1": 778.4082753386347,
+        "dx-1_dy-1": 194.93822199468173
+      },
+      "session": "2023_06_05",
+      "star_match_count": 1605
+    },
+    {
+      "dataset_set": "SET 2",
+      "frame_count": 46,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 595.2082724329416,
+        "dx+0_dy+1": 904.6284331176419,
+        "dx+0_dy-1": 445.02590028871117,
+        "dx+1_dy+0": 891.424503755949,
+        "dx+1_dy+1": 1123.021679147814,
+        "dx+1_dy-1": 791.9479122158193,
+        "dx-1_dy+0": 446.86395582483294,
+        "dx-1_dy+1": 806.3971610610457,
+        "dx-1_dy-1": 229.3363801321413
+      },
+      "session": "2023_06_19",
+      "star_match_count": 2071
+    },
+    {
+      "dataset_set": "SET 2",
+      "frame_count": 50,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 602.5010885277638,
+        "dx+0_dy+1": 906.85100693239,
+        "dx+0_dy-1": 443.91120613133916,
+        "dx+1_dy+0": 896.1604568196398,
+        "dx+1_dy+1": 1126.6238694490037,
+        "dx+1_dy-1": 791.4842604230212,
+        "dx-1_dy+0": 430.9516541603241,
+        "dx-1_dy+1": 793.2704808534902,
+        "dx-1_dy-1": 196.7630791064449
+      },
+      "session": "2023_07_20",
+      "star_match_count": 1885
+    },
+    {
+      "dataset_set": "SET 2",
+      "frame_count": 46,
+      "median_residual_arcsec_by_pixel_offset": {
+        "dx+0_dy+0": 587.8814032087494,
+        "dx+0_dy+1": 891.1007397744403,
+        "dx+0_dy-1": 445.97674409421927,
+        "dx+1_dy+0": 881.3691518026504,
+        "dx+1_dy+1": 1106.960334552077,
+        "dx+1_dy-1": 787.5874490297899,
+        "dx-1_dy+0": 439.5944115973916,
+        "dx-1_dy+1": 794.7109327560838,
+        "dx-1_dy-1": 220.04547024925574
+      },
+      "session": "2023_07_21",
+      "star_match_count": 1547
+    }
+  ],
+  "pixel_convention_test": "evaluate WCS transforms at x/y shifts -1, 0, and +1 pixels relative to Corr field_x/field_y",
+  "pooled_offset_comparison": {
+    "dx+0_dy+0": {
+      "median_arcsec": 580.0876959665059,
+      "p95_frame_median_arcsec": 1001.7215263570483,
+      "pooled_star_median_arcsec": 596.1484194074394
+    },
+    "dx+0_dy+1": {
+      "median_arcsec": 891.7583721987819,
+      "p95_frame_median_arcsec": 1201.2940104300817,
+      "pooled_star_median_arcsec": 901.0878023294447
+    },
+    "dx+0_dy-1": {
+      "median_arcsec": 426.05211188311716,
+      "p95_frame_median_arcsec": 960.4393249975096,
+      "pooled_star_median_arcsec": 441.52779356184124
+    },
+    "dx+1_dy+0": {
+      "median_arcsec": 881.4403497957171,
+      "p95_frame_median_arcsec": 1351.0649165250163,
+      "pooled_star_median_arcsec": 895.5554720105529
+    },
+    "dx+1_dy+1": {
+      "median_arcsec": 1113.8677736767036,
+      "p95_frame_median_arcsec": 1499.6157751876124,
+      "pooled_star_median_arcsec": 1126.611209115666
+    },
+    "dx+1_dy-1": {
+      "median_arcsec": 781.0360676041753,
+      "p95_frame_median_arcsec": 1297.8684303510486,
+      "pooled_star_median_arcsec": 794.5835744702982
+    },
+    "dx-1_dy+0": {
+      "median_arcsec": 419.37257031624927,
+      "p95_frame_median_arcsec": 740.313722149628,
+      "pooled_star_median_arcsec": 430.95328146813995
+    },
+    "dx-1_dy+1": {
+      "median_arcsec": 786.6373657029993,
+      "p95_frame_median_arcsec": 967.9024212829095,
+      "pooled_star_median_arcsec": 792.7224591843402
+    },
+    "dx-1_dy-1": {
+      "median_arcsec": 182.7828031746156,
+      "p95_frame_median_arcsec": 655.2573074350665,
+      "pooled_star_median_arcsec": 195.29631107977528
+    }
+  },
+  "reference": "DUST Corr index_ra/index_dec catalog matches",
+  "star_match_count": 35600
+}

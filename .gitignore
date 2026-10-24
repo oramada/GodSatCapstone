@@ -10,7 +10,11 @@ build/
 dist/
 *.egg-info/
 
-# Downloaded source data and derived trajectories are fetched locally.
+# Downloaded source data, measured sensor archives, and derived trajectories are fetched locally.
+/data/*
+!/data/raw/
+/data/raw/*
+!/data/raw/source-manifest.json
 /data/raw/*.parquet
 /data/raw/satcat.csv
 /data/raw/satcat-manifest.json

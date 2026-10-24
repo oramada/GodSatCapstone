@@ -1,0 +1,489 @@
+{
+  "status": "completed",
+  "output": "/Users/omarramadan/Desktop/GodSatelite/outputs/all-orbits-paper-exact-active-hosts",
+  "compute_device": "cpu",
+  "screening_treatments": 16,
+  "ccd_treatments": 15,
+  "bayesian_treatments": 31,
+  "validation_retrains": 15,
+  "heldout_policy_seed_rows": 25,
+  "treatment_rows_in_responses": 62,
+  "checkpoint_count": 77,
+  "total_gpu_active_hours": 0.0,
+  "calibrated_energy_available": false,
+  "checks": {
+    "planned_run_files_exactly_once": true,
+    "design_csv_rows_complete": true,
+    "responses_csv_rows_complete": true,
+    "five_seed_heldout_rows_complete": true,
+    "all_checkpoints_exist_and_hashed": true,
+    "device_time_matches_gpu_hours": true,
+    "accelerator_time_matches_campaign_device": true,
+    "summary_compute_time_reconciles": true,
+    "unavailable_energy_disclosed": true
+  },
+  "runs": {
+    "bo_13": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "9a9370de4eb2a30fcae00918016ce11195471fa4fea92068876ccda007916380"
+    },
+    "validate_baseline_307": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "6d322076058672bf4284371bc5916b2b7cb7a910c10ca98ed764b76692cd6b10"
+    },
+    "screen_02": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "dd96458a482240e3c7c7740cb92a788b12b0e4a71946bb432df14cac58f86e3f"
+    },
+    "screen_14": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "527d47277acf46b17b474302c10437e9ef0ab0c134434b2d4968986b6563ed39"
+    },
+    "bo_05": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "02e21b3080ce741fe2aa3a215da530ebc8cb78b89e334cf62530a814e25d0959"
+    },
+    "bo_29": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "bce2b3ca3989c82ee2dc23501156689c24d0a3f7a1340608af0f25ec986db746"
+    },
+    "validate_doe_recommended_307": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "9f069a3e1d93d9256030bd3301cf283a731debd678a39591c67263c8ffd93f59"
+    },
+    "rsm_03": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "91df023e789473431a3b633c0fc45511b15b266a96965f54fe9b3678dac749e0"
+    },
+    "bo_09": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "a12dddf4f583305e206f8dbc87dfa41714a6d20f16f5e9afc9ce3b99234bdf1f"
+    },
+    "bo_25": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "863edc8a144ed1b7675eede18683e9c6148ef7eafabb4022c8d6f513382e8540"
+    },
+    "bo_24": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "47314d56b15283e1df43c68df3e368714d4cd4cb52609f1edab174558cdc08fb"
+    },
+    "bo_08": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "5a0fc54bdcc2133ab9e2d11863c8182035117d35af82ed25b3d732128de759e5"
+    },
+    "validate_bayesian_best_101": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "27ce5c711563304c1da39c045ff5b77cd837c1a37590055d123ead3dbdaafd18"
+    },
+    "rsm_02": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "7aacff9a4f355680f89fec12f18e20ab69b6d6b8274e7df85a870db4fd2e8d28"
+    },
+    "rsm_14": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "5b0332402af83ee58d7a35a48effd41be0f36795efcca0e2b71795d04a10b425"
+    },
+    "bo_28": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "ff8b814e92ade4d2fbc775977270c35f0ed0db6db695ecf7a1ebeb419a6fbb72"
+    },
+    "bo_04": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "2449a7a1a8091ac572cbee841b797cc4357492e68b0ef0de1aa205a282d94be8"
+    },
+    "screen_15": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "18547494fb06baa12c5e46dcbefa0a13f3e4072127002c8e2594e9fb095fb6c2"
+    },
+    "screen_03": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "e515374cdd85ee76629ab9fef0c073150dab8c8131b2440a1f198c42f55a462a"
+    },
+    "bo_12": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "2246c5b094cab082b3f1a3b4d57ce4161d6cd87b70e09c33e5a19d04f4dc8eab"
+    },
+    "bo_19": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "ec5009d35804417c35238de3a8e126818720296b1df26bd5bc05ded2016555bc"
+    },
+    "rsm_13": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "0891317896b13e6e5e61eb5a6ab81726c980bde64b2ee15c1dd1f0d3da36c0d4"
+    },
+    "screen_08": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "3c1389817d4a231b9236d9ca4915213484cdc9b4607840e93aa069a2260ee9af"
+    },
+    "rsm_05": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "d25d1c093f1a13b2bde9f3982a64199ac5ccf568d1629ee42c1d102f4458a578"
+    },
+    "bo_23": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "933ffc7898e7eb67b05ef6466f02d6807ed172212efe0b62f19757533d765c8d"
+    },
+    "validate_bayesian_best_307": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "8ac144987e1c0f375ca14e18e10b8f922727130374dbdb2bfc2d659372598505"
+    },
+    "bo_15": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "59de3a8f5549b3ebd09e73a713b400d9b87c65106e22ba249231836f5e41c795"
+    },
+    "screen_04": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "e4f56ab45bf93bfd2ed09a438190dc3e4dce1d133a21635324b5ce2a65fa0f56"
+    },
+    "screen_12": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "b1f58da55b820826d2718f5222968c46dbdac0fbfe7f8dd1d89a6f09d708b60d"
+    },
+    "rsm_09": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "6d8d21421060b9516fad9dcc06f939fd2baf6ac4a222ca0bcc4b0f5afd3bbbd8"
+    },
+    "bo_03": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "7f28d2b197c7a3af6e6df843d5ece82250f1f02b9db3c919626ba9a5507a3f0f"
+    },
+    "validate_baseline_101": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "5465db057f8c6cff480c181714112026c65e76fea7661efc053a612f818e21f6"
+    },
+    "bo_02": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "3ec11316aa4c44a3ff9267839428a1ac3f6d09e8895870d4bf38b96def91af25"
+    },
+    "rsm_08": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "2df1cfad728b5b51f26ecdc777bd0d7bf746251dc92bbaa2813589363ae8db8d"
+    },
+    "screen_13": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "15e05838bee60fc0dfd6d1907a6bbdefc0fce910a0813216ecfa4feb103417f4"
+    },
+    "validate_doe_recommended_101": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "16b3018ec9456328e1a2c52359e61f18ec72a51e96c77d5c345a323be3aa7172"
+    },
+    "screen_05": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "ca8c998d8363f7599a123e2b2ff68f0c6525fea32d69c746b216ebc00a55c0d2"
+    },
+    "bo_14": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "5664ce6bd3e201ccdf096086c98552026fed2a5545bb33ddcc6790d57eef5476"
+    },
+    "bo_22": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "3b83d288a0af03d3ed221731d5170be8453e20f7cfb06f22266496f523e09fa4"
+    },
+    "rsm_04": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "2ad177ab3a37f3bc48ca20521d2025032721bca63c5ea218f85f9ef1aad07c2c"
+    },
+    "screen_09": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "fb8eb721907feb0822035a439e4da6d9a4836b98a6dda9594055bbc30d6a7958"
+    },
+    "rsm_12": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "ffb73530cff06b5dcc0fb8cefef09f9f989fa704326500af94863d2698d354cd"
+    },
+    "bo_18": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "b20752568ada2e1dea6395175109b04d870a786ba73de66a59f9e1dd955f1439"
+    },
+    "bo_21": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "bf080fcfeaebb74efcd2befe4ec498c9d470e2da2851876ef1d78d6bb30600b5"
+    },
+    "validate_bayesian_best_503": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "0f86a20fc8f3ebf8c418902c3a9a3f89df2c5c4827048da4e5d27f7ad5c8bc2a"
+    },
+    "rsm_07": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "b0a8e8790a9bd701862182c43305277eba6300e2488dbd7970157769a20689d8"
+    },
+    "rsm_11": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "6e58263f695f7b0f51fd655f0fda9f672bafbf89694f00dd0fcd4d8a37f957ea"
+    },
+    "validate_doe_recommended_211": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "44f8bd44d58e7fce85825a2bef08718ef17a5028403a44639068c2c862b7b7f9"
+    },
+    "validate_baseline_401": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "8927c4e7cddf1fc91ab13ad2f0347c0b6829f738f0f4a9bb9a7137ac221aed8d"
+    },
+    "bo_01": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "fe7316b0ec14c321e9f5bc009899f9cb97912f32f903f3e52f0d83af000ede2e"
+    },
+    "screen_10": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "2872e67da7a00731b324e2b9d66d443acabdfba8502276f6a0578875c868b937"
+    },
+    "validate_baseline_211": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "e5422cebcd699fc27271acf3cb50e814e793f601978d2ba65cf8405b060c4329"
+    },
+    "screen_06": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "5946b615873a9a5e7ef809620cb77be0ed6ca5e7baae808d2322ab01fffbe650"
+    },
+    "validate_doe_recommended_401": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "161e59f3a91261f61f3ea9e70964cba6ed6ef1bab7500cca86d74ae8a29f44ac"
+    },
+    "bo_17": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "c5f7f4043bcf5c2264cc77b05e197340537ecf0e56c745f5296b0fdb182585ad"
+    },
+    "bo_16": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "8fc498fff4f2b61b941a1f53520d7ac5a90cf0336118c1ee83be605e75143704"
+    },
+    "screen_07": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "f6a9f0f38d3d38696ad8598ca9d467a64fb25db6a9125a05abf2da22aa26aaaa"
+    },
+    "screen_11": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "09d690b017439a6af144fd44b21a166497f112b521cac607be2662a35857759a"
+    },
+    "bo_00": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "2d2012fd393f686c0b5d17b9b17e92a211dbd1bec9ce2c843296b79621e44a6b"
+    },
+    "rsm_10": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "64f643ae2f15e55d2e0a82385c71af42122272f0dd8f84d7847d14fbb744eb3b"
+    },
+    "rsm_06": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "28f88195f0d176d617b9e4f331630668e0abc2ba691e7f10abf297d541259f59"
+    },
+    "bo_20": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "54a235c0c0b8110257ac59f3f179c420918cb7928c39af71dc0b3dcc8ad07122"
+    },
+    "validate_baseline_503": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "74fae8c8c20b75b6df687c8bb30a8557226e175b4ef39b960c6932b67282af42"
+    },
+    "validate_doe_recommended_503": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "a5f6f7dcdbe18ae6584548247dbf9f8933bae67ae5395b2bb7346be8c389a920"
+    },
+    "bo_07": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "04f2e516545f3a6b968b90b711e0437291e6039cdd74e2750b5b66b24e6a38c6"
+    },
+    "screen_00": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "43628f6690805cfdff876034cc3ddf253c0624c6d7dac1b4ce92f22d684cdd28"
+    },
+    "bo_11": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "924ae59d285c28591c52f80398b4537ebb1ca3a6de7e8a1c0439def2805b82a8"
+    },
+    "validate_bayesian_best_211": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "310caac320c817efdc23b5c132e50eec97b0e9ef5a9594e894dcf65e75e56440"
+    },
+    "bo_27": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "9c968acc3c2691decd09f10e11765acf49564c5b2a6347c4f26794acfbab7c67"
+    },
+    "rsm_01": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "d53482712738c0025d9b36dbde5dd1a84567157751062cfe2d33cf6452c49ffe"
+    },
+    "validate_bayesian_best_401": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "9c3506bea0851c49ced13e50d837bc9627995940f50fec4c453fa04e4eee5046"
+    },
+    "rsm_00": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "93f1ad3605b4d4252fc11f520f93f2d3edce064c3d8a9f1f84cd79ae690bbbf2"
+    },
+    "bo_26": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "9f1cef578ac7af2c92d82016ab4825d21ffca376f5b2d5b42395bfe989addf70"
+    },
+    "bo_30": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "95f56444b0347ed31ad9265080bcc0dab670f38915d152fe122f57de66342822"
+    },
+    "bo_10": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "52cd3f728022259f7714afd0a3caf732115123e74f082700e4ea696913e6205d"
+    },
+    "screen_01": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "ac9735c9b25ffd5823ad37ffd1124828130d2993dd133882114b47c269e06c4c"
+    },
+    "bo_06": {
+      "compute_device": "cpu",
+      "gpu_active_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "checkpoint_sha256": "fc65faff110dc64cc1ec9f9db25de56ea153a8355f63eddb5ec1b5d2b3b8d87a"
+    }
+  }
+}

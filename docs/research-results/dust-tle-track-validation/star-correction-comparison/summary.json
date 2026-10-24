@@ -1,0 +1,185 @@
+{
+  "candidate_identity_changed_tracks": 0,
+  "comparable_tracks_with_holdout": 148,
+  "corrected_mode": "per-frame median Corr star-to-catalog east/north offset",
+  "corrected_pooled_frame_metrics": {
+    "fraction_under_0_15_deg": 0.4208191126279863,
+    "max": 177.44887988078315,
+    "median": 0.23224083343441412,
+    "p95": 13.647262391551408
+  },
+  "corrected_track_fit_and_holdout_under_0_15_count": 57,
+  "interpretation": "Star-derived WCS correction sensitivity is not NORAD identity validation; DUST provides no NORAD labels.",
+  "median_same_candidate_frame_delta_deg": -0.0010572298843827266,
+  "median_track_holdout_delta_deg": -0.0013992471844380544,
+  "p95_track_holdout_delta_deg": 0.0125066211523868,
+  "per_session_delta": [
+    {
+      "comparable_tracks": 1,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": 0.0023836422756704223,
+      "p95_track_holdout_delta_deg": 0.0023836422756704223,
+      "session": "2023_01_16"
+    },
+    {
+      "comparable_tracks": 3,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": -0.01806623683483588,
+      "p95_track_holdout_delta_deg": 0.03980376941093893,
+      "session": "2023_01_21"
+    },
+    {
+      "comparable_tracks": 4,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": -0.0019917559444705135,
+      "p95_track_holdout_delta_deg": 0.012528886971648626,
+      "session": "2023_01_25"
+    },
+    {
+      "comparable_tracks": 12,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": -0.004422496069505864,
+      "p95_track_holdout_delta_deg": 0.0022416822788105697,
+      "session": "2023_03_31"
+    },
+    {
+      "comparable_tracks": 17,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": -0.0003241718603345378,
+      "p95_track_holdout_delta_deg": 0.005659572118559086,
+      "session": "2023_05_31"
+    },
+    {
+      "comparable_tracks": 11,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": 0.00618568530374719,
+      "p95_track_holdout_delta_deg": 0.020894567796139185,
+      "session": "2023_06_03"
+    },
+    {
+      "comparable_tracks": 2,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": 0.00023255603714134043,
+      "p95_track_holdout_delta_deg": 0.0018234947011429913,
+      "session": "2023_06_20"
+    },
+    {
+      "comparable_tracks": 8,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": -0.0032059691889343503,
+      "p95_track_holdout_delta_deg": 17.28423608375951,
+      "session": "2023_07_19"
+    },
+    {
+      "comparable_tracks": 2,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": -0.00747346443374694,
+      "p95_track_holdout_delta_deg": -0.006887629130381603,
+      "session": "2023_08_04a"
+    },
+    {
+      "comparable_tracks": 7,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": -0.0019637551307492007,
+      "p95_track_holdout_delta_deg": 0.005968011265765901,
+      "session": "2023_08_04b"
+    },
+    {
+      "comparable_tracks": 3,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": -0.001342452952637574,
+      "p95_track_holdout_delta_deg": 0.0036315597650161675,
+      "session": "2023_08_05a"
+    },
+    {
+      "comparable_tracks": 2,
+      "dataset_set": "SET 1",
+      "median_track_holdout_delta_deg": -0.0023490612024961444,
+      "p95_track_holdout_delta_deg": -0.002194165643065846,
+      "session": "2023_08_05b"
+    },
+    {
+      "comparable_tracks": 12,
+      "dataset_set": "SET 2",
+      "median_track_holdout_delta_deg": -0.0022664145562787397,
+      "p95_track_holdout_delta_deg": 0.003257216166184838,
+      "session": "2023_02_21"
+    },
+    {
+      "comparable_tracks": 4,
+      "dataset_set": "SET 2",
+      "median_track_holdout_delta_deg": 0.0008481348021446913,
+      "p95_track_holdout_delta_deg": 0.009213492821797467,
+      "session": "2023_03_16"
+    },
+    {
+      "comparable_tracks": 3,
+      "dataset_set": "SET 2",
+      "median_track_holdout_delta_deg": -0.0036448370378039247,
+      "p95_track_holdout_delta_deg": -0.0014601528763650974,
+      "session": "2023_03_26"
+    },
+    {
+      "comparable_tracks": 12,
+      "dataset_set": "SET 2",
+      "median_track_holdout_delta_deg": 0.0027288721784173055,
+      "p95_track_holdout_delta_deg": 0.00890784242376533,
+      "session": "2023_04_22"
+    },
+    {
+      "comparable_tracks": 4,
+      "dataset_set": "SET 2",
+      "median_track_holdout_delta_deg": -0.0033750764058508367,
+      "p95_track_holdout_delta_deg": 0.005653103942283031,
+      "session": "2023_05_08"
+    },
+    {
+      "comparable_tracks": 2,
+      "dataset_set": "SET 2",
+      "median_track_holdout_delta_deg": -0.0033895111985567106,
+      "p95_track_holdout_delta_deg": 0.0046396625144162615,
+      "session": "2023_05_10"
+    },
+    {
+      "comparable_tracks": 3,
+      "dataset_set": "SET 2",
+      "median_track_holdout_delta_deg": -0.008530208251810834,
+      "p95_track_holdout_delta_deg": -0.008186937901622348,
+      "session": "2023_06_05"
+    },
+    {
+      "comparable_tracks": 15,
+      "dataset_set": "SET 2",
+      "median_track_holdout_delta_deg": -0.0017365507497429933,
+      "p95_track_holdout_delta_deg": 0.007087520179299158,
+      "session": "2023_06_19"
+    },
+    {
+      "comparable_tracks": 5,
+      "dataset_set": "SET 2",
+      "median_track_holdout_delta_deg": 0.0004885686247875776,
+      "p95_track_holdout_delta_deg": 0.01192287444163732,
+      "session": "2023_07_20"
+    },
+    {
+      "comparable_tracks": 16,
+      "dataset_set": "SET 2",
+      "median_track_holdout_delta_deg": -0.0033672181312347504,
+      "p95_track_holdout_delta_deg": 0.01184870346234479,
+      "session": "2023_07_21"
+    }
+  ],
+  "raw_mode": "raw DUST WCS",
+  "raw_pooled_frame_metrics": {
+    "fraction_under_0_15_deg": 0.421160409556314,
+    "max": 177.4495082601337,
+    "median": 0.21785220914012754,
+    "p95": 12.969247506921024
+  },
+  "raw_track_fit_and_holdout_under_0_15_count": 57,
+  "same_candidate_frame_count": 2930,
+  "track_count": 156,
+  "tracks_degraded_by_more_than_0_01_deg": 12,
+  "tracks_improved_by_more_than_0_01_deg": 17,
+  "tracks_within_0_01_deg": 119
+}

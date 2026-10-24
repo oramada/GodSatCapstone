@@ -1,0 +1,33 @@
+{
+  "status": "passed_structural_and_statistical",
+  "scope": "Checks design completeness, immutable scenario-array hashes, host-ID identity against the saved responses, source/checkpoint provenance, response invariants, CSV rows, historical host-state availability recomputed from source SGP4 data, and date-clustered effects. Metadata JSON checksums are retained and any later drift is reported; only the host IDs consumed by this simulator are accepted when unchanged. It does not rerun task assignment.",
+  "simulator_version": 2,
+  "target_cohort": "all",
+  "dates_checked": 208,
+  "paired_date_regime_cells_checked": 832,
+  "response_rows_checked": 1664,
+  "sensor_host_scenario_hashes_verified": 832,
+  "date_cluster_effects_independently_recomputed": true,
+  "date_cluster_intervals_estimable": true,
+  "historical_host_state_availability": {
+    "cells_recomputed": 832,
+    "missing_agent_steps_by_host_regime": {
+      "leo": 0,
+      "meo": 56,
+      "geo": 76,
+      "heo": 310
+    },
+    "missing_agent_steps_total": 442
+  },
+  "scenario_metadata_checksum_mismatches": [],
+  "checks": {
+    "complete_declared_date_grid": true,
+    "paired_zero_and_burst_conditions": true,
+    "source_config_and_archive_hashes": true,
+    "scenario_hashes": true,
+    "per_cell_response_invariants": true,
+    "responses_csv_row_count": true,
+    "date_clustered_intervals_recomputed": true,
+    "historical_host_state_availability_recomputed": true
+  }
+}

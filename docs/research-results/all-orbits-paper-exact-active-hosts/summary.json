@@ -1,0 +1,348 @@
+{
+  "status": "completed",
+  "study_kind": "paper-exact 15-run CCD and 31-run Bayesian reference across four orbit regimes; current-active-payload sensor hosts",
+  "screening_runs": 16,
+  "rsm_runs": 15,
+  "bayesian_runs": 31,
+  "rsm_center_replicates": 1,
+  "rsm_augmented_for_pure_error": false,
+  "validation_retrains": 15,
+  "selected_factors": [
+    "actor_width",
+    "learning_rate",
+    "entropy"
+  ],
+  "recommended_hyperparameters": {
+    "learning_rate": 0.0006550509078745036,
+    "discount": 0.9450000000000001,
+    "actor_width": 256,
+    "critic_depth": 3,
+    "entropy": 0.1,
+    "claim_resolution": 80,
+    "target_tau": 0.025500000000000002
+  },
+  "sensor_cohort": "current_active_payload",
+  "compute_device": "cpu",
+  "total_gpu_hours": 0.0,
+  "energy_estimates_available": false,
+  "target_cohort": "all",
+  "comparison_configurations": {
+    "baseline": {
+      "learning_rate": 0.0003,
+      "discount": 0.95,
+      "actor_width": 128,
+      "critic_depth": 3,
+      "entropy": 0.03,
+      "claim_resolution": 64,
+      "target_tau": 0.01
+    },
+    "doe_recommended": {
+      "learning_rate": 0.0006550509078745036,
+      "discount": 0.9450000000000001,
+      "actor_width": 256,
+      "critic_depth": 3,
+      "entropy": 0.1,
+      "claim_resolution": 80,
+      "target_tau": 0.025500000000000002
+    },
+    "bayesian_best": {
+      "learning_rate": 0.0008691372964349504,
+      "discount": 0.9709848950702301,
+      "actor_width": 249,
+      "critic_depth": 4,
+      "entropy": 0.05283756713731777,
+      "claim_resolution": 64,
+      "target_tau": 0.0056784485146329534
+    }
+  },
+  "heldout_test_dates": [
+    "2026-10-01T00:00:00Z"
+  ],
+  "scenario_regimes": {
+    "training": [
+      "leo",
+      "meo",
+      "geo",
+      "heo"
+    ],
+    "validation": [
+      "leo",
+      "meo",
+      "geo",
+      "heo"
+    ],
+    "test": [
+      "leo",
+      "meo",
+      "geo",
+      "heo"
+    ]
+  },
+  "test_summary": {
+    "baseline": {
+      "objective": {
+        "mean": 0.11444843849439731,
+        "ci95_half_width": 0.019669056561664525,
+        "n": 5
+      },
+      "custody_continuity": {
+        "mean": 0.15689270152505444,
+        "ci95_half_width": 0.017182298498051942,
+        "n": 5
+      },
+      "slew_energy_proxy": {
+        "mean": 0.010179138058941805,
+        "ci95_half_width": 0.0010730246062167403,
+        "n": 5
+      },
+      "false_track_proxy": {
+        "mean": 0.061742170661094165,
+        "ci95_half_width": 0.010477892986585248,
+        "n": 5
+      },
+      "wall_seconds": {
+        "mean": 1.3563630415999994,
+        "ci95_half_width": 0.012663455093559125,
+        "n": 5
+      },
+      "gpu_hours": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      }
+    },
+    "doe_recommended": {
+      "objective": {
+        "mean": 0.11564691061220778,
+        "ci95_half_width": 0.03442654542717273,
+        "n": 5
+      },
+      "custody_continuity": {
+        "mean": 0.1594635076252723,
+        "ci95_half_width": 0.03148275089494433,
+        "n": 5
+      },
+      "slew_energy_proxy": {
+        "mean": 0.010090270805855223,
+        "ci95_half_width": 0.004554418803461554,
+        "n": 5
+      },
+      "false_track_proxy": {
+        "mean": 0.06297207147958661,
+        "ci95_half_width": 0.016905061232829616,
+        "n": 5
+      },
+      "wall_seconds": {
+        "mean": 1.4558955421999997,
+        "ci95_half_width": 0.01085569415826823,
+        "n": 5
+      },
+      "gpu_hours": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      }
+    },
+    "bayesian_best": {
+      "objective": {
+        "mean": 0.12240991690038427,
+        "ci95_half_width": 0.020738341746397947,
+        "n": 5
+      },
+      "custody_continuity": {
+        "mean": 0.16180555555555554,
+        "ci95_half_width": 0.026457869050929637,
+        "n": 5
+      },
+      "slew_energy_proxy": {
+        "mean": 0.011336103320524513,
+        "ci95_half_width": 0.0027072409342823477,
+        "n": 5
+      },
+      "false_track_proxy": {
+        "mean": 0.06713034961441328,
+        "ci95_half_width": 0.008732359324371608,
+        "n": 5
+      },
+      "wall_seconds": {
+        "mean": 1.4975562747999986,
+        "ci95_half_width": 0.014557312819341871,
+        "n": 5
+      },
+      "gpu_hours": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      }
+    },
+    "greedy": {
+      "objective": {
+        "mean": 0.5947735689433025,
+        "ci95_half_width": 0.0070962776038425756,
+        "n": 5
+      },
+      "custody_continuity": {
+        "mean": 0.6101906318082788,
+        "ci95_half_width": 0.005925585220752012,
+        "n": 5
+      },
+      "slew_energy_proxy": {
+        "mean": 0.05742061401773281,
+        "ci95_half_width": 0.0044037109546084035,
+        "n": 5
+      },
+      "false_track_proxy": {
+        "mean": 0.09749230769106479,
+        "ci95_half_width": 0.009312963234430859,
+        "n": 5
+      },
+      "wall_seconds": {
+        "mean": 0.10464930000000265,
+        "ci95_half_width": 0.0006278035863400286,
+        "n": 5
+      },
+      "gpu_hours": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      }
+    },
+    "random": {
+      "objective": {
+        "mean": 0.4029767697251204,
+        "ci95_half_width": 0.003131229866118183,
+        "n": 5
+      },
+      "custody_continuity": {
+        "mean": 0.4223311546840958,
+        "ci95_half_width": 0.0032191883785192632,
+        "n": 5
+      },
+      "slew_energy_proxy": {
+        "mean": 0.05625727641029303,
+        "ci95_half_width": 0.0010689422737980476,
+        "n": 5
+      },
+      "false_track_proxy": {
+        "mean": 0.08996593521389147,
+        "ci95_half_width": 0.00666021725111822,
+        "n": 5
+      },
+      "wall_seconds": {
+        "mean": 0.09122200839999835,
+        "ci95_half_width": 0.0006913442611952795,
+        "n": 5
+      },
+      "gpu_hours": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      }
+    }
+  },
+  "paired_comparisons": {
+    "custody_continuity": {
+      "paired_mean_change": 0.0025708061002178593,
+      "paired_ci95_half_width": 0.037480198870772745,
+      "relative_change_percent": 1.638575966395317
+    },
+    "slew_energy_proxy": {
+      "paired_mean_change": -8.886725308658514e-05,
+      "paired_ci95_half_width": 0.005335258615238085,
+      "relative_change_percent": -0.8730331838707861
+    },
+    "false_track_proxy": {
+      "paired_mean_change": 0.0012299008184924562,
+      "paired_ci95_half_width": 0.01025267774024363,
+      "relative_change_percent": 1.9919947830202345
+    },
+    "objective": {
+      "paired_mean_change": 0.0011984721178104729,
+      "paired_ci95_half_width": 0.03685070924158731,
+      "relative_change_percent": 1.0471721008837864
+    }
+  },
+  "cost_performance_ratios": {
+    "baseline": {
+      "custody_per_wall_second": {
+        "mean": 0.11568492261847978,
+        "ci95_half_width": 0.012908149685636796,
+        "n": 5
+      },
+      "slew_proxy_per_wall_second": {
+        "mean": 0.007502830477594011,
+        "ci95_half_width": 0.0007500846736196642,
+        "n": 5
+      }
+    },
+    "bayesian_best": {
+      "custody_per_wall_second": {
+        "mean": 0.10807218653949187,
+        "ci95_half_width": 0.017800993022342854,
+        "n": 5
+      },
+      "slew_proxy_per_wall_second": {
+        "mean": 0.007569137840670817,
+        "ci95_half_width": 0.0018078642071049714,
+        "n": 5
+      }
+    },
+    "doe_recommended": {
+      "custody_per_wall_second": {
+        "mean": 0.10953031269063733,
+        "ci95_half_width": 0.02158042927957669,
+        "n": 5
+      },
+      "slew_proxy_per_wall_second": {
+        "mean": 0.006929865629535101,
+        "ci95_half_width": 0.003121781315964838,
+        "n": 5
+      }
+    },
+    "greedy": {
+      "custody_per_wall_second": {
+        "mean": 5.830940431469246,
+        "ci95_half_width": 0.06953076635625105,
+        "n": 5
+      },
+      "slew_proxy_per_wall_second": {
+        "mean": 0.5488102573665691,
+        "ci95_half_width": 0.0446266458159102,
+        "n": 5
+      }
+    },
+    "random": {
+      "custody_per_wall_second": {
+        "mean": 4.629838819953225,
+        "ci95_half_width": 0.04870253009652724,
+        "n": 5
+      },
+      "slew_proxy_per_wall_second": {
+        "mean": 0.6166879303776531,
+        "ci95_half_width": 0.00834327174570571,
+        "n": 5
+      }
+    }
+  },
+  "total_training_wall_seconds": 104.18140974900001,
+  "published_baseline_available": false,
+  "sensor_data_provenance": {
+    "ground_sensor_observations": "247322 ILRS LAGEOS-1 normal points from 39 stations; not used to train tasking or dropout policies",
+    "ground_station_locations": "station identifiers in CRD; surveyed coordinates not included in this dataset",
+    "measured_sensor_performance": "ILRS LAGEOS-1 CRD normal-point return rates; observations are conditioned on acquired passes and do not label failed acquisitions",
+    "study_ground_data_used": false,
+    "sensor_model": "hypothetical onboard sensors with configuration-defined detection, field of regard, slew limit, and normalized slew proxy",
+    "targets": "catalog orbital objects from the configured historical cohort; may include payloads, debris, and rocket bodies"
+  },
+  "limitations": [
+    "New implementation, not original GoDSAT",
+    "No catalog-wide measured sensor calibration or failed-acquisition labels",
+    "Synthetic space-to-space sensor assumptions",
+    "Slew and false-track responses are proxies",
+    "Reduced-precision historical elements",
+    "Short sampled episodes do not cover every orbit",
+    "One date per validation/test split",
+    "One center point means no pure-error replication or formal lack-of-fit estimate"
+  ],
+  "sensor_host_status_interpretation": "Current active-GP/SATCAT snapshot backcast through the archive; does not establish historical operating status."
+}

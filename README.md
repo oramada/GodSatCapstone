@@ -13,6 +13,8 @@ The PDF's Results section still contains placeholders for its tables and plots e
 
 The repository also includes a separate controlled simulation of independent and burst sensor outages. That extension measures average policy-response changes by outage rate, mode, orbit regime, and date. It does not find which relative sensor-target geometries make an outage most valuable or costly. The PDF mentions expanding to additional LEO multi-target geometries as future work, but it does not connect that to dropout.
 
+The repository now also includes the wider orbit-catalog, attitude, optical-observation, and tasking audits developed during the study. These supplementary runners and saved report snapshots are described in [the research extension guide](docs/research-extension.md). The base student setup remains sufficient for the paper campaign; some additional analyses require optional packages and separately downloaded data.
+
 ## Set up on a student computer
 
 The supported baseline is **Python 3.11** on x86-64 Windows 10/11, x86-64 or ARM64 Linux, or Apple Silicon macOS 14+. The test workflow runs on Windows, Linux, and Apple Silicon macOS, plus Python 3.13 on Linux. This follows [PyTorch's published binary platform matrix](https://github.com/pytorch/pytorch/blob/main/RELEASE.md#hardware--software-support-in-binary-build-matrix). A GPU is optional: CPU is the portable baseline, while `auto` uses CUDA or Apple MPS when PyTorch reports one as available. Current official PyTorch wheels do not support Intel Macs; see the [upstream Intel Mac note](https://github.com/pytorch/pytorch/issues/169874) and the Conda-forge setup below.
@@ -116,8 +118,9 @@ AWP comparison is a propagation-model sensitivity check. It is not an independen
 
 - `godsat/`: orbit-history loading, scenario preparation, simulated tasking agent, factorial/response-surface campaign, dropout experiments, reports, and optional AWP adapters.
 - `configs/`: default, Apple MPS, and portable CPU experiment configs.
-- `scripts/`: pinned data retrieval, derived-cohort export, experiment execution audits, and analysis utilities.
-- `tests/` and `.github/workflows/`: data-independent local tests and CI.
+- `scripts/`: pinned data retrieval, experiment execution, and supplementary catalog, attitude, optical-data, and tasking audits.
+- `tests/` and `.github/workflows/`: portable baseline tests and cross-platform CI. `research_tests/` holds additional tests for runs that need local research data or optional dependencies.
+- `docs/research-results/`: compact snapshots of the paper, dropout, and orbit-validation reports; full raw inputs, checkpoints, and generated trajectory tables remain local.
 - `data/raw/source-manifest.json`: pinned source revision, file sizes, and expected hashes; the large archive itself is fetched on demand.
 
 ## License and attribution

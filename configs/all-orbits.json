@@ -1,0 +1,89 @@
+{
+  "agents": 6,
+  "targets": 18,
+  "duration_minutes": 60,
+  "step_seconds": 60,
+  "max_element_age_hours": 72,
+  "max_range_km": 6000,
+  "slew_rate_deg_s": 2,
+  "field_of_regard_deg": 180,
+  "custody_seconds": 180,
+  "detection_probability": 0.98,
+  "range_detection_penalty": 0.1,
+  "stale_detection_penalty": 0.08,
+  "slew_penalty": 0.03,
+  "false_penalty": 0.2,
+  "collision_penalty": 0.1,
+  "dropout_rates": [
+    0.0,
+    0.05,
+    0.1,
+    0.2,
+    0.4,
+    0.6
+  ],
+  "dropout_modes": [
+    "independent",
+    "burst"
+  ],
+  "dropout_regimes": [
+    "leo",
+    "meo",
+    "geo",
+    "heo"
+  ],
+  "dropout_burst_persistence": 0.8,
+  "dropout_seed": 7441,
+  "dropout_model_seed": 101,
+  "training_dates": [
+    "2022-10-15T00:00:00Z",
+    "2023-10-15T00:00:00Z",
+    "2024-10-15T00:00:00Z"
+  ],
+  "validation_dates": [
+    "2025-10-15T00:00:00Z"
+  ],
+  "test_dates": [
+    "2026-10-01T00:00:00Z"
+  ],
+  "baseline": {
+    "learning_rate": 0.0003,
+    "discount": 0.95,
+    "actor_width": 128,
+    "critic_depth": 3,
+    "entropy": 0.03,
+    "claim_resolution": 64,
+    "target_tau": 0.01
+  },
+  "training_episodes": 40,
+  "training_seed": 17,
+  "design_seed": 2026,
+  "validation_seeds": [
+    101,
+    211,
+    307,
+    401,
+    503
+  ],
+  "training_regimes": [
+    "leo",
+    "meo",
+    "geo",
+    "heo"
+  ],
+  "validation_regimes": [
+    "leo",
+    "meo",
+    "geo",
+    "heo"
+  ],
+  "test_regimes": [
+    "leo",
+    "meo",
+    "geo",
+    "heo"
+  ],
+  "study_kind": "all-orbit-regime research run",
+  "sensor_cohort": "current_payload",
+  "target_cohort": "all"
+}

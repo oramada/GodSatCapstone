@@ -1,0 +1,810 @@
+{
+  "archive_md5": "a31b62290eface15e519ed954124d59c",
+  "candidate_selection_residual_summary_deg": {
+    "fraction_under_0_15_deg": 0.4230769230769231,
+    "median": 0.211548634318581,
+    "p95": 1.7645709155739269
+  },
+  "completed_track_outputs": 156,
+  "failed_track_count": 4,
+  "failed_track_source_availability": [
+    {
+      "annotated_frames": 4,
+      "dataset_set": "SET 1",
+      "frames_with_wcs_and_ephemeris": 0,
+      "session": "2023_08_05b",
+      "track_id": 3
+    },
+    {
+      "annotated_frames": 8,
+      "dataset_set": "SET 1",
+      "frames_with_wcs_and_ephemeris": 0,
+      "session": "2023_08_05b",
+      "track_id": 4
+    },
+    {
+      "annotated_frames": 5,
+      "dataset_set": "SET 1",
+      "frames_with_wcs_and_ephemeris": 0,
+      "session": "2023_08_05b",
+      "track_id": 5
+    },
+    {
+      "annotated_frames": 2,
+      "dataset_set": "SET 2",
+      "frames_with_wcs_and_ephemeris": 0,
+      "session": "2023_03_26",
+      "track_id": 5
+    }
+  ],
+  "failures": [
+    {
+      "dataset_set": "SET 1",
+      "error": "RuntimeError: No usable annotated frames for 2023_08_05b, track 3",
+      "session": "2023_08_05b",
+      "track_id": 3
+    },
+    {
+      "dataset_set": "SET 1",
+      "error": "RuntimeError: No usable annotated frames for 2023_08_05b, track 4",
+      "session": "2023_08_05b",
+      "track_id": 4
+    },
+    {
+      "dataset_set": "SET 1",
+      "error": "RuntimeError: No usable annotated frames for 2023_08_05b, track 5",
+      "session": "2023_08_05b",
+      "track_id": 5
+    },
+    {
+      "dataset_set": "SET 2",
+      "error": "RuntimeError: No usable annotated frames for 2023_03_26, track 5",
+      "session": "2023_03_26",
+      "track_id": 5
+    }
+  ],
+  "held_out_frame_count": 2930,
+  "held_out_residual_summary_deg": {
+    "fraction_under_0_15_deg": 0.421160409556314,
+    "max": 177.4495082601337,
+    "median": 0.21785220914012754,
+    "p95": 12.969247506921024
+  },
+  "limitations": [
+    "The audit verifies annotation inventory, archive checksum, saved-object provenance, residual arithmetic, and aggregate reconciliation.",
+    "It does not supply NORAD ground-truth IDs or establish true association accuracy.",
+    "The 0.15-degree summary threshold is descriptive and is not a calibrated pass criterion."
+  ],
+  "set2_mot_yolo_coordinate_audit": {
+    "coordinate_tolerance_pixels": 0.001,
+    "exact_rso_yolo_box_matches": 2046,
+    "interpretation": "MOT bounding boxes reproduce the normalized YOLO centers/sizes after conversion to 256-pixel coordinates; the camera pixels should use the annotation coordinate convention.",
+    "mot_rows": 2046
+  },
+  "source_frame_mapping": {
+    "h5_filename_utc_offsets_seconds": {
+      "all_within_filename_second": true,
+      "frames_checked": 1378,
+      "max": 0.313,
+      "median": 0.257,
+      "min": 0.219
+    },
+    "h5_frame_count": 1378,
+    "image_frame_count": 1378,
+    "mot_annotated_rows": 4237,
+    "mot_rows_with_wcs": 3566,
+    "session_count": 22,
+    "sessions": [
+      {
+        "h5_frames": 41,
+        "image_frames": 41,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 41,
+        "mot_rows_with_wcs": 41,
+        "session_path": "DUST/SET 1/2023_01_16",
+        "wcs_frames": 41
+      },
+      {
+        "h5_frames": 76,
+        "image_frames": 76,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 60,
+        "mot_rows_with_wcs": 53,
+        "session_path": "DUST/SET 1/2023_01_21",
+        "wcs_frames": 69
+      },
+      {
+        "h5_frames": 53,
+        "image_frames": 53,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 88,
+        "mot_rows_with_wcs": 85,
+        "session_path": "DUST/SET 1/2023_01_25",
+        "wcs_frames": 51
+      },
+      {
+        "h5_frames": 139,
+        "image_frames": 139,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 450,
+        "mot_rows_with_wcs": 355,
+        "session_path": "DUST/SET 1/2023_03_31",
+        "wcs_frames": 95
+      },
+      {
+        "h5_frames": 128,
+        "image_frames": 128,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 422,
+        "mot_rows_with_wcs": 395,
+        "session_path": "DUST/SET 1/2023_05_31",
+        "wcs_frames": 124
+      },
+      {
+        "h5_frames": 91,
+        "image_frames": 91,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 430,
+        "mot_rows_with_wcs": 337,
+        "session_path": "DUST/SET 1/2023_06_03",
+        "wcs_frames": 66
+      },
+      {
+        "h5_frames": 39,
+        "image_frames": 39,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 61,
+        "mot_rows_with_wcs": 13,
+        "session_path": "DUST/SET 1/2023_06_20",
+        "wcs_frames": 7
+      },
+      {
+        "h5_frames": 114,
+        "image_frames": 114,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 276,
+        "mot_rows_with_wcs": 272,
+        "session_path": "DUST/SET 1/2023_07_19",
+        "wcs_frames": 112
+      },
+      {
+        "h5_frames": 24,
+        "image_frames": 24,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 38,
+        "mot_rows_with_wcs": 38,
+        "session_path": "DUST/SET 1/2023_08_04a",
+        "wcs_frames": 24
+      },
+      {
+        "h5_frames": 75,
+        "image_frames": 75,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 185,
+        "mot_rows_with_wcs": 167,
+        "session_path": "DUST/SET 1/2023_08_04b",
+        "wcs_frames": 68
+      },
+      {
+        "h5_frames": 35,
+        "image_frames": 35,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 70,
+        "mot_rows_with_wcs": 70,
+        "session_path": "DUST/SET 1/2023_08_05a",
+        "wcs_frames": 35
+      },
+      {
+        "h5_frames": 63,
+        "image_frames": 63,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 70,
+        "mot_rows_with_wcs": 26,
+        "session_path": "DUST/SET 1/2023_08_05b",
+        "wcs_frames": 36
+      },
+      {
+        "h5_frames": 50,
+        "image_frames": 50,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 263,
+        "mot_rows_with_wcs": 233,
+        "session_path": "DUST/SET 2/2023_02_21",
+        "wcs_frames": 45
+      },
+      {
+        "h5_frames": 50,
+        "image_frames": 50,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 119,
+        "mot_rows_with_wcs": 85,
+        "session_path": "DUST/SET 2/2023_03_16",
+        "wcs_frames": 37
+      },
+      {
+        "h5_frames": 50,
+        "image_frames": 50,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 160,
+        "mot_rows_with_wcs": 42,
+        "session_path": "DUST/SET 2/2023_03_26",
+        "wcs_frames": 16
+      },
+      {
+        "h5_frames": 50,
+        "image_frames": 50,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 364,
+        "mot_rows_with_wcs": 270,
+        "session_path": "DUST/SET 2/2023_04_22",
+        "wcs_frames": 38
+      },
+      {
+        "h5_frames": 50,
+        "image_frames": 50,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 86,
+        "mot_rows_with_wcs": 86,
+        "session_path": "DUST/SET 2/2023_05_08",
+        "wcs_frames": 50
+      },
+      {
+        "h5_frames": 50,
+        "image_frames": 50,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 57,
+        "mot_rows_with_wcs": 57,
+        "session_path": "DUST/SET 2/2023_05_10",
+        "wcs_frames": 50
+      },
+      {
+        "h5_frames": 50,
+        "image_frames": 50,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 142,
+        "mot_rows_with_wcs": 142,
+        "session_path": "DUST/SET 2/2023_06_05",
+        "wcs_frames": 50
+      },
+      {
+        "h5_frames": 50,
+        "image_frames": 50,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 427,
+        "mot_rows_with_wcs": 397,
+        "session_path": "DUST/SET 2/2023_06_19",
+        "wcs_frames": 46
+      },
+      {
+        "h5_frames": 50,
+        "image_frames": 50,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 62,
+        "mot_rows_with_wcs": 62,
+        "session_path": "DUST/SET 2/2023_07_20",
+        "wcs_frames": 50
+      },
+      {
+        "h5_frames": 50,
+        "image_frames": 50,
+        "image_h5_stem_order_matches": true,
+        "mot_rows": 366,
+        "mot_rows_with_wcs": 340,
+        "session_path": "DUST/SET 2/2023_07_21",
+        "wcs_frames": 46
+      }
+    ],
+    "wcs_frame_count": 1156
+  },
+  "source_track_inventory": 160,
+  "status": "passed",
+  "track_fit_and_holdout_under_threshold_ids": [
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 18312,
+      "session": "2023_01_16",
+      "track_id": 1
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 18312,
+      "session": "2023_01_21",
+      "track_id": 1
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 7594,
+      "session": "2023_01_21",
+      "track_id": 2
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 49216,
+      "session": "2023_01_21",
+      "track_id": 3
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 49762,
+      "session": "2023_01_25",
+      "track_id": 2
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 48572,
+      "session": "2023_01_25",
+      "track_id": 3
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 33331,
+      "session": "2023_03_31",
+      "track_id": 1
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 41770,
+      "session": "2023_03_31",
+      "track_id": 3
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 39084,
+      "session": "2023_03_31",
+      "track_id": 5
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 53198,
+      "session": "2023_03_31",
+      "track_id": 7
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 28932,
+      "session": "2023_03_31",
+      "track_id": 8
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 49311,
+      "session": "2023_03_31",
+      "track_id": 10
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 43763,
+      "session": "2023_03_31",
+      "track_id": 11
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 6660,
+      "session": "2023_03_31",
+      "track_id": 13
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 16860,
+      "session": "2023_05_31",
+      "track_id": 4
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 52608,
+      "session": "2023_05_31",
+      "track_id": 5
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 47881,
+      "session": "2023_05_31",
+      "track_id": 6
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 38344,
+      "session": "2023_05_31",
+      "track_id": 10
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 53824,
+      "session": "2023_05_31",
+      "track_id": 11
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 51146,
+      "session": "2023_05_31",
+      "track_id": 12
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 28898,
+      "session": "2023_05_31",
+      "track_id": 13
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 44961,
+      "session": "2023_05_31",
+      "track_id": 14
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 51725,
+      "session": "2023_05_31",
+      "track_id": 15
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 46382,
+      "session": "2023_05_31",
+      "track_id": 16
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 37766,
+      "session": "2023_07_19",
+      "track_id": 1
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 13778,
+      "session": "2023_07_19",
+      "track_id": 2
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 7275,
+      "session": "2023_07_19",
+      "track_id": 4
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 40720,
+      "session": "2023_07_19",
+      "track_id": 5
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 20306,
+      "session": "2023_07_19",
+      "track_id": 6
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 36601,
+      "session": "2023_07_19",
+      "track_id": 7
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 39093,
+      "session": "2023_07_19",
+      "track_id": 8
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 19468,
+      "session": "2023_08_04b",
+      "track_id": 1
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 39058,
+      "session": "2023_08_04b",
+      "track_id": 4
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 40920,
+      "session": "2023_08_04b",
+      "track_id": 5
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 39058,
+      "session": "2023_08_04b",
+      "track_id": 6
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 23180,
+      "session": "2023_08_04b",
+      "track_id": 7
+    },
+    {
+      "dataset_set": "SET 1",
+      "norad_id": 9062,
+      "session": "2023_08_04b",
+      "track_id": 8
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 21734,
+      "session": "2023_03_16",
+      "track_id": 1
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 22307,
+      "session": "2023_03_16",
+      "track_id": 2
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 54679,
+      "session": "2023_03_16",
+      "track_id": 3
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 48773,
+      "session": "2023_03_16",
+      "track_id": 4
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 19257,
+      "session": "2023_03_26",
+      "track_id": 1
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 52717,
+      "session": "2023_03_26",
+      "track_id": 2
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 48077,
+      "session": "2023_03_26",
+      "track_id": 3
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 52613,
+      "session": "2023_04_22",
+      "track_id": 5
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 54745,
+      "session": "2023_04_22",
+      "track_id": 6
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 44453,
+      "session": "2023_04_22",
+      "track_id": 7
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 32769,
+      "session": "2023_04_22",
+      "track_id": 8
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 45569,
+      "session": "2023_04_22",
+      "track_id": 10
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 53128,
+      "session": "2023_04_22",
+      "track_id": 11
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 39080,
+      "session": "2023_04_22",
+      "track_id": 12
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 20305,
+      "session": "2023_05_08",
+      "track_id": 1
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 49305,
+      "session": "2023_05_08",
+      "track_id": 3
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 39485,
+      "session": "2023_05_10",
+      "track_id": 2
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 54668,
+      "session": "2023_07_20",
+      "track_id": 1
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 48986,
+      "session": "2023_07_20",
+      "track_id": 3
+    },
+    {
+      "dataset_set": "SET 2",
+      "norad_id": 20238,
+      "session": "2023_07_20",
+      "track_id": 5
+    }
+  ],
+  "track_json_sha256": {
+    "SET1_2023_01_16_track_1.json": "b2d57700115c2fc2e5e4999133240f79ba503c432d762b23ed84913fe45580d2",
+    "SET1_2023_01_21_track_1.json": "41071ef594ee2e136ff77b007cc0cc8c8503fcf21ff6f36d158e8273c2b46d78",
+    "SET1_2023_01_21_track_2.json": "1fee6ef10eedd9f28dbc767051fc28485804f42c7170aba789e9dfa001be76a7",
+    "SET1_2023_01_21_track_3.json": "c4b46971066486a345cb6a4ccce9e1f3b06229e8e0fa54faa48d4f3675c2bd6f",
+    "SET1_2023_01_25_track_1.json": "e005097eab5e0140e412f79e8dd10d880afe587fe79b437fa094cf59bc7bc973",
+    "SET1_2023_01_25_track_2.json": "188c7412b7016bde9edcf18cef5b79641317c3e37a757df6f99acac0e75b3ca2",
+    "SET1_2023_01_25_track_3.json": "58ac05401da38350321fdda5195edc424834017ec933501147d9da87e2b34df9",
+    "SET1_2023_01_25_track_4.json": "e42e696e47f8b730c58087441da53a076d26c2edf27df877e18284e2eeab6631",
+    "SET1_2023_03_31_track_1.json": "9987421a74d047d1665c0c20159293338d9c166b8a8f093f3eff784ecd91a720",
+    "SET1_2023_03_31_track_10.json": "0d52dc30f898135f82f3c03938a7bdc476aed464d0c5a772b3e9a9c9379183ae",
+    "SET1_2023_03_31_track_11.json": "8f0b6cbb597e2cd5fded066104c9e81a2d274e040a61567fcc946427490933d5",
+    "SET1_2023_03_31_track_12.json": "a636b99d2a557027797f214069948dd6d0e5cae784526f1c9bb81a7f27f9fc3e",
+    "SET1_2023_03_31_track_13.json": "3d96349f321f9422e0fb7d4ac7171381da4c7d64764b680c41cb796ea712492c",
+    "SET1_2023_03_31_track_2.json": "46794383db08c8cc2bcaf6c756f7227bc4f5439d24cee48d927511681b2b0056",
+    "SET1_2023_03_31_track_3.json": "b0213e28eafb8ae415787aa561ad5a02b38e238bf5a99f4bb3938c0006d9a37c",
+    "SET1_2023_03_31_track_4.json": "c23b8f926ae1b5a472e02e11447bffab82c32da9189203a9c770dd2175606cc8",
+    "SET1_2023_03_31_track_5.json": "35e3d59248503a7277830bd3b4b7cdfd56c938faba511b2528c20e561762604d",
+    "SET1_2023_03_31_track_6.json": "e39b6b0061b6ac4fea086752b0fc9be740dadb10be39c7ee7051af3ce36a05cd",
+    "SET1_2023_03_31_track_7.json": "4201ea1c53090cd1f18ef3ed5abfd3b6d976cb82363263280a837f3940ec85ff",
+    "SET1_2023_03_31_track_8.json": "6e33a2efa090c18c4408c72815ae0d16c722a5649ed4c43cf87a3c69a53c9b19",
+    "SET1_2023_03_31_track_9.json": "220664fe432aa659120e7537fdbd871723b397e56065d7f373ae23f1ddec97b3",
+    "SET1_2023_05_31_track_1.json": "5b64792c64d503d2c9b4aa2e4b077fd23608de2d6d1cc5e846e5da76e103acd4",
+    "SET1_2023_05_31_track_10.json": "6326c3e3efc207c58ae97ce2c712c722042f87ecb920aeaf25da30184f8c7dd1",
+    "SET1_2023_05_31_track_11.json": "f537ae58f36e00a79a872cea2b0b240d78faa6a2539af5150aabc48c67b2eb06",
+    "SET1_2023_05_31_track_12.json": "28113159dd86bd33bf0b3dbda0795e6624f7d0c79eac534264e29d73af54c3ba",
+    "SET1_2023_05_31_track_13.json": "46fe8643eccd8f78108de5a2dc56e10c3cdec09e9abed83d8f7f19b935da10e1",
+    "SET1_2023_05_31_track_14.json": "d8f4c4699d4446c163ce48fc6cb3720e256a965fbb0c4f14bb5333d077956856",
+    "SET1_2023_05_31_track_15.json": "42c0c026975df15f016e33c5530ed75815905db2c6866c754333d24ac5d4bc2b",
+    "SET1_2023_05_31_track_16.json": "158615555f5eb16a3a30d1be842b63caa03f259f208cc97092ebb8496a7a7885",
+    "SET1_2023_05_31_track_17.json": "89f15694805b497351c8a8143a1560dfcfd892323b28eca927ff62fcbb93ea84",
+    "SET1_2023_05_31_track_2.json": "78adc5eacbecfc3a2e47dba6790f0ff08339ddac3820e4510248c4c82b537797",
+    "SET1_2023_05_31_track_3.json": "14f3646d4d70a8c857ca4ecf40cbd3558cb9f29200a18eca6602cbace869e9ef",
+    "SET1_2023_05_31_track_4.json": "8e40b798b36e3992b8f5d330896f72d3ffef7f6b5b0a3585d7641b9159159068",
+    "SET1_2023_05_31_track_5.json": "ea484b3e2e19fd1a57ff2168a05c6941c3c345ce012e73490544a8784e2a0d9c",
+    "SET1_2023_05_31_track_6.json": "ede689a2038946bde70032193f916df880400cb923706187d3939dab0081c2ab",
+    "SET1_2023_05_31_track_7.json": "0b6d0dd16189497115f81d30c2e498ec7e3ba07ee164b47926fd947a39d8ed24",
+    "SET1_2023_05_31_track_8.json": "20ad585e3162bd37a58d1b9b02baf2e5cf205d5630ad93628860b493cc3f08f9",
+    "SET1_2023_05_31_track_9.json": "6d14faae948f57effaa5429b010ab0167ec202ab876993244078c0dc6bfd0499",
+    "SET1_2023_06_03_track_1.json": "e0126730560c362eb4b7335091df6540db618c9f86e5e16a745873c2a65a2247",
+    "SET1_2023_06_03_track_10.json": "fb18667759c72e15a9fe3aa96b596810c637a13860a298bd58ec3996c3706a85",
+    "SET1_2023_06_03_track_11.json": "14dce11d477313c7b5feb884f5f2196e83f1ab00b32d4bff2304dc6369fc3038",
+    "SET1_2023_06_03_track_12.json": "5fc83335e595f95c4b5481532678c5700e91a08f3fc6bc044237ca567f032f81",
+    "SET1_2023_06_03_track_2.json": "3fe13fcd21326d2a7013823e5c519248274ba2291e03b8ce7b3d4ac3c4bddcb3",
+    "SET1_2023_06_03_track_3.json": "68caaa951b1b870eba7cb009578cc2f193c129cbc52eba687792d24def9508dc",
+    "SET1_2023_06_03_track_4.json": "f921e39fdc7b23142ec5435d7c840685e24c599e9362cafce390939665904f49",
+    "SET1_2023_06_03_track_5.json": "2c1d5d8cec432854576fc9c2b35eac459b87a4477a13c24a3f5f6d39df5d9f04",
+    "SET1_2023_06_03_track_6.json": "ecb154655bbc0a5bda385109888e094860fc08753369ce66efcd3a9f157349f9",
+    "SET1_2023_06_03_track_7.json": "5d9e01e24ec3d152e419452ea95e739c9c173eee89e0fb991204393b17be5065",
+    "SET1_2023_06_03_track_8.json": "c535bc8ae78c138135d162707d14c0bbffd132ef115d3f7317aa37d8036bead2",
+    "SET1_2023_06_03_track_9.json": "f8c18162888dfec74124b9a2c48da46d2c8c0f03f7cf89e665bd852fa650de3f",
+    "SET1_2023_06_20_track_1.json": "52f1882b194238db114918e5363c4fd9c9d7361862d8f494fab87cb6b13e777f",
+    "SET1_2023_06_20_track_2.json": "1cdfa4e54767c6d3ddd125d4dfca9fbe3a4c928e48e5cf4ef702eca09f78c4c8",
+    "SET1_2023_07_19_track_1.json": "3d370dcb9921ca55724f2827772d4684a4204e31f224723f1fca667b7cbe0b5d",
+    "SET1_2023_07_19_track_2.json": "9864623d8dba8111c5a073ad8df06b2108b41748538105155266d823fc906788",
+    "SET1_2023_07_19_track_3.json": "f6993791aff2c4cca26e94b3b71848fff8d132d05a15f2f8acf57efc5df69309",
+    "SET1_2023_07_19_track_4.json": "325dce4d9fb36b85be295a786b90216b6b0f37af6cf0331d530c0a1e5e3a4d4c",
+    "SET1_2023_07_19_track_5.json": "9c3c64eb34dc8a9ee245dfe2d75799f4911565556ea42db29d23ee7b206f9b20",
+    "SET1_2023_07_19_track_6.json": "933240b07a5acfa32579076b7cd9d66b6f00c00015436c641edce38ec68805db",
+    "SET1_2023_07_19_track_7.json": "3f6997891d213cb4211120939702d211089bb2491566e8ec5de3d1618e33b67b",
+    "SET1_2023_07_19_track_8.json": "e69539cb80a12f61f8531675b7f5dc4512f316eb1956beb8973c94bd25ac2e1e",
+    "SET1_2023_08_04a_track_1.json": "bb8faebdebd661c3a8d9283134386f30237a3205d4625c11bccb49a60444acd2",
+    "SET1_2023_08_04a_track_2.json": "3c8d049cedef853887e88722c05c0ddaaacb2b20cac5040fce752e74b6c6eb8a",
+    "SET1_2023_08_04b_track_1.json": "4347b76d2148d05809260d177ed03f94dd5e77de61a79904d8eda83c80ad1ac2",
+    "SET1_2023_08_04b_track_2.json": "d3e5288c5f1a3caf4bb94491efb1ad35eca1d0ea6bdbea93ce772a8bcb71aab3",
+    "SET1_2023_08_04b_track_3.json": "9dd2e595b454235ac3c3155a5d6ff8c296a3e628a76254ab863837daaacf2fd8",
+    "SET1_2023_08_04b_track_4.json": "37f4cf6546c878b31a773ec7e012f4b0c74b3efe057638fc28a1b071420bcc32",
+    "SET1_2023_08_04b_track_5.json": "9b02150232fac970d6472cf83d7ebcb40350ad5582af628665c6021c02c726e5",
+    "SET1_2023_08_04b_track_6.json": "53a4001969d7f0c0b4d3f5a746c7982f2247fd2a3725724cafabd49ce6b15651",
+    "SET1_2023_08_04b_track_7.json": "609edcb3373dab684ae927537cfd788d99d43e1ce6404a23e465e9e19e0c2392",
+    "SET1_2023_08_04b_track_8.json": "0646e9c4dbbc370a48b5e11faf2ab03b569efe6fd1fe9eaba721e444f9c938ca",
+    "SET1_2023_08_05a_track_1.json": "5ed10e26828634fa36c029baad1530a4bc70b1ced101623720ff6e0333953901",
+    "SET1_2023_08_05a_track_2.json": "390ca31e7d5bc1aed71efd84687d37f72b8f25c9630facc80d8372e0a7b0f80d",
+    "SET1_2023_08_05a_track_3.json": "e59a1ea73550d0abacd83e5dafc8148caf85a38649cd5a18f1a462d39b93d4ff",
+    "SET1_2023_08_05b_track_1.json": "7c4ac76043cafc5b404ab0321a246ca04e0d2cab49a30a6caa254ab56e9723ea",
+    "SET1_2023_08_05b_track_2.json": "a35156c2e321ea6dab761f99e1ed647db5190a89ca927666af502140a6222967",
+    "SET2_2023_02_21_track_1.json": "053b355b85e6c3689470453457519a2b925f71e28b38caab73e387ec3a005cfa",
+    "SET2_2023_02_21_track_10.json": "4200ba0092dea4211f6bd3b3810b7cc3a4e0511b020ec2736297ef991da0a0cf",
+    "SET2_2023_02_21_track_11.json": "7b095c004fd505976613b625fbc5b32e56e410ea4bc5ebf4b91f7e98169885d1",
+    "SET2_2023_02_21_track_12.json": "9664c0eea8d8c894e02f78498b7228e1fe25670620a5d7fd4c7c980f6b39a903",
+    "SET2_2023_02_21_track_13.json": "7514ad292f81c077159eb7db4b78beb98c0f1c2d4016a77625e4c50f2f88f97c",
+    "SET2_2023_02_21_track_14.json": "15a6dda28469585801bdd9d298898aecdc8741c6004c79843b50cf3056809fae",
+    "SET2_2023_02_21_track_15.json": "42b3055ef720e67352171596fed346d212928526e181b5f7066f15f1068b781c",
+    "SET2_2023_02_21_track_2.json": "26aa6ed947a10a8e5270946ad8189428f5371bbc5cf1d51c508f21203388c62b",
+    "SET2_2023_02_21_track_3.json": "7737730c50811d41652878a656298b44ca1acad47b874dc545aa698d2f83ea25",
+    "SET2_2023_02_21_track_4.json": "4f278685fc68f17fff3671ef151c620cb836bb8860e70ed9f49b1e9220b2abe4",
+    "SET2_2023_02_21_track_5.json": "5f3aba6d350ab65c2c795154cc10f90c2c9be0f1a8c6538c6c2782243c8cf80e",
+    "SET2_2023_02_21_track_6.json": "3aef1250e8647b9e15ebf1d1424eba37099a421a223915e440e95a2101ea82a1",
+    "SET2_2023_02_21_track_7.json": "500c7dc92ed4aa3846981516bde20fdf5f99a9e883d93997332bd93186961958",
+    "SET2_2023_02_21_track_8.json": "ab5adbed66e3338dd6725f70873c5f63239209c4c3afbbedf01accf9d3a3935d",
+    "SET2_2023_02_21_track_9.json": "8581213b4c7c3019a1aee110524a027e66c38163cf54db666b82d8dfa72ab6b7",
+    "SET2_2023_03_16_track_1.json": "22d66600d8fa13891538dd36328cef4432e5ef47a3aa08e5ee59004865a45baf",
+    "SET2_2023_03_16_track_2.json": "07c63c2ca64d2a7ecf1cd74a5f2d4891ab7a5ce1ccc228589237a7466e911d20",
+    "SET2_2023_03_16_track_3.json": "5821de76b17851051eac595fedb8c3093256456a314d06fc1c36913f1b2af9f6",
+    "SET2_2023_03_16_track_4.json": "9b73f331d2d90126adfcd4c9668d0767165fcfa8653d1747f218000709a791fc",
+    "SET2_2023_03_26_track_1.json": "8a19072b204cb9a390530903e7335122261158043d9d44705c2043ca8bee3676",
+    "SET2_2023_03_26_track_2.json": "5bfcb58fef7552a61e30ed43888b1d57524d52224c242ac7fa60a930a1586f73",
+    "SET2_2023_03_26_track_3.json": "c51241c1050c69d858029ae76237dbf5dbd179b8bf116ab860e9f67c6a37dea5",
+    "SET2_2023_03_26_track_4.json": "689dc0fa7f6c9b17777077676d6b6b3e7dcd886ce8e82ffc3866e3e9cfed0b46",
+    "SET2_2023_04_22_track_1.json": "1e5cafa7e964e8fec77d19f601dac6a03ae4016c151eefaf5f9c22a665d00be2",
+    "SET2_2023_04_22_track_10.json": "384420e8547e2ef2de5ea614841371dc9714b505707254f911154ebddc15ca11",
+    "SET2_2023_04_22_track_11.json": "42da959538a5f0256f6d5940bdbf0f460f2646d6e91c06621fe70becf7cfad76",
+    "SET2_2023_04_22_track_12.json": "0525e65a4a458ce02faa0aee13b2afb830d7ec7ad5c4b9255d906ef029ea9aba",
+    "SET2_2023_04_22_track_13.json": "7ccd711027b16613db594280acf961afabdb6f64ae22aaeb4772d52b4107f405",
+    "SET2_2023_04_22_track_2.json": "c3b8746cdb28fb4e3e064c809d934a400f75372a950baa43d7fd33855af08ea5",
+    "SET2_2023_04_22_track_3.json": "dd25f02ae1ad575ac233478eefc63b9a066d3ae51ec8f3a02c6a8450de00c4ef",
+    "SET2_2023_04_22_track_4.json": "af40f59ec261b6b86c9a47a5efec914697bf50a68939ea8245eccfb562255d86",
+    "SET2_2023_04_22_track_5.json": "37e85f7e7f62acdd966b7973d07b9a1e30b7bc3922cb4d37075e7177059a2b58",
+    "SET2_2023_04_22_track_6.json": "0042b5551a564ef23edf5d15cae947800412b6b8d2e080b206983e105cf06fea",
+    "SET2_2023_04_22_track_7.json": "f5179b0eae67407a437fdc61a3be39b206c65ee51c07d40cae7bcba6fc7ea518",
+    "SET2_2023_04_22_track_8.json": "c10e6c4788294185c1fe6e201752c7e108962504b425bec25af6cf24a82c48c6",
+    "SET2_2023_04_22_track_9.json": "c08349f8cbdc1e4fcad5439a87dde5bfeb603ae832a35a85dc7e5fdd70f7170f",
+    "SET2_2023_05_08_track_1.json": "207b96b10b012bc7111a771b56142c988280e2a7ef6435d9bc3b1428cfc0cb63",
+    "SET2_2023_05_08_track_2.json": "a54ce428f67b404a354682f3871ccb4ccec59547fa9f888fe2a84b8133b0a4e7",
+    "SET2_2023_05_08_track_3.json": "3ff5d9f3b87632a9c6962ceadf9560ce935076827688dc21c7776ac4b8aab714",
+    "SET2_2023_05_08_track_4.json": "4dc36b7e5986b3a31f7936682bf0ee7d32daa401dcb004e0a657af57ffe5f1fe",
+    "SET2_2023_05_10_track_1.json": "5f877d3ed9bc310d2afe3a218e4ca9ac45445d810fa30470f217867a853bad31",
+    "SET2_2023_05_10_track_2.json": "03b19baf04681256e372fe78206202b3d0f085ba78ae49446b8bdaf7a77831c0",
+    "SET2_2023_06_05_track_1.json": "4bd3e9da426de910a247d881bfb744c2c919bde82e2b570164f27450dcd14554",
+    "SET2_2023_06_05_track_2.json": "fc837679a07d05e715a178659de52b22e3160647eb6e44ff51dabae21a405d86",
+    "SET2_2023_06_05_track_3.json": "21ba79059065ca75c4d4873ee49cb24670e03022df2970dd516683a0bd11eff2",
+    "SET2_2023_06_19_track_1.json": "d98f131ef3df60db98d85ee9ae724d04002a480d94f82a2ecfb6126e662da35a",
+    "SET2_2023_06_19_track_10.json": "6872e13269e9c0d368c1e9448a6dfb3a4c4a3e5de72bfe33b0c40690876bad58",
+    "SET2_2023_06_19_track_11.json": "9fc5b66208c0c2d97d41d97ea094ee403fd435b4e3908185105c24e320c3cd1e",
+    "SET2_2023_06_19_track_12.json": "44bb58835fb0bcdfc515778b70df27adaf0d0df1187e41df60a1fa363434599e",
+    "SET2_2023_06_19_track_13.json": "de841bbc46ad0e4a745881156690aee9d479c50f8558f76f92f044cb57e770fb",
+    "SET2_2023_06_19_track_14.json": "4bd333045205e82bf0b2b4bab81d3b9d6f9ad9ba000894b4c8e9c214a305d864",
+    "SET2_2023_06_19_track_15.json": "67cc6e144bb054b532cdeb8674d06a9f0a4e3afdf35202edd7ac04a60edaa047",
+    "SET2_2023_06_19_track_2.json": "ef3c25bd226d4801c91fbdf2d926e2d6fb5faec5aebc5e18cb4966e7ec9ffed8",
+    "SET2_2023_06_19_track_3.json": "65080ac18a1102c5c9f0b78f5dce8f9ef830214e2bc4cf75ea65b939dcc5a8f3",
+    "SET2_2023_06_19_track_4.json": "2b1d78639caefb6c35a2cd46ec92622c6d50a889c537e32763f8029ca71fcb15",
+    "SET2_2023_06_19_track_5.json": "50b7d3b1b871c79648c162e2724dde5acbf31d460e5bb9c3f6ec33a6463ce6d5",
+    "SET2_2023_06_19_track_6.json": "f176dd79da2e0b1f373efc277dc7a11ebce527b3894666d068b90b6da1226eca",
+    "SET2_2023_06_19_track_7.json": "b244a8cb3c47d02a3874c989fd0c80aee84521ff927962ac85f2dd41d246bf5b",
+    "SET2_2023_06_19_track_8.json": "a283c51ed5a4bffe101a1d34646cddebc92872c521a5cdb906044c98a57956f8",
+    "SET2_2023_06_19_track_9.json": "a0b6ab7b46dd83f0a12b88cfb9d3e1a0e8656c6ffac4dc3224e6dc47b246c217",
+    "SET2_2023_07_20_track_1.json": "3c136a752541275cd00881121665254e15b3754e1abb6e8f02a9b00747e2eda4",
+    "SET2_2023_07_20_track_2.json": "d8db6f1a3609ed96ff0a4f5ad332f4032427c386e880e999bcae257f83b0f83d",
+    "SET2_2023_07_20_track_3.json": "86bb4caaec8e5149a7088d4dfd060a60101bd523ba79bee6a81a938f752ce8b9",
+    "SET2_2023_07_20_track_4.json": "5a26042cc5356bf4f48b29b31594f417eeb8a0e20849a22089ac18c72e60c902",
+    "SET2_2023_07_20_track_5.json": "ae31ca50a2bb42b8f5bc704a3f8f1a73da234d8ce5d5e8ea4dc59ef802fc29d0",
+    "SET2_2023_07_21_track_1.json": "36920b4b401637fda2e6e1574e4a21fbbaa4ebac566c14383e1931315b7d330c",
+    "SET2_2023_07_21_track_10.json": "b1d6e600355d377ea03b7d6ba689c0ca6a10fd5c8f8afa65799193bc9483a2b6",
+    "SET2_2023_07_21_track_11.json": "2317e4cd291f73684b6c37fd1036892691b078185df9e0f45fb8ff942c2d27b6",
+    "SET2_2023_07_21_track_12.json": "6b87112b477edc0f122bf8421790a0e7c8f442876b9471de006a190dba886cf2",
+    "SET2_2023_07_21_track_13.json": "9fae733e72501ed3fd26a0df2d9589afad8bbbca4e7cfd172b9fce076563c9d8",
+    "SET2_2023_07_21_track_14.json": "e5970c1bd757bd2414481b7be5d43b8ba3134113ff4f65a8a84964693e3348e2",
+    "SET2_2023_07_21_track_15.json": "ab42665e30057ac8fa92813e4455b877a7166e8819c254bfddf150397122a703",
+    "SET2_2023_07_21_track_16.json": "c4d713b2a689a312ecaafd2992d190d05c69e4bf8ad57f976361b97fe449a9b8",
+    "SET2_2023_07_21_track_2.json": "92fc5291b3dce93806c2fa6a4acee3c5ec5cbfe1eee821ca5dfd2d040c555d65",
+    "SET2_2023_07_21_track_3.json": "9cecc7f33b579d6197f7379792776d441f4d8a17a7fe881bf12a7eb03399d8d9",
+    "SET2_2023_07_21_track_4.json": "26345679b40b7610bcacdad6b996fed898199692e5727a5b0fa18116bc9f82c9",
+    "SET2_2023_07_21_track_5.json": "24f249d94940b23933664e694495f66399522b5d52ebfe28842d71837263c0dd",
+    "SET2_2023_07_21_track_6.json": "5db0958d20b79ebee9e08e7cb09e63060dd61a264099200ed65c840411f87f62",
+    "SET2_2023_07_21_track_7.json": "49826a89dc5d3568b68939bc390c30e71560ba4c95384df91ef5887d414d9cf8",
+    "SET2_2023_07_21_track_8.json": "4b18dc222f7c84dfbcd8d8caeaee2df53334ec8f1ae860b622184ab9d78c50f2",
+    "SET2_2023_07_21_track_9.json": "b39f81069d78b542a491d296b8eefcef6f2a26a5247eefd264e8d0558d52a025"
+  },
+  "track_training_fit_summary_deg": {
+    "fraction_under_0_15_deg": 0.4358974358974359,
+    "median": 0.19749675645302156,
+    "p95": 2.185579809414447
+  },
+  "tracks_with_at_least_3_holdout_frames": 139,
+  "tracks_with_training_and_holdout_median_under_0_15_deg": 57
+}
