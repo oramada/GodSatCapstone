@@ -29,6 +29,15 @@ python -m godsat doctor --require-data
 
 The first tool verifies the pinned annual archives and retrieves a catalogue snapshot. The second builds the reusable payload-history source. The third filters it to the committed Iridium NEXT ID allowlist and writes a provenance receipt; it does not refresh membership or reset the active scope. The broader source archive is input material, not permission to add other constellations to a scenario.
 
+## What each check means
+
+| Command | What success establishes | What it does not establish |
+| --- | --- | --- |
+| `python -m pytest -q` | Portable code tests pass | Research results or physical validity |
+| `python -m godsat doctor --require-data` | Configured local data files are available | Ground-system readiness or a completed study |
+| `python -m godsat prepare ...` | Restricted orbital inputs can be prepared | A full-constellation or ground-network experiment |
+| `python -m godsat campaign` | Currently rejected by the ground-system requirement | There is no supported complete hybrid run yet |
+
 ## Current scenario readiness
 
 ```bash

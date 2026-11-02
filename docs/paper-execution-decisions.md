@@ -1,5 +1,7 @@
 # Executing the supplied paper with no additional author context
 
+> **Status update.** The training-budget diagnostic described below has completed: nine training runs and 27 development evaluations, with no established convergence. See the [results](../reports/README.md). The subsequently requested [Iridium NEXT/ground scope](iridium-next-ground-scope.md) supersedes the older mixed-catalogue setup. Ground-system roles remain unresolved, and a new combined-study campaign has not run.
+
 On 2026-11-01 the user clarified that the assignment was simply to execute the
 supplied paper, with no additional context. Missing methodology is therefore an
 implementation decision to document, rather than a question the user must answer.

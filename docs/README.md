@@ -7,6 +7,7 @@
 - [Result summaries and evidence](../reports/README.md)
 - [Execution decisions for the supplied paper](paper-execution-decisions.md)
 - [Tool groups](../scripts/README.md)
+- [Script and documentation maintenance review](maintenance.md)
 
 ## Study definition and limitations
 

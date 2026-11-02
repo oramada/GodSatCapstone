@@ -1,5 +1,7 @@
 # Study protocol and interpretation
 
+> **Methodology reference for the earlier adaptation.** This page does not describe a ready-to-run Iridium NEXT/ground experiment. The [current scope](iridium-next-ground-scope.md) and [setup guide](setup.md) control new runs; the [results index](../reports/README.md) distinguishes completed earlier experiments from outstanding work.
+
 ## Source authority and configured scope
 
 The governing six-page factorial/RSM design PDF was supplied and inspected on 2026-10-25. Its SHA-256 is `e705ce0a7bc80496f37ab8da5a8ad9ba2cefe5619e7f530b15ecc902abb64e95`. The [requirement audit](governing-pdf-audit.md) maps the actual sections to implementation and evidence. It confirms the 16-run resolution-IV screen, 15-run face-centered CCD, five-seed retraining and 31-treatment Bayesian reference.

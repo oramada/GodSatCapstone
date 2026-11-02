@@ -1,5 +1,7 @@
 # Supplementary research code
 
+> **Historical and supplementary work.** These tools cover the broader earlier study, not the current Iridium NEXT-only participant scope. They are optional research references, not required setup steps. Follow the [current setup](setup.md) for supported commands.
+
 This repository includes the additional source code used to examine four-year catalog coverage, sampled all-catalog tasking, attitude products, optical observations, and orbit-propagation sensitivity. The runners live in `scripts/`, and historical configurations live in `configs/archive/`. The minimal paper campaign does not need these extensions.
 
 ## Inputs and dependencies

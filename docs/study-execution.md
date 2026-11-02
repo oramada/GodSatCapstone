@@ -1,5 +1,7 @@
 # Current study execution
 
+> **Historical execution log.** “Completed” below refers to the earlier configured simulations, not the full published-paper reproduction or the current Iridium NEXT/ground study. The commands are historical and may be rejected by the active scope. For current readiness, use the [setup guide](setup.md), [scope definition](iridium-next-ground-scope.md), and [results index](../reports/README.md).
+
 This documents the execution begun on 2026-10-24. The configured campaigns and the supplied-PDF followthrough have completed under the explicitly authorized simulation assumptions. Its authoritative state is in [`outputs/study-execution/plan.json`](../outputs/study-execution/plan.json) and the [completion inventory](../outputs/study-execution/completion-inventory.md). Generated results, model checkpoints and acquired data are local artifacts excluded from Git.
 
 The [current scientific synthesis](../reports/current-study-20261024.md) combines the audited component findings and preserves their distinct estimands and uncertainty calculations. Its companion provenance receipt identifies the consumed source hashes. All original daily/quarterly campaigns and their audits are complete. The supplied-PDF followthrough is tracked separately below.

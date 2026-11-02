@@ -140,7 +140,6 @@
     "scripts/audit_ztf_fullnight_exposure_paths.py": "scripts/validation/audit_ztf_fullnight_exposure_paths.py",
     "scripts/download_eop.py": "scripts/data/download_eop.py",
     "scripts/audit_ilrs_opportunity_coverage.py": "scripts/validation/audit_ilrs_opportunity_coverage.py",
-    "scripts/download.py": "scripts/archive/download.py",
     "scripts/audit_orbital_inputs.py": "scripts/validation/audit_orbital_inputs.py",
     "scripts/audit_campaign.py": "scripts/validation/audit_campaign.py",
     "scripts/run_measured_profile_tasking.py": "scripts/experiments/run_measured_profile_tasking.py",
@@ -299,5 +298,13 @@
     "docs/research-results/dust-tle-track-validation/wcs-star-calibration/summary.json": "reports/archive/dust-tle-track-validation/wcs-star-calibration/summary.json",
     "docs/research-results/dust-tle-track-validation/wcs-star-calibration/per_frame_wcs_star_residuals.csv": "reports/archive/dust-tle-track-validation/wcs-star-calibration/per_frame_wcs_star_residuals.csv",
     "Systematic_Hyperparameter_Optimization_of_GoDSAT_Sensor_Tasking_Agents_via_Fractional_Factorial_Design_and_Response_Surface_Methodology.pdf": "docs/papers/methodology.pdf"
+  },
+  "retired_paths": {
+    "scripts/download.py": {
+      "last_location": "scripts/archive/download.py",
+      "replacement": "scripts/data/fetch_four_year_data.py",
+      "reason": "Redundant downloader using a floating upstream revision; replaced by pinned, verified source acquisition.",
+      "historical_commit": "6274677c4b2d072d0af621df568b7f2f80e88319"
+    }
   }
 }
