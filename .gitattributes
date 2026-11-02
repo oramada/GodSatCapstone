@@ -1,0 +1,5 @@
+# Preserve exact bytes of published evidence and upstream license notices.
+reports/evidence/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+formal/UPSTREAM-LICENSE -text whitespace=trailing-space,space-before-tab,cr-at-eol
+# The active policy hashes this file; checkout must not rewrite its line endings.
+configs/iridium-next-membership.json -text

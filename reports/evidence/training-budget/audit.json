@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "training_records_checked": 9,
+  "finite_episode_losses_checked": 2520,
+  "paired_history_prefixes_exact": 6,
+  "complete_training_replays_exact": 1,
+  "saved_policy_development_evaluations_replayed": 27,
+  "all_summary_input_hashes_match": true,
+  "final_test_scenes_loaded": false,
+  "scope": "Reproducibility and data binding, not convergence or published-baseline equivalence."
+}

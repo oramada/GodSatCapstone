@@ -1,27 +1,26 @@
 # Study protocol and interpretation
 
-## Scope of the supplied paper
+## Source authority and configured scope
 
-The paper studies hyperparameter optimization for GoDSAT tasking agents. It does not include satellite/sensor dropout as a research question, and it does not rank outage value by sensor-target geometry. It does not label formal numbered research questions. A useful teaching breakdown of its scope is:
+The governing six-page factorial/RSM design PDF was supplied and inspected on 2026-10-25. Its SHA-256 is `e705ce0a7bc80496f37ab8da5a8ad9ba2cefe5619e7f530b15ecc902abb64e95`. The [requirement audit](governing-pdf-audit.md) maps the actual sections to implementation and evidence. It confirms the 16-run resolution-IV screen, 15-run face-centered CCD, five-seed retraining and 31-treatment Bayesian reference.
 
-1. Which of seven agent hyperparameters most influence tasking performance?
-2. Which settings optimize that performance, and how do factorial/response-surface design and an equal-budget Bayesian search compare?
+The printed defining relation differs from its generators; the implementation follows E=ABC, F=ABD, G=ACD. One center observation provides no pure-error estimate, so separate independent center retrains support lack-of-fit testing. Claims of 11–14% custody gain and 9% energy reduction are unsubstantiated placeholders in the supplied Results section. The study reports observed outcomes, including negative results.
 
-The protocol is a 16-run resolution-IV fractional-factorial screen over seven factors, followed by a 15-run face-centered response-surface design over the three leading factors. The paper also describes five-seed validation and a Bayesian-optimization comparison with a 31-run budget. It names custody continuity, slew energy, false-track rate, and GPU-hours as responses. The Results section contains a placeholder for numerical tables and plots, although the abstract and conclusion state improvement claims; those claims are not auditable from the supplied results section.
+The user authorized documented simulation assumptions for the unavailable published actor–critic baseline and calibrated sensor definitions. A new [mechanical/clutter model](physical-sensor-assumptions.md) and separate LEO campaign implement those assumptions. Their dimensioned slew energy and simulated false-track responses are distinct from the original proxy-based campaigns. Exact published-baseline reproduction, hardware calibration and MATLAB parity remain outside the evidence.
 
-This implementation is a student research seed. It does not establish that the Python actor-critic implementation is the original GoDSAT implementation. Treat outputs as new simulation results and report the implementation and assumptions.
+The [source fidelity comparison](source-fidelity.md) distinguishes the shared neural actor/central critic from the available original Q-table/gradient framework. The [execution guide](study-execution.md) records completed studies and the ongoing PDF followthrough.
 
 ## Experiment stages
 
 The `campaign` command performs a 16-run, resolution-IV fractional-factorial screen over seven factors; a face-centered response-surface design over the three leading factors; an internal Bayesian-search comparison; and five-seed validation. It records four tasking responses, run configuration, random seeds, device, and wall time. The default center replicate count is one; passing `--center-replicates 3` adds repeated center observations for a more useful estimate of experimental noise.
 
-Training dates, a later validation date, and a held-out test date are specified in `configs/paper-exact-cpu.json`. These are short sampled episodes drawn from the four-year archive, not four years of continuous agent training. Factor effects apply to this simulator, its selected scenarios, and its reward/response definitions.
+Training dates, a later validation date, and a held-out test date are specified in `configs/archive/paper-exact-cpu.json`. These are short sampled episodes drawn from the four-year archive, not four years of continuous agent training. Factor effects apply to this simulator, its selected scenarios, and its reward/response definitions.
 
 ## Separate simulated dropout extension
 
-The `dropout-study` command is an extension beyond the supplied paper. It tests simulated independent and burst sensor outages across configured rates, orbit regimes, and dates, then reports aggregate response changes relative to zero dropout. It neither uses measured outage telemetry nor identifies the most valuable or harmful sensor-target geometries.
+The `dropout-study` command tests simulated independent and burst sensor outages across configured rates, orbit regimes, and dates, then reports aggregate response changes relative to zero dropout. It uses injected losses rather than measured outage telemetry. Separate measured-profile runs apply audited CASSIOPE attitude-solution availability to hypothetical hosts; these remain simulated tasking interventions rather than measured fleet reliability. The supplied PDF contains no dropout experiment; these are user-requested extensions.
 
-To answer a geometry-specific dropout question, a follow-on study needs to define what makes a dropout valuable, preserve paired outage/no-outage trials, and report effects within geometry groups such as range, line-of-sight margin, slew angle, field-of-regard margin, and target contention. Those grouped estimates are not currently implemented. The PDF's future-work note about adding LEO multi-target geometries is separate from its hyperparameter study and does not specify an outage analysis.
+Orbit-regime averages do not identify which individual sensor-target geometry benefits or suffers most from a lost observation. A separate [single-observation sensitivity study](../outputs/geometry-single-loss-quarterly-20261024/report.md) now samples successful baseline observations within joint range/slew groups and suppresses one at a time. It pairs subsequent random draws and allows the frozen policy to adapt, then measures whole-episode custody changes. This is conditional on a successful baseline observation and the selected occupied geometry group; it does not estimate unconditional operational outage value. Other geometry dimensions, including line-of-sight clearance, field-of-regard margin and contention, are not independently resolved by those two-dimensional groups. This geometry extension is requested by the user, rather than specified by the supplied PDF.
 
 ## Reproducibility and limits
 

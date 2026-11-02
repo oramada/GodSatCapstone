@@ -158,6 +158,11 @@ def run_treatment(name,hp,scenarios,config,folder,seed,force=False):
         'python':platform.python_version(),'torch':torch.__version__,
         'numpy':np.__version__,'timestamp_utc':__import__('datetime').datetime.now(__import__('datetime').timezone.utc).isoformat(),
         'training_history':history}
+    if config.get('assumed_host_power_watts') is not None:
+        power=float(config['assumed_host_power_watts'])
+        if power<=0 or not np.isfinite(power):raise ValueError('Assumed host power must be finite and positive')
+        record.update(assumed_host_power_watts=power,assumed_host_energy_kwh=power*wall/3.6e6,
+            assumed_host_energy_note='Scenario assumption times measured treatment wall duration; not calibrated electrical energy or incremental process power.')
     checkpoint.parent.mkdir(parents=True,exist_ok=True);torch.save({'hp':hp,'obs_dim':model.actor[0].in_features,'actions':model.actor[-1].out_features,'state_dict':{k:v.detach().cpu() for k,v in model.state_dict().items()}},checkpoint)
     write_json(path,record);print(f"{name}: custody={record['custody_continuity']:.3f}, objective={record['objective']:.3f}, {wall:.1f}s",flush=True)
     return record
@@ -197,7 +202,10 @@ def bayesian_candidates(records,rng):
     return candidates[np.argmax(ei)]
 
 def campaign(config,folder,center_replicates=1,force=False):
+    from .scope import validate_execution
+    validate_execution()
     folder=pathlib.Path(folder);folder.mkdir(parents=True,exist_ok=True)
+    response_metrics=list(dict.fromkeys(RESPONSES+config.get('additional_responses',[])))
     run_config={**config,'response_surface_center_replicates':int(center_replicates)}
     cfg_path=folder/'config.json'
     if cfg_path.exists() and json.loads(cfg_path.read_text())!=run_config:raise ValueError('Output folder already uses another configuration')
@@ -212,7 +220,7 @@ def campaign(config,folder,center_replicates=1,force=False):
     for i,row in enumerate(x): screen.append(run_treatment(f'screen_{i:02d}',decode(row),scenarios,execution_config,folder,config['training_seed'],force))
     design_rows=[dict(run=i,standard_order=int(order[i]),**{chr(65+j):float(v) for j,v in enumerate(row)},**decode(row)) for i,row in enumerate(x)]
     export_csv(folder/'screening_design.csv',design_rows)
-    analyses={metric:screening_analysis(x,[r[metric] for r in screen]) for metric in RESPONSES}
+    analyses={metric:screening_analysis(x,[r[metric] for r in screen]) for metric in response_metrics}
     selection=analyses['objective']['selected_indices'];write_json(folder/'screening_analysis.json',analyses)
     local=ccd(center_replicates,config['design_seed']);responses=[];center_number=0
     for i,p in enumerate(local):
@@ -221,7 +229,7 @@ def campaign(config,folder,center_replicates=1,force=False):
         if np.all(p==0):seed+=center_number*7919;center_number+=1
         responses.append(run_treatment(f'rsm_{i:02d}',decode(full),scenarios,execution_config,folder,seed,force))
     export_csv(folder/'rsm_design.csv',[dict(run=i,x1=float(p[0]),x2=float(p[1]),x3=float(p[2]),**r['hyperparameters']) for i,(p,r) in enumerate(zip(local,responses))])
-    surfaces={m:fit_surface(local,[r[m] for r in responses]) for m in RESPONSES}
+    surfaces={m:fit_surface(local,[r[m] for r in responses]) for m in response_metrics}
     write_json(folder/'response_surfaces.json',surfaces)
     optimum=np.zeros(7);optimum[selection]=surfaces['objective']['bounded_optimum'];recommended=decode(optimum)
     bo=[];rng=np.random.default_rng(config['design_seed'])
@@ -261,13 +269,13 @@ def campaign(config,folder,center_replicates=1,force=False):
     for label in list(configs)+['greedy','random']:
         entries=[r for r in validation if r['configuration']==label];n=len(entries)
         summaries[label]={}
-        for metric in RESPONSES:
+        for metric in response_metrics:
             v=np.array([r[metric] for r in entries]);se=v.std(ddof=1)/np.sqrt(n) if n>1 else 0
             margin=float(student_t.ppf(.975,n-1)*se) if n>1 else None
             summaries[label][metric]={'mean':float(v.mean()),'ci95_half_width':margin,'n':n}
     comparisons={}
     baseline=[r for r in validation if r['configuration']=='baseline'];optimized=[r for r in validation if r['configuration']=='doe_recommended']
-    for metric in ['custody_continuity','slew_energy_proxy','false_track_proxy','objective']:
+    for metric in list(dict.fromkeys(['custody_continuity','slew_energy_proxy','false_track_proxy','objective']+config.get('additional_responses',[]))):
         before=np.array([r[metric] for r in baseline]);after=np.array([r[metric] for r in optimized]);delta=after-before
         se=delta.std(ddof=1)/np.sqrt(len(delta));margin=float(student_t.ppf(.975,len(delta)-1)*se)
         comparisons[metric]={'paired_mean_change':float(delta.mean()),'paired_ci95_half_width':margin,
@@ -294,6 +302,8 @@ def campaign(config,folder,center_replicates=1,force=False):
         'device_provenance':device_provenance(config),
         'scenario_sha256':scenario_sha256,
         'runtime':runtime_provenance(),
+        'sensor_response_model':config.get('sensor_response_model','legacy_proxy'),
+        'additional_responses':config.get('additional_responses',[]),
         'total_gpu_hours':float(sum(r.get('gpu_hours',0.) for r in all_runs)+sum(r.get('gpu_hours',0.) for r in validation if r['configuration'] in configs)),
         'energy_estimates_available':False,
         'target_cohort':config.get('target_cohort','current_payload'),

@@ -1,0 +1,677 @@
+{
+  "generated_utc": "2026-10-27T20:09:39.608904+00:00",
+  "file_listing_command": [
+    "rg",
+    "--files",
+    "/home/omarramadan/Desktop/GodSAT",
+    "/home/omarramadan/Desktop/GoDSat-MnS-Framework",
+    "-g",
+    "*.py",
+    "-g",
+    "*.m",
+    "-g",
+    "*.ipynb",
+    "-g",
+    "!**/site-packages/**",
+    "-g",
+    "!**/.venv/**",
+    "-g",
+    "!**/.octave-env/**",
+    "-g",
+    "!**/outputs/**",
+    "-g",
+    "!**/data/**",
+    "-g",
+    "!**/.git/**"
+  ],
+  "pattern": "actor.?critic|ActorNetwork|CriticNetwork|rlPPOAgent|rlACAgent|rlDDPGAgent|target_tau",
+  "files_scanned": 125,
+  "matches": [],
+  "oversized_skipped": [],
+  "inventory": [
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/bayesian_network/bn_GoDSAT_run.m",
+      "sha256": "dd4c6308d1fbf574cdfe418cd213df78fee91b93caf0bc5b4c0f7f7211cef7ec",
+      "bytes": 7142
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/bayesian_network/bn_analytics_dashboard.m",
+      "sha256": "325b7aef5941184ce260c059e5594cb5589eb63b3d1205cee280e908b4368209",
+      "bytes": 9205
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/bayesian_network/bn_cpt_to_factor.m",
+      "sha256": "51974ae0692c5e02986f9cf79b002ebb2da1d9489b8e737d5bdfa0975647421d",
+      "bytes": 2616
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/bayesian_network/bn_from_logs.m",
+      "sha256": "330195ff7338d7ba9661c97f7a08c0de02d3241211ef2fe2301c9fa8c818c1e0",
+      "bytes": 2590
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/bayesian_network/bn_learn_and_infer.m",
+      "sha256": "9446b3e4a2cf09cab9494b0c776aa28ff4b81d1ae925bad6531cef2b16dd4d7c",
+      "bytes": 1315
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/bayesian_network/bn_plot_dag.m",
+      "sha256": "2c9112e9390533f4b983381262adc88a8cdf347ed4d8152832e790e55197e15e",
+      "bytes": 7539
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/bayesian_network/bn_sensitivity_demo.m",
+      "sha256": "9310e6f786ab844cb2f34e616241a763262c65079945d07af5f726d77501b7a1",
+      "bytes": 919
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/bayesian_network/bn_write_latex_tables.m",
+      "sha256": "3d975aae6df3d2515d519f87f9b2ac3495351d39e07ae34477acebb5b91a1f98",
+      "bytes": 4006
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/MainRL.m",
+      "sha256": "3651166251f97ac165192ab4cd64ea50fadbc0ce1b2c1652777c5d4cdd12ae81",
+      "bytes": 15448
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/SatelliteRL.m",
+      "sha256": "57060624e5d405dfcd30e235265ffd66e90603f7a1935bbad6c455c5abd977c8",
+      "bytes": 42572
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/TargetRL.m",
+      "sha256": "e619a1e17df3b331db4626e06dea3ab4e0082c387f016ef2d359d5f553ef94a5",
+      "bytes": 5387
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/estimate_cpt.m",
+      "sha256": "cd853d567b56779e84200c9899dea923a1e36381c480663b2a695379268bac43",
+      "bytes": 3603
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/factor_fix_dims.m",
+      "sha256": "c7c1f350f6bb221164d534717454f799a47f3b7f69a3a295834231e59fac4632",
+      "bytes": 969
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/factor_marginalize.m",
+      "sha256": "437df3a5cae2dcd0ef1b7876a8cf7b2f54ef7c4c7f223a5a529463aada612666",
+      "bytes": 1292
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/factor_multiply.m",
+      "sha256": "074c68c0a2b1d299176f15d53d87a3ddff9d29c5de67b51fc91e43cced9c6c28",
+      "bytes": 4353
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/factor_normalize.m",
+      "sha256": "c1adc802f8e876afcc43105ffa34836e2c9a6177bc8a250eec5257bbc22854bf",
+      "bytes": 344
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/factor_reduce.m",
+      "sha256": "818bbb9e5766ed6adef8df7ac1cdc33f441358c7bdf926a0eca5a9c645f7b566",
+      "bytes": 4851
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/findHighestNeighbor.m",
+      "sha256": "e8de43abc0098244fff97cced363132db7eca926772b6464e65c20516507f88a",
+      "bytes": 1727
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/monte_carlo/MainRL_run.m",
+      "sha256": "5f8f2e0f99931b4484f7cd5435285ab81d0afc7b45c08826990189c39c5a86d5",
+      "bytes": 21453
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/monte_carlo/sweep_and_compare.m",
+      "sha256": "42272abd9c51b2cab5ac5eb5b4b050293609a1b85fd45898bd4443ff12f03897",
+      "bytes": 1110
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/startup.m",
+      "sha256": "db31e7e580fef1e83cac70f47b077ab071fcb02dfb27731434fb35aa32098df7",
+      "bytes": 1967
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/verify_installation.m",
+      "sha256": "5a275f02b93ccee7d9b334c5931867669dcafcbcfaefe7f238981757732ffda1",
+      "bytes": 4897
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/godsat_supplement/__init__.py",
+      "sha256": "98050d78c60cab04c83a7c816961e1e36ae5bd5689a6ceb8286abfab2d519693",
+      "bytes": 51
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/godsat_supplement/common.py",
+      "sha256": "24efccace2a0855c9ca57dc39849bc8ae1c64b743cf5515e50e263c5e5387275",
+      "bytes": 1726
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/godsat_supplement/lambert.py",
+      "sha256": "1bbb2ab06a3a5a27e79338dc293cd4c8bfad18a3dbb01a8fa59eaa95defb8613",
+      "bytes": 2212
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/compat/deg2km.m",
+      "sha256": "e5ef11206109eb3ebe0c273f4b0199399f31b85f8a37d6105a20769febead1c6",
+      "bytes": 187
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/compat/distance.m",
+      "sha256": "6f7b338a6055b258d5a161112c6ee75b118082e726f52871980f0fd3cfdc5e98",
+      "bytes": 307
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/compat/ecef2geodetic.m",
+      "sha256": "ea74748fb28985d2f8a5d094516f8b962d125d171eeb84106b5afb445bddf758",
+      "bytes": 609
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/compat/geodetic2ecef.m",
+      "sha256": "006bbe6fb9faee3108676373be78e9577d281a66cd16b1142c37a8ee7eeabe3d",
+      "bytes": 395
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/compat/referenceEllipsoid.m",
+      "sha256": "13cf9612a7c65488125bacf3f939fe158e4fa77824af800cf81d1a920d79ff55",
+      "bytes": 494
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/run_campaign_cli.m",
+      "sha256": "138a642d7d152358dba7d855c5d135a61f54d9d08b768553fb30327699257b14",
+      "bytes": 263
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/src/core/SatelliteRL.m",
+      "sha256": "42e38adf4107b06afa49919afc9cbff2609d6d9824051121e9aff89bfe84eb7e",
+      "bytes": 42417
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/src/core/TargetRL.m",
+      "sha256": "e619a1e17df3b331db4626e06dea3ab4e0082c387f016ef2d359d5f553ef94a5",
+      "bytes": 5387
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/src/core/TrajectoryTargetRL.m",
+      "sha256": "abbbe8edc6a6f7899523d88937ccb987032b00f856aaa2bab75c5f9421a65230",
+      "bytes": 2126
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/src/core/findHighestNeighbor.m",
+      "sha256": "e8de43abc0098244fff97cced363132db7eca926772b6464e65c20516507f88a",
+      "bytes": 1727
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/production_godsat_octave/src/monte_carlo/MainRL_csv_run.m",
+      "sha256": "c1de626ae90d8d318535dab05ab214941f33be5e7766ab93d74cade589125b51",
+      "bytes": 8947
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/analyze_godsat_mc.py",
+      "sha256": "92dfb2d04e8dc4992b9bd25008f0a48a84783d610858991a96c67600a810376b",
+      "bytes": 3341
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/audit_results.py",
+      "sha256": "6654ee743e9eb46d61dd37606891fe258837968874471fc48633736f8d5a96b7",
+      "bytes": 5509
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/build_endpoint_cases.py",
+      "sha256": "86a5e02330b7d7c49bd5f36e412bdba9b806e99e45439d7b506db0e961eb2b78",
+      "bytes": 1579
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/build_result_bundle.py",
+      "sha256": "f866f178f2b0dccb056be6b2655a11cc1c80e7085f6c641cd2a4caf9050e5f0f",
+      "bytes": 1624
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/generate_endpoint_diffusion.py",
+      "sha256": "32f385e839d75db2214ae29b9ee2170be325540dac796734598d419edb19ec37",
+      "bytes": 5304
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/prepare_godsat_populations.py",
+      "sha256": "419b78bffdcfc4194c2a21652cc940a7d096df482fb406acb1d325f47147e9b4",
+      "bytes": 6549
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/prepare_locked_inputs.py",
+      "sha256": "9ea5681270970f50062f138279b2f7a77b73f194736ca4aeadcaf508a7b1ffd5",
+      "bytes": 2538
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/results_to_latex.py",
+      "sha256": "7c0afac55d46c47d08403108bf47741ed3aa1658068f911775fbe77b4b851508",
+      "bytes": 2525
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/run_godsat_mc.py",
+      "sha256": "5862fba750b138e5bb4eccb50d8386a689a42cd7734f855f21a4e2f263e1cfe8",
+      "bytes": 4208
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/run_lambert_benchmark.py",
+      "sha256": "5a4cb155e332e7b050eea42a7d1d67a1d33a7399b83757bd79d42e36816ed748",
+      "bytes": 6729
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/scripts/run_production_godsat.py",
+      "sha256": "5ca22fd79d81484441939f6af54b6c2e9ea234be5f25c6888697340365ea788a",
+      "bytes": 1653
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/tests/test_godsat_contract.py",
+      "sha256": "63c61a621704327a719574611dbb102176284d86d384b8e9a05da297141dabfc",
+      "bytes": 681
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/tests/test_lambert.py",
+      "sha256": "bd9fc0c3715059250ba84231c9466eecffb314fc26cdc1bd2c75d717bbe96ccf",
+      "bytes": 735
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/tests/test_production_adapter.py",
+      "sha256": "c22c469f6a8e71d23874f627a17cde01bddbb4a17d2690165c81f6c5d88d964c",
+      "bytes": 1314
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GoDSAT_Additional_IEEE_Experiments/tests/test_table_export.py",
+      "sha256": "6e2859e97236eef91ad5c27669c51dbfc3b2bdb0616d02b67c836e50f980e89c",
+      "bytes": 183
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/GodSAT_IEEE_latest/paper/build_ieee_assets.py",
+      "sha256": "cb914b744bfb0b8e459389a8d89bc211e1b4f94702d63a5a37ea9ebd829ff085",
+      "bytes": 27966
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/paper/build_all_in_one_tex.py",
+      "sha256": "1da2c0ddf6f8c05531342da7524acbb255612d6123784fc203f54a630e831791",
+      "bytes": 3519
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/paper/build_ieee_assets.py",
+      "sha256": "3933c023332a3f2edbc420a5445ce167f13551c9f8111874b986e9b3b367e96b",
+      "bytes": 28815
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/paper/build_scaling_assets.py",
+      "sha256": "024221fc79dc64b582577b47bf5d4e0a24b8490246527365b471810b48c6f82e",
+      "bytes": 4147
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/scripts/audit_multimodal_publication.py",
+      "sha256": "80fd57c847364262c220935d539110b4da5023db9e0b966b932e6af009850e49",
+      "bytes": 7697
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/scripts/audit_posterior_publication.py",
+      "sha256": "737f62152dccf607b412df67a8b7fbd916ceaf3d6f345f1c24651bba1a31eb9a",
+      "bytes": 5217
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/scripts/audit_scaling_publication.py",
+      "sha256": "3f12c28f064b352f2d8ae30af8aed9707075d6dbf3b5a461d365498653104d1b",
+      "bytes": 9017
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/scripts/benchmark_scaling_resources.py",
+      "sha256": "9157660875ecffdb25975f26dc3b06a02dc04a13b5a5f55da8ca0cbc429bb043",
+      "bytes": 3580
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/scripts/collect_watchdog_records.py",
+      "sha256": "649bc424963c620382aecac84661ee2ed9a71a5887e1f7011e9f57898aa0d648",
+      "bytes": 1925
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/scripts/reassemble_scaling_metrics.py",
+      "sha256": "6f59deb3cecd2a39d9d7060209ccf8e77d26f34193fc93d816054f10ca538908",
+      "bytes": 1207
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/scripts/run_example.py",
+      "sha256": "9fc870f9837d464112c136ac83b25d1fa96373dee2a8a28b8dc32b269e46ba0b",
+      "bytes": 385
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/scripts/run_scaling_campaign.py",
+      "sha256": "1703e9fb7a2a3b5312d63234ceda25eb47fbfcada761d2713ab5502d87966594",
+      "bytes": 3035
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/__init__.py",
+      "sha256": "baa308c46a8c146ed022253f7a9966f02730367af6c8a8270f53e7995ba9dea8",
+      "bytes": 602
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/advanced_validation.py",
+      "sha256": "869d015299e124a87de064c613644ed9d5fd226746b51e6d499efa26271dd132",
+      "bytes": 19888
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/audit_evidence.py",
+      "sha256": "dd7e43ce997a2eafcafa97303f1106a7286109d457b63ff06d2cdf52ee1b94ad",
+      "bytes": 14745
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/baselines.py",
+      "sha256": "0c87df1cbcb09a6aba6068b100b7ee637dd25909e156270f484cc808b235499e",
+      "bytes": 6247
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/basilisk_oracle.py",
+      "sha256": "8a1ff4d1fe97c617426398a2acc2c567fd8320620e3001c63dce1ce860a2a1ea",
+      "bytes": 20999
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/benchmark.py",
+      "sha256": "c55f8e43c04b4244b2b688e7257fc4cd02ad1b9d289b41b6d1242b7d6ec41915",
+      "bytes": 9478
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/campaign.py",
+      "sha256": "3061bf29e32e44ba5801538012e9c31a25ed6a267f163d33557fe97ab34c587e",
+      "bytes": 5632
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/cli.py",
+      "sha256": "98fb9a66b4714ff9d396a10a8e7ea98b3b1d3cc224aab5a9d62371dbb61ec54c",
+      "bytes": 37698
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/conditional_bridge.py",
+      "sha256": "d0f60bc1f8d60fcc3fcb345cbbc26481447bc1b5278332f7aa7957d5cd2aafb4",
+      "bytes": 4575
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/constants.py",
+      "sha256": "e1da5225182278b7be96a9faa6746b0cca335d6bfb0cc69f4262550d6c090137",
+      "bytes": 237
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/deep_experiments.py",
+      "sha256": "be4d733b466b96b58eec19432e01738ec749aa800fbc1c96ff416e80030eb2e9",
+      "bytes": 18987
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/diffusion.py",
+      "sha256": "872d026577e7a0228d891f41ae0944ca34018a622e7ea7a65ba0660628fc76a2",
+      "bytes": 4195
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/diffusion_core.py",
+      "sha256": "34329cb875fe541e54b35f8dbd177e3a47ab713b91f703e8765b13dcaa04d371",
+      "bytes": 3403
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/experiments.py",
+      "sha256": "c0b40d3dd375fa078599a97afb8fd142b2a751bfa5514376d036afc21839b566",
+      "bytes": 3589
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/external_godsat.py",
+      "sha256": "21d71596606bc441c3f5be89d5d642fb723caceadfd77b4d8d30f4b84cb97842",
+      "bytes": 3120
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/external_simulator.py",
+      "sha256": "e3673555e1e0caa237c480f39291a497f16250f610c102ca0322f9f977fbad07",
+      "bytes": 13572
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/frames.py",
+      "sha256": "2b31cbe3f400739d10633cee9f2692cd5a9ce285fafe701c3554f5fab8df8043",
+      "bytes": 7124
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/io.py",
+      "sha256": "62ccd5a946d4cc93af979bc3e28cd26be6eb2c278cb6245657816c058bd0a8ad",
+      "bytes": 4297
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/latent_experiments.py",
+      "sha256": "422029739ba1365bd944c37244ba748c9330090abdadab6824d1aaa5a5920ed3",
+      "bytes": 29127
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/measurements.py",
+      "sha256": "da1ec907eabac7e05333c00d0097cdf1ebcd0d9c05c27671038a6af2534121ee",
+      "bytes": 5288
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/metrics.py",
+      "sha256": "55525769aca764117460fe703e474089f6610791fa5ada2e10df99322c657bf0",
+      "bytes": 6597
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/multimodal_experiments.py",
+      "sha256": "b4ff71c604e790301b7dc913180337c6e6ded966b1b9de5a5279d311128cda98",
+      "bytes": 40816
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/nonlinear_orbit.py",
+      "sha256": "bea71769586481801ad8b6403b3b8f926c4b479b1b69231d32b09affe8773c94",
+      "bytes": 15926
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/oracle.py",
+      "sha256": "f425445e3af87d193ee9f2b7e7cfde1235b1b0922481d7407e76614004ee4130",
+      "bytes": 1832
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/paper_experiments.py",
+      "sha256": "527e1ad5ce998d40e4ab229e681334552bbd71f5034532f556cab30ef74f1b62",
+      "bytes": 15543
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/pdf_execution.py",
+      "sha256": "9dddab7ababc86b01d8fd526524b038d528b8ecc1e92fb7d0b4a55246fe1cd1e",
+      "bytes": 26607
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/physics.py",
+      "sha256": "e5933aaf628e6a869ed9053ba571351decfa84a8c831b4c38faf4b2010cb2ce1",
+      "bytes": 5838
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/pipeline.py",
+      "sha256": "9fc78ea284b4729e702fa2d398c5217861949ca79f69dd86a09e1f1b348c3c77",
+      "bytes": 5523
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/posterior_experiments.py",
+      "sha256": "0460a9ad5bb4140e7eb615a2d044501ec794d439b71b4d11b870aa914b55adb6",
+      "bytes": 38991
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/preprocessing.py",
+      "sha256": "da0841fc93af1e485085a8a89bb35856ce0a0b47c286f01d2bc02ee75680267b",
+      "bytes": 5421
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/privacy.py",
+      "sha256": "32a5c16e0d75640e6a06991222491cb7fb20e2606151abcb532759c8ab7160cd",
+      "bytes": 8778
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/publication.py",
+      "sha256": "1018543e749f5c8d9a45ab0a8658f860194bbf475c33438df45b610c5cfb14ae",
+      "bytes": 11818
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/scaling_experiments.py",
+      "sha256": "fb8f9a61fadf928cf2515b039d89a5ab59f6ee725be109d98abca17b97bbee9f",
+      "bytes": 30851
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/scenario.py",
+      "sha256": "e0d8e7c315b53c7bb56807e167f6ac989ab70c859edbbf7932ea2d6891356c90",
+      "bytes": 2304
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/schema.py",
+      "sha256": "55f6ee510517681fdef329b3aaf8d0db8fc1c6aebf147fc5a1dd243d5365b13b",
+      "bytes": 8114
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/support.py",
+      "sha256": "fedef8f0d77400953f32d46e1ae75ae73910443e3b0bf7196ddbcdc040554b62",
+      "bytes": 2185
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/torch_diffusion.py",
+      "sha256": "cdc38dfd6ca3b3eee41fcb22dce674ea6ed42940beae9d8dfcd4d02e33a1af1f",
+      "bytes": 22056
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/trained_diffusion.py",
+      "sha256": "655db7e6b724ac22098e2cc8cd1a76a5323540bad42054cba0f0509c11b4ae35",
+      "bytes": 15490
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/vector.py",
+      "sha256": "02f99e0dad396f3a8000c908ec26665525dfa82129df1ff41215e02157274e1c",
+      "bytes": 1591
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/src/godsat_difftraj/watchdog.py",
+      "sha256": "bc166392952eba004098bbf3ee772e78af680d04fddfcaea10f7349e8d465515",
+      "bytes": 5101
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_audit_measurements.py",
+      "sha256": "3ca86f96d67f79de4ef7129106306d48fc955212c5d92340ca82b39f60b4d6ed",
+      "bytes": 2441
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_basilisk_oracle.py",
+      "sha256": "b9cc0064200cf73e23f8c8c1360ea4c734e4fa798e2e53ede82f5ca708dcf1ae",
+      "bytes": 1912
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_benchmark_oracle.py",
+      "sha256": "ff76aa62b0984ba65ed8883ef36d2ed75f4df31e98f03bfaa22477b1223dfe32",
+      "bytes": 1321
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_collect_watchdog_records.py",
+      "sha256": "8cf22cce52bdd5ceef5e456aa97bf583a88e7b4623ca89758ad5539248a6226e",
+      "bytes": 834
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_conditional_bridge.py",
+      "sha256": "3ba6ee78b92081b9f1fca0ac1464c826beefe6f9efbc0426ae5b3aca3110bf1a",
+      "bytes": 1616
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_diffusion_core.py",
+      "sha256": "0e6ecbb0bf43e5624d8ece0d65e0292bd3b6c72540fe71f9f9128f9308c1597e",
+      "bytes": 980
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_experiments_cli.py",
+      "sha256": "3d06d093b500c5a53041d01af49f4291f4312d2156beb13fa280b0a4f9b11d0f",
+      "bytes": 876
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_external_simulator.py",
+      "sha256": "477fe344ef8a45f544fef24f866e2414036bd258dff755af050babb6df0746b9",
+      "bytes": 1897
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_frames.py",
+      "sha256": "35a6a399934c148e8cdfc363d755464874553d2ed0c9f8766b0c7bbdc6675f68",
+      "bytes": 1146
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_ieee_paper_assets.py",
+      "sha256": "3ee7ee6efbb17c4db55c26d99188e2cc3ae47bf66d7e27af63812231576a43c9",
+      "bytes": 2305
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_io_preprocessing.py",
+      "sha256": "35e48c0991cbbbedfc0df4dd635089c588c28c10f3dae005545a94d0e78578f5",
+      "bytes": 1107
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_latent_experiments.py",
+      "sha256": "f65a9b1bd1a2ea28d372a4638d1e895e8d808f44e6564e7b042d0cd29c7d67bf",
+      "bytes": 2355
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_metrics_pipeline.py",
+      "sha256": "858aaaad8587a5c4e9c626b23ac8d954b5f55bf98a646b5530e7c3dbc32715d2",
+      "bytes": 2275
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_multimodal_experiments.py",
+      "sha256": "89048f45a31ee37577f8db87c385388abcb524f3dfbaf794f163795564080a1a",
+      "bytes": 2414
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_nonlinear_orbit.py",
+      "sha256": "88b679f47aa05ff1c368be758cd6e78922c96d85938a71c41053b4c02df6e539",
+      "bytes": 2161
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_paper_experiments.py",
+      "sha256": "164cc13a3e6789221b96773a2d3eb67385ae9b55b734a5a9edf62a82c52c63fd",
+      "bytes": 1193
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_posterior_experiments.py",
+      "sha256": "b2d0c1caeecd825349a60bd49e3845ed992d3f963686e4b825483dd4dd7dfc3e",
+      "bytes": 2757
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_publication_package.py",
+      "sha256": "c70bb1e50cf08599907876c8d9a8a13ff445b773237f28516b1d81752eb1ddb9",
+      "bytes": 1973
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_scaling_experiments.py",
+      "sha256": "9fda8ab07de495387ed57b7cb0790d294f318f5bf1696a513f6c37627b3a78dc",
+      "bytes": 4740
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_torch_diffusion.py",
+      "sha256": "07a708dd4a00265ba074e8ba02f8c1a57624c04ef045c579c183cc616e45588b",
+      "bytes": 4055
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_trained_diffusion.py",
+      "sha256": "473903b5dcb603730ae00dbf843137aff2adb66067a53a0b1ff20ba527762d96",
+      "bytes": 1424
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GodSAT/tests/test_watchdog.py",
+      "sha256": "074e06a5cea24c0c9a251cff7c243af004e9835a4d73b111d76a3839a9705aff",
+      "bytes": 1379
+    }
+  ],
+  "scope": "Two related local checkouts only, respecting ripgrep hidden/ignore rules and listed exclusions. A negative text search is not proof that no implementation exists.",
+  "external_search": {
+    "queries": [
+      "GoDSAT actor critic",
+      "Systematic Hyperparameter Optimization GoDSAT",
+      "GoDSAT site:github.com",
+      "Multi-agent and multi-target reinforcement learning Saeed github",
+      "Improving tracking coverage and custody rate"
+    ],
+    "finding": "No authoritative matching actor-critic implementation or checkpoint identified. Search-result absence is not proof of nonexistence.",
+    "primary_pages_consulted": [
+      "https://ep.jhu.edu/faculty/amir-saeed/",
+      "https://ieeexplore.ieee.org/abstract/document/10521035"
+    ],
+    "retrieval_limits": [
+      "IEEE direct page fetch returned HTTP 418 in web tool; search excerpt only.",
+      "GitHub web page retrieval failed; pinned local source mirror remains available."
+    ]
+  }
+}

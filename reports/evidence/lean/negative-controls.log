@@ -1,0 +1,6 @@
+/home/omarramadan/Desktop/Godsat2/outputs/repository-organization-verification-20261101/rejected-paper-claims.lean:4:60: error: Tactic `decide` proved that the proposition
+  ∀ (r : Fin 16), GoDSAT.Design.aliasColumn r 121 = 1
+is false
+/home/omarramadan/Desktop/Godsat2/outputs/repository-organization-verification-20261101/rejected-paper-claims.lean:9:2: error: Tactic `decide` proved that the proposition
+  15 < 15
+is false

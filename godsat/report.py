@@ -108,8 +108,8 @@ def generate(folder,x,screen,local,responses,analyses,surfaces,summary):
         '## Screening','',
         'Correct defining relation from E=ABC, F=ABD, G=ACD: '+ ' = '.join(analyses['objective']['defining_relation'])+'.',
         'The manuscript’s printed relation differs from its generators. Main effects are clear of two-factor interactions, but two-factor aliases cannot be individually identified.','',
-        '| Factor | Objective effect | Custody effect | Slew-proxy effect | False-track effect | Runtime effect |',
-        '|---|---:|---:|---:|---:|---:|']
+        '| Factor | '+' | '.join(m+' effect' for m in metric_names)+' |',
+        '|---|'+'---:|'*len(metric_names)]
     lines += [f"| {name} | "+' | '.join(f"{analyses[m]['main_effects'][name]:.6f}" for m in metric_names)+' |' for name in FACTORS]
     lines += ['', 'Factors selected by measured absolute objective effect: '+', '.join(selected)+'.',
         'Their identities are selected from these observations; the manuscript’s learning-rate/discount/width ranking is not imposed.','',

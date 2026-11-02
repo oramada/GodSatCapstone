@@ -1,0 +1,374 @@
+{
+  "status": "available_upstream_source_audited_actor_critic_baseline_not_located",
+  "generated_utc": "2026-10-27T19:11:50.736531+00:00",
+  "remote": "https://github.com/g3n3ralb3n-wp/GoDSat-MnS-Framework.git",
+  "branch_tips": [
+    {
+      "branch": "Bayes-Net",
+      "commit": "d59158b2c22f09931645286aa166384eedc24f74",
+      "code_files": 4,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "MainRL.m",
+          "SatelliteRL.m"
+        ],
+        "bnn": []
+      }
+    },
+    {
+      "branch": "main",
+      "commit": "672dfec2a629bd8ceb58a36e54e5ec8dd93d0776",
+      "code_files": 22,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "src/core/MainRL.m",
+          "src/core/SatelliteRL.m",
+          "src/monte_carlo/MainRL_run.m"
+        ],
+        "bnn": []
+      }
+    },
+    {
+      "branch": "omarV1",
+      "commit": "4bdc6a62c10cd812b85c1f6aa5a18174ce4f4ed6",
+      "code_files": 125,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "src/core/MainRL.m",
+          "src/core/SatelliteRL.m",
+          "src/monte_carlo/MainRL_run.m",
+          "tests/test_property_post_slew_state_transition.m",
+          "tests/test_slew_and_tracking_transition.m"
+        ],
+        "bnn": [
+          ".kiro/specs/deep-handoff-prediction/design.md",
+          ".kiro/specs/deep-handoff-prediction/requirements.md",
+          "ABLATION_INTEGRATION_COMPLETE.md",
+          "IMPLEMENTATION_SUMMARY_PHYSICS.md",
+          "INTEGRATION_COMPLETE.md",
+          "PHYSICS_QUICK_REFERENCE.md",
+          "README.md",
+          "docs/ABLATION_STUDY_GUIDE.m",
+          "docs/ABLATION_STUDY_GUIDE.md",
+          "docs/API_REFERENCE.md",
+          "docs/CHANGELOG.md",
+          "docs/CONTRIBUTING.md",
+          "docs/DEVELOPER_GUIDE.md",
+          "docs/FAQ.md",
+          "docs/PHYSICS_INTEGRATION_GUIDE.md",
+          "docs/README.md",
+          "docs/RESEARCH_BACKGROUND.md",
+          "docs/TROUBLESHOOTING.md",
+          "docs/USER_GUIDE.md",
+          "docs/VALIDATION_RESULTS.md",
+          "examples/example_target_physics.m",
+          "run_all_tests.m",
+          "src/bnn/README.md",
+          "src/bnn/__init__.py",
+          "src/bnn/loss.py",
+          "src/core/SatelliteRL.m",
+          "src/core/recommend_strategy.m",
+          "src/physics/README.md"
+        ]
+      }
+    },
+    {
+      "branch": "omarV2",
+      "commit": "2e8d83a6a7f331d87593f0e3ae08811309afff50",
+      "code_files": 146,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "src/core/MainRL.m",
+          "src/core/SatelliteRL.m",
+          "src/monte_carlo/MainRL_run.m",
+          "src/monte_carlo/run_airline_simulations.m",
+          "src/monte_carlo/run_ballistic_simulations.m",
+          "tests/test_airline_handoff_prediction.m",
+          "tests/test_airline_with_satellites.m",
+          "tests/test_property_post_slew_state_transition.m",
+          "tests/test_slew_and_tracking_transition.m"
+        ],
+        "bnn": [
+          "README.md",
+          "docs/ABLATION_STUDY_GUIDE.m",
+          "docs/ABLATION_STUDY_GUIDE.md",
+          "docs/API_REFERENCE.md",
+          "docs/CHANGELOG.md",
+          "docs/CONTRIBUTING.md",
+          "docs/DEVELOPER_GUIDE.md",
+          "docs/FAQ.md",
+          "docs/PHYSICS_INTEGRATION_GUIDE.md",
+          "docs/README.md",
+          "docs/RESEARCH_BACKGROUND.md",
+          "docs/TROUBLESHOOTING.md",
+          "docs/USER_GUIDE.md",
+          "docs/VALIDATION_RESULTS.md",
+          "examples/example_target_physics.m",
+          "scripts/run_all_tests.m",
+          "src/bnn/README.md",
+          "src/bnn/__init__.py",
+          "src/bnn/loss.py",
+          "src/core/SatelliteRL.m",
+          "src/core/recommend_strategy.m",
+          "src/physics/README.md"
+        ]
+      }
+    },
+    {
+      "branch": "omarV3",
+      "commit": "73f7b3ccea75fe9d50ffaaaf4315f8cc0ded55c0",
+      "code_files": 150,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "src/core/MainRL.m",
+          "src/core/SatelliteRL.m",
+          "src/monte_carlo/MainRL_run.m",
+          "src/monte_carlo/run_airline_simulations.m",
+          "src/monte_carlo/run_ballistic_simulations.m",
+          "tests/test_airline_handoff_prediction.m",
+          "tests/test_airline_with_satellites.m",
+          "tests/test_property_post_slew_state_transition.m",
+          "tests/test_slew_and_tracking_transition.m"
+        ],
+        "bnn": [
+          "README.md",
+          "docs/ABLATION_STUDY_GUIDE.m",
+          "docs/ABLATION_STUDY_GUIDE.md",
+          "docs/API_REFERENCE.md",
+          "docs/CHANGELOG.md",
+          "docs/CONTRIBUTING.md",
+          "docs/DEVELOPER_GUIDE.md",
+          "docs/FAQ.md",
+          "docs/PHYSICS_INTEGRATION_GUIDE.md",
+          "docs/README.md",
+          "docs/RESEARCH_BACKGROUND.md",
+          "docs/TROUBLESHOOTING.md",
+          "docs/USER_GUIDE.md",
+          "docs/VALIDATION_RESULTS.md",
+          "examples/example_target_physics.m",
+          "scripts/run_all_tests.m",
+          "src/bnn/README.md",
+          "src/bnn/__init__.py",
+          "src/bnn/loss.py",
+          "src/core/SatelliteRL.m",
+          "src/core/recommend_strategy.m",
+          "src/physics/README.md"
+        ]
+      }
+    },
+    {
+      "branch": "omarV4",
+      "commit": "a0681875a7f4a8aabb1ae68f6309daac9c8feec4",
+      "code_files": 157,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "src/core/MainRL.m",
+          "src/core/SatelliteRL.m",
+          "src/monte_carlo/MainRL_run.m",
+          "src/monte_carlo/run_airline_simulations.m",
+          "src/monte_carlo/run_ballistic_simulations.m",
+          "tests/test_airline_handoff_prediction.m",
+          "tests/test_airline_with_satellites.m",
+          "tests/test_property_post_slew_state_transition.m",
+          "tests/test_slew_and_tracking_transition.m"
+        ],
+        "bnn": [
+          "README.md",
+          "docs/ABLATION_STUDY_GUIDE.m",
+          "docs/ABLATION_STUDY_GUIDE.md",
+          "docs/API_REFERENCE.md",
+          "docs/CHANGELOG.md",
+          "docs/CONTRIBUTING.md",
+          "docs/DEVELOPER_GUIDE.md",
+          "docs/FAQ.md",
+          "docs/PHYSICS_INTEGRATION_GUIDE.md",
+          "docs/README.md",
+          "docs/RESEARCH_BACKGROUND.md",
+          "docs/TROUBLESHOOTING.md",
+          "docs/USER_GUIDE.md",
+          "docs/VALIDATION_RESULTS.md",
+          "examples/example_target_physics.m",
+          "paper_evaluation/README.md",
+          "scripts/run_all_tests.m",
+          "src/bnn/README.md",
+          "src/bnn/__init__.py",
+          "src/bnn/loss.py",
+          "src/core/SatelliteRL.m",
+          "src/core/recommend_strategy.m",
+          "src/physics/README.md"
+        ]
+      }
+    },
+    {
+      "branch": "omarV5",
+      "commit": "0a94f621e54bc403323d6a07714f42f962615c74",
+      "code_files": 44,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "src/core/MainRL.m",
+          "src/core/SatelliteRL.m",
+          "src/monte_carlo/MainRL_run.m",
+          "src/monte_carlo/run_airline_simulations.m"
+        ],
+        "bnn": [
+          "paper_evaluation/README.md",
+          "src/bnn/README.md",
+          "src/bnn/__init__.py",
+          "src/bnn/loss.py",
+          "src/bnn/model.py",
+          "src/bnn/train.py"
+        ]
+      }
+    },
+    {
+      "branch": "omarV6",
+      "commit": "e2b78e201f0df405c45cd05a0ec7f7e2d8245490",
+      "code_files": 234,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "products/simulator/src/jhu_simulator/matlab/core/MainRL.m",
+          "products/simulator/src/jhu_simulator/matlab/core/SatelliteRL.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/MainRL_run.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/run_airline_simulations.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/run_ballistic_simulations.m",
+          "resources/tests/matlab/test_airline_handoff_prediction.m",
+          "resources/tests/matlab/test_airline_with_satellites.m",
+          "resources/tests/matlab/test_property_post_slew_state_transition.m",
+          "resources/tests/matlab/test_slew_and_tracking_transition.m"
+        ],
+        "bnn": [
+          "README.md",
+          "products/server/src/jhu_server/app.py",
+          "products/simulator/src/jhu_simulator/matlab/core/recommend_strategy.m",
+          "products/training/src/jhu_training/models/model.py",
+          "products/training/src/jhu_training/training/loss.py",
+          "products/training/src/jhu_training/training/train.py",
+          "research/docs/ABLATION_STUDY_GUIDE.md",
+          "research/docs/API_REFERENCE.md",
+          "research/docs/CHANGELOG.md",
+          "research/docs/CONTRIBUTING.md",
+          "research/docs/DEVELOPER_GUIDE.md",
+          "research/docs/FAQ.md",
+          "research/docs/PHYSICS_INTEGRATION_GUIDE.md",
+          "research/docs/README.md",
+          "research/docs/RESEARCH_BACKGROUND.md",
+          "research/docs/TROUBLESHOOTING.md",
+          "research/docs/USER_GUIDE.md",
+          "research/docs/VALIDATION_RESULTS.md",
+          "research/evaluation/README.md",
+          "resources/examples/example_target_physics.m",
+          "resources/scripts/matlab/run_all_tests.m"
+        ]
+      }
+    },
+    {
+      "branch": "omarV7",
+      "commit": "4d83bf53a16a54323f815cf6bc75aa1a582bb4dd",
+      "code_files": 239,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "products/simulator/src/jhu_simulator/matlab/core/MainRL.m",
+          "products/simulator/src/jhu_simulator/matlab/core/SatelliteRL.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/MainRL_run.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/run_airline_simulations.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/run_ballistic_simulations.m",
+          "resources/tests/matlab/test_airline_handoff_prediction.m",
+          "resources/tests/matlab/test_airline_with_satellites.m",
+          "resources/tests/matlab/test_property_post_slew_state_transition.m",
+          "resources/tests/matlab/test_slew_and_tracking_transition.m"
+        ],
+        "bnn": [
+          "README.md",
+          "products/server/src/jhu_server/app.py",
+          "products/simulator/src/jhu_simulator/matlab/core/recommend_strategy.m",
+          "products/training/src/jhu_training/models/model.py",
+          "products/training/src/jhu_training/training/loss.py",
+          "products/training/src/jhu_training/training/train.py",
+          "research/docs/README.md",
+          "research/docs/RESEARCH_BACKGROUND.md",
+          "resources/scripts/matlab/run_all_tests.m"
+        ]
+      }
+    },
+    {
+      "branch": "omarV8",
+      "commit": "032e6f2a713128808e1a99b1e76f67a52c1b9692",
+      "code_files": 239,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "products/simulator/src/jhu_simulator/matlab/core/MainRL.m",
+          "products/simulator/src/jhu_simulator/matlab/core/SatelliteRL.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/MainRL_run.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/run_airline_simulations.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/run_ballistic_simulations.m",
+          "resources/tests/matlab/test_airline_handoff_prediction.m",
+          "resources/tests/matlab/test_airline_with_satellites.m",
+          "resources/tests/matlab/test_property_post_slew_state_transition.m",
+          "resources/tests/matlab/test_slew_and_tracking_transition.m"
+        ],
+        "bnn": [
+          "README.md",
+          "products/server/src/jhu_server/app.py",
+          "products/simulator/src/jhu_simulator/matlab/core/recommend_strategy.m",
+          "products/training/src/jhu_training/models/model.py",
+          "products/training/src/jhu_training/training/loss.py",
+          "products/training/src/jhu_training/training/train.py",
+          "research/docs/README.md",
+          "research/docs/RESEARCH_BACKGROUND.md",
+          "resources/scripts/matlab/run_all_tests.m"
+        ]
+      }
+    },
+    {
+      "branch": "omarV9",
+      "commit": "5658e2eeec95d23e0301d25fe0a8ebb4ca2c2aee",
+      "code_files": 244,
+      "matched_paths": {
+        "actor_critic": [],
+        "qtable": [
+          "products/simulator/src/jhu_simulator/matlab/core/MainRL.m",
+          "products/simulator/src/jhu_simulator/matlab/core/SatelliteRL.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/MainRL_run.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/run_airline_simulations.m",
+          "products/simulator/src/jhu_simulator/matlab/monte_carlo/run_ballistic_simulations.m",
+          "resources/tests/matlab/test_airline_handoff_prediction.m",
+          "resources/tests/matlab/test_airline_with_satellites.m",
+          "resources/tests/matlab/test_property_post_slew_state_transition.m",
+          "resources/tests/matlab/test_slew_and_tracking_transition.m"
+        ],
+        "bnn": [
+          "README.md",
+          "products/server/src/jhu_server/app.py",
+          "products/simulator/src/jhu_simulator/matlab/core/recommend_strategy.m",
+          "products/training/src/jhu_training/models/model.py",
+          "products/training/src/jhu_training/training/loss.py",
+          "products/training/src/jhu_training/training/train.py",
+          "research/docs/README.md",
+          "research/docs/RESEARCH_BACKGROUND.md",
+          "resources/scripts/matlab/run_all_tests.m"
+        ]
+      }
+    }
+  ],
+  "reachable_commits": 55,
+  "unique_historical_code_blobs_searched": 358,
+  "historical_actor_critic_matches": [],
+  "patterns": {
+    "actor_critic": "actor[\\s_-]*critic|\\brl(?:PPO|AC|DDPG|SAC|TD3)Agent\\b|\\btarget_critic\\b|\\btarget_tau\\b|\\bactor_width\\b",
+    "qtable": "\\bQtable\\b|\\bsetQtable\\b",
+    "bnn": "Bayesian Neural Network|Deep Handoff",
+    "historical_actor_critic_broad": "\\b(actor|critic)\\b|actor_net|critic_net|ActorNetwork|CriticNetwork|rl(?:PPO|AC|DDPG|SAC|TD3)Agent|rl(?:ContinuousGaussian|DiscreteCategorical)Actor|target_critic|target_tau|actor_width"
+  },
+  "conclusion": "Available branch tips implement Q-table control and/or Bayesian prediction/aircraft extensions. No matching actor\u2013critic training implementation or seven-factor published baseline located in these reachable code blobs. This does not prove that no private/unpublished implementation exists.",
+  "source_pdf_sha256": "e705ce0a7bc80496f37ab8da5a8ad9ba2cefe5619e7f530b15ecc902abb64e95"
+}

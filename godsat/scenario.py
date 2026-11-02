@@ -6,6 +6,7 @@ import pathlib
 import numpy as np
 from .orbits import (ROOT, EARTH_RADIUS, History, satellite, julian, utc,
                      orbit_regime, teme_to_gcrs, awp_propagate)
+from .scope import active_scope, validate_preparation, validate_selected
 
 def line_of_sight(a,b):
     delta=b-a
@@ -14,7 +15,7 @@ def line_of_sight(a,b):
     nearest=a+f[...,None]*delta
     return np.linalg.norm(nearest,axis=-1)>EARTH_RADIUS+20
 
-def cache_key(date,config,regime='leo'):
+def cache_key(date,config,regime='leo',root=ROOT):
     fields={k:config[k] for k in ['agents','targets','duration_minutes','step_seconds','max_element_age_hours','max_range_km']}
     fields.update(date=date,regime=regime,
                   sensor_cohort=config.get('sensor_cohort','current_payload'),
@@ -25,6 +26,9 @@ def cache_key(date,config,regime='leo'):
     if str(fields['propagation_model']).startswith('awp_'):
         # Invalidate only numerical AWP caches after changing its force model.
         fields['awp_force_model_version']=2
+    policy=active_scope(root)
+    if policy is not None:
+        fields['active_study_scope']=policy
     return hashlib.sha256(json.dumps(fields,sort_keys=True).encode()).hexdigest()[:16]
 
 def replay_with_awp_model(states, source_epochs, times, step_seconds, *, third_bodies=False):
@@ -88,6 +92,7 @@ def _cache_is_cloud_placeholder(path):
     return bool(pathlib.Path(path).stat().st_flags & 0x40000000)
 
 def prepare(date,config,root=ROOT,regime='leo'):
+    permitted=validate_preparation(config,regime,root)
     if regime not in {'leo','meo','geo','heo','all'}: raise ValueError('regime must be leo, meo, geo, heo, or all')
     propagation_model=config.get('propagation_model','sgp4')
     if propagation_model not in {'sgp4','awp_j2','awp_j2_sun_moon'}:
@@ -96,7 +101,7 @@ def prepare(date,config,root=ROOT,regime='leo'):
             and not config.get('allow_non_payload_sensor_hosts',False)):
         raise ValueError('Using debris or rocket bodies as hypothetical sensor hosts requires allow_non_payload_sensor_hosts=true')
     root=pathlib.Path(root);folder=root/'data/scenarios';folder.mkdir(parents=True,exist_ok=True)
-    path=folder/(cache_key(date,config,regime)+'.npz')
+    path=folder/(cache_key(date,config,regime,root)+'.npz')
     metadata_path=path.with_suffix('.json')
     if path.exists() and _cache_is_cloud_placeholder(path):
         # Cached scenarios are deterministic products of the local source
@@ -104,7 +109,11 @@ def prepare(date,config,root=ROOT,regime='leo'):
         # long batch does not block or fail while iCloud tries to hydrate it.
         path.unlink()
         metadata_path.unlink(missing_ok=True)
-    if path.exists() and metadata_path.is_file(): return path
+    if path.exists() and metadata_path.is_file():
+        if permitted is not None:
+            with np.load(path,allow_pickle=False) as cached:
+                validate_selected(cached['ids'],root,permitted)
+        return path
     if path.exists():
         # The array and provenance metadata are one cache unit. An orphaned
         # array cannot safely satisfy host selection or downstream audits.
@@ -149,6 +158,7 @@ def prepare(date,config,root=ROOT,regime='leo'):
         raise ValueError(f'Only {len(observable_targets)} all-catalog targets are observable in the {regime} scenario; need {n_targets}')
     target_indices=observable_targets[np.argsort(-quality[observable_targets],kind='stable')[:n_targets]]
     selected=np.r_[sensor_ids[agent_indices],target_ids[target_indices]]
+    validate_selected(selected,root,permitted)
     steps=int(config['duration_minutes']*60/config['step_seconds'])
     if steps<2: raise ValueError('Scenario must have at least two steps')
     times=[start+dt.timedelta(seconds=i*config['step_seconds']) for i in range(steps+1)]
@@ -186,11 +196,14 @@ def prepare(date,config,root=ROOT,regime='leo'):
         'selection':f'dense observable {regime.upper()} cluster; {sensor_cohort} sensor-host cohort (non-payload allowed={bool(config.get("allow_non_payload_sensor_hosts",False))}) and {target_cohort} target candidates',
         'source':{'current_payload':'data/current_payload_orbit_history.parquet',
                   'current_active_payload':'data/current_active_payload_orbit_history.parquet',
+                  'iridium_next':'data/iridium_next_orbit_history.parquet',
                   'all':'data/raw/tle_*.parquet'},
         'sensor_host_status_interpretation':(
             'Current active-GP/SATCAT snapshot backcast through the archive; does not establish historical operating status.'
             if sensor_cohort=='current_active_payload' else None),
-        'config_key':cache_key(date,config,regime)}
+        'config_key':cache_key(date,config,regime,root),
+        'active_study_scope':active_scope(root),
+        'ground_systems_included':False}
     metadata_path.write_text(json.dumps(metadata,indent=2))
     return path
 

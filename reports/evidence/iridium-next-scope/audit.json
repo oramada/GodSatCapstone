@@ -1,0 +1,49 @@
+{
+  "status": "passed_exact_next_membership_and_prepared_orbital_inputs",
+  "source_group_members": 80,
+  "historical_objects": 80,
+  "historical_records": 290075,
+  "all_members_satcat_payloads": true,
+  "scenario_host_ids": [
+    43575,
+    42804,
+    56730,
+    56727,
+    43255,
+    43072
+  ],
+  "scenario_target_ids": [
+    41922,
+    41923,
+    42806,
+    42809,
+    42810,
+    42811,
+    42960,
+    43076,
+    43252,
+    43257,
+    43572,
+    43578,
+    43922,
+    43923,
+    43926,
+    43928,
+    56728,
+    56729
+  ],
+  "all_scenario_ids_in_next_group": true,
+  "ground_systems_included": false,
+  "ground_role": "pending_clarification",
+  "ground_required_execution_gate": "orbital-only campaigns are blocked",
+  "optional_meo_enabled": false,
+  "previous_mixed_catalogue_results_are_not_scope_compliant": true,
+  "source_url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=iridium-NEXT&FORMAT=json",
+  "hashes": {
+    "configs/iridium-next-membership.json": "a3dd1f719a0724cc7c645936e2d9e00a1cd1a044baad7ae57da9e08543c3a7c9",
+    "configs/active-study-scope.json": "8d1dd1a24e68af19e9516097aa5d7af80c361bdaf86e4e8c8cf7c9f87c7718b2",
+    "data/iridium_next_orbit_history.parquet.manifest.json": "4f09ea824644c86203c8b3cf519f584b24017b11a7c4793c48dc67353d5d34b3",
+    "/home/omarramadan/Desktop/Godsat2/data/scenarios/ce6ce10a74ebdd23.npz": "8134e084347dd507854315c53e3785d049312b5fbcc87b652ec5a8df3eb42df0",
+    "/home/omarramadan/Desktop/Godsat2/data/scenarios/ce6ce10a74ebdd23.json": "b91d8c6e93f3e73292f3ff8c17eab2e42ce3baf7032d82e02f44b0863b0478b3"
+  }
+}

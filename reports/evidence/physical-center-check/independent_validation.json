@@ -1,0 +1,44 @@
+{
+  "status": "completed",
+  "campaign": "/home/omarramadan/Desktop/Godsat2/outputs/governing-design-physical-leo-20261025",
+  "additional_replicates_expected": 12,
+  "additional_replicates_validated": 12,
+  "center_observations": 13,
+  "unique_center_seeds": 13,
+  "model_rank": {
+    "objective": 10,
+    "custody_continuity": 10,
+    "slew_energy_proxy": 10,
+    "false_track_proxy": 10,
+    "wall_seconds": 10,
+    "gpu_hours": 10,
+    "slew_energy_joules": 10,
+    "false_track_rate": 10,
+    "false_observation_rate": 10
+  },
+  "pure_error_df": {
+    "objective": 12,
+    "custody_continuity": 12,
+    "slew_energy_proxy": 12,
+    "false_track_proxy": 12,
+    "wall_seconds": 12,
+    "gpu_hours": null,
+    "slew_energy_joules": 12,
+    "false_track_rate": 12,
+    "false_observation_rate": 12
+  },
+  "lack_of_fit_df": {
+    "objective": 5,
+    "custody_continuity": 5,
+    "slew_energy_proxy": 5,
+    "false_track_proxy": 5,
+    "wall_seconds": 5,
+    "gpu_hours": null,
+    "slew_energy_joules": 5,
+    "false_track_rate": 5,
+    "false_observation_rate": 5
+  },
+  "response_surfaces_reproduced": true,
+  "report_sha256": "795bf55e6ebf95d3a138119c47f283a83d4007bb779fbcef44c175a9d5e43d8b",
+  "failures": []
+}

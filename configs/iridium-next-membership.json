@@ -1,0 +1,409 @@
+{
+  "constellation": "Iridium NEXT",
+  "source_url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=iridium-NEXT&FORMAT=json",
+  "retrieved_utc": "2026-11-01T20:36:01.043602+00:00",
+  "raw_sha256": "bd3f0812fc069cf316f0b926439c743ac7706e0dedda863177278618b09cca35",
+  "members": [
+    {
+      "norad_id": 41917,
+      "name": "IRIDIUM 106",
+      "international_designator": "2017-003A"
+    },
+    {
+      "norad_id": 41918,
+      "name": "IRIDIUM 103",
+      "international_designator": "2017-003B"
+    },
+    {
+      "norad_id": 41919,
+      "name": "IRIDIUM 109",
+      "international_designator": "2017-003C"
+    },
+    {
+      "norad_id": 41920,
+      "name": "IRIDIUM 102",
+      "international_designator": "2017-003D"
+    },
+    {
+      "norad_id": 41921,
+      "name": "IRIDIUM 105",
+      "international_designator": "2017-003E"
+    },
+    {
+      "norad_id": 41922,
+      "name": "IRIDIUM 104",
+      "international_designator": "2017-003F"
+    },
+    {
+      "norad_id": 41923,
+      "name": "IRIDIUM 114",
+      "international_designator": "2017-003G"
+    },
+    {
+      "norad_id": 41924,
+      "name": "IRIDIUM 108",
+      "international_designator": "2017-003H"
+    },
+    {
+      "norad_id": 41925,
+      "name": "IRIDIUM 112",
+      "international_designator": "2017-003J"
+    },
+    {
+      "norad_id": 41926,
+      "name": "IRIDIUM 111",
+      "international_designator": "2017-003K"
+    },
+    {
+      "norad_id": 42803,
+      "name": "IRIDIUM 113",
+      "international_designator": "2017-039A"
+    },
+    {
+      "norad_id": 42804,
+      "name": "IRIDIUM 123",
+      "international_designator": "2017-039B"
+    },
+    {
+      "norad_id": 42805,
+      "name": "IRIDIUM 120",
+      "international_designator": "2017-039C"
+    },
+    {
+      "norad_id": 42806,
+      "name": "IRIDIUM 115",
+      "international_designator": "2017-039D"
+    },
+    {
+      "norad_id": 42807,
+      "name": "IRIDIUM 118",
+      "international_designator": "2017-039E"
+    },
+    {
+      "norad_id": 42808,
+      "name": "IRIDIUM 117",
+      "international_designator": "2017-039F"
+    },
+    {
+      "norad_id": 42809,
+      "name": "IRIDIUM 126",
+      "international_designator": "2017-039G"
+    },
+    {
+      "norad_id": 42810,
+      "name": "IRIDIUM 124",
+      "international_designator": "2017-039H"
+    },
+    {
+      "norad_id": 42811,
+      "name": "IRIDIUM 128",
+      "international_designator": "2017-039J"
+    },
+    {
+      "norad_id": 42812,
+      "name": "IRIDIUM 121",
+      "international_designator": "2017-039K"
+    },
+    {
+      "norad_id": 42955,
+      "name": "IRIDIUM 133",
+      "international_designator": "2017-061A"
+    },
+    {
+      "norad_id": 42956,
+      "name": "IRIDIUM 100",
+      "international_designator": "2017-061B"
+    },
+    {
+      "norad_id": 42957,
+      "name": "IRIDIUM 122",
+      "international_designator": "2017-061C"
+    },
+    {
+      "norad_id": 42958,
+      "name": "IRIDIUM 129",
+      "international_designator": "2017-061D"
+    },
+    {
+      "norad_id": 42959,
+      "name": "IRIDIUM 119",
+      "international_designator": "2017-061E"
+    },
+    {
+      "norad_id": 42960,
+      "name": "IRIDIUM 107",
+      "international_designator": "2017-061F"
+    },
+    {
+      "norad_id": 42961,
+      "name": "IRIDIUM 132",
+      "international_designator": "2017-061G"
+    },
+    {
+      "norad_id": 42962,
+      "name": "IRIDIUM 136",
+      "international_designator": "2017-061H"
+    },
+    {
+      "norad_id": 42963,
+      "name": "IRIDIUM 139",
+      "international_designator": "2017-061J"
+    },
+    {
+      "norad_id": 42964,
+      "name": "IRIDIUM 125",
+      "international_designator": "2017-061K"
+    },
+    {
+      "norad_id": 43070,
+      "name": "IRIDIUM 135",
+      "international_designator": "2017-083A"
+    },
+    {
+      "norad_id": 43071,
+      "name": "IRIDIUM 138",
+      "international_designator": "2017-083B"
+    },
+    {
+      "norad_id": 43072,
+      "name": "IRIDIUM 116",
+      "international_designator": "2017-083C"
+    },
+    {
+      "norad_id": 43073,
+      "name": "IRIDIUM 130",
+      "international_designator": "2017-083D"
+    },
+    {
+      "norad_id": 43074,
+      "name": "IRIDIUM 151",
+      "international_designator": "2017-083E"
+    },
+    {
+      "norad_id": 43075,
+      "name": "IRIDIUM 134",
+      "international_designator": "2017-083F"
+    },
+    {
+      "norad_id": 43076,
+      "name": "IRIDIUM 137",
+      "international_designator": "2017-083G"
+    },
+    {
+      "norad_id": 43077,
+      "name": "IRIDIUM 141",
+      "international_designator": "2017-083H"
+    },
+    {
+      "norad_id": 43078,
+      "name": "IRIDIUM 153",
+      "international_designator": "2017-083J"
+    },
+    {
+      "norad_id": 43079,
+      "name": "IRIDIUM 131",
+      "international_designator": "2017-083K"
+    },
+    {
+      "norad_id": 43249,
+      "name": "IRIDIUM 144",
+      "international_designator": "2018-030A"
+    },
+    {
+      "norad_id": 43250,
+      "name": "IRIDIUM 149",
+      "international_designator": "2018-030B"
+    },
+    {
+      "norad_id": 43251,
+      "name": "IRIDIUM 157",
+      "international_designator": "2018-030C"
+    },
+    {
+      "norad_id": 43252,
+      "name": "IRIDIUM 140",
+      "international_designator": "2018-030D"
+    },
+    {
+      "norad_id": 43253,
+      "name": "IRIDIUM 145",
+      "international_designator": "2018-030E"
+    },
+    {
+      "norad_id": 43254,
+      "name": "IRIDIUM 146",
+      "international_designator": "2018-030F"
+    },
+    {
+      "norad_id": 43255,
+      "name": "IRIDIUM 148",
+      "international_designator": "2018-030G"
+    },
+    {
+      "norad_id": 43256,
+      "name": "IRIDIUM 142",
+      "international_designator": "2018-030H"
+    },
+    {
+      "norad_id": 43257,
+      "name": "IRIDIUM 150",
+      "international_designator": "2018-030J"
+    },
+    {
+      "norad_id": 43258,
+      "name": "IRIDIUM 143",
+      "international_designator": "2018-030K"
+    },
+    {
+      "norad_id": 43478,
+      "name": "IRIDIUM 161",
+      "international_designator": "2018-047C"
+    },
+    {
+      "norad_id": 43479,
+      "name": "IRIDIUM 152",
+      "international_designator": "2018-047D"
+    },
+    {
+      "norad_id": 43480,
+      "name": "IRIDIUM 147",
+      "international_designator": "2018-047E"
+    },
+    {
+      "norad_id": 43481,
+      "name": "IRIDIUM 110",
+      "international_designator": "2018-047F"
+    },
+    {
+      "norad_id": 43482,
+      "name": "IRIDIUM 162",
+      "international_designator": "2018-047G"
+    },
+    {
+      "norad_id": 43569,
+      "name": "IRIDIUM 160",
+      "international_designator": "2018-061A"
+    },
+    {
+      "norad_id": 43570,
+      "name": "IRIDIUM 166",
+      "international_designator": "2018-061B"
+    },
+    {
+      "norad_id": 43571,
+      "name": "IRIDIUM 158",
+      "international_designator": "2018-061C"
+    },
+    {
+      "norad_id": 43572,
+      "name": "IRIDIUM 165",
+      "international_designator": "2018-061D"
+    },
+    {
+      "norad_id": 43573,
+      "name": "IRIDIUM 155",
+      "international_designator": "2018-061E"
+    },
+    {
+      "norad_id": 43574,
+      "name": "IRIDIUM 154",
+      "international_designator": "2018-061F"
+    },
+    {
+      "norad_id": 43575,
+      "name": "IRIDIUM 163",
+      "international_designator": "2018-061G"
+    },
+    {
+      "norad_id": 43576,
+      "name": "IRIDIUM 156",
+      "international_designator": "2018-061H"
+    },
+    {
+      "norad_id": 43577,
+      "name": "IRIDIUM 164",
+      "international_designator": "2018-061J"
+    },
+    {
+      "norad_id": 43578,
+      "name": "IRIDIUM 159",
+      "international_designator": "2018-061K"
+    },
+    {
+      "norad_id": 43922,
+      "name": "IRIDIUM 180",
+      "international_designator": "2019-002A"
+    },
+    {
+      "norad_id": 43923,
+      "name": "IRIDIUM 176",
+      "international_designator": "2019-002B"
+    },
+    {
+      "norad_id": 43924,
+      "name": "IRIDIUM 168",
+      "international_designator": "2019-002C"
+    },
+    {
+      "norad_id": 43925,
+      "name": "IRIDIUM 173",
+      "international_designator": "2019-002D"
+    },
+    {
+      "norad_id": 43926,
+      "name": "IRIDIUM 169",
+      "international_designator": "2019-002E"
+    },
+    {
+      "norad_id": 43927,
+      "name": "IRIDIUM 172",
+      "international_designator": "2019-002F"
+    },
+    {
+      "norad_id": 43928,
+      "name": "IRIDIUM 175",
+      "international_designator": "2019-002G"
+    },
+    {
+      "norad_id": 43929,
+      "name": "IRIDIUM 171",
+      "international_designator": "2019-002H"
+    },
+    {
+      "norad_id": 43930,
+      "name": "IRIDIUM 170",
+      "international_designator": "2019-002J"
+    },
+    {
+      "norad_id": 43931,
+      "name": "IRIDIUM 167",
+      "international_designator": "2019-002K"
+    },
+    {
+      "norad_id": 56726,
+      "name": "IRIDIUM 181",
+      "international_designator": "2023-068S"
+    },
+    {
+      "norad_id": 56727,
+      "name": "IRIDIUM 177",
+      "international_designator": "2023-068T"
+    },
+    {
+      "norad_id": 56728,
+      "name": "IRIDIUM 174",
+      "international_designator": "2023-068U"
+    },
+    {
+      "norad_id": 56729,
+      "name": "IRIDIUM 178",
+      "international_designator": "2023-068V"
+    },
+    {
+      "norad_id": 56730,
+      "name": "IRIDIUM 179",
+      "international_designator": "2023-068W"
+    }
+  ],
+  "scope": "Current dedicated NEXT group, including listed spares; does not assert historical operational status or exactly 66 active sensors."
+}

@@ -1,0 +1,338 @@
+{
+  "status": "kernel_checked_mathematical_proofs_with_explicit_boundaries",
+  "generated_utc": "2026-11-02T01:48:37.636175+00:00",
+  "lean_version": "Lean (version 4.35.0, aarch64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "lake_executable": "/home/omarramadan/.elan/bin/lake",
+  "elan_home": "/run/user/1000/godsat-elan-20261027",
+  "source_hashes": {
+    "formal/GoDSAT/AxiomAudit.lean": "9b1808a930180bf9116e0d527e35605d244638fce5d612e60ebad9b81719ad7e",
+    "formal/GoDSAT/CCDCertificate.lean": "c875dc5dcc55dac423b544188a56280e859176b0176bf99cb4a5fcafb380bdc3",
+    "formal/GoDSAT/Design.lean": "8402ea3da10f4ce44e5c1b142d4cb7b84a5fcda37401357d7390eb78a7277a50",
+    "formal/GoDSAT/Differentiation.lean": "fad84db4739e525c31495d3f19c3a0b1d243754043c8dcd5764adcb182132047",
+    "formal/GoDSAT/Export.lean": "7ee79b12f417d840a3e74f14ae410e09a7736d3c2d18c19517d393870a5c09e4",
+    "formal/GoDSAT/LeastSquares.lean": "ae0e4fed11814a56f427ef94757c2f0b7627e11b59b6b7fe6ee6d612bafade67",
+    "formal/GoDSAT/OriginalNeighbor.lean": "ef717523cc828609bd4bad7f5bd54f8769f464a0e0f5f8ab28b9f3cadb993050",
+    "formal/GoDSAT/Refinement.lean": "a488282d38d772462a8c01348e410498f5cc4eef92f4242747d33c5218d6f68a",
+    "formal/GoDSAT/ResponseSurface.lean": "55f6d3cf06c19f69146014b0155bfbcfa40a4640c674a74d9025ac8c227a0d0a",
+    "formal/GoDSAT/SensorAssumptions.lean": "333843c9ab21faa6ebd1639a874cad1b4aae79d19c407d25e674b8cee7d63f36",
+    "formal/GoDSAT.lean": "66b91813be2184f7778d2d70319d276912c59eff398d2adae96066c7018e76d6",
+    "formal/lakefile.toml": "fc0f57e3a5a147c4465a5049ae34dd109f6613e1bef91689ada2c30947ac42f3",
+    "formal/lake-manifest.json": "8cf620b61dbcf2930785cc900b6b1d65b21eba1256a91b782b9a7b79e70467da",
+    "formal/lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
+    "outputs/repository-organization-verification-20261101/controller-probes/neighbor-cases.json": "11551c72e90ac08bc042a64f3679a82c39b6c66ea47221142cf099bbfec1f2a1",
+    "outputs/repository-organization-verification-20261101/controller-probes/neighbor-results.json": "1e0db4a6c24f6d4f324f455600d0ae2d09083f1b0d62c1aae9b2a9657f2b02ea",
+    "outputs/repository-organization-verification-20261101/controller-probes/source-headless-result.json": "d64b4e685e5286d1ee27c193c5d9645bbe210105af20014371a46bfb128c42f9",
+    "outputs/repository-organization-verification-20261101/controller-probes/port-headless-result.json": "512867e4641e7d06f87cd8523a37bd4236c999ec28145fb45ef4ff17b16f24b8",
+    "outputs/repository-organization-verification-20261101/controller-probes/original-controller-probe.json": "10e2f963448c2efa2806d4e2c2fa170c252e211dbd096e9fcf93f97386369ccf",
+    "scripts/formal/verify_lean_study.py": "feedea8d1b4009177a64cc8bbca4f3eccf545c755642ff3dde63f30df394262e",
+    "scripts/formal/probe_original_controller.py": "890c567238b3508982ec772468738f07b57ac3ff648d541736d545b8d593e571",
+    "formal/generate_ccd_certificate.py": "4b036afe8e9356c0bac3af20b2230640af16df3b99dbf3b38ca4c837f78f3c81",
+    "formal/generate_original_neighbor_certificate.py": "5fb5f351447762f4545228fadeaff032a05748129286a70e2ca10fc650e5be05"
+  },
+  "theorems_checked": 62,
+  "theorem_axioms": {
+    "GoDSAT.CCD.left_inverse_certificate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.CCD.distinct_design_points": [
+      "propext"
+    ],
+    "GoDSAT.Design.generators": [
+      "propext"
+    ],
+    "GoDSAT.Design.balanced": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.orthogonal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.main_clear_of_two_factor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.corrected_defining_group": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.printed_relation_counterexample": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.printed_relation_is_not_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.main_effect_recovers_coefficient": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.main_effect_with_residual": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.screening_and_ccd_count": [],
+    "GoDSAT.Design.not_tenfold_run_reduction": [
+      "propext"
+    ],
+    "GoDSAT.Design.equal_trials_can_have_unequal_cost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.decode_low": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.decode_high": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.encode_decode": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Design.decoded_region_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Differentiation.quadratic_directional_derivative": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Differentiation.quadratic_partial_derivative": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Differentiation.stationarity_is_zero_partials": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.LeastSquares.prediction_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.LeastSquares.residual_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.LeastSquares.normal_residual_orthogonal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.LeastSquares.ols_pythagorean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.LeastSquares.normal_equations_minimize_sse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.OriginalNeighbor.recorded_tables_well_formed": [],
+    "GoDSAT.OriginalNeighbor.original_qtable_neighbor_all_cells": [
+      "propext"
+    ],
+    "GoDSAT.OriginalNeighbor.original_qtable_neighbor_never_decreases": [
+      "propext"
+    ],
+    "GoDSAT.OriginalNeighbor.observed_port_second_coordinate_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.OriginalNeighbor.observed_headless_outputs_differ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.Refinement.neighbor_never_decreases": [
+      "propext"
+    ],
+    "GoDSAT.Refinement.ties_retain_first": [
+      "propext"
+    ],
+    "GoDSAT.Refinement.neighbor_scan_never_decreases": [
+      "propext"
+    ],
+    "GoDSAT.Refinement.refreshed_bin_owned": [
+      "propext"
+    ],
+    "GoDSAT.Refinement.old_claims_released": [
+      "propext"
+    ],
+    "GoDSAT.Refinement.other_claims_unchanged": [
+      "propext"
+    ],
+    "GoDSAT.Refinement.at_most_one_owner_per_bin": [],
+    "GoDSAT.Refinement.bin_exclusivity_does_not_imply_unique_target_tracking": [
+      "propext"
+    ],
+    "GoDSAT.Refinement.conditional_trace_refinement": [],
+    "GoDSAT.ResponseSurface.ccd_left_inverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.ResponseSurface.ccd_columns_identifiable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.ResponseSurface.single_center_ccd_no_pure_error": [],
+    "GoDSAT.ResponseSurface.original_ccd_pure_error_df": [],
+    "GoDSAT.ResponseSurface.augmented_ccd_degrees_of_freedom": [],
+    "GoDSAT.ResponseSurface.off_diagonal_halves": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.ResponseSurface.quadratic_increment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.ResponseSurface.stationary_increment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.ResponseSurface.negative_semidefinite_stationary_is_maximum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.ResponseSurface.homogeneous_scales": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.ResponseSurface.indefinite_stationary_has_both_directions": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.ResponseSurface.ridge_certificate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.SensorAssumptions.energy_nonnegative": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.SensorAssumptions.no_motion_energy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.SensorAssumptions.acceleration_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.SensorAssumptions.feasible_slew_energy_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.SensorAssumptions.false_return_preserves_truth": [],
+    "GoDSAT.SensorAssumptions.no_prior_true_detection_has_no_true_custody": [
+      "propext",
+      "Quot.sound"
+    ],
+    "GoDSAT.SensorAssumptions.false_slots_are_subset": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.SensorAssumptions.false_track_rate_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.SensorAssumptions.no_design_only_custody_gain": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "GoDSAT.SensorAssumptions.no_design_only_energy_reduction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "design_csv_bindings": [
+    {
+      "campaign": "paper-reference-cpu-20261024",
+      "screen_rows_checked": 16,
+      "ccd_rows_checked": 15,
+      "screening_csv_sha256": "9b9f801f56789cb7187cbbc79f65aab5151eb7a787b38c05fed2703be64fbbaa",
+      "ccd_csv_sha256": "30ee7dda9235f9166d9e3f9b8a8fd9811cdeab4ca86996345b9f14d645d1a5a9",
+      "scope": "Exact executed design coordinates match the Lean-exported specification. This is not controller or sensor equivalence."
+    },
+    {
+      "campaign": "all-orbits-active-hosts-cpu-20261024",
+      "screen_rows_checked": 16,
+      "ccd_rows_checked": 15,
+      "screening_csv_sha256": "9b9f801f56789cb7187cbbc79f65aab5151eb7a787b38c05fed2703be64fbbaa",
+      "ccd_csv_sha256": "30ee7dda9235f9166d9e3f9b8a8fd9811cdeab4ca86996345b9f14d645d1a5a9",
+      "scope": "Exact executed design coordinates match the Lean-exported specification. This is not controller or sensor equivalence."
+    },
+    {
+      "campaign": "governing-design-physical-leo-20261025",
+      "screen_rows_checked": 16,
+      "ccd_rows_checked": 15,
+      "screening_csv_sha256": "9b9f801f56789cb7187cbbc79f65aab5151eb7a787b38c05fed2703be64fbbaa",
+      "ccd_csv_sha256": "da9f6f3feb88b963eb88fe78b8d5399088697333c441e847860a7282d36952e7",
+      "scope": "Exact executed design coordinates match the Lean-exported specification. This is not controller or sensor equivalence."
+    }
+  ],
+  "source_pdf_sha256": "e705ce0a7bc80496f37ab8da5a8ad9ba2cefe5619e7f530b15ecc902abb64e95",
+  "original_helper_binding": {
+    "native_helper_differential_cases": 1628,
+    "qtable_cells_Lean_outputs_match": 121,
+    "headless_counterexample_matches_observations": true,
+    "boresight_separation_degrees": 1.9999999999999472,
+    "scope": "The finite certificate matches recorded source/helper observations; it does not establish complete native MATLAB/controller equivalence."
+  },
+  "negative_controls": {
+    "status": "expected_false_paper_claims_rejected_by_Lean",
+    "exit_code": 1,
+    "source_sha256": "2ce1a6297568e29fa194c640761c273bed0b0e54c096e3f1fee339d54164eb2b",
+    "log_sha256": "92e62d49b884c75e0157eccc7ebc4cab44c2ac83fd6c06f94bc798841339a453",
+    "scope": "Expected compiler failures outside the accepted proof library; not admitted as theorems."
+  },
+  "not_proved": [
+    "Physical/model assumptions hold for real spacecraft",
+    "Error independence, homoscedasticity or model adequacy",
+    "Original-controller/full Python equivalence",
+    "Published actor\u2013critic baseline reproduction",
+    "Empirical custody or energy gains"
+  ],
+  "conditional_theorem": "GoDSAT.Refinement.conditional_trace_refinement requires a separately established actual one-step implementation relation. It is not instantiated as original-controller equivalence.",
+  "scope": "Kernel-checked finite design/CCD mathematics, real quadratic algebra, conditional model invariants and conditional transition-system reasoning. No custom axioms, admitted proofs or native decision axioms accepted."
+}

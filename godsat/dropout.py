@@ -8,6 +8,7 @@ import numpy as np
 from scipy.stats import t as student_t
 from .scenario import prepare, load
 from .environment import TaskingEnv
+from .sensorphysics import environment_class
 from .learning import Agent
 from .orbits import ROOT
 import torch
@@ -63,7 +64,8 @@ def monthly_dates(start='2022-10-15', end='2026-09-15'):
 
 
 def evaluate_policy(model, scenario, config, hp, seed, probability, mode):
-    env = TaskingEnv(scenario, config, hp['claim_resolution'], seed,
+    env_type=environment_class(config) if config.get('sensor_response_model') else TaskingEnv
+    env = env_type(scenario, config, hp['claim_resolution'], seed,
                      dropout_probability=probability, dropout_mode=mode)
     obs, mask = env.reset()
     for _ in range(env.steps):
@@ -101,6 +103,8 @@ def parse_response_row(row):
 
 
 def run_dropout_study(config, baseline_output, output, rates=None, replicates=20):
+    from .scope import validate_execution
+    validate_execution()
     """Evaluate a DOE-recommended policy across historical outage scenarios.
 
     This separate extension does not train dropout into the policy; it holds the

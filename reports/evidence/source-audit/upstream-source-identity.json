@@ -1,0 +1,43 @@
+{
+  "status": "source_files_match_pinned_upstream_commit",
+  "commit": "672dfec2a629bd8ceb58a36e54e5ec8dd93d0776",
+  "checked_files": [
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/SatelliteRL.m",
+      "git_path": "src/core/SatelliteRL.m",
+      "sha256": "57060624e5d405dfcd30e235265ffd66e90603f7a1935bbad6c455c5abd977c8",
+      "matches_pinned_git_blob": true
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/findHighestNeighbor.m",
+      "git_path": "src/core/findHighestNeighbor.m",
+      "sha256": "e8de43abc0098244fff97cced363132db7eca926772b6464e65c20516507f88a",
+      "matches_pinned_git_blob": true
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/TargetRL.m",
+      "git_path": "src/core/TargetRL.m",
+      "sha256": "e619a1e17df3b331db4626e06dea3ab4e0082c387f016ef2d359d5f553ef94a5",
+      "matches_pinned_git_blob": true
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/core/MainRL.m",
+      "git_path": "src/core/MainRL.m",
+      "sha256": "3651166251f97ac165192ab4cd64ea50fadbc0ce1b2c1652777c5d4cdd12ae81",
+      "matches_pinned_git_blob": true
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/src/monte_carlo/MainRL_run.m",
+      "git_path": "src/monte_carlo/MainRL_run.m",
+      "sha256": "5f8f2e0f99931b4484f7cd5435285ab81d0afc7b45c08826990189c39c5a86d5",
+      "matches_pinned_git_blob": true
+    },
+    {
+      "path": "/home/omarramadan/Desktop/GoDSat-MnS-Framework/q_table.csv",
+      "git_path": "q_table.csv",
+      "sha256": "b747bc83640c6a366187ce4ecabee0fd8d22e0a0e252193c599eeccec58bd73a",
+      "matches_pinned_git_blob": true
+    }
+  ],
+  "scope": "Authenticates inspected local source bytes against available Git commit; does not identify a missing actor\u2013critic baseline or prove native runtime equivalence."
+}

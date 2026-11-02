@@ -1,6 +1,6 @@
 # Supplementary research code
 
-This repository includes the additional source code used to examine four-year catalog coverage, sampled all-catalog tasking, attitude products, optical observations, and orbit-propagation sensitivity. The runners live in `scripts/`, and additional configurations live in `configs/`. The minimal paper campaign does not need these extensions.
+This repository includes the additional source code used to examine four-year catalog coverage, sampled all-catalog tasking, attitude products, optical observations, and orbit-propagation sensitivity. The runners live in `scripts/`, and historical configurations live in `configs/archive/`. The minimal paper campaign does not need these extensions.
 
 ## Inputs and dependencies
 
@@ -10,6 +10,6 @@ The base `.[test]` install covers the paper study and portable tests. Some suppl
 
 ## Saved reports
 
-Small text and audit snapshots from the local research runs are under [`research-results/`](research-results/README.md). They are dated results, not a claim that every analysis can be rerun without first fetching its source data. Check each report's methods and limitations. In particular, the dropout work is a simulated intervention with explicit outage assumptions; it does not measure real spacecraft sensor-failure rates. The supplied paper's claimed improvements were not reproduced by this implementation.
+Small text and audit snapshots from the local research runs are under [historical report snapshots](../reports/archive/README.md). They are dated results, not a claim that every analysis can be rerun without first fetching its source data. Check each report's methods and limitations. In particular, the dropout work is a simulated intervention with explicit outage assumptions; it does not measure real spacecraft sensor-failure rates. The supplied paper's claimed improvements were not reproduced by this implementation.
 
-The supplementary checks under `research_tests/` are kept outside the default `pytest` test path because some depend on local research inputs or optional packages. The ordinary `python -m pytest -q` command remains data-independent.
+The supplementary checks under `tests/research/` are kept outside the default `pytest` test path because some depend on local research inputs or optional packages. The ordinary `python -m pytest -q` command remains data-independent.

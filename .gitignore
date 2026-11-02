@@ -9,6 +9,7 @@ htmlcov/
 build/
 dist/
 *.egg-info/
+.tmp/
 
 # Downloaded source data, measured sensor archives, and derived trajectories are fetched locally.
 /data/*

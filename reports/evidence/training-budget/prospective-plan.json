@@ -1,0 +1,60 @@
+{
+  "purpose": "Training-budget diagnostic for our documented actor-critic reference; not published-baseline reproduction",
+  "budgets_episodes": [
+    40,
+    160,
+    640
+  ],
+  "training_seeds": [
+    101,
+    211,
+    307
+  ],
+  "development_evaluation_seeds": [
+    9001,
+    9011,
+    9021
+  ],
+  "training_dates": [
+    "2022-10-15T00:00:00Z",
+    "2023-10-15T00:00:00Z",
+    "2024-10-15T00:00:00Z"
+  ],
+  "development_dates": [
+    "2025-10-15T00:00:00Z"
+  ],
+  "hyperparameters": {
+    "learning_rate": 0.0003,
+    "discount": 0.95,
+    "actor_width": 128,
+    "critic_depth": 3,
+    "entropy": 0.03,
+    "claim_resolution": 64,
+    "target_tau": 0.01
+  },
+  "randomized_run_order_seed": 20261101,
+  "test_data_used": false,
+  "interpretation": "Report all curves and paired budget contrasts; three seeds and one development date cannot certify convergence or generalization. No extra budgets added in response to a desired result.",
+  "provisional_stability_margin_custody": 0.02,
+  "stability_rule": "The paired 95% interval for 640 minus 160 episodes must be wholly within +/-0.02 custody before calling the final two budgets provisionally stable. This is not a convergence proof or a performance threshold.",
+  "config_input_sha256": "553c3f64c5d0414d522a28f1fec089bf9dcdfaffb9e507404ebbd893a3b51eeb",
+  "script_sha256": "17baddf3a61ef85b5584fdd2c6037e2a495bc5b82f1e49c829a63b9ec6c5eb88",
+  "runtime": {
+    "godsat_factorial": "0.2.0",
+    "source_sha256": "77276a2377fe795059edac82e765ac29ac6d97674e2f6d869a9d2da3bf41ee02",
+    "python": "3.12.12",
+    "python_implementation": "CPython",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "machine": "aarch64",
+    "packages": {
+      "duckdb": "1.5.6",
+      "matplotlib": "3.11.2",
+      "numpy": "2.5.4",
+      "pyarrow": "26.0.0",
+      "pytz": "2026.5",
+      "scipy": "1.18.1",
+      "sgp4": "2.27",
+      "torch": "2.14.1"
+    }
+  }
+}

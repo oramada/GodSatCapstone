@@ -24,13 +24,13 @@ dependencies = [
 test = ["pytest>=8,<9"]
 awp = ["astropy>=6,<8", "spiceypy>=6"]
 telemetry = ["cdflib>=1.3,<2", "h5py>=3.8"]
-analysis = ["scikit-learn>=1.3"]
+analysis = ["scikit-learn>=1.3", "pypdf>=6,<7"]
 
 [project.scripts]
 godsat = "godsat.cli:main"
 
-[tool.setuptools]
-packages = ["godsat", "scripts"]
+[tool.setuptools.packages.find]
+include = ["godsat*", "scripts*"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests/unit"]

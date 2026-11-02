@@ -38,8 +38,8 @@ def aliases(effect):
 
 def screening_analysis(x,y):
     y=np.asarray(y);effects=2*np.sum(np.asarray(x)*y[:,None],axis=0)/len(y)
-    # Pool six unique residual contrast columns (15 contrasts minus 7 main effects
-    # leaves 8 columns; all are low-order aliases, so this is assumption-dependent).
+    # Seven independent two-factor chains plus one three-factor chain span the
+    # eight contrasts left after the seven main effects. They are not pure error.
     cols=[];labels=[]
     mains=[x[:,i] for i in range(7)]
     for i,j in itertools.combinations(range(7),2):
@@ -47,13 +47,20 @@ def screening_analysis(x,y):
         if any(np.array_equal(col,c) or np.array_equal(col,-c) for c in mains+cols):continue
         cols.append(col);labels.append(chr(65+i)+chr(65+j))
     contrasts=2*np.sum(np.array(cols)*y[None,:],axis=1)/len(y)
-    residual_variance=float(np.sum((contrasts/2)**2)*len(y)/len(cols)) if cols else None
+    residual_cols=list(cols);residual_labels=list(labels)
+    for indices in itertools.combinations(range(7),3):
+        col=np.prod(x[:,indices],axis=1)
+        if np.all(col==1) or any(np.array_equal(col,c) or np.array_equal(col,-c) for c in mains+residual_cols):continue
+        residual_cols.append(col);residual_labels.append(''.join(chr(65+i) for i in indices))
+    residual_contrasts=2*np.sum(np.array(residual_cols)*y[None,:],axis=1)/len(y)
+    residual_variance=float(np.sum((residual_contrasts/2)**2)*len(y)/len(residual_cols)) if residual_cols else None
     order=np.argsort(-np.abs(effects))
     return {'main_effects':dict(zip(FACTORS,effects.tolist())),
         'selected_indices':order[:3].tolist(),'selected_factors':[FACTORS[i] for i in order[:3]],
         'two_factor_alias_effects':{label:{'effect':float(value),'aliases':aliases(label)} for label,value in zip(labels,contrasts)},
+        'residual_alias_effects':{label:{'effect':float(value),'aliases':aliases(label)} for label,value in zip(residual_labels,residual_contrasts)},
         'pooled_residual_variance':residual_variance,
-        'noise_assumption':'All eight pooled two-factor alias contrasts are assumed inactive; no pure-error estimate.',
+        'noise_assumption':'All eight residual alias contrasts (seven two-factor chains and one three-factor chain) are assumed inactive; no pure-error estimate. Review the complete half-normal analysis before treating this as noise.',
         'defining_relation':defining_words()}
 
 def ccd(center_replicates=1,seed=2026):

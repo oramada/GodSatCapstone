@@ -1,0 +1,40 @@
+{
+  "generated_utc": "2026-11-02T01:51:43.476700+00:00",
+  "portable_tests": {
+    "passed": 131,
+    "skipped": 2,
+    "command": "python -m pytest -q"
+  },
+  "research_tests": {
+    "initial_full_run_passed": 154,
+    "initial_full_run_failed": 4,
+    "moved_pdf_fixture_fixed": true,
+    "targeted_pdf_tests_passed": 2,
+    "remaining_missing_input_checks": [
+      "catalogue refresh manifest",
+      "MOST attempt audit",
+      "Sentinel quaternion inventory"
+    ],
+    "scope": "Missing-input research checks are not reported as passed; research tests are outside default CI."
+  },
+  "lean": {
+    "theorems_checked": 62,
+    "design_csv_bindings": 3,
+    "receipt": "lean/lean-verification.json"
+  },
+  "packaging": {
+    "wheel_built": true,
+    "wheel_sha256": "a5898e3a17c2505232c53b22403ef8c3bda2f1a097330bd89eb6cbe0941ffecb",
+    "grouped_modules_import_from_wheel": true
+  },
+  "smoke_checks": [
+    "python -m godsat --help",
+    "python -m godsat doctor",
+    "python -m scripts.data.fetch_four_year_data --help",
+    "python scripts/data/prepare_iridium_next_cohort.py --help"
+  ],
+  "navigation_links_checked": true,
+  "git_diff_check_passed": true,
+  "large_data_and_caches_ignored": true,
+  "scope": "Repository organization/packaging checks; not completion of the full scientific study."
+}

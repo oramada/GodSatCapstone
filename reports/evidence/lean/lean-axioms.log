@@ -1,0 +1,68 @@
+'GoDSAT.CCD.left_inverse_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.CCD.distinct_design_points' depends on axioms: [propext]
+'GoDSAT.Design.generators' depends on axioms: [propext]
+'GoDSAT.Design.balanced' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.orthogonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.main_clear_of_two_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.corrected_defining_group' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.printed_relation_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.printed_relation_is_not_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.main_effect_recovers_coefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.main_effect_with_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.screening_and_ccd_count' does not depend on any axioms
+'GoDSAT.Design.not_tenfold_run_reduction' depends on axioms: [propext]
+'GoDSAT.Design.equal_trials_can_have_unequal_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.decode_low' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.decode_high' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.encode_decode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Design.decoded_region_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Differentiation.quadratic_directional_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Differentiation.quadratic_partial_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Differentiation.stationarity_is_zero_partials' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.LeastSquares.prediction_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.LeastSquares.residual_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.LeastSquares.normal_residual_orthogonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.LeastSquares.ols_pythagorean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.LeastSquares.normal_equations_minimize_sse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.OriginalNeighbor.recorded_tables_well_formed' does not depend on any axioms
+'GoDSAT.OriginalNeighbor.original_qtable_neighbor_all_cells' depends on axioms: [propext]
+'GoDSAT.OriginalNeighbor.original_qtable_neighbor_never_decreases' depends on axioms: [propext]
+'GoDSAT.OriginalNeighbor.observed_port_second_coordinate_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GoDSAT.OriginalNeighbor.observed_headless_outputs_differ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.Refinement.neighbor_never_decreases' depends on axioms: [propext]
+'GoDSAT.Refinement.ties_retain_first' depends on axioms: [propext]
+'GoDSAT.Refinement.neighbor_scan_never_decreases' depends on axioms: [propext]
+'GoDSAT.Refinement.refreshed_bin_owned' depends on axioms: [propext]
+'GoDSAT.Refinement.old_claims_released' depends on axioms: [propext]
+'GoDSAT.Refinement.other_claims_unchanged' depends on axioms: [propext]
+'GoDSAT.Refinement.at_most_one_owner_per_bin' does not depend on any axioms
+'GoDSAT.Refinement.bin_exclusivity_does_not_imply_unique_target_tracking' depends on axioms: [propext]
+'GoDSAT.Refinement.conditional_trace_refinement' does not depend on any axioms
+'GoDSAT.ResponseSurface.ccd_left_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.ResponseSurface.ccd_columns_identifiable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.ResponseSurface.single_center_ccd_no_pure_error' does not depend on any axioms
+'GoDSAT.ResponseSurface.original_ccd_pure_error_df' does not depend on any axioms
+'GoDSAT.ResponseSurface.augmented_ccd_degrees_of_freedom' does not depend on any axioms
+'GoDSAT.ResponseSurface.off_diagonal_halves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.ResponseSurface.quadratic_increment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.ResponseSurface.stationary_increment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.ResponseSurface.negative_semidefinite_stationary_is_maximum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GoDSAT.ResponseSurface.homogeneous_scales' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.ResponseSurface.indefinite_stationary_has_both_directions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GoDSAT.ResponseSurface.ridge_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.SensorAssumptions.energy_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.SensorAssumptions.no_motion_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.SensorAssumptions.acceleration_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.SensorAssumptions.feasible_slew_energy_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.SensorAssumptions.false_return_preserves_truth' does not depend on any axioms
+'GoDSAT.SensorAssumptions.no_prior_true_detection_has_no_true_custody' depends on axioms: [propext, Quot.sound]
+'GoDSAT.SensorAssumptions.false_slots_are_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.SensorAssumptions.false_track_rate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.SensorAssumptions.no_design_only_custody_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoDSAT.SensorAssumptions.no_design_only_energy_reduction' depends on axioms: [propext, Classical.choice, Quot.sound]

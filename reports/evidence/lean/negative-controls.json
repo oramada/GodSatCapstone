@@ -1,0 +1,7 @@
+{
+  "status": "expected_false_paper_claims_rejected_by_Lean",
+  "exit_code": 1,
+  "source_sha256": "2ce1a6297568e29fa194c640761c273bed0b0e54c096e3f1fee339d54164eb2b",
+  "log_sha256": "92e62d49b884c75e0157eccc7ebc4cab44c2ac83fd6c06f94bc798841339a453",
+  "scope": "Expected compiler failures outside the accepted proof library; not admitted as theorems."
+}

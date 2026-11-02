@@ -114,13 +114,15 @@ class History:
     def __init__(self, root=ROOT, cohort='current_payload', window=None,
                  max_age_hours=72):
         self.root = pathlib.Path(root)
-        if cohort not in {'current_payload', 'current_active_payload', 'all'}:
-            raise ValueError('cohort must be current_payload, current_active_payload, or all')
+        if cohort not in {'current_payload', 'current_active_payload', 'iridium_next', 'all'}:
+            raise ValueError('cohort must be current_payload, current_active_payload, iridium_next, or all')
         self.cohort = cohort
         if cohort == 'current_payload':
             self.paths = [self.root / 'data/current_payload_orbit_history.parquet']
         elif cohort == 'current_active_payload':
             self.paths = [self.root / 'data/current_active_payload_orbit_history.parquet']
+        elif cohort == 'iridium_next':
+            self.paths = [self.root / 'data/iridium_next_orbit_history.parquet']
         else:
             raw = self.root / 'data/raw'
             available = sorted(raw.glob('tle_*.parquet'))
@@ -134,8 +136,9 @@ class History:
                 available = [path for path in available
                     if lower.year <= int(path.stem.rsplit('_', 1)[1]) <= upper.year]
             self.paths = available
-        if cohort in {'current_payload', 'current_active_payload'} and not self.paths[0].exists():
-            script = 'export_current.py' if cohort == 'current_payload' else 'export_current_active_payload_history.py'
+        if cohort in {'current_payload', 'current_active_payload', 'iridium_next'} and not self.paths[0].exists():
+            script = {'current_payload': 'data/export_current.py', 'current_active_payload': 'data/export_current_active_payload_history.py',
+                      'iridium_next': 'data/prepare_iridium_next_cohort.py'}[cohort]
             raise FileNotFoundError(f'Run scripts/{script} first')
         if cohort == 'all' and not self.paths:
             raise FileNotFoundError('Historical TLE/OMM archives are missing')

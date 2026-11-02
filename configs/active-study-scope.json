@@ -1,0 +1,21 @@
+{
+  "study": "Iridium NEXT and ground systems; optional explicit MEO extension",
+  "iridium_next_membership": "configs/iridium-next-membership.json",
+  "iridium_next_membership_sha256": "a3dd1f719a0724cc7c645936e2d9e00a1cd1a044baad7ae57da9e08543c3a7c9",
+  "ground_systems_required": true,
+  "ground_system_role": "pending_clarification",
+  "optional_meo": {
+    "enabled": false,
+    "constellation": null,
+    "norad_ids": []
+  },
+  "excluded": [
+    "other LEO constellations",
+    "legacy Iridium",
+    "GEO",
+    "HEO",
+    "debris",
+    "rocket bodies"
+  ],
+  "historical_results": "Preserved as previous mixed-catalogue studies, not current-scope evidence."
+}

@@ -1,0 +1,197 @@
+{
+  "scope": "Byte-for-byte compact snapshots of selected local evidence. Large inputs, checkpoints and most run outputs are excluded. Source paths/hashes identify the versions at execution, which may predate repository reorganization.",
+  "files": [
+    {
+      "path": "iridium-next-scope/audit.json",
+      "original_local_path": "outputs/iridium-next-scope-20261101/audit.json",
+      "bytes": 1574,
+      "sha256": "438e0863e9807b8b540fe80a9a453a02949dc094c16d2b410f0396a75202691c"
+    },
+    {
+      "path": "iridium-next-scope/cli-gates.json",
+      "original_local_path": "outputs/iridium-next-scope-20261101/cli-gates.json",
+      "bytes": 631,
+      "sha256": "bdd1331bc800559f925314b6dd9719be9336d7400dcf136996d4b59326296eee"
+    },
+    {
+      "path": "training-budget/summary.json",
+      "original_local_path": "outputs/baseline-training-budget-20261101/summary.json",
+      "bytes": 8737,
+      "sha256": "1b4635fbd91b231ac4460145cb4e8212b45831e72452a7d0f69043ac6d56a6f6"
+    },
+    {
+      "path": "training-budget/audit.json",
+      "original_local_path": "outputs/baseline-training-budget-20261101/audit.json",
+      "bytes": 409,
+      "sha256": "e73396e1dc4631746892a858b0a1302fd6c4babbbcbbd62ba6b6f6d5c0337439"
+    },
+    {
+      "path": "training-budget/prospective-plan.json",
+      "original_local_path": "outputs/baseline-training-budget-20261101/prospective-plan.json",
+      "bytes": 1927,
+      "sha256": "609918b38c9ba0172d4b59caaeef4b5f6c0cac3af42153fa5b6e95f2fd9f780c"
+    },
+    {
+      "path": "training-budget/development-responses.csv",
+      "original_local_path": "outputs/baseline-training-budget-20261101/development-responses.csv",
+      "bytes": 6675,
+      "sha256": "5f611d963e60ec966c1c5446b1f62dd0ad134719d5806d525fbe9bf111ef6d75"
+    },
+    {
+      "path": "training-budget/development-controls.csv",
+      "original_local_path": "outputs/baseline-training-budget-20261101/development-controls.csv",
+      "bytes": 1694,
+      "sha256": "f257cdd6c331f16183d36fae42b15b461e305cd270edc05aa346f917b6e49f99"
+    },
+    {
+      "path": "training-budget/training-budget.png",
+      "original_local_path": "outputs/baseline-training-budget-20261101/training-budget.png",
+      "bytes": 61054,
+      "sha256": "db7ee954baafd652cd6c7bfe8a05ea10f6bf534f4d9be7c69f3ed785d7ed5fdb"
+    },
+    {
+      "path": "lean/lean-verification.json",
+      "original_local_path": "outputs/repository-organization-verification-20261101/lean-verification.json",
+      "bytes": 12779,
+      "sha256": "20f5452517fb2dfb0cc89c3e7e5316ede87c84d1d7eeb7e7e6907d5cbb0fd809"
+    },
+    {
+      "path": "lean/negative-controls.json",
+      "original_local_path": "outputs/repository-organization-verification-20261101/negative-controls.json",
+      "bytes": 355,
+      "sha256": "b30d0a003875a1a56288ff1b2f4bb3fe5887c1ca6d57e29476e28f74a7987a65"
+    },
+    {
+      "path": "lean/negative-controls.log",
+      "original_local_path": "outputs/repository-organization-verification-20261101/negative-controls.log",
+      "bytes": 427,
+      "sha256": "92e62d49b884c75e0157eccc7ebc4cab44c2ac83fd6c06f94bc798841339a453"
+    },
+    {
+      "path": "lean/lean-full-build.log",
+      "original_local_path": "outputs/repository-organization-verification-20261101/lean-full-build.log",
+      "bytes": 9454,
+      "sha256": "57136b7fd5f66587f19b3de428b795291f2bf5490e598b365a6fe7f0a58a6d03"
+    },
+    {
+      "path": "lean/lean-axioms.log",
+      "original_local_path": "outputs/repository-organization-verification-20261101/lean-axioms.log",
+      "bytes": 5993,
+      "sha256": "c3092e18a2163b99822a88e18f76f5ce9c48705a84788f782a81a8c91bab3bf1"
+    },
+    {
+      "path": "source-audit/upstream-source-audit.json",
+      "original_local_path": "outputs/faithful-reproduction-20261027/upstream-source-audit.json",
+      "bytes": 14753,
+      "sha256": "268cb25de20baf0d3ec214fe9c98353841473272551a3a16a41f7a4f1dbebe89"
+    },
+    {
+      "path": "source-audit/upstream-source-identity.json",
+      "original_local_path": "outputs/faithful-reproduction-20261027/upstream-source-identity.json",
+      "bytes": 1906,
+      "sha256": "6331921ee85150d1c42dea6f8105b5a5d8f59d4eb195e76c04c2704edcdde375"
+    },
+    {
+      "path": "source-audit/related-baseline-search.json",
+      "original_local_path": "outputs/faithful-reproduction-20261027/related-baseline-search.json",
+      "bytes": 28133,
+      "sha256": "4051c53d311e33b717c0e24db270ccc7b9da2c9f60eb96790c46d8790298d656"
+    },
+    {
+      "path": "controller-probes/original-controller-probe.json",
+      "original_local_path": "outputs/faithful-reproduction-20261027/controller-probes/original-controller-probe.json",
+      "bytes": 11860,
+      "sha256": "10e2f963448c2efa2806d4e2c2fa170c252e211dbd096e9fcf93f97386369ccf"
+    },
+    {
+      "path": "controller-probes/source-headless-result.json",
+      "original_local_path": "outputs/faithful-reproduction-20261027/controller-probes/source-headless-result.json",
+      "bytes": 245,
+      "sha256": "d64b4e685e5286d1ee27c193c5d9645bbe210105af20014371a46bfb128c42f9"
+    },
+    {
+      "path": "controller-probes/port-headless-result.json",
+      "original_local_path": "outputs/faithful-reproduction-20261027/controller-probes/port-headless-result.json",
+      "bytes": 267,
+      "sha256": "512867e4641e7d06f87cd8523a37bd4236c999ec28145fb45ef4ff17b16f24b8"
+    },
+    {
+      "path": "controller-probes/UPSTREAM-LICENSE",
+      "original_local_path": "outputs/faithful-reproduction-20261027/controller-probes/UPSTREAM-LICENSE",
+      "bytes": 1526,
+      "sha256": "74af264a1222aa3b0dbe13ebeec9b50a705ea1708c4cdf5fbf27bd99b18fb932"
+    },
+    {
+      "path": "exit-guards/receipt.json",
+      "original_local_path": "outputs/faithful-reproduction-20261027/exit-guard-probes/receipt.json",
+      "bytes": 10657,
+      "sha256": "b3235cc911862b6ad1afaec3b6e539a52159392e54078ed40b5d6039aecd982c"
+    },
+    {
+      "path": "exit-guards/source-results.json",
+      "original_local_path": "outputs/faithful-reproduction-20261027/exit-guard-probes/source-results.json",
+      "bytes": 5332,
+      "sha256": "cb541677c4023b28d16508a61d018804c21f6eeb34d90764c1e71956ad679a14"
+    },
+    {
+      "path": "exit-guards/port-results.json",
+      "original_local_path": "outputs/faithful-reproduction-20261027/exit-guard-probes/port-results.json",
+      "bytes": 5122,
+      "sha256": "b0173c5cdc22dc0a0d52c1b74456c64c3aa8b6bddeb6ea1b451998d80392ef61"
+    },
+    {
+      "path": "physical-adaptation/summary.json",
+      "original_local_path": "outputs/governing-design-physical-leo-20261025/summary.json",
+      "bytes": 12762,
+      "sha256": "d9d311e17b73686ed487147c4a4c86112dd036a385d51e869353690c3fcbe574"
+    },
+    {
+      "path": "physical-adaptation/validation.csv",
+      "original_local_path": "outputs/governing-design-physical-leo-20261025/validation.csv",
+      "bytes": 6828,
+      "sha256": "47af9b8ab1f0a7877450cf47324ed3d74ff06eed57e0368518ce66ef8df316d3"
+    },
+    {
+      "path": "physical-adaptation/responses.csv",
+      "original_local_path": "outputs/governing-design-physical-leo-20261025/responses.csv",
+      "bytes": 44210,
+      "sha256": "bccc50a71f430a0ab72a5e34fbd9b4804f9792ee0c718bf66c5c8ff8ffdfc8a5"
+    },
+    {
+      "path": "physical-adaptation/screening_design.csv",
+      "original_local_path": "outputs/governing-design-physical-leo-20261025/screening_design.csv",
+      "bytes": 1698,
+      "sha256": "9b9f801f56789cb7187cbbc79f65aab5151eb7a787b38c05fed2703be64fbbaa"
+    },
+    {
+      "path": "physical-adaptation/rsm_design.csv",
+      "original_local_path": "outputs/governing-design-physical-leo-20261025/rsm_design.csv",
+      "bytes": 1353,
+      "sha256": "da9f6f3feb88b963eb88fe78b8d5399088697333c441e847860a7282d36952e7"
+    },
+    {
+      "path": "physical-adaptation/independent_physical_audit.json",
+      "original_local_path": "outputs/governing-design-physical-leo-20261025/independent_physical_audit.json",
+      "bytes": 23240,
+      "sha256": "7d5490f109f176d8876bbbf9bd42c5fe541edfe0662c71102016f6ba8593851d"
+    },
+    {
+      "path": "physical-center-check/response_surfaces_augmented.json",
+      "original_local_path": "outputs/governing-design-physical-leo-center-20261025/response_surfaces_augmented.json",
+      "bytes": 38283,
+      "sha256": "8331a1b93fc4e55acdf3b4b58e57cdb76c989e3387294f611dda21a95ca7a518"
+    },
+    {
+      "path": "physical-center-check/independent_validation.json",
+      "original_local_path": "outputs/governing-design-physical-leo-center-20261025/independent_validation.json",
+      "bytes": 1217,
+      "sha256": "44d2591f47600de018f7c552f563e71757e8b0e2c25441cde6adb1ed19ee1dd7"
+    },
+    {
+      "path": "physical-center-check/center_replication_report.md",
+      "original_local_path": "outputs/governing-design-physical-leo-center-20261025/center_replication_report.md",
+      "bytes": 3228,
+      "sha256": "795bf55e6ebf95d3a138119c47f283a83d4007bb779fbcef44c175a9d5e43d8b"
+    }
+  ]
+}

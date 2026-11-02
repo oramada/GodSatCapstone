@@ -5,6 +5,7 @@ import torch
 from torch import nn
 from torch.distributions import Categorical
 from .environment import TaskingEnv
+from .sensorphysics import environment_class
 
 def configure(seed,device):
     torch.set_num_threads(1)
@@ -74,12 +75,13 @@ def train(scenarios,config,hp,seed,episodes=None):
     device=compute_device(config)
     configure(seed,device);start=time.perf_counter();episodes=episodes or config['training_episodes']
     gpu_seconds=0.
-    sample=TaskingEnv(scenarios[0],config,hp['claim_resolution'],seed)
+    env_type=environment_class(config) if config.get('sensor_response_model') else TaskingEnv
+    sample=env_type(scenarios[0],config,hp['claim_resolution'],seed)
     ob,_=sample.reset();model=Agent(ob.shape[-1],sample.k+1,hp).to(device)
     optimizer=torch.optim.Adam(list(model.actor.parameters())+list(model.critic.parameters()),lr=hp['learning_rate'])
     history=[]
     for episode in range(episodes):
-        env=TaskingEnv(scenarios[episode%len(scenarios)],config,hp['claim_resolution'],seed+episode*1009)
+        env=env_type(scenarios[episode%len(scenarios)],config,hp['claim_resolution'],seed+episode*1009)
         (ob,mask)=env.reset();observations=[];masks=[];actions=[];rewards=[];next_observations=[];dones=[]
         for _ in range(env.steps):
             x=torch.tensor(ob,device=device);m=torch.tensor(mask,device=device)
@@ -111,10 +113,11 @@ def train(scenarios,config,hp,seed,episodes=None):
 
 def evaluate(model,scenarios,config,hp,seed,policy='learned',traces=False):
     records=[];trace_data=[]
+    env_type=environment_class(config) if config.get('sensor_response_model') else TaskingEnv
     device=next(model.parameters()).device if policy=='learned' and model is not None else torch.device('cpu')
     gpu_seconds=0.
     for si,scenario in enumerate(scenarios):
-        env=TaskingEnv(scenario,config,hp['claim_resolution'],seed+si*1009)
+        env=env_type(scenario,config,hp['claim_resolution'],seed+si*1009)
         ob,mask=env.reset()
         for _ in range(env.steps):
             if policy=='learned':

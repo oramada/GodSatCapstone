@@ -16,8 +16,9 @@ def environment_report(config, root=ROOT):
     manifest = json.loads(manifest_path.read_text())
     archive = []
     for item in manifest['files']:
-        relative = pathlib.PurePosixPath(item['path']).relative_to('data')
-        path = root / 'data' / pathlib.Path(*relative.parts)
+        # The source repository uses data/tle_YEAR.parquet, while our fetcher
+        # deliberately stores those files under the local data/raw directory.
+        path = root / 'data/raw' / pathlib.PurePosixPath(item['path']).name
         actual_size = path.stat().st_size if path.is_file() else None
         expected_size = item['lfs']['size']
         archive.append({
@@ -31,6 +32,7 @@ def environment_report(config, root=ROOT):
     cohort_files = {
         'current_payload': root / 'data/current_payload_orbit_history.parquet',
         'current_active_payload': root / 'data/current_active_payload_orbit_history.parquet',
+        'iridium_next': root / 'data/iridium_next_orbit_history.parquet',
         'all': None,
     }
     if cohort not in cohort_files:
@@ -71,10 +73,10 @@ def environment_report(config, root=ROOT):
         'next_data_step': (
             'No download needed; source files match their pinned sizes.'
             if all(item['size_matches'] for item in archive) else
-            f'Run: "{sys.executable}" scripts/fetch_four_year_data.py'
+            f'Run: "{sys.executable}" scripts/data/fetch_four_year_data.py'
         ),
         'next_cohort_step': (
-            f'Run: "{sys.executable}" scripts/export_current.py'
+            f'Run: "{sys.executable}" scripts/data/export_current.py'
             if cohort == 'current_payload' and not cohort_ready else None
         ),
         'note': 'This diagnostic checks file sizes. The fetch script verifies SHA-256 hashes.',

@@ -1,0 +1,296 @@
+{
+  "status": "source_and_port_match_on_15_early_exit_fixtures",
+  "implementations_tested": 2,
+  "fixtures_per_implementation": 15,
+  "guards": [
+    "confirmed_handoff",
+    "empty_position",
+    "invalid_global_index",
+    "landed_target",
+    "lost_los"
+  ],
+  "own_claims_retained_in_nonzero_claim_fixtures": 20,
+  "finding": "All five tested early Q-mode exits reset mode/index/counter and command nadir slew, but preserve the claim map, including any pre-existing claims owned by the exiting satellite.",
+  "scope": "Public-method synthetic state fixtures under Octave; not a proof that these states occur in the published scenario, cause a performance deficit, or match native MATLAB. Refresh-claim lemmas do not describe these exit paths.",
+  "source_sha256": "57060624e5d405dfcd30e235265ffd66e90603f7a1935bbad6c455c5abd977c8",
+  "compatibility_sha256": "0ce3213d6c8117cb0bd649b422813a7cc6d80ae41f7f275b86f4e3f3966702bb",
+  "port_sha256": "42e38adf4107b06afa49919afc9cbff2609d6d9824051121e9aff89bfe84eb7e",
+  "driver_sha256": "070d5e73a3fc1b8ff736c64179915d3da28d6e2d17f58b730acfa74268c5d635",
+  "script_sha256": "3c8d509aa7557f1e15692984f2b62bf48dd04cc0f6193da1b0aabca91b7d743c",
+  "property_annotation_edits": [
+    {
+      "line": 17,
+      "original": "        coe              (1,6) double  % [alt, ecc, inc, RAAN, argp, M0]",
+      "compatibility": "        coe  % [alt, ecc, inc, RAAN, argp, M0]"
+    },
+    {
+      "line": 18,
+      "original": "        a                double        % Semi-major axis (km)",
+      "compatibility": "        a        % Semi-major axis (km)"
+    },
+    {
+      "line": 19,
+      "original": "        ecc              double        % Eccentricity",
+      "compatibility": "        ecc        % Eccentricity"
+    },
+    {
+      "line": 20,
+      "original": "        incRad           double        % Inclination (rad)",
+      "compatibility": "        incRad        % Inclination (rad)"
+    },
+    {
+      "line": 21,
+      "original": "        raanRad          double        % RAAN (rad)",
+      "compatibility": "        raanRad        % RAAN (rad)"
+    },
+    {
+      "line": 22,
+      "original": "        argpRad          double        % Argument of perigee (rad)",
+      "compatibility": "        argpRad        % Argument of perigee (rad)"
+    },
+    {
+      "line": 23,
+      "original": "        M0               double        % Mean anomaly at t=0 (rad)",
+      "compatibility": "        M0        % Mean anomaly at t=0 (rad)"
+    },
+    {
+      "line": 24,
+      "original": "        Torb             double        % Orbital period (s)",
+      "compatibility": "        Torb        % Orbital period (s)"
+    },
+    {
+      "line": 27,
+      "original": "        tVec             (:,1) double  % Time vector",
+      "compatibility": "        tVec  % Time vector"
+    },
+    {
+      "line": 28,
+      "original": "        dt               double        % Time step",
+      "compatibility": "        dt        % Time step"
+    },
+    {
+      "line": 29,
+      "original": "        rEci             (3,:) double  % Position in ECI",
+      "compatibility": "        rEci  % Position in ECI"
+    },
+    {
+      "line": 30,
+      "original": "        vEci             (3,:) double  % Velocity in ECI",
+      "compatibility": "        vEci  % Velocity in ECI"
+    },
+    {
+      "line": 31,
+      "original": "        rEcef            (3,:) double  % Position in ECEF",
+      "compatibility": "        rEcef  % Position in ECEF"
+    },
+    {
+      "line": 32,
+      "original": "        vEcef            (3,:) double  % Velocity in ECEF",
+      "compatibility": "        vEcef  % Velocity in ECEF"
+    },
+    {
+      "line": 35,
+      "original": "        Qtable           (:,:) double",
+      "compatibility": "        Qtable"
+    },
+    {
+      "line": 36,
+      "original": "        qNumRows         double",
+      "compatibility": "        qNumRows"
+    },
+    {
+      "line": 37,
+      "original": "        qNumCols         double",
+      "compatibility": "        qNumCols"
+    },
+    {
+      "line": 38,
+      "original": "        fovMoveRateDeg   double        % Slew rate (deg/s)",
+      "compatibility": "        fovMoveRateDeg        % Slew rate (deg/s)"
+    },
+    {
+      "line": 40,
+      "original": "        showQtable       logical = true",
+      "compatibility": "        showQtable = true"
+    },
+    {
+      "line": 50,
+      "original": "        fovColor      (1,3) double      % RGB color",
+      "compatibility": "        fovColor      % RGB color"
+    },
+    {
+      "line": 51,
+      "original": "        fovHalfAngle  double            % Half\u2010angle (rad)",
+      "compatibility": "        fovHalfAngle            % Half\u2010angle (rad)"
+    },
+    {
+      "line": 52,
+      "original": "        fovNumRays    double            % Number of rays to draw cone",
+      "compatibility": "        fovNumRays            % Number of rays to draw cone"
+    },
+    {
+      "line": 53,
+      "original": "        fovFaces      (:,3) double      % Patch face definitions",
+      "compatibility": "        fovFaces      % Patch face definitions"
+    },
+    {
+      "line": 55,
+      "original": "        scanEnabled           logical = false   % Is scanning active?",
+      "compatibility": "        scanEnabled = false   % Is scanning active?"
+    },
+    {
+      "line": 56,
+      "original": "        sweepAmpDeg           double = 0        % Sweep amplitude (deg)",
+      "compatibility": "        sweepAmpDeg = 0        % Sweep amplitude (deg)"
+    },
+    {
+      "line": 57,
+      "original": "        sweepFreqHz           double = 0        % Sweep frequency (Hz)",
+      "compatibility": "        sweepFreqHz = 0        % Sweep frequency (Hz)"
+    },
+    {
+      "line": 58,
+      "original": "        sweepPhase            double = 0        % Sweep phase (rad)",
+      "compatibility": "        sweepPhase = 0        % Sweep phase (rad)"
+    },
+    {
+      "line": 59,
+      "original": "        fovBaselineElDeg      double = 0        % Baseline elevation angle (deg)",
+      "compatibility": "        fovBaselineElDeg = 0        % Baseline elevation angle (deg)"
+    },
+    {
+      "line": 60,
+      "original": "        useAlongTrackBaseline logical = false    % Baseline reference",
+      "compatibility": "        useAlongTrackBaseline = false    % Baseline reference"
+    },
+    {
+      "line": 61,
+      "original": "        sweepAlongTrack       logical = false    % Sweep direction flag",
+      "compatibility": "        sweepAlongTrack = false    % Sweep direction flag"
+    },
+    {
+      "line": 63,
+      "original": "        fovCmdAzDeg   double = 0    % Commanded azimuth offset (deg)",
+      "compatibility": "        fovCmdAzDeg = 0    % Commanded azimuth offset (deg)"
+    },
+    {
+      "line": 64,
+      "original": "        fovCmdElDeg   double = 0    % Commanded elevation offset (deg)",
+      "compatibility": "        fovCmdElDeg = 0    % Commanded elevation offset (deg)"
+    },
+    {
+      "line": 65,
+      "original": "        baseLookVec   (3,1) double = [0;0;0]  % Current boresight vector",
+      "compatibility": "        baseLookVec = [0;0;0]  % Current boresight vector"
+    },
+    {
+      "line": 68,
+      "original": "        isTracking           logical = false",
+      "compatibility": "        isTracking = false"
+    },
+    {
+      "line": 69,
+      "original": "        trackTargetIdx       double  = 0       % Index of tracked target",
+      "compatibility": "        trackTargetIdx  = 0       % Index of tracked target"
+    },
+    {
+      "line": 70,
+      "original": "        trackTargetPos       (3,:) double = [] % Positions of all detected targets",
+      "compatibility": "        trackTargetPos = [] % Positions of all detected targets"
+    },
+    {
+      "line": 71,
+      "original": "        useQtableTracking    logical = false   % Are we in Q\u2010tracking mode?",
+      "compatibility": "        useQtableTracking = false   % Are we in Q\u2010tracking mode?"
+    },
+    {
+      "line": 74,
+      "original": "        fov2Color      (1,3) double",
+      "compatibility": "        fov2Color"
+    },
+    {
+      "line": 77,
+      "original": "        fov2HalfAngle  double",
+      "compatibility": "        fov2HalfAngle"
+    },
+    {
+      "line": 78,
+      "original": "        scan2Enabled           logical = false",
+      "compatibility": "        scan2Enabled = false"
+    },
+    {
+      "line": 79,
+      "original": "        sweepAmpDeg2           double = 0",
+      "compatibility": "        sweepAmpDeg2 = 0"
+    },
+    {
+      "line": 80,
+      "original": "        sweepFreqHz2           double = 0",
+      "compatibility": "        sweepFreqHz2 = 0"
+    },
+    {
+      "line": 81,
+      "original": "        sweepPhase2            double = 0",
+      "compatibility": "        sweepPhase2 = 0"
+    },
+    {
+      "line": 82,
+      "original": "        fov2BaselineElDeg      double = 0",
+      "compatibility": "        fov2BaselineElDeg = 0"
+    },
+    {
+      "line": 83,
+      "original": "        useAlongTrackBaseline2 logical = false",
+      "compatibility": "        useAlongTrackBaseline2 = false"
+    },
+    {
+      "line": 84,
+      "original": "        sweepAlongTrack2       logical = false",
+      "compatibility": "        sweepAlongTrack2 = false"
+    },
+    {
+      "line": 87,
+      "original": "        spatialMatrix  (:,:) double = []",
+      "compatibility": "        spatialMatrix = []"
+    },
+    {
+      "line": 88,
+      "original": "        latGrid        (:,1) double = []",
+      "compatibility": "        latGrid = []"
+    },
+    {
+      "line": 89,
+      "original": "        lonGrid        (:,1) double = []",
+      "compatibility": "        lonGrid = []"
+    },
+    {
+      "line": 92,
+      "original": "        lastUpdateIdx  (1,1) double = 1",
+      "compatibility": "        lastUpdateIdx = 1"
+    },
+    {
+      "line": 93,
+      "original": "        desiredLookVec  (3,1) double = [0;0;0]",
+      "compatibility": "        desiredLookVec = [0;0;0]"
+    },
+    {
+      "line": 94,
+      "original": "        slewInProgress  logical    = false",
+      "compatibility": "        slewInProgress    = false"
+    },
+    {
+      "line": 97,
+      "original": "        qLostCounter   double = 0",
+      "compatibility": "        qLostCounter = 0"
+    },
+    {
+      "line": 98,
+      "original": "        qLostThreshold double = 3",
+      "compatibility": "        qLostThreshold = 3"
+    }
+  ],
+  "result_sha256": {
+    "source": "cb541677c4023b28d16508a61d018804c21f6eeb34d90764c1e71956ad679a14",
+    "port": "b0173c5cdc22dc0a0d52c1b74456c64c3aa8b6bddeb6ea1b451998d80392ef61"
+  }
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "arguments": [
+      "campaign",
+      "--quick"
+    ],
+    "exit_code": 1,
+    "expected_rejection": "requires ground systems",
+    "matched": true
+  },
+  {
+    "arguments": [
+      "--config",
+      "configs/default.json",
+      "prepare",
+      "--date",
+      "2026-10-01T00:00:00Z"
+    ],
+    "exit_code": 1,
+    "expected_rejection": "requires iridium_next cohorts",
+    "matched": true
+  },
+  {
+    "arguments": [
+      "prepare",
+      "--regime",
+      "meo",
+      "--date",
+      "2026-10-01T00:00:00Z"
+    ],
+    "exit_code": 1,
+    "expected_rejection": "Optional MEO is disabled",
+    "matched": true
+  }
+]

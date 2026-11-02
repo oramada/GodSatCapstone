@@ -1,0 +1,192 @@
+{
+  "status": "completed_development_only_budget_diagnostic",
+  "scenario_sha256": "1c421a87450b74f4c52197201e97a9dce81b75f04a6541823948e9dfe055057d",
+  "budget_summaries": {
+    "40": {
+      "custody_continuity": {
+        "mean": 0.15195473251028807,
+        "ci95": [
+          0.097403316674196,
+          0.20650614834638015
+        ],
+        "n_training_seeds": 3
+      },
+      "objective": {
+        "mean": 0.0877066280660566,
+        "ci95": [
+          0.02610120722861324,
+          0.14931204890349997
+        ],
+        "n_training_seeds": 3
+      },
+      "slew_energy_joules": {
+        "mean": 0.276835170438779,
+        "ci95": [
+          0.14316919508667178,
+          0.41050114579088615
+        ],
+        "n_training_seeds": 3
+      }
+    },
+    "160": {
+      "custody_continuity": {
+        "mean": 0.16903292181069954,
+        "ci95": [
+          0.11765577902048743,
+          0.22041006460091164
+        ],
+        "n_training_seeds": 3
+      },
+      "objective": {
+        "mean": 0.10621001623110304,
+        "ci95": [
+          0.04870367757706545,
+          0.16371635488514064
+        ],
+        "n_training_seeds": 3
+      },
+      "slew_energy_joules": {
+        "mean": 0.3226154771605987,
+        "ci95": [
+          0.24001002463446794,
+          0.4052209296867294
+        ],
+        "n_training_seeds": 3
+      }
+    },
+    "640": {
+      "custody_continuity": {
+        "mean": 0.23415637860082308,
+        "ci95": [
+          0.10388273596172684,
+          0.3644300212399193
+        ],
+        "n_training_seeds": 3
+      },
+      "objective": {
+        "mean": 0.18293034382234988,
+        "ci95": [
+          0.04042192957000204,
+          0.3254387580746977
+        ],
+        "n_training_seeds": 3
+      },
+      "slew_energy_joules": {
+        "mean": 0.37115976951153273,
+        "ci95": [
+          0.15671925541948448,
+          0.585600283603581
+        ],
+        "n_training_seeds": 3
+      }
+    }
+  },
+  "paired_budget_contrasts": {
+    "160_minus_40": {
+      "custody_continuity": {
+        "mean": 0.017078189300411495,
+        "ci95": [
+          -0.033758348384756824,
+          0.06791472698557982
+        ],
+        "n_training_seeds": 3
+      },
+      "objective": {
+        "mean": 0.018503388165046444,
+        "ci95": [
+          -0.04272218925248879,
+          0.07972896558258168
+        ],
+        "n_training_seeds": 3
+      },
+      "slew_energy_joules": {
+        "mean": 0.045780306721819736,
+        "ci95": [
+          -0.09873503107345943,
+          0.1902956445170989
+        ],
+        "n_training_seeds": 3
+      }
+    },
+    "640_minus_160": {
+      "custody_continuity": {
+        "mean": 0.0651234567901235,
+        "ci95": [
+          -0.0791870149499367,
+          0.20943392853018372
+        ],
+        "n_training_seeds": 3
+      },
+      "objective": {
+        "mean": 0.07672032759124685,
+        "ci95": [
+          -0.08834846431387912,
+          0.24178911949637283
+        ],
+        "n_training_seeds": 3
+      },
+      "slew_energy_joules": {
+        "mean": 0.048544292350934104,
+        "ci95": [
+          -0.19398949129054285,
+          0.2910780759924111
+        ],
+        "n_training_seeds": 3
+      }
+    }
+  },
+  "final_two_budgets_meet_provisional_stability_rule": false,
+  "control_custody_means": {
+    "greedy": 0.6237654320987654,
+    "random": 0.44290123456790126
+  },
+  "test_data_used": false,
+  "plan_sha256": "609918b38c9ba0172d4b59caaeef4b5f6c0cac3af42153fa5b6e95f2fd9f780c",
+  "artifacts_sha256": {
+    "development-config.json": "bc78e4a14dec32871beb2e6498deda67748190c1ddb971e56c2e0e0943feb0fe",
+    "development-controls.csv": "f257cdd6c331f16183d36fae42b15b461e305cd270edc05aa346f917b6e49f99",
+    "development-responses.csv": "5f611d963e60ec966c1c5446b1f62dd0ad134719d5806d525fbe9bf111ef6d75",
+    "models/baseline_episodes_160_seed_101.pt": "03d7b6bd9ea99c9790faa3d939e9572e422aa5d4349e0a35342c4ea3a3dfef8a",
+    "models/baseline_episodes_160_seed_211.pt": "9fd539c1e22cd20d64b01f6bc5a5ad8955466c32a16c05717d6ffac96e4ff0d6",
+    "models/baseline_episodes_160_seed_307.pt": "f13fb277b5b7b83c41551dd2eb4df57694dd446cd91cfd789d758d24481d37b9",
+    "models/baseline_episodes_40_seed_101.pt": "142074fbdeccdbed44f14866cc4b6c425a9237f9622bab4721f75581d8bc863b",
+    "models/baseline_episodes_40_seed_211.pt": "2af79fc7c75a60c3988394bf563ca13be04b33c25317d2117088a3177acb2597",
+    "models/baseline_episodes_40_seed_307.pt": "c0c95b0c46e65ab008d081073f3ea1f2a510c8f2c5a1c26edf46346b3615aa63",
+    "models/baseline_episodes_640_seed_101.pt": "3c6978d26ac79d0c67fd21cf9e82990a5d715db105b09815d02019318e3b0438",
+    "models/baseline_episodes_640_seed_211.pt": "6f706133a0f6a22bfa4ad2eccc2af536a826d496c105b3c07e8c9d652f4750f8",
+    "models/baseline_episodes_640_seed_307.pt": "fa5cef0601b7a997fce9ec989348d818079b93c0b31f0157aad8f5dc9be03f4c",
+    "prospective-plan.json": "609918b38c9ba0172d4b59caaeef4b5f6c0cac3af42153fa5b6e95f2fd9f780c",
+    "run-order.json": "6db4668215f0ffc1fedbff20c7401359e4966e1f8084fbdb934a581b78d2c76b",
+    "runs/baseline_episodes_160_seed_101.json": "490e89018db405e42179713b9cd2a8287d7812e6df85d38e19b49f0e807835a1",
+    "runs/baseline_episodes_160_seed_211.json": "6d0ae7525ca2d634fc0ff5b8dadea1155488f946a49ab3c1769802679ac2ad3c",
+    "runs/baseline_episodes_160_seed_307.json": "0a984cd90eb6f5a12a0e06f41726954d538c438106eff62c4171c974a3163d68",
+    "runs/baseline_episodes_40_seed_101.json": "71e20123904db065b69123a280faeb3beb33ba57cb621bf8b533461c5aaf1230",
+    "runs/baseline_episodes_40_seed_211.json": "aabc32dd15034ef7809700f0dc7689e8715d47c728ba6a2e8d1d114b14adc833",
+    "runs/baseline_episodes_40_seed_307.json": "cdddb56a2d793a8e729c7477e6dded4ae1b769895690a71b9eb326b13f4ea809",
+    "runs/baseline_episodes_640_seed_101.json": "2ad4e11ab3e45f928496467a04a49b6aeee5ac876a17de0c33280fbf973853ad",
+    "runs/baseline_episodes_640_seed_211.json": "8b9fa23abb1c76c8e535d9074f288dc719ddc2769bf834fd5a7245ae5b2b6d48",
+    "runs/baseline_episodes_640_seed_307.json": "1565dfce866b5e163aa4b53fc4dac2468f615f18ed309b2a4ed27bf2293ec3de",
+    "source-snapshot/configs/governing-design-physical-leo.json": "553c3f64c5d0414d522a28f1fec089bf9dcdfaffb9e507404ebbd893a3b51eeb",
+    "source-snapshot/godsat/__init__.py": "62e48aadaf15ae35116406723914dd197583091c6e9cfe3935741db00ed5ea61",
+    "source-snapshot/godsat/__main__.py": "b1c844ebb273785e2e628cc7b6529c62bd0cd630895a4ea006a742e05bc7f80f",
+    "source-snapshot/godsat/catalog_trajectory.py": "4c785b2c84a7ddc9616a822e9e77f1587fcee28db082cd4a66f322235bbf87bc",
+    "source-snapshot/godsat/cli.py": "432a0385c5a739154d953203b32d7d0733d1f0f0c93b7881a9e82925f763e8b9",
+    "source-snapshot/godsat/design.py": "5f5a98f1b516fb7be2a53344f6d9d90e8f41776c67332e65f429f0aed4552fe2",
+    "source-snapshot/godsat/diagnostics.py": "b3db743f0e2f41c8a603eda44ff89d775b665b7fe30f5ddf7ed4945b6f43fe08",
+    "source-snapshot/godsat/dropout.py": "135be9e340f0573d7bde70c7884743ab896628d670d28b40b2c4fbe9e30cac73",
+    "source-snapshot/godsat/environment.py": "399c9e33f368e9dfd11360f039f033ec26cc26dcb006558181f5493acbd03aa3",
+    "source-snapshot/godsat/epop_attitude.py": "db8bff9a603cb3b55b0b087b7538b707317e702bed7712cd458b1713cd899f66",
+    "source-snapshot/godsat/experiment.py": "4d55554fbb17c91e234a4e64366abb519450c3814eddf87028fe887706f57d78",
+    "source-snapshot/godsat/learning.py": "77497467ec0d9a5cba3634a64a0b4024cf9fe6a14df476d069cca4b53f4843cc",
+    "source-snapshot/godsat/orbits.py": "85a0a103081bfd2a3d1f928a4da8fea1caf71132a11acdedc5c9dcd80d83fba5",
+    "source-snapshot/godsat/report.py": "c4032f62ba276a366b4ae3a8840ce4f5f13d80120d38ba81d197aec6af13ce62",
+    "source-snapshot/godsat/scenario.py": "e72446183ba9923a11889c9817cb1b15af4b4a3a66f02e621c2ee0681c1252b9",
+    "source-snapshot/godsat/sensorphysics.py": "c0aa81585fe6806fff767b8d692361198cd6bcb44704608384f42bced38751f9",
+    "source-snapshot/godsat/sentinel_attitude.py": "a894163d7111edbc6bbbd0c4b2df5a02b94b4063a47636738273fe4b25284a16",
+    "source-snapshot/godsat/server.py": "5fb56f7f0c0a5e52e9f49703c7a0fb9f340d9fb6906a8cda50130cee309e7ac7",
+    "source-snapshot/godsat/trajectory.py": "62159047bc9598b138224788146967c3341fef080cf5240704a72b1fbc36ff41",
+    "source-snapshot/manifest.json": "d0ff8b1d956a793034817bfea1551ec5159dd3586c9f11f497724fb4c05f4424",
+    "source-snapshot/scripts/check_baseline_training_budget.py": "17baddf3a61ef85b5584fdd2c6037e2a495bc5b82f1e49c829a63b9ec6c5eb88"
+  },
+  "scope": "Nine complete training runs, 27 development evaluations and six heuristic evaluations. Seed intervals condition on one development geometry and three training seeds; no claim of final validation, convergence, original equivalence or physical calibration."
+}
