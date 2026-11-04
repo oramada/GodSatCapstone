@@ -1,0 +1,9 @@
+{
+  "portable_tests_passed": 141,
+  "portable_tests_skipped": 2,
+  "wheel_built": true,
+  "ground_frame_elevation_audit": "scenario-audit.json",
+  "statistical_audit": "independent-statistics-audit.json",
+  "training_replays": "training-signature-audit.json",
+  "scope": "Numerical simulation rerun with hypothetical ground sensors and fixed 40-episode training, not operational calibration or convergence."
+}

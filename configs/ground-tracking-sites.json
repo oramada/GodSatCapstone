@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "role": "hypothetical_ground_tracking_sensors",
+  "sites": [
+    {
+      "site_id": "7090",
+      "name": "Yarragadee",
+      "solutions": [
+        {
+          "solution": 1,
+          "start": "1983-01-11T19:39:33+00:00",
+          "end": null,
+          "reference_epoch": "2015-01-01T00:00:00+00:00",
+          "xyz_m": [
+            -2389007.77005032,
+            5043329.48581405,
+            -3078523.97088064
+          ],
+          "velocity_m_per_year": [
+            -0.0468239683104311,
+            0.00797007645988301,
+            0.0509599889854529
+          ]
+        }
+      ]
+    },
+    {
+      "site_id": "7105",
+      "name": "Greenbelt",
+      "solutions": [
+        {
+          "solution": 1,
+          "start": "1982-12-30T04:26:18+00:00",
+          "end": "2020-08-21T09:52:38+00:00",
+          "reference_epoch": "2015-01-01T00:00:00+00:00",
+          "xyz_m": [
+            1130719.36205696,
+            -4831350.57522763,
+            3994106.58447205
+          ],
+          "velocity_m_per_year": [
+            -0.0150305215554971,
+            0.000141286617254269,
+            0.00225320950383261
+          ]
+        },
+        {
+          "solution": 2,
+          "start": "2020-08-23T02:10:58+00:00",
+          "end": null,
+          "reference_epoch": "2015-01-01T00:00:00+00:00",
+          "xyz_m": [
+            1130719.3577171,
+            -4831350.57003218,
+            3994106.57919949
+          ],
+          "velocity_m_per_year": [
+            -0.0150305223826928,
+            0.000141281596750852,
+            0.00225320877712521
+          ]
+        }
+      ]
+    },
+    {
+      "site_id": "7119",
+      "name": "Haleakala",
+      "solutions": [
+        {
+          "solution": 1,
+          "start": "2006-11-05T02:00:45+00:00",
+          "end": null,
+          "reference_epoch": "2015-01-01T00:00:00+00:00",
+          "xyz_m": [
+            -5466065.62309179,
+            -2404337.71540291,
+            2242108.5531364
+          ],
+          "velocity_m_per_year": [
+            -0.0128732327825463,
+            0.0621711100789901,
+            0.0319387579011579
+          ]
+        }
+      ]
+    },
+    {
+      "site_id": "7237",
+      "name": "Changchun",
+      "solutions": [
+        {
+          "solution": 1,
+          "start": "1996-02-25T22:38:16+00:00",
+          "end": "2011-03-12T09:21:13+00:00",
+          "reference_epoch": "2015-01-01T00:00:00+00:00",
+          "xyz_m": [
+            -2674387.20125589,
+            3757189.15137639,
+            4391508.24162111
+          ],
+          "velocity_m_per_year": [
+            -0.0259817096990427,
+            -0.00893088434138234,
+            -0.00941000379059348
+          ]
+        },
+        {
+          "solution": 2,
+          "start": "2011-03-20T00:14:32+00:00",
+          "end": null,
+          "reference_epoch": "2015-01-01T00:00:00+00:00",
+          "xyz_m": [
+            -2674387.21870738,
+            3757189.14162846,
+            4391508.23959986
+          ],
+          "velocity_m_per_year": [
+            -0.0275005036684614,
+            -0.00881177916682457,
+            -0.0089640730745624
+          ]
+        }
+      ]
+    },
+    {
+      "site_id": "7501",
+      "name": "Hartebeesthoek",
+      "solutions": [
+        {
+          "solution": 1,
+          "start": "1993-06-29T16:48:40+00:00",
+          "end": "2012-04-07T21:09:20+00:00",
+          "reference_epoch": "2015-01-01T00:00:00+00:00",
+          "xyz_m": [
+            5085401.10009643,
+            2668330.4342323,
+            -2768688.58225771
+          ],
+          "velocity_m_per_year": [
+            -0.000668735019527248,
+            0.0197410487971297,
+            0.015624637437444
+          ]
+        },
+        {
+          "solution": 2,
+          "start": "2012-04-08T00:10:09+00:00",
+          "end": "2021-04-17T18:25:12+00:00",
+          "reference_epoch": "2015-01-01T00:00:00+00:00",
+          "xyz_m": [
+            5085401.09249649,
+            2668330.42953486,
+            -2768688.57437266
+          ],
+          "velocity_m_per_year": [
+            -0.000668738447142322,
+            0.0197410378798764,
+            0.0156246484759028
+          ]
+        },
+        {
+          "solution": 3,
+          "start": "2021-04-21T23:37:55+00:00",
+          "end": null,
+          "reference_epoch": "2015-01-01T00:00:00+00:00",
+          "xyz_m": [
+            5085401.08107151,
+            2668330.42048306,
+            -2768688.57012181
+          ],
+          "velocity_m_per_year": [
+            -0.000668738468500045,
+            0.0197410383485407,
+            0.0156246487169585
+          ]
+        }
+      ]
+    },
+    {
+      "site_id": "8834",
+      "name": "Wettzell",
+      "solutions": [
+        {
+          "solution": 1,
+          "start": "1990-12-31T17:38:36+00:00",
+          "end": null,
+          "reference_epoch": "2015-01-01T00:00:00+00:00",
+          "xyz_m": [
+            4075576.57277784,
+            931785.765925552,
+            4801583.75157415
+          ],
+          "velocity_m_per_year": [
+            -0.0158058457141676,
+            0.0171114025331497,
+            0.0100899851353141
+          ]
+        }
+      ]
+    }
+  ],
+  "source_url": "https://ilrs.gsfc.nasa.gov/docs/2026/SLRF2020_POS%2BVEL_2026.02.05.snx",
+  "source_sha256": "eabb7e3161ade8e8ae64698baa7617f020b9b9a3e507a5ef16abf7d02ed4a695",
+  "frame": "ITRF2020 monument positions and secular velocities",
+  "selection": "Six named globally distributed sites fixed before NEXT response inspection. No site selection based on tasking outcomes.",
+  "assumptions": "Generic sensors co-located at published monuments. Does not assert real SLR stations can acquire NEXT or supply calibrated radar/optical performance. No actual NEXT ground measurements used."
+}

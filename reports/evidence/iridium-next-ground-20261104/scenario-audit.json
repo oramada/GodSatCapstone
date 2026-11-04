@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "scenes": [
+    {
+      "date": "2022-10-15T00:00:00Z",
+      "scenario_path": "data/scenarios/b6502d2caf9f3474.npz",
+      "scenario_sha256": "df233e7147c2031f697ad1f203514a0641b975cb1179df3e72dce9607c9aab35",
+      "metadata_sha256": "bd6bada7f8d478cfaeb168e8281731c9dd386acda22aea35173d1c65a2e4ccdc",
+      "ground_position_roundtrip_max_m": 1.862645149230957e-09,
+      "elevation_sine_max_difference": 9.992007221626409e-16,
+      "target_valid_fraction": 0.9375,
+      "ground_sites": 6,
+      "target_members": 80
+    },
+    {
+      "date": "2023-10-15T00:00:00Z",
+      "scenario_path": "data/scenarios/3b8a156d0213bdd0.npz",
+      "scenario_sha256": "db2579408ff8276b56a91820e55210dab521f20be9503d18f98c7dae3a0b1596",
+      "metadata_sha256": "00f67d4004f20af421f8bf0bf5f10b075c2e2685f45955a9702c41e8e7b9ba77",
+      "ground_position_roundtrip_max_m": 9.313225746154785e-10,
+      "elevation_sine_max_difference": 9.992007221626409e-16,
+      "target_valid_fraction": 1.0,
+      "ground_sites": 6,
+      "target_members": 80
+    },
+    {
+      "date": "2024-10-15T00:00:00Z",
+      "scenario_path": "data/scenarios/d276f5439479ca9a.npz",
+      "scenario_sha256": "07d09f899aba3cc01cb741d4bfd536b7a7c2fde0a991f616f1ed60ae3d919562",
+      "metadata_sha256": "1f8cb1d3f64fd91695168dbfa422b2c68029523f22f695e9a343afda107cbd7e",
+      "ground_position_roundtrip_max_m": 1.3969838619232178e-09,
+      "elevation_sine_max_difference": 8.881784197001252e-16,
+      "target_valid_fraction": 1.0,
+      "ground_sites": 6,
+      "target_members": 80
+    },
+    {
+      "date": "2025-10-15T00:00:00Z",
+      "scenario_path": "data/scenarios/8f93473e406afff7.npz",
+      "scenario_sha256": "1d4f55bb15845e70a44e8be1ee0b3a01e014d94d963e85cb334707b4a059322a",
+      "metadata_sha256": "738254aedf58caa625e5b608104a9e2bd97d4beddd878c617cb5c8bef8c965fe",
+      "ground_position_roundtrip_max_m": 1.862645149230957e-09,
+      "elevation_sine_max_difference": 8.881784197001252e-16,
+      "target_valid_fraction": 1.0,
+      "ground_sites": 6,
+      "target_members": 80
+    },
+    {
+      "date": "2026-08-15T00:00:00Z",
+      "scenario_path": "data/scenarios/5140b457b922f5c9.npz",
+      "scenario_sha256": "e20d704e86ef65bae57635638efa51b00a49b7a38d4352de9834da1e5d15dc61",
+      "metadata_sha256": "edc3d81334540935f66daaed7f1f92a5d4ef563a180a271bca193fa43fdb2e85",
+      "ground_position_roundtrip_max_m": 1.862645149230957e-09,
+      "elevation_sine_max_difference": 1.1102230246251565e-15,
+      "target_valid_fraction": 1.0,
+      "ground_sites": 6,
+      "target_members": 80
+    },
+    {
+      "date": "2026-09-15T00:00:00Z",
+      "scenario_path": "data/scenarios/667e9f0f685157d3.npz",
+      "scenario_sha256": "89214e2918ddfd333e0dd2e5cb415b41208e4c338cc6f1aeb60c447196c68167",
+      "metadata_sha256": "5d0f20bdd1df5eeb3a0fb9de942a389b27ad0edd8cb6bb6817eac08c86ee1796",
+      "ground_position_roundtrip_max_m": 1.862645149230957e-09,
+      "elevation_sine_max_difference": 7.147060721024445e-16,
+      "target_valid_fraction": 1.0,
+      "ground_sites": 6,
+      "target_members": 80
+    }
+  ],
+  "scope": "Three sampled times per scene: all six sites and every valid target checked in an independent terrestrial frame. Full arrays hashed. Not external orbit truth or calibrated sensor validation."
+}

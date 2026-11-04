@@ -45,3 +45,20 @@ def test_environment_report_finds_downloaded_archives_in_raw_directory(tmp_path)
 
     (raw / 'tle_2022.parquet').rename(data / 'tle_2022.parquet')
     assert not environment_report({'sensor_cohort': 'current_payload'}, root=tmp_path)['archive_ready']
+
+
+def test_ground_coordinate_file_does_not_replace_required_target_history(tmp_path):
+    raw=tmp_path/'data/raw'
+    raw.mkdir(parents=True)
+    (raw/'source-manifest.json').write_text(json.dumps({'files':[]}))
+    (raw/'satcat.csv').write_text('catalog')
+    sites=tmp_path/'configs/sites.json'
+    sites.parent.mkdir()
+    sites.write_text('{}')
+    config={'sensor_cohort':'ground_sites','ground_sites':'configs/sites.json'}
+    report=environment_report(config,root=tmp_path)
+    assert report['cohort_ready']
+    assert not report['target_cohort_ready']
+    assert not report['data_ready']
+    (tmp_path/'data/iridium_next_orbit_history.parquet').touch()
+    assert environment_report(config,root=tmp_path)['data_ready']

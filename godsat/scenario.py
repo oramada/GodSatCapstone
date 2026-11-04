@@ -29,6 +29,11 @@ def cache_key(date,config,regime='leo',root=ROOT):
     policy=active_scope(root)
     if policy is not None:
         fields['active_study_scope']=policy
+    if config.get('scenario_kind'):
+        fields.update(scenario_kind=config['scenario_kind'],
+                      ground_sites_sha256=config.get('ground_sites_sha256'),
+                      ground_min_elevation_deg=config.get('ground_min_elevation_deg'),
+                      ground_geometry_version=2)
     return hashlib.sha256(json.dumps(fields,sort_keys=True).encode()).hexdigest()[:16]
 
 def replay_with_awp_model(states, source_epochs, times, step_seconds, *, third_bodies=False):
@@ -93,6 +98,9 @@ def _cache_is_cloud_placeholder(path):
 
 def prepare(date,config,root=ROOT,regime='leo'):
     permitted=validate_preparation(config,regime,root)
+    if config.get('scenario_kind') == 'ground_tracks_iridium_next_v1':
+        from .ground import prepare_ground
+        return prepare_ground(date,config,root)
     if regime not in {'leo','meo','geo','heo','all'}: raise ValueError('regime must be leo, meo, geo, heo, or all')
     propagation_model=config.get('propagation_model','sgp4')
     if propagation_model not in {'sgp4','awp_j2','awp_j2_sun_moon'}:

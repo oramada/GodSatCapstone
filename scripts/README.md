@@ -12,7 +12,7 @@ Direct paths also work, such as `python scripts/data/fetch_four_year_data.py --h
 | Group | Purpose | Examples |
 | --- | --- | --- |
 | `data/` | Download, filter, propagate, and index source inputs | `fetch_four_year_data`, `export_current`, `prepare_iridium_next_cohort` |
-| `experiments/` | Training, search, dropout, and campaign orchestration | `check_baseline_training_budget`, `run_dropout_campaign`, `run_physical_sensitivity` |
+| `experiments/` | Training, search, dropout, and campaign orchestration | `run_iridium_ground_study`, `check_baseline_training_budget`, `run_physical_sensitivity` |
 | `analysis/` | Statistics and comparisons over saved responses | `analyze_governing_design`, `analyze_dropout` |
 | `validation/` | Data audits, deterministic replays, and physical cross-checks | `audit_physical_campaign`, `validate_awp_against_ilrs` |
 | `figures/` | Figures and reports from saved evidence | `render_physical_study`, `render_study_results` |
@@ -21,7 +21,7 @@ Direct paths also work, such as `python scripts/data/fetch_four_year_data.py --h
 
 Many tools describe historical experiments. Their presence does not mean they are applicable to the current scope or runnable without their inputs. Several write output files when executed; `archive/audit` executes its historical coverage check when invoked; it is not a help-only command. Use the supported [setup guide](../docs/setup.md) first.
 
-The active scope excludes mixed-constellation tasking, and the existing orbital-only campaign is blocked while ground systems are required. Do not interpret archived configurations or output folders as completed Iridium NEXT plus ground results.
+The active scope excludes mixed-constellation tasking. The supported current runner uses ground sensors to track the pinned NEXT targets; older orbital-only tasking remains blocked. Do not interpret archived configurations or output folders as completed Iridium NEXT plus ground results.
 
 ## Which tools do I actually need?
 
@@ -33,8 +33,7 @@ For the current setup, use only:
 4. `python -m godsat doctor` — check local runtime and input availability.
 5. `python -m godsat prepare --date 2026-10-01T00:00:00Z` — prepare the restricted orbital fixture.
 
-These steps do not run a complete Iridium NEXT/ground experiment. The current
-campaign gate remains in force until the ground-system model is defined.
+These steps prepare inputs only. Run `python -m scripts.experiments.run_iridium_ground_study` for the registered factorial, validation and dropout experiment. Its [protocol](../docs/ground-rerun-protocol.md) records the simulation assumptions and budget.
 
 The other groups preserve earlier experiments, validation methods and their
 reproducibility tools. Use them only for the corresponding documented study;

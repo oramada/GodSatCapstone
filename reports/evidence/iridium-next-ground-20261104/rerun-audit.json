@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "development_models_replayed": 122,
+  "heldout_rows_replayed": 25,
+  "independent_heldout_action_reconstructions": 50,
+  "dropout_rows": 5280,
+  "independent_dropout_action_reconstructions": 88,
+  "all_pinned_next_targets_per_scene": 80,
+  "ground_sites_per_scene": 6,
+  "meo_included": false,
+  "elapsed_wall_seconds": 419.9594809329137,
+  "primary_comparisons": {
+    "custody_continuity": {
+      "paired_mean_change": 0.00025000000000001686,
+      "family_adjusted_ci": [
+        -0.002215718031692283,
+        0.0027157180316923165
+      ],
+      "relative_change_percent": 0.26109660574411553
+    },
+    "slew_energy_joules": {
+      "paired_mean_change": 0.006241543594708521,
+      "family_adjusted_ci": [
+        -0.00758192287886017,
+        0.02006501006827721
+      ],
+      "relative_change_percent": 0.8146540874533148
+    }
+  },
+  "registered_plan_sha256": "9ba818b87f5c39825f307c523f0051a7d2353682b6d17ce23fcbd22b60cc97f7",
+  "adequacy_scope": "Classical lack-of-fit diagnostics conditional on fixed development geometry/noise; independence/normality/homoscedasticity are not proved."
+}

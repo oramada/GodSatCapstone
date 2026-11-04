@@ -3,7 +3,7 @@
   "iridium_next_membership": "configs/iridium-next-membership.json",
   "iridium_next_membership_sha256": "a3dd1f719a0724cc7c645936e2d9e00a1cd1a044baad7ae57da9e08543c3a7c9",
   "ground_systems_required": true,
-  "ground_system_role": "pending_clarification",
+  "ground_system_role": "tracking_sensors",
   "optional_meo": {
     "enabled": false,
     "constellation": null,
@@ -17,5 +17,8 @@
     "debris",
     "rocket bodies"
   ],
-  "historical_results": "Preserved as previous mixed-catalogue studies, not current-scope evidence."
+  "historical_results": "Preserved as previous mixed-catalogue studies, not current-scope evidence.",
+  "ground_sites": "configs/ground-tracking-sites.json",
+  "ground_sites_sha256": "625a18d0f61f1ee8c557370e9a07136b12ae97d39aaadf43e7d09046d37e0f29",
+  "ground_role_basis": "Documented execution assumption for the user-authorized rerun; not an explicit ground-system specification or measured NEXT service."
 }

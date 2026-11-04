@@ -23,6 +23,10 @@ def runtime_provenance():
     for source in sorted((ROOT / 'godsat').glob('*.py')):
         source_digest.update(source.name.encode())
         source_digest.update(source.read_bytes())
+    try:
+        astropy_version=importlib.metadata.version('astropy')
+    except importlib.metadata.PackageNotFoundError:
+        astropy_version=None
     return {
         'godsat_factorial': importlib.metadata.version('godsat-factorial'),
         'source_sha256': source_digest.hexdigest(),
@@ -31,6 +35,7 @@ def runtime_provenance():
         'platform': platform.platform(),
         'machine': platform.machine(),
         'packages': {name: importlib.metadata.version(name) for name in package_names},
+        'astropy':astropy_version,
     }
 
 def device_provenance(config):
@@ -124,6 +129,8 @@ def cost_performance_ratios(validation):
     return result
 
 def run_treatment(name,hp,scenarios,config,folder,seed,force=False):
+    from .learning import resolved_hyperparameters
+    hp=resolved_hyperparameters(hp,config)
     path=folder/'runs'/(name+'.json');checkpoint=folder/'models'/(name+'.pt')
     runtime=runtime_provenance()
     device=device_provenance(config)
@@ -201,9 +208,25 @@ def bayesian_candidates(records,rng):
     if not np.isfinite(ei).all():return rng.uniform(-1,1,7)
     return candidates[np.argmax(ei)]
 
+
+def _treatment_job(arguments):
+    return run_treatment(*arguments)
+
+
+def treatment_batch(jobs, workers=1):
+    """Independent processes preserve per-treatment RNG state and output order."""
+    if workers == 1:
+        return [run_treatment(*job) for job in jobs]
+    import multiprocessing
+    from concurrent.futures import ProcessPoolExecutor
+    if not 1 <= workers <= 8:
+        raise ValueError('parallel_treatments must be between 1 and 8')
+    with ProcessPoolExecutor(max_workers=workers, mp_context=multiprocessing.get_context('spawn')) as executor:
+        return list(executor.map(_treatment_job, jobs))
+
 def campaign(config,folder,center_replicates=1,force=False):
     from .scope import validate_execution
-    validate_execution()
+    validate_execution(config=config)
     folder=pathlib.Path(folder);folder.mkdir(parents=True,exist_ok=True)
     response_metrics=list(dict.fromkeys(RESPONSES+config.get('additional_responses',[])))
     run_config={**config,'response_surface_center_replicates':int(center_replicates)}
@@ -216,18 +239,21 @@ def campaign(config,folder,center_replicates=1,force=False):
     scenarios['train']=scenarios.pop('training')
     scenario_sha256=scenario_fingerprint(scenarios)
     execution_config={**config,'_scenario_sha256':scenario_sha256}
-    x,order=screening(config['design_seed']);screen=[]
-    for i,row in enumerate(x): screen.append(run_treatment(f'screen_{i:02d}',decode(row),scenarios,execution_config,folder,config['training_seed'],force))
+    workers=int(config.get('parallel_treatments',1))
+    x,order=screening(config['design_seed'])
+    screen=treatment_batch([(f'screen_{i:02d}',decode(row),scenarios,execution_config,folder,config['training_seed'],force)
+                            for i,row in enumerate(x)],workers)
     design_rows=[dict(run=i,standard_order=int(order[i]),**{chr(65+j):float(v) for j,v in enumerate(row)},**decode(row)) for i,row in enumerate(x)]
     export_csv(folder/'screening_design.csv',design_rows)
     analyses={metric:screening_analysis(x,[r[metric] for r in screen]) for metric in response_metrics}
     selection=analyses['objective']['selected_indices'];write_json(folder/'screening_analysis.json',analyses)
-    local=ccd(center_replicates,config['design_seed']);responses=[];center_number=0
+    local=ccd(center_replicates,config['design_seed']);jobs=[];center_number=0
     for i,p in enumerate(local):
         full=np.zeros(7);full[selection]=p
         seed=config['training_seed']
         if np.all(p==0):seed+=center_number*7919;center_number+=1
-        responses.append(run_treatment(f'rsm_{i:02d}',decode(full),scenarios,execution_config,folder,seed,force))
+        jobs.append((f'rsm_{i:02d}',decode(full),scenarios,execution_config,folder,seed,force))
+    responses=treatment_batch(jobs,workers)
     export_csv(folder/'rsm_design.csv',[dict(run=i,x1=float(p[0]),x2=float(p[1]),x3=float(p[2]),**r['hyperparameters']) for i,(p,r) in enumerate(zip(local,responses))])
     surfaces={m:fit_surface(local,[r[m] for r in responses]) for m in response_metrics}
     write_json(folder/'response_surfaces.json',surfaces)
@@ -239,10 +265,13 @@ def campaign(config,folder,center_replicates=1,force=False):
     bo_best=max(bo,key=lambda r:r['objective'])['hyperparameters']
     configs={'baseline':config['baseline'],'doe_recommended':recommended,'bayesian_best':bo_best}
     validation=[]
+    retrains=treatment_batch([(f'validate_{label}_{seed}',hp,scenarios,execution_config,folder,seed,force)
+                             for label,hp in configs.items() for seed in config['validation_seeds']],workers)
+    retrains={r['name']:r for r in retrains}
     # Retrain from scratch for all five seeds. Test dates were never used in fitting or selection.
     for label,hp in configs.items():
         for seed in config['validation_seeds']:
-            r=run_treatment(f'validate_{label}_{seed}',hp,scenarios,execution_config,folder,seed,force)
+            r=retrains[f'validate_{label}_{seed}']
             checkpoint=folder/'models'/(r['name']+'.pt')
             from .learning import Agent
             saved=torch.load(checkpoint,map_location='cpu',weights_only=True)
@@ -313,6 +342,19 @@ def campaign(config,folder,center_replicates=1,force=False):
         'cost_performance_ratios':cost_performance_ratios(validation),
         'total_training_wall_seconds':float(sum(r['wall_seconds'] for r in all_runs)+sum(r['wall_seconds'] for r in validation if r['configuration'] in configs)),
         'published_baseline_available':False,'sensor_data_provenance':{'ground_sensor_observations':ground_observations,'ground_station_locations':ground_locations,'measured_sensor_performance':'ILRS LAGEOS-1 CRD normal-point return rates; observations are conditioned on acquired passes and do not label failed acquisitions','study_ground_data_used':False,'sensor_model':'hypothetical onboard sensors with configuration-defined detection, field of regard, slew limit, and normalized slew proxy','targets':'catalog orbital objects from the configured historical cohort; may include payloads, debris, and rocket bodies'},'limitations':['New implementation, not original GoDSAT','No catalog-wide measured sensor calibration or failed-acquisition labels','Synthetic space-to-space sensor assumptions','Slew and false-track responses are proxies','Reduced-precision historical elements','Short sampled episodes do not cover every orbit','One date per validation/test split']+(['Three center runs provide only two pure-error degrees of freedom'] if center_replicates>1 else ['One center point means no pure-error replication or formal lack-of-fit estimate'])}
+    if config.get('scenario_kind') == 'ground_tracks_iridium_next_v1':
+        result['participating_systems']={'ground_sites':config['agents'],'tracked_iridium_next_members':config['targets'],
+            'meo_included':False,'ground_role':'hypothetical tracking sensors at published monuments',
+            'scope_source':'configs/active-study-scope.json'}
+        result['sensor_data_provenance']={'ground_sensor_observations':'No measured NEXT ground observations used',
+            'ground_coordinates':config['ground_sites'],'ground_coordinates_sha256':config['ground_sites_sha256'],
+            'target_history':'Historical elements for the pinned NEXT membership only',
+            'sensor_model':'Assumed detection/clutter, elevation mask and rest-to-rest ground pointing energy'}
+        result['limitations']=['Hypothetical ground-sensor performance, not actual NEXT service or calibrated station measurements',
+            'Fixed training budget does not establish convergence','Listed spares included as targets; historical availability follows valid elements',
+            '60-second slot geometry and excluded continuous exposure/settling/weather effects',
+            'Only declared held-out dates; uncertainty is conditional on those scenes',
+            'No original published actor-critic checkpoint reproduced','Candidate recommendations require independently replicated adequacy checks']
     write_json(folder/'summary.json',result)
     from .report import generate
     generate(folder,x,screen,local,responses,analyses,surfaces,result)

@@ -8,13 +8,13 @@ Run commands from the repository root with Python 3.11 or newer. CPU is the defa
 python -m venv .venv
 # macOS/Linux: source .venv/bin/activate
 # Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install -e ".[test]"
+python -m pip install -e ".[test,ground]"
 python -m pytest -q
 python -m godsat --help
 python -m godsat doctor
 ```
 
-Additional dependencies are grouped as extras: `.[awp]` for numerical propagation, `.[telemetry]` for telemetry products, and `.[analysis]` for supplementary analysis. Some optical-image tools also require separately installed image-processing libraries; inspect their imports before use. The optional AWP submodule is obtained with `git submodule update --init vendor/AWP`.
+Additional dependencies are grouped as extras: `.[ground]` for terrestrial/celestial coordinate transforms, `.[awp]` for numerical propagation, `.[telemetry]` for telemetry products, and `.[analysis]` for supplementary analysis. Some optical-image tools also require separately installed image-processing libraries; inspect their imports before use. The optional AWP submodule is obtained with `git submodule update --init vendor/AWP`.
 
 ## Prepare historical data
 
@@ -34,9 +34,9 @@ The first tool verifies the pinned annual archives and retrieves a catalogue sna
 | Command | What success establishes | What it does not establish |
 | --- | --- | --- |
 | `python -m pytest -q` | Portable code tests pass | Research results or physical validity |
-| `python -m godsat doctor --require-data` | Configured local data files are available | Ground-system readiness or a completed study |
-| `python -m godsat prepare ...` | Restricted orbital inputs can be prepared | A full-constellation or ground-network experiment |
-| `python -m godsat campaign` | Currently rejected by the ground-system requirement | There is no supported complete hybrid run yet |
+| `python -m godsat doctor --require-data` | Configured local data files are available | Calibrated sensor performance or a completed study |
+| `python -m godsat prepare ...` | Pinned NEXT targets and six ground sites can be prepared | A completed tracking experiment |
+| `python -m godsat campaign` | Configured ground/NEXT factorial campaign can execute | Full replicated diagnostics and dropout extension; use the runner below |
 
 ## Current scenario readiness
 
@@ -44,9 +44,23 @@ The first tool verifies the pinned annual archives and retrieves a catalogue sna
 python -m godsat prepare --date 2026-10-01T00:00:00Z
 ```
 
-This prepares orbital inputs from the NEXT allowlist. It does not include ground systems or produce a completed hybrid-system experiment. The configured six-host/18-target preparation is a membership-check fixture, not a full-constellation study. See [current scope](iridium-next-ground-scope.md).
+This prepares all 80 pinned NEXT targets with six ground tracking sites. Missing historical elements stay unavailable. Ground station coordinates are published; sensor characteristics and energy are assumptions. This is not measured NEXT service performance.
 
-`python -m godsat campaign` and `dropout-study` deliberately reject an orbital-only campaign while ground systems are required. Defining the ground-system role and implementing the matching observation or link model remain necessary. MEO is disabled; GEO/HEO and mixed-catalogue preparation are excluded.
+Run the registered factorial, BO, five-seed validation, independently replicated CCD diagnostics and paired dropout study:
+
+```bash
+python -m scripts.experiments.run_iridium_ground_study \
+  --output outputs/iridium-next-ground-20261104
+```
+
+After the runner finishes, reconcile the saved statistics/training signatures and render the shareable report:
+
+```bash
+python -m scripts.validation.audit_iridium_ground_study --input outputs/iridium-next-ground-20261104
+python -m scripts.figures.render_iridium_ground_study --input outputs/iridium-next-ground-20261104
+```
+
+The runner resumes only when its registered config and source hashes match. Use a fresh output folder after changing source or configuration. The study has a fixed 40-episode training budget; it does not establish convergence. The diagnostic runs are additional to the matched 31-versus-31 search counts. MEO remains disabled. Mixed-catalogue and orbital-only tasking runners cannot bypass the active ground-system scope.
 
 ## Historical work and optional checks
 

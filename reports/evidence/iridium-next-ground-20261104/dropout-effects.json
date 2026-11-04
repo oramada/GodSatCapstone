@@ -1,0 +1,1406 @@
+[
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.0,
+    "metric": "custody_continuity",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.0,
+    "metric": "observable_custody",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.0,
+    "metric": "slew_energy_joules",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.05,
+    "metric": "custody_continuity",
+    "mean": -0.0013541666666666654,
+    "ci95": [
+      -0.001565477111706845,
+      -0.0011428562216264859
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.05,
+    "metric": "observable_custody",
+    "mean": -0.006963969132719149,
+    "ci95": [
+      -0.008107829130698614,
+      -0.005820109134739683
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.05,
+    "metric": "slew_energy_joules",
+    "mean": 0.00018971875897024813,
+    "ci95": [
+      -1.1246224621075992e-05,
+      0.00039068374256157225
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.1,
+    "metric": "custody_continuity",
+    "mean": -0.003009374999999997,
+    "ci95": [
+      -0.0033417515624301897,
+      -0.002676998437569804
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.1,
+    "metric": "observable_custody",
+    "mean": -0.014524640637140651,
+    "ci95": [
+      -0.015896883832367432,
+      -0.013152397441913868
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.1,
+    "metric": "slew_energy_joules",
+    "mean": 0.0003442147672185397,
+    "ci95": [
+      0.00011161445269206038,
+      0.000576815081745019
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.2,
+    "metric": "custody_continuity",
+    "mean": -0.006689583333333325,
+    "ci95": [
+      -0.007042795308789372,
+      -0.0063363713578772785
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.2,
+    "metric": "observable_custody",
+    "mean": -0.03213011895511898,
+    "ci95": [
+      -0.034226707379381834,
+      -0.030033530530856133
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.2,
+    "metric": "slew_energy_joules",
+    "mean": 2.2183703336353657e-05,
+    "ci95": [
+      -0.0004512748218723264,
+      0.0004956422285450337
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.4,
+    "metric": "custody_continuity",
+    "mean": -0.016797916666666655,
+    "ci95": [
+      -0.017568142306298405,
+      -0.016027691027034906
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.4,
+    "metric": "observable_custody",
+    "mean": -0.08154270521145522,
+    "ci95": [
+      -0.08679472735568786,
+      -0.07629068306722259
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.4,
+    "metric": "slew_energy_joules",
+    "mean": -0.00043590705613552605,
+    "ci95": [
+      -0.0007361679413283642,
+      -0.00013564617094268786
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.6,
+    "metric": "custody_continuity",
+    "mean": -0.03231874999999999,
+    "ci95": [
+      -0.03339910187341554,
+      -0.03123839812658445
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.6,
+    "metric": "observable_custody",
+    "mean": -0.16679802373552377,
+    "ci95": [
+      -0.17451215828497488,
+      -0.15908388918607266
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "independent",
+    "rate": 0.6,
+    "metric": "slew_energy_joules",
+    "mean": -0.00047312078340253576,
+    "ci95": [
+      -0.0007709094544972846,
+      -0.00017533211230778693
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.0,
+    "metric": "custody_continuity",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.0,
+    "metric": "observable_custody",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.0,
+    "metric": "slew_energy_joules",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.05,
+    "metric": "custody_continuity",
+    "mean": -0.0028375,
+    "ci95": [
+      -0.003592208899721818,
+      -0.0020827911002781825
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.05,
+    "metric": "observable_custody",
+    "mean": -0.01419288974913975,
+    "ci95": [
+      -0.018296095558977616,
+      -0.010089683939301885
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.05,
+    "metric": "slew_energy_joules",
+    "mean": -3.7329240691578154e-05,
+    "ci95": [
+      -0.0003161936669476565,
+      0.00024153518556450015
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.1,
+    "metric": "custody_continuity",
+    "mean": -0.00647708333333333,
+    "ci95": [
+      -0.008086247944833098,
+      -0.004867918721833563
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.1,
+    "metric": "observable_custody",
+    "mean": -0.033735547785547805,
+    "ci95": [
+      -0.04212077398990909,
+      -0.025350321581186518
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.1,
+    "metric": "slew_energy_joules",
+    "mean": -4.294374369622488e-05,
+    "ci95": [
+      -0.0003010670642835567,
+      0.00021517957689110695
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.2,
+    "metric": "custody_continuity",
+    "mean": -0.013763541666666662,
+    "ci95": [
+      -0.015726428047213213,
+      -0.011800655286120109
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.2,
+    "metric": "observable_custody",
+    "mean": -0.07217743760868763,
+    "ci95": [
+      -0.08260150830521956,
+      -0.06175336691215569
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.2,
+    "metric": "slew_energy_joules",
+    "mean": -0.0002661153695048601,
+    "ci95": [
+      -0.0005912086636011944,
+      5.897792459147412e-05
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.4,
+    "metric": "custody_continuity",
+    "mean": -0.0275375,
+    "ci95": [
+      -0.030099922068856734,
+      -0.024975077931143265
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.4,
+    "metric": "observable_custody",
+    "mean": -0.14846051564176563,
+    "ci95": [
+      -0.1628279642474409,
+      -0.13409306703609036
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.4,
+    "metric": "slew_energy_joules",
+    "mean": -0.000163245550137579,
+    "ci95": [
+      -0.0005881300247997021,
+      0.0002616389245245441
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.6,
+    "metric": "custody_continuity",
+    "mean": -0.04120833333333333,
+    "ci95": [
+      -0.04284002087330686,
+      -0.03957664579335981
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.6,
+    "metric": "observable_custody",
+    "mean": -0.22354528110778107,
+    "ci95": [
+      -0.23418276602588556,
+      -0.2129077961896766
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "baseline",
+    "mode": "burst",
+    "rate": 0.6,
+    "metric": "slew_energy_joules",
+    "mean": -0.00019824113023752805,
+    "ci95": [
+      -0.0006188343369403328,
+      0.0002223520764652767
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.0,
+    "metric": "custody_continuity",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.0,
+    "metric": "observable_custody",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.0,
+    "metric": "slew_energy_joules",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.05,
+    "metric": "custody_continuity",
+    "mean": -0.0014635416666666664,
+    "ci95": [
+      -0.001680134555188924,
+      -0.0012469487781444088
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.05,
+    "metric": "observable_custody",
+    "mean": -0.007803269878269887,
+    "ci95": [
+      -0.009073087114382221,
+      -0.006533452642157553
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.05,
+    "metric": "slew_energy_joules",
+    "mean": 6.180733671354577e-05,
+    "ci95": [
+      -6.755690576681926e-05,
+      0.00019117157919391079
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.1,
+    "metric": "custody_continuity",
+    "mean": -0.0031656249999999974,
+    "ci95": [
+      -0.003461813833298108,
+      -0.002869436166701887
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.1,
+    "metric": "observable_custody",
+    "mean": -0.015657515632515648,
+    "ci95": [
+      -0.016979987565062922,
+      -0.014335043699968374
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.1,
+    "metric": "slew_energy_joules",
+    "mean": 0.0002472293468541831,
+    "ci95": [
+      9.80380585224511e-06,
+      0.00048465488785612103
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.2,
+    "metric": "custody_continuity",
+    "mean": -0.006799999999999998,
+    "ci95": [
+      -0.0071817837062484935,
+      -0.006418216293751502
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.2,
+    "metric": "observable_custody",
+    "mean": -0.033437503931253956,
+    "ci95": [
+      -0.035634993973293394,
+      -0.03124001388921452
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.2,
+    "metric": "slew_energy_joules",
+    "mean": 0.0002775490042703266,
+    "ci95": [
+      2.4523715247307652e-05,
+      0.0005305742932933456
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.4,
+    "metric": "custody_continuity",
+    "mean": -0.016867708333333332,
+    "ci95": [
+      -0.017607374549247025,
+      -0.01612804211741964
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.4,
+    "metric": "observable_custody",
+    "mean": -0.0838290061790062,
+    "ci95": [
+      -0.08879580366840407,
+      -0.07886220868960832
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.4,
+    "metric": "slew_energy_joules",
+    "mean": 0.0001377432212029711,
+    "ci95": [
+      -0.00015133022361538042,
+      0.0004268166660213226
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.6,
+    "metric": "custody_continuity",
+    "mean": -0.03237395833333334,
+    "ci95": [
+      -0.03345042844478937,
+      -0.03129748822187731
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.6,
+    "metric": "observable_custody",
+    "mean": -0.1699672461797462,
+    "ci95": [
+      -0.17801836692701714,
+      -0.16191612543247527
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "independent",
+    "rate": 0.6,
+    "metric": "slew_energy_joules",
+    "mean": -0.00048585980294192643,
+    "ci95": [
+      -0.0007617628421280117,
+      -0.0002099567637558412
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.0,
+    "metric": "custody_continuity",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.0,
+    "metric": "observable_custody",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.0,
+    "metric": "slew_energy_joules",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.05,
+    "metric": "custody_continuity",
+    "mean": -0.002869791666666667,
+    "ci95": [
+      -0.0036348796450396278,
+      -0.0021047036882937066
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.05,
+    "metric": "observable_custody",
+    "mean": -0.014749069911569924,
+    "ci95": [
+      -0.01911769298433948,
+      -0.010380446838800367
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.05,
+    "metric": "slew_energy_joules",
+    "mean": 1.5373630183600493e-05,
+    "ci95": [
+      -2.199036935255927e-06,
+      3.294629730245691e-05
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.1,
+    "metric": "custody_continuity",
+    "mean": -0.00650625,
+    "ci95": [
+      -0.008113520470883633,
+      -0.0048989795291163665
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.1,
+    "metric": "observable_custody",
+    "mean": -0.03439997340622342,
+    "ci95": [
+      -0.04283271202534201,
+      -0.02596723478710484
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.1,
+    "metric": "slew_energy_joules",
+    "mean": -1.3867347516929307e-05,
+    "ci95": [
+      -7.914972668957264e-05,
+      5.141503165571403e-05
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.2,
+    "metric": "custody_continuity",
+    "mean": -0.013761458333333332,
+    "ci95": [
+      -0.01573682672589119,
+      -0.011786089940775474
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.2,
+    "metric": "observable_custody",
+    "mean": -0.07368816715691717,
+    "ci95": [
+      -0.08427898568861483,
+      -0.06309734862521951
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.2,
+    "metric": "slew_energy_joules",
+    "mean": -0.00011996317714673687,
+    "ci95": [
+      -0.00037364963250259954,
+      0.00013372327820912577
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.4,
+    "metric": "custody_continuity",
+    "mean": -0.027752083333333344,
+    "ci95": [
+      -0.030391499522616,
+      -0.025112667144050686
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.4,
+    "metric": "observable_custody",
+    "mean": -0.15250606384356385,
+    "ci95": [
+      -0.16709034819329802,
+      -0.1379217794938297
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.4,
+    "metric": "slew_energy_joules",
+    "mean": -0.0003425417853180174,
+    "ci95": [
+      -0.0005775120586628764,
+      -0.00010757151197315838
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.6,
+    "metric": "custody_continuity",
+    "mean": -0.04161979166666668,
+    "ci95": [
+      -0.04325073655721646,
+      -0.03998884677611691
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.6,
+    "metric": "observable_custody",
+    "mean": -0.23016222296222302,
+    "ci95": [
+      -0.2405669127862949,
+      -0.21975753313815113
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "doe_recommended",
+    "mode": "burst",
+    "rate": 0.6,
+    "metric": "slew_energy_joules",
+    "mean": -0.0006278756396836383,
+    "ci95": [
+      -0.0009735704677875283,
+      -0.00028218081157974827
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.0,
+    "metric": "custody_continuity",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.0,
+    "metric": "observable_custody",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.0,
+    "metric": "slew_energy_joules",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.05,
+    "metric": "custody_continuity",
+    "mean": -0.0022552083333333317,
+    "ci95": [
+      -0.002638515503103078,
+      -0.0018719011635635855
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.05,
+    "metric": "observable_custody",
+    "mean": -0.014582012894512903,
+    "ci95": [
+      -0.017753003293423546,
+      -0.01141102249560226
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.05,
+    "metric": "slew_energy_joules",
+    "mean": -0.00882998390867366,
+    "ci95": [
+      -0.011699900973008617,
+      -0.005960066844338702
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.1,
+    "metric": "custody_continuity",
+    "mean": -0.00475520833333333,
+    "ci95": [
+      -0.0053020481185666,
+      -0.00420836854810006
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.1,
+    "metric": "observable_custody",
+    "mean": -0.027718333749583747,
+    "ci95": [
+      -0.03114600971699566,
+      -0.024290657782171834
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.1,
+    "metric": "slew_energy_joules",
+    "mean": -0.016025366424715613,
+    "ci95": [
+      -0.020369861543625196,
+      -0.011680871305806029
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.2,
+    "metric": "custody_continuity",
+    "mean": -0.010218749999999995,
+    "ci95": [
+      -0.010945113779030381,
+      -0.00949238622096961
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.2,
+    "metric": "observable_custody",
+    "mean": -0.057051736457986446,
+    "ci95": [
+      -0.06159447353914814,
+      -0.05250899937682475
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.2,
+    "metric": "slew_energy_joules",
+    "mean": -0.034449067732025065,
+    "ci95": [
+      -0.04021112506285062,
+      -0.02868701040119951
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.4,
+    "metric": "custody_continuity",
+    "mean": -0.023890624999999988,
+    "ci95": [
+      -0.025191119043812243,
+      -0.022590130956187733
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.4,
+    "metric": "observable_custody",
+    "mean": -0.13559345399970404,
+    "ci95": [
+      -0.14429518803996863,
+      -0.12689171995943946
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.4,
+    "metric": "slew_energy_joules",
+    "mean": -0.07085201037566072,
+    "ci95": [
+      -0.07827148874672397,
+      -0.06343253200459746
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.6,
+    "metric": "custody_continuity",
+    "mean": -0.04441666666666667,
+    "ci95": [
+      -0.045926132863149574,
+      -0.04290720047018376
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.6,
+    "metric": "observable_custody",
+    "mean": -0.26409993016243016,
+    "ci95": [
+      -0.2772403221192099,
+      -0.2509595382056504
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "independent",
+    "rate": 0.6,
+    "metric": "slew_energy_joules",
+    "mean": -0.1154265264838201,
+    "ci95": [
+      -0.12221238884884182,
+      -0.10864066411879837
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.0,
+    "metric": "custody_continuity",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.0,
+    "metric": "observable_custody",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.0,
+    "metric": "slew_energy_joules",
+    "mean": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.05,
+    "metric": "custody_continuity",
+    "mean": -0.0034114583333333345,
+    "ci95": [
+      -0.00424149694972524,
+      -0.0025814197169414283
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.05,
+    "metric": "observable_custody",
+    "mean": -0.01899732212232213,
+    "ci95": [
+      -0.024185213715522534,
+      -0.013809430529121723
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.05,
+    "metric": "slew_energy_joules",
+    "mean": -0.00668826033348682,
+    "ci95": [
+      -0.009529256469146452,
+      -0.003847264197827188
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.1,
+    "metric": "custody_continuity",
+    "mean": -0.00788020833333333,
+    "ci95": [
+      -0.009881882509102878,
+      -0.005878534157563781
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.1,
+    "metric": "observable_custody",
+    "mean": -0.045845255439005445,
+    "ci95": [
+      -0.05864373275681525,
+      -0.033046778121195636
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.1,
+    "metric": "slew_energy_joules",
+    "mean": -0.01681112191947978,
+    "ci95": [
+      -0.022943701986705943,
+      -0.010678541852253615
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.2,
+    "metric": "custody_continuity",
+    "mean": -0.01699999999999999,
+    "ci95": [
+      -0.019418802699063258,
+      -0.014581197300936724
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.2,
+    "metric": "observable_custody",
+    "mean": -0.10153274618899621,
+    "ci95": [
+      -0.11737448105764306,
+      -0.08569101132034937
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.2,
+    "metric": "slew_energy_joules",
+    "mean": -0.036895113784477906,
+    "ci95": [
+      -0.04383563393830698,
+      -0.029954593630648833
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.4,
+    "metric": "custody_continuity",
+    "mean": -0.03448958333333331,
+    "ci95": [
+      -0.03789899421182364,
+      -0.03108017245484298
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.4,
+    "metric": "observable_custody",
+    "mean": -0.20951502317127316,
+    "ci95": [
+      -0.23164698269581507,
+      -0.18738306364673124
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.4,
+    "metric": "slew_energy_joules",
+    "mean": -0.07336469445419543,
+    "ci95": [
+      -0.08318267198341335,
+      -0.0635467169249775
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.6,
+    "metric": "custody_continuity",
+    "mean": -0.05316666666666666,
+    "ci95": [
+      -0.055407863095540195,
+      -0.050925470237793126
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.6,
+    "metric": "observable_custody",
+    "mean": -0.32512255337255336,
+    "ci95": [
+      -0.3419291181415324,
+      -0.30831598860357434
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  },
+  {
+    "configuration": "greedy",
+    "mode": "burst",
+    "rate": 0.6,
+    "metric": "slew_energy_joules",
+    "mean": -0.1228702763719787,
+    "ci95": [
+      -0.1320003144487601,
+      -0.1137402382951973
+    ],
+    "n": 20,
+    "scope": "Monte Carlo noise interval conditional on frozen checkpoints and two scenes; not uncertainty across training or scenario populations"
+  }
+]

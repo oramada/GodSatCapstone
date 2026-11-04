@@ -1,0 +1,197 @@
+{
+  "study": "Iridium NEXT targets observed by six hypothetical ground tracking sensors",
+  "config": {
+    "agents": 6,
+    "targets": 80,
+    "duration_minutes": 60,
+    "step_seconds": 60,
+    "max_element_age_hours": 72,
+    "max_range_km": 6000,
+    "slew_rate_deg_s": 2,
+    "field_of_regard_deg": 180,
+    "custody_seconds": 180,
+    "detection_probability": 0.98,
+    "range_detection_penalty": 0.1,
+    "stale_detection_penalty": 0.08,
+    "slew_penalty": 0.03,
+    "false_penalty": 0.2,
+    "collision_penalty": 0.1,
+    "dropout_penalty": 0.2,
+    "dropout_rates": [
+      0.0,
+      0.05,
+      0.1,
+      0.2,
+      0.4,
+      0.6
+    ],
+    "dropout_modes": [
+      "independent",
+      "burst"
+    ],
+    "dropout_regimes": [
+      "leo"
+    ],
+    "dropout_burst_persistence": 0.8,
+    "dropout_seed": 7441,
+    "dropout_model_seed": 101,
+    "training_dates": [
+      "2022-10-15T00:00:00Z",
+      "2023-10-15T00:00:00Z",
+      "2024-10-15T00:00:00Z"
+    ],
+    "validation_dates": [
+      "2025-10-15T00:00:00Z"
+    ],
+    "test_dates": [
+      "2026-08-15T00:00:00Z",
+      "2026-09-15T00:00:00Z"
+    ],
+    "baseline": {
+      "learning_rate": 0.0003,
+      "discount": 0.95,
+      "actor_width": 128,
+      "critic_depth": 3,
+      "entropy": 0.03,
+      "claim_resolution": 64,
+      "target_tau": 0.01
+    },
+    "training_episodes": 40,
+    "training_seed": 17,
+    "design_seed": 2026,
+    "validation_seeds": [
+      101,
+      211,
+      307,
+      401,
+      503
+    ],
+    "sensor_cohort": "ground_sites",
+    "target_cohort": "iridium_next",
+    "compute_device": "cpu",
+    "study_kind": "Iridium NEXT full pinned target membership observed by six hypothetical ground sensors; fixed 40-episode comparison, not convergence claim",
+    "sensor_response_model": "ground_tracking_gimbal_and_clutter_v1",
+    "gimbal_inertia_kg_m2": 2.0,
+    "gimbal_max_torque_nm": 0.02,
+    "gimbal_efficiency": 0.65,
+    "false_association_probability_per_missed_look": 0.005,
+    "assumed_host_power_watts": 50.0,
+    "additional_responses": [
+      "slew_energy_joules",
+      "false_track_rate",
+      "false_observation_rate"
+    ],
+    "gimbal_drive_power_watts": 0.05,
+    "training_regimes": [
+      "leo"
+    ],
+    "validation_regimes": [
+      "leo"
+    ],
+    "test_regimes": [
+      "leo"
+    ],
+    "ground_systems_required": true,
+    "scenario_kind": "ground_tracks_iridium_next_v1",
+    "ground_sites": "configs/ground-tracking-sites.json",
+    "ground_sites_sha256": "625a18d0f61f1ee8c557370e9a07136b12ae97d39aaadf43e7d09046d37e0f29",
+    "ground_min_elevation_deg": 10.0,
+    "fixed_critic_width": 128,
+    "parallel_treatments": 4,
+    "dropout_model_seeds": [
+      101,
+      211,
+      307,
+      401,
+      503
+    ],
+    "dropout_dates": [
+      "2026-08-15T00:00:00Z",
+      "2026-09-15T00:00:00Z"
+    ]
+  },
+  "runtime": {
+    "godsat_factorial": "0.2.0",
+    "source_sha256": "786adc6ec3799ffee66664d1c07562daf6302bedbb3034f2c80eb433e63658df",
+    "python": "3.12.12",
+    "python_implementation": "CPython",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "machine": "aarch64",
+    "packages": {
+      "duckdb": "1.5.6",
+      "matplotlib": "3.11.2",
+      "numpy": "2.5.4",
+      "pyarrow": "26.0.0",
+      "pytz": "2026.5",
+      "scipy": "1.18.1",
+      "sgp4": "2.27",
+      "torch": "2.14.1"
+    },
+    "astropy": "7.2.3"
+  },
+  "methodology_pdf_sha256": "e705ce0a7bc80496f37ab8da5a8ad9ba2cefe5619e7f530b15ecc902abb64e95",
+  "source_hashes": {
+    "godsat/__init__.py": "62e48aadaf15ae35116406723914dd197583091c6e9cfe3935741db00ed5ea61",
+    "godsat/__main__.py": "b1c844ebb273785e2e628cc7b6529c62bd0cd630895a4ea006a742e05bc7f80f",
+    "godsat/catalog_trajectory.py": "4c785b2c84a7ddc9616a822e9e77f1587fcee28db082cd4a66f322235bbf87bc",
+    "godsat/cli.py": "6a68089fc5911bbd90e759f9da24e8612b15b0405b89fd43f5c39d73deab83d5",
+    "godsat/design.py": "5f5a98f1b516fb7be2a53344f6d9d90e8f41776c67332e65f429f0aed4552fe2",
+    "godsat/diagnostics.py": "64c601834843f65ea1d7ece18020c65f71cc4e13b0bbd710e309468220341f46",
+    "godsat/dropout.py": "cd749a786720a0c14d9b0a94e189a61e91cc311dbad2d80786b072bcb55de4e3",
+    "godsat/environment.py": "399c9e33f368e9dfd11360f039f033ec26cc26dcb006558181f5493acbd03aa3",
+    "godsat/epop_attitude.py": "db8bff9a603cb3b55b0b087b7538b707317e702bed7712cd458b1713cd899f66",
+    "godsat/experiment.py": "4ab0fcbf1dde6e174dbdc68202263848365a6cccd3d89cdf0cef37b9608c5fc4",
+    "godsat/ground.py": "46de03011199bfb62e7e8ae2f58aaa79c0a8d08aaa38825a019ebcf8ee1492af",
+    "godsat/learning.py": "e383a2790c13aeee69a470794f21d7745e655fb903225df335667f5301015c0f",
+    "godsat/orbits.py": "9eb4af88a50eb98d9d844645bda3409061830724b861d360525000768900801c",
+    "godsat/report.py": "9f9b96bb581c15188a1e5de193e5a10cf6f6f6d3c8a349e7218b786bf0718b15",
+    "godsat/scenario.py": "4b470054becac860e6c9ac4a6758cbd8f98b15490d5ddfba0f5b3a7764673322",
+    "godsat/scope.py": "63edb9bdf9a543f70e0c5354f4ca513fa0c468b03ab180765475313e7490041a",
+    "godsat/sensorphysics.py": "6de1a91680c8f0b3d6f16f9b7b2b65e838084956b2007ead5f07e7f7ed87c02f",
+    "godsat/sentinel_attitude.py": "a894163d7111edbc6bbbd0c4b2df5a02b94b4063a47636738273fe4b25284a16",
+    "godsat/server.py": "5fb56f7f0c0a5e52e9f49703c7a0fb9f340d9fb6906a8cda50130cee309e7ac7",
+    "godsat/trajectory.py": "62159047bc9598b138224788146967c3341fef080cf5240704a72b1fbc36ff41"
+  },
+  "runner_sha256": "860b042b005c2d3942c7fd70b7406f62ec4c121601a187b4480ca36d37b4d9ef",
+  "screening_treatments": 16,
+  "ccd_unique_treatments": 15,
+  "bo_treatments": 31,
+  "validation_retrains": 15,
+  "independent_ccd_diagnostic_runs": 45,
+  "diagnostic_seed_rule": "120000 + 1000*point_index + replicate_index; all 45 seeds distinct",
+  "diagnostic_use": "Development-only adequacy check; never used to change the candidate using final test responses",
+  "dropout_design": {
+    "replicates": 20,
+    "rates": [
+      0.0,
+      0.05,
+      0.1,
+      0.2,
+      0.4,
+      0.6
+    ],
+    "modes": [
+      "independent",
+      "burst"
+    ],
+    "policies": [
+      "baseline",
+      "doe_recommended",
+      "greedy"
+    ],
+    "dates": [
+      "2026-08-15T00:00:00Z",
+      "2026-09-15T00:00:00Z"
+    ]
+  },
+  "primary_claims": [
+    "custody increase versus implemented reference",
+    "modeled pointing-energy reduction versus implemented reference"
+  ],
+  "multiplicity": "Two primary paired comparisons: use 97.5% intervals for each (Bonferroni family alpha .05); also retain ordinary 95% descriptive intervals",
+  "budget": "40 episodes per treatment/retrain for a finite-budget rerun; no claim of convergence. Extra diagnostics reported outside 31-versus-31 search count.",
+  "parallel_cost": "Screen/CCD/retrains use four workers; BO remains sequential. Equal trial counts are not equal elapsed compute. Report aggregate treatment wall time and actual total elapsed separately.",
+  "ground_model": "Published station monuments; hypothetical detection, clutter and gimbal. 10-degree geometric elevation cutoff, no refraction/weather/illumination. No measured NEXT observations.",
+  "position_information": "Historical ephemeris positions remain available as predicted geometry; dropout suppresses sensor returns, not the simulator truth or ephemeris features.",
+  "limits": "Two held-out one-hour scenes, 60-second geometry slots, spares as targets, missing elements remain missing. No MEO and no published neural checkpoint reproduced."
+}

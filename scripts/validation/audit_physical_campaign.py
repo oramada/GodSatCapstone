@@ -43,7 +43,8 @@ def reconstruct_trace(scenario, config, seed, trace, probability=0., mode='indep
     burst=np.random.default_rng(streams[4]).random(agents)<probability
     transitions=np.random.default_rng(streams[5]).random((steps,agents))
     clutter=np.random.default_rng(np.random.SeedSequence([seed,502183])).random((steps,agents,targets))
-    pointing=np.tile([1.,0.,0.],(agents,1))
+    ground=config.get('scenario_kind')=='ground_tracks_iridium_next_v1'
+    pointing=scenario['ground_up'][0].copy() if ground else np.tile([1.,0.,0.],(agents,1))
     true_seen=np.full(targets,-np.inf);reported_seen=true_seen.copy()
     latest_false=np.zeros(targets,bool)
     false_slots=reported_slots=false_obs=reported_obs=0
@@ -51,6 +52,9 @@ def reconstruct_trace(scenario, config, seed, trace, probability=0., mode='indep
     inertia=config['gimbal_inertia_kg_m2'];torque=config['gimbal_max_torque_nm']
     rate=np.deg2rad(config['slew_rate_deg_s']);acceleration=torque/inertia
     for index,record in enumerate(trace):
+        if ground and index:
+            rotation=scenario['itrs_to_teme'][index] @ scenario['itrs_to_teme'][index-1].T
+            pointing=pointing @ rotation.T
         if mode=='burst' and index>0:
             persistence=config.get('dropout_burst_persistence',.8)
             entry=probability*(1-persistence)/max(1-probability,1e-12)
@@ -66,6 +70,11 @@ def reconstruct_trace(scenario, config, seed, trace, probability=0., mode='indep
         mount=np.arccos(np.clip(np.sum(directions*outward[:,None],axis=-1),-1,1))
         visible=(np.isfinite(directions).all(axis=-1)&(np.linalg.norm(nearest,axis=-1)>EARTH_RADIUS+20)&
                  (distance<=config['max_range_km'])&(distance>1))
+        if ground:
+            elevation=np.sum(directions*scenario['ground_up'][index,:,None],axis=-1)
+            visible=(np.isfinite(directions).all(axis=-1)&(distance<=config['max_range_km'])&
+                     (distance>1)&(elevation>=np.sin(np.deg2rad(config['ground_min_elevation_deg']))))
+            mount=np.arccos(np.clip(elevation,-1,1))
         peak=np.minimum(np.sqrt(angle*acceleration),rate)
         ramp=peak/acceleration
         cruise=np.maximum(0,(angle-peak*ramp)/rate)

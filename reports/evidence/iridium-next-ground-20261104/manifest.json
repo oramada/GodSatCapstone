@@ -1,0 +1,127 @@
+{
+  "files": [
+    {
+      "file": "registered-plan.json",
+      "sha256": "9ba818b87f5c39825f307c523f0051a7d2353682b6d17ce23fcbd22b60cc97f7",
+      "source": "outputs/iridium-next-ground-20261104/registered-plan.json"
+    },
+    {
+      "file": "config.json",
+      "sha256": "bd8e0231254065613b1fb8d50c4d7a64934ba74490a158fb201bd2ed019cfac4",
+      "source": "outputs/iridium-next-ground-20261104/config.json"
+    },
+    {
+      "file": "summary.json",
+      "sha256": "4a2e99e71422cd2cc450e6a431646d04debea82b47bdd87c9cba5e7ddd0776e8",
+      "source": "outputs/iridium-next-ground-20261104/summary.json"
+    },
+    {
+      "file": "validation.csv",
+      "sha256": "ca40fcf5bb3f21933fac58f03f0b4b539b34791d4c01ab9727fff9c8166efde0",
+      "source": "outputs/iridium-next-ground-20261104/validation.csv"
+    },
+    {
+      "file": "responses.csv",
+      "sha256": "1986ef57b3141b74d15536b43f85efeca82f1da0ac5c739f5c05fda059963a10",
+      "source": "outputs/iridium-next-ground-20261104/responses.csv"
+    },
+    {
+      "file": "screening_design.csv",
+      "sha256": "9b9f801f56789cb7187cbbc79f65aab5151eb7a787b38c05fed2703be64fbbaa",
+      "source": "outputs/iridium-next-ground-20261104/screening_design.csv"
+    },
+    {
+      "file": "rsm_design.csv",
+      "sha256": "a10addafd8e0b9361dcae7bb0c5c5e58507613e66f9c7a3f32cab34e4f98f7a4",
+      "source": "outputs/iridium-next-ground-20261104/rsm_design.csv"
+    },
+    {
+      "file": "screening_analysis.json",
+      "sha256": "91efb8daf464aacc88d4b2cc5cbf0e1aaf9542f4538641c12856df5f5777f13f",
+      "source": "outputs/iridium-next-ground-20261104/screening_analysis.json"
+    },
+    {
+      "file": "response_surfaces.json",
+      "sha256": "20154f08a76aafd96622f8cae5c6c9e9088c2851fce08c438062772272ac9ed9",
+      "source": "outputs/iridium-next-ground-20261104/response_surfaces.json"
+    },
+    {
+      "file": "independent-ccd-adequacy.json",
+      "sha256": "179effbb4e53a47db676e8c33e65873b0490345dcaf90b4ec12b454d05fed63c",
+      "source": "outputs/iridium-next-ground-20261104/independent-ccd-adequacy.json"
+    },
+    {
+      "file": "adequacy-responses.csv",
+      "sha256": "af2650d31fbdec5823a7e82747197f26a5052aa11e1f985e7a5f8d79e8988536",
+      "source": "outputs/iridium-next-ground-20261104/adequacy-responses.csv"
+    },
+    {
+      "file": "adequacy-run-order.json",
+      "sha256": "b6868e1045643a52021a7ac1ceb50afeca6a2bc9ddc2819c58b7cfb24138c74d",
+      "source": "outputs/iridium-next-ground-20261104/adequacy-run-order.json"
+    },
+    {
+      "file": "dropout-responses.csv",
+      "sha256": "47dc7559aacd707d67f741f7646d2ff8d6c56aa9d72056ec7115546af6b49e1e",
+      "source": "outputs/iridium-next-ground-20261104/dropout-responses.csv"
+    },
+    {
+      "file": "dropout-effects.json",
+      "sha256": "4b34595a9d49a32ce91599c8a047dbc708cf23b1fcb85acca44af1ba18c3d9fe",
+      "source": "outputs/iridium-next-ground-20261104/dropout-effects.json"
+    },
+    {
+      "file": "scenario-audit.json",
+      "sha256": "127120c2433f5bbd1d9e564bcae2ae53a612616d61901c3cef5318889925eb9a",
+      "source": "outputs/iridium-next-ground-20261104/scenario-audit.json"
+    },
+    {
+      "file": "rerun-audit.json",
+      "sha256": "0d76a514123c5982ab3e98b93bb0c4ae806b4acd74acb0281904e9e6f21ae979",
+      "source": "outputs/iridium-next-ground-20261104/rerun-audit.json"
+    },
+    {
+      "file": "training-signature-audit.json",
+      "sha256": "1af97fe188ee0ec61335efdf2bcf01cf77999427e6ef67360e3945e6a97cca0f",
+      "source": "outputs/iridium-next-ground-20261104/training-signature-audit.json"
+    },
+    {
+      "file": "independent-statistics-audit.json",
+      "sha256": "a569f26afd5a60665f0c0296ae9fdec34e146a59e0b8db471c9c348fa771b8b4",
+      "source": "outputs/iridium-next-ground-20261104/independent-statistics-audit.json"
+    },
+    {
+      "file": "executed-source.tar.gz",
+      "sha256": "f9190138d814995cea2fb32e1058154d2d68d2ec029698c9cd96322b5d9a6e84",
+      "source": "Registered execution source snapshot"
+    },
+    {
+      "file": "heldout-comparison.png",
+      "sha256": "b23e094213743c022deaeeab5ad396e13f39fc209bb1336856a9b38c2b85f519",
+      "source": "Generated from audited run inputs"
+    },
+    {
+      "file": "dropout-response.png",
+      "sha256": "819feef40bc670b532cfc93aa957711edd55790318f5df974ba4276a43e5ef11",
+      "source": "Generated from audited run inputs"
+    },
+    {
+      "file": "replicated-ccd-residuals.png",
+      "sha256": "83a7826d5689ae8764e2a1411c3f61a29538168e6036126d1d95289ec84ff346",
+      "source": "Generated from audited run inputs"
+    },
+    {
+      "file": "treatment-index.json",
+      "sha256": "d2fef650192d5a99f1386e47322829d8aec581c4124c945cc445554bfcd98888",
+      "source": "Generated from audited run inputs"
+    },
+    {
+      "file": "release-checks.json",
+      "sha256": "d0f33350224f69829b60089e4348427d5bb12cbc80f7dfec966948c5e0b640bb",
+      "source": "Post-run software and publication checks"
+    }
+  ],
+  "report_sha256": "6108278bfb44bca80659ecafc9c112c53aaa983bccc87c74bc2c1363c787c886",
+  "renderer_sha256": "ddfab69a2a02d95eab4ab2bd32aecc125028d32aac608652872d86d5d1855bb7",
+  "limits": "Full trained checkpoints, raw ephemerides and most per-run histories remain local; input summaries and exact scientific source are shared."
+}

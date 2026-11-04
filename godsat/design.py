@@ -106,7 +106,7 @@ def fit_surface(x,y):
         F=max(0,sse-pure_sse)/lof_df/(pure_sse/pure_df)
         lof={'F':float(F),'p_value':float(f_distribution.sf(F,lof_df,pure_df)),
              'pure_error_df':int(pure_df),'lack_of_fit_df':int(lof_df)}
-    else:lof={'available':False,'reason':'No positive replicated pure-error estimate; a 15-run CCD has only one center observation.'}
+    else:lof={'available':False,'reason':'No positive replicated pure-error estimate or insufficient replicated points; zero-variance responses cannot support this test.'}
     return {'coefficients':beta.tolist(),'coefficient_order':['intercept','x1','x2','x3','x1_squared','x2_squared','x3_squared','x1_x2','x1_x3','x2_x3'],
         'rank':int(rank),'residual_df':int(df),'sse':sse,'rmse':float(np.sqrt(sse/df)) if df>0 else None,
         'stationary_point':stationary.tolist() if stationary is not None else None,

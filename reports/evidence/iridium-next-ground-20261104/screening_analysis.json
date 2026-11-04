@@ -1,0 +1,2090 @@
+{
+  "objective": {
+    "main_effects": {
+      "learning_rate": 0.0028671806396288017,
+      "discount": -0.0036202728730834414,
+      "actor_width": 0.004501106578261225,
+      "critic_depth": -0.004371595420298064,
+      "entropy": -0.006955613597126275,
+      "claim_resolution": -0.00602785534832324,
+      "target_tau": -0.004337589230296292
+    },
+    "selected_indices": [
+      4,
+      5,
+      2
+    ],
+    "selected_factors": [
+      "entropy",
+      "claim_resolution",
+      "actor_width"
+    ],
+    "two_factor_alias_effects": {
+      "AB": {
+        "effect": -0.0038877120427389736,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": -0.011011257600132444,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": -0.005467027896769505,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": -0.007222204327676805,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": -0.005305231627971137,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": -0.007563240724227939,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": -0.004232389004965977,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      }
+    },
+    "residual_alias_effects": {
+      "AB": {
+        "effect": -0.0038877120427389736,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": -0.011011257600132444,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": -0.005467027896769505,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": -0.007222204327676805,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": -0.005305231627971137,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": -0.007563240724227939,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": -0.004232389004965977,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      },
+      "ABG": {
+        "effect": -0.004989221374849934,
+        "aliases": [
+          "ABG",
+          "ACF",
+          "ADE",
+          "BCD",
+          "BEF",
+          "CEG",
+          "DFG",
+          "ABCDEFG"
+        ]
+      }
+    },
+    "pooled_residual_variance": 0.00017328213386708167,
+    "noise_assumption": "All eight residual alias contrasts (seven two-factor chains and one three-factor chain) are assumed inactive; no pure-error estimate. Review the complete half-normal analysis before treating this as noise.",
+    "defining_relation": [
+      "I",
+      "ABCE",
+      "ABDF",
+      "ACDG",
+      "AEFG",
+      "BCFG",
+      "BDEG",
+      "CDEF"
+    ]
+  },
+  "custody_continuity": {
+    "main_effects": {
+      "learning_rate": 0.00315104166666667,
+      "discount": -0.003984375,
+      "actor_width": 0.004817708333333328,
+      "critic_depth": -0.004713541666666652,
+      "entropy": -0.007630208333333326,
+      "claim_resolution": -0.006536458333333326,
+      "target_tau": -0.004713541666666675
+    },
+    "selected_indices": [
+      4,
+      5,
+      2
+    ],
+    "selected_factors": [
+      "entropy",
+      "claim_resolution",
+      "actor_width"
+    ],
+    "two_factor_alias_effects": {
+      "AB": {
+        "effect": -0.004244791666666671,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": -0.012005208333333323,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": -0.005911458333333347,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": -0.007890625000000005,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": -0.005755208333333329,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": -0.008203124999999993,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": -0.0046093750000000076,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      }
+    },
+    "residual_alias_effects": {
+      "AB": {
+        "effect": -0.004244791666666671,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": -0.012005208333333323,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": -0.005911458333333347,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": -0.007890625000000005,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": -0.005755208333333329,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": -0.008203124999999993,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": -0.0046093750000000076,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      },
+      "ABG": {
+        "effect": -0.0053906250000000135,
+        "aliases": [
+          "ABG",
+          "ACF",
+          "ADE",
+          "BCD",
+          "BEF",
+          "CEG",
+          "DFG",
+          "ABCDEFG"
+        ]
+      }
+    },
+    "pooled_residual_variance": 0.00020503472222222226,
+    "noise_assumption": "All eight residual alias contrasts (seven two-factor chains and one three-factor chain) are assumed inactive; no pure-error estimate. Review the complete half-normal analysis before treating this as noise.",
+    "defining_relation": [
+      "I",
+      "ABCE",
+      "ABDF",
+      "ACDG",
+      "AEFG",
+      "BCFG",
+      "BDEG",
+      "CDEF"
+    ]
+  },
+  "slew_energy_proxy": {
+    "main_effects": {
+      "learning_rate": 0.0023584816964661616,
+      "discount": -0.0026246315613774876,
+      "actor_width": 0.0024675708364874016,
+      "critic_depth": -0.001991832625370356,
+      "entropy": -0.004620574468043327,
+      "claim_resolution": -0.003487586949198951,
+      "target_tau": -0.0027284585340936023
+    },
+    "selected_indices": [
+      4,
+      5,
+      6
+    ],
+    "selected_factors": [
+      "entropy",
+      "claim_resolution",
+      "target_tau"
+    ],
+    "two_factor_alias_effects": {
+      "AB": {
+        "effect": -0.0026058569162918602,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": -0.008018636585698225,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": -0.0025983636860060014,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": -0.0046820263253532935,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": -0.002919140556065354,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": -0.004236104213493618,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": -0.0023959420504818417,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      }
+    },
+    "residual_alias_effects": {
+      "AB": {
+        "effect": -0.0026058569162918602,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": -0.008018636585698225,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": -0.0025983636860060014,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": -0.0046820263253532935,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": -0.002919140556065354,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": -0.004236104213493618,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": -0.0023959420504818417,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      },
+      "ABG": {
+        "effect": -0.0025872556012429115,
+        "aliases": [
+          "ABG",
+          "ACF",
+          "ADE",
+          "BCD",
+          "BEF",
+          "CEG",
+          "DFG",
+          "ABCDEFG"
+        ]
+      }
+    },
+    "pooled_residual_variance": 6.933113883340701e-05,
+    "noise_assumption": "All eight residual alias contrasts (seven two-factor chains and one three-factor chain) are assumed inactive; no pure-error estimate. Review the complete half-normal analysis before treating this as noise.",
+    "defining_relation": [
+      "I",
+      "ABCE",
+      "ABDF",
+      "ACDG",
+      "AEFG",
+      "BCFG",
+      "BDEG",
+      "CDEF"
+    ]
+  },
+  "false_track_proxy": {
+    "main_effects": {
+      "learning_rate": -0.0035083539585625398,
+      "discount": -0.003300988877505933,
+      "actor_width": 0.007793488594350344,
+      "critic_depth": 0.003753114618587897,
+      "entropy": -0.002909131199913051,
+      "claim_resolution": 0.007296480199668051,
+      "target_tau": 0.009875381930729763
+    },
+    "selected_indices": [
+      6,
+      2,
+      5
+    ],
+    "selected_factors": [
+      "target_tau",
+      "actor_width",
+      "claim_resolution"
+    ],
+    "two_factor_alias_effects": {
+      "AB": {
+        "effect": 0.002162539062688344,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": 0.001039823858925891,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": 0.0010321541571915553,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": 0.0024175722213274336,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": 0.003717184999901875,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": 0.005186868883910102,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": 0.0019302978684639215,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      }
+    },
+    "residual_alias_effects": {
+      "AB": {
+        "effect": 0.002162539062688344,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": 0.001039823858925891,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": 0.0010321541571915553,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": 0.0024175722213274336,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": 0.003717184999901875,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": 0.005186868883910102,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": 0.0019302978684639215,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      },
+      "ABG": {
+        "effect": 0.005372768549276315,
+        "aliases": [
+          "ABG",
+          "ACF",
+          "ADE",
+          "BCD",
+          "BEF",
+          "CEG",
+          "DFG",
+          "ABCDEFG"
+        ]
+      }
+    },
+    "pooled_residual_variance": 4.2990785696122895e-05,
+    "noise_assumption": "All eight residual alias contrasts (seven two-factor chains and one three-factor chain) are assumed inactive; no pure-error estimate. Review the complete half-normal analysis before treating this as noise.",
+    "defining_relation": [
+      "I",
+      "ABCE",
+      "ABDF",
+      "ACDG",
+      "AEFG",
+      "BCFG",
+      "BDEG",
+      "CDEF"
+    ]
+  },
+  "wall_seconds": {
+    "main_effects": {
+      "learning_rate": -0.030749898753128946,
+      "discount": 0.020118588698096573,
+      "actor_width": 0.40163948497502133,
+      "critic_depth": 0.06755940045695752,
+      "entropy": 0.0076417504460550845,
+      "claim_resolution": 0.5271207335172221,
+      "target_tau": -0.01458934327820316
+    },
+    "selected_indices": [
+      5,
+      2,
+      3
+    ],
+    "selected_factors": [
+      "claim_resolution",
+      "actor_width",
+      "critic_depth"
+    ],
+    "two_factor_alias_effects": {
+      "AB": {
+        "effect": -0.00763082125922665,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": -0.5777140994323418,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": -0.06526803347514942,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": -0.058891288470476866,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": 0.0008642339962534606,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": -0.04522675112821162,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": 0.0198981772409752,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      }
+    },
+    "residual_alias_effects": {
+      "AB": {
+        "effect": -0.00763082125922665,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": -0.5777140994323418,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": -0.06526803347514942,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": -0.058891288470476866,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": 0.0008642339962534606,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": -0.04522675112821162,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": 0.0198981772409752,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      },
+      "ABG": {
+        "effect": -0.5936755611910485,
+        "aliases": [
+          "ABG",
+          "ACF",
+          "ADE",
+          "BCD",
+          "BEF",
+          "CEG",
+          "DFG",
+          "ABCDEFG"
+        ]
+      }
+    },
+    "pooled_residual_variance": 0.34821636274923556,
+    "noise_assumption": "All eight residual alias contrasts (seven two-factor chains and one three-factor chain) are assumed inactive; no pure-error estimate. Review the complete half-normal analysis before treating this as noise.",
+    "defining_relation": [
+      "I",
+      "ABCE",
+      "ABDF",
+      "ACDG",
+      "AEFG",
+      "BCFG",
+      "BDEG",
+      "CDEF"
+    ]
+  },
+  "gpu_hours": {
+    "main_effects": {
+      "learning_rate": 0.0,
+      "discount": 0.0,
+      "actor_width": 0.0,
+      "critic_depth": 0.0,
+      "entropy": 0.0,
+      "claim_resolution": 0.0,
+      "target_tau": 0.0
+    },
+    "selected_indices": [
+      0,
+      1,
+      2
+    ],
+    "selected_factors": [
+      "learning_rate",
+      "discount",
+      "actor_width"
+    ],
+    "two_factor_alias_effects": {
+      "AB": {
+        "effect": 0.0,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": 0.0,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": 0.0,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": 0.0,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": 0.0,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": 0.0,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": 0.0,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      }
+    },
+    "residual_alias_effects": {
+      "AB": {
+        "effect": 0.0,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": 0.0,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": 0.0,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": 0.0,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": 0.0,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": 0.0,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": 0.0,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      },
+      "ABG": {
+        "effect": 0.0,
+        "aliases": [
+          "ABG",
+          "ACF",
+          "ADE",
+          "BCD",
+          "BEF",
+          "CEG",
+          "DFG",
+          "ABCDEFG"
+        ]
+      }
+    },
+    "pooled_residual_variance": 0.0,
+    "noise_assumption": "All eight residual alias contrasts (seven two-factor chains and one three-factor chain) are assumed inactive; no pure-error estimate. Review the complete half-normal analysis before treating this as noise.",
+    "defining_relation": [
+      "I",
+      "ABCE",
+      "ABDF",
+      "ACDG",
+      "AEFG",
+      "BCFG",
+      "BDEG",
+      "CDEF"
+    ]
+  },
+  "slew_energy_joules": {
+    "main_effects": {
+      "learning_rate": 0.028403839937352723,
+      "discount": -0.036432963840464364,
+      "actor_width": 0.031679958565616534,
+      "critic_depth": -0.03421599136163382,
+      "entropy": -0.06750162609413045,
+      "claim_resolution": -0.05089207887618538,
+      "target_tau": -0.037618735259832684
+    },
+    "selected_indices": [
+      4,
+      5,
+      6
+    ],
+    "selected_factors": [
+      "entropy",
+      "claim_resolution",
+      "target_tau"
+    ],
+    "two_factor_alias_effects": {
+      "AB": {
+        "effect": -0.03573027473609183,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": -0.09945718095244649,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": -0.044470814169790054,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": -0.06688383391550656,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": -0.04502578761169669,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": -0.06402841114583027,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": -0.03772215570875802,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      }
+    },
+    "residual_alias_effects": {
+      "AB": {
+        "effect": -0.03573027473609183,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": -0.09945718095244649,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": -0.044470814169790054,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": -0.06688383391550656,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": -0.04502578761169669,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": -0.06402841114583027,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": -0.03772215570875802,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      },
+      "ABG": {
+        "effect": -0.04016544447123016,
+        "aliases": [
+          "ABG",
+          "ACF",
+          "ADE",
+          "BCD",
+          "BEF",
+          "CEG",
+          "DFG",
+          "ABCDEFG"
+        ]
+      }
+    },
+    "pooled_residual_variance": 0.013391333436342856,
+    "noise_assumption": "All eight residual alias contrasts (seven two-factor chains and one three-factor chain) are assumed inactive; no pure-error estimate. Review the complete half-normal analysis before treating this as noise.",
+    "defining_relation": [
+      "I",
+      "ABCE",
+      "ABDF",
+      "ACDG",
+      "AEFG",
+      "BCFG",
+      "BDEG",
+      "CDEF"
+    ]
+  },
+  "false_track_rate": {
+    "main_effects": {
+      "learning_rate": 0.0,
+      "discount": 0.0,
+      "actor_width": 0.0,
+      "critic_depth": 0.0,
+      "entropy": 0.0,
+      "claim_resolution": 0.0,
+      "target_tau": 0.0
+    },
+    "selected_indices": [
+      0,
+      1,
+      2
+    ],
+    "selected_factors": [
+      "learning_rate",
+      "discount",
+      "actor_width"
+    ],
+    "two_factor_alias_effects": {
+      "AB": {
+        "effect": 0.0,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": 0.0,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": 0.0,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": 0.0,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": 0.0,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": 0.0,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": 0.0,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      }
+    },
+    "residual_alias_effects": {
+      "AB": {
+        "effect": 0.0,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": 0.0,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": 0.0,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": 0.0,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": 0.0,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": 0.0,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": 0.0,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      },
+      "ABG": {
+        "effect": 0.0,
+        "aliases": [
+          "ABG",
+          "ACF",
+          "ADE",
+          "BCD",
+          "BEF",
+          "CEG",
+          "DFG",
+          "ABCDEFG"
+        ]
+      }
+    },
+    "pooled_residual_variance": 0.0,
+    "noise_assumption": "All eight residual alias contrasts (seven two-factor chains and one three-factor chain) are assumed inactive; no pure-error estimate. Review the complete half-normal analysis before treating this as noise.",
+    "defining_relation": [
+      "I",
+      "ABCE",
+      "ABDF",
+      "ACDG",
+      "AEFG",
+      "BCFG",
+      "BDEG",
+      "CDEF"
+    ]
+  },
+  "false_observation_rate": {
+    "main_effects": {
+      "learning_rate": 0.0,
+      "discount": 0.0,
+      "actor_width": 0.0,
+      "critic_depth": 0.0,
+      "entropy": 0.0,
+      "claim_resolution": 0.0,
+      "target_tau": 0.0
+    },
+    "selected_indices": [
+      0,
+      1,
+      2
+    ],
+    "selected_factors": [
+      "learning_rate",
+      "discount",
+      "actor_width"
+    ],
+    "two_factor_alias_effects": {
+      "AB": {
+        "effect": 0.0,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": 0.0,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": 0.0,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": 0.0,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": 0.0,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": 0.0,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": 0.0,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      }
+    },
+    "residual_alias_effects": {
+      "AB": {
+        "effect": 0.0,
+        "aliases": [
+          "AB",
+          "CE",
+          "DF",
+          "ACFG",
+          "ADEG",
+          "BCDG",
+          "BEFG",
+          "ABCDEF"
+        ]
+      },
+      "AC": {
+        "effect": 0.0,
+        "aliases": [
+          "AC",
+          "BE",
+          "DG",
+          "ABFG",
+          "ADEF",
+          "BCDF",
+          "CEFG",
+          "ABCDEG"
+        ]
+      },
+      "AD": {
+        "effect": 0.0,
+        "aliases": [
+          "AD",
+          "BF",
+          "CG",
+          "ABEG",
+          "ACEF",
+          "BCDE",
+          "DEFG",
+          "ABCDFG"
+        ]
+      },
+      "AE": {
+        "effect": 0.0,
+        "aliases": [
+          "AE",
+          "BC",
+          "FG",
+          "ABDG",
+          "ACDF",
+          "BDEF",
+          "CDEG",
+          "ABCEFG"
+        ]
+      },
+      "AF": {
+        "effect": 0.0,
+        "aliases": [
+          "AF",
+          "BD",
+          "EG",
+          "ABCG",
+          "ACDE",
+          "BCEF",
+          "CDFG",
+          "ABDEFG"
+        ]
+      },
+      "AG": {
+        "effect": 0.0,
+        "aliases": [
+          "AG",
+          "CD",
+          "EF",
+          "ABCF",
+          "ABDE",
+          "BCEG",
+          "BDFG",
+          "ACDEFG"
+        ]
+      },
+      "BG": {
+        "effect": 0.0,
+        "aliases": [
+          "BG",
+          "CF",
+          "DE",
+          "ABCD",
+          "ABEF",
+          "ACEG",
+          "ADFG",
+          "BCDEFG"
+        ]
+      },
+      "ABG": {
+        "effect": 0.0,
+        "aliases": [
+          "ABG",
+          "ACF",
+          "ADE",
+          "BCD",
+          "BEF",
+          "CEG",
+          "DFG",
+          "ABCDEFG"
+        ]
+      }
+    },
+    "pooled_residual_variance": 0.0,
+    "noise_assumption": "All eight residual alias contrasts (seven two-factor chains and one three-factor chain) are assumed inactive; no pure-error estimate. Review the complete half-normal analysis before treating this as noise.",
+    "defining_relation": [
+      "I",
+      "ABCE",
+      "ABDF",
+      "ACDG",
+      "AEFG",
+      "BCFG",
+      "BDEG",
+      "CDEF"
+    ]
+  }
+}

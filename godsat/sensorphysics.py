@@ -133,4 +133,7 @@ def environment_class(config):
         return TaskingEnv
     if model == 'assumed_gimbal_and_clutter_v1':
         return PhysicalTaskingEnv
+    if model == 'ground_tracking_gimbal_and_clutter_v1':
+        from .ground import GroundTrackingEnv
+        return GroundTrackingEnv
     raise ValueError(f'Unknown sensor_response_model: {model}')

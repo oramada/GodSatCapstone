@@ -1,72 +1,75 @@
 # Iridium NEXT and ground systems
 
-The user restricted the participating systems on 2026-11-01 to Iridium NEXT and
-ground systems, with an optional MEO constellation. Earlier mixed-catalogue and
-LEO/MEO/GEO/HEO experiments remain preserved, but are not results for this scope.
+The current rerun tracks the full pinned Iridium NEXT membership using six
+hypothetical ground sensors. MEO is disabled. This ground-system role is an
+explicit execution assumption adopted for the requested rerun; it was not
+provided as a measured sensor specification or an author-supplied architecture.
 
-## Orbital membership
+## Participating systems
 
-The [dedicated CelesTrak NEXT group](https://celestrak.org/NORAD/elements/gp.php?GROUP=iridium-NEXT&FORMAT=json)
-was downloaded. Its 80 listed spacecraft, including spares, are pinned by exact
-NORAD IDs in `configs/iridium-next-membership.json`. This is not the broader
-Iridium group or a text search for every catalogue name containing IRIDIUM.
-Every pinned member also has payload type in the local SATCAT snapshot.
+- All 80 spacecraft in the pinned dedicated CelesTrak NEXT group, including
+  listed spares, are tracking targets. Missing historical elements remain
+  unavailable; five of the members lack elements in the earliest training scene.
+- Ground sensors are co-located at the published SLRF2020 monument positions for
+  Yarragadee, Greenbelt, Haleakala, Changchun, Hartebeesthoek and Wettzell.
+- No other LEO constellation, legacy Iridium, debris, rocket bodies, GEO or HEO
+  objects are added. No optical/radar sensor payload is assumed aboard NEXT.
+- Optional MEO requires a named constellation, pinned membership and a separate
+  configuration; it has not been selected or executed.
 
-Only these 80 objects occur in the extracted
-`data/iridium_next_orbit_history.parquet`: 290,075 historical element records.
-The file receipt records membership/source/output hashes. Current group
-membership does not prove historical operational status. In particular, the
-presence of 80 objects does not mean 80 operational sensors or establish which
-66 were operational at each epoch.
+The [NEXT membership](../configs/iridium-next-membership.json),
+[ground-coordinate definitions](../configs/ground-tracking-sites.json) and
+[active scope](../configs/active-study-scope.json) are committed. The ground
+coordinates and velocities come from the [ILRS SLRF2020 reference](https://ilrs.gsfc.nasa.gov/network/site_information/).
+These coordinates do not establish that the real stations can observe NEXT.
 
-The active rule file is `configs/active-study-scope.json`. The default scenario
-config is `configs/iridium-next-ground.json`. Until participant roles are fixed,
-both orbital host and target candidates are constrained to NEXT as a conservative
-orbital-universe limit; this is not an adopted physical sensor architecture.
-The prepared six-host/18-target arrays are a membership-check fixture, not a
-full-constellation experiment or a completed ground-network scenario.
+## Observation model
 
-Scenario preparation rejects broad cohorts, non-LEO regimes, and non-payload
-sensor-host settings under the active policy. Cached arrays are checked against
-the pinned IDs before reuse. Scope changes enter the cache key. New campaign,
-dropout, and main all-catalogue execution entry points reject orbital-only work
-while the active scope requires ground systems. Existing unscoped APIs remain
-available in archived workspaces without this active-policy file.
+Historical NEXT states use past-only SGP4 elements. Applicable station coordinate
+solutions are propagated by their published secular velocities. Geocentric ITRS
+station positions and normals are rotated into TEME with Astropy and local Earth
+orientation data. Station-solution gaps are rejected. Ground boresights rotate
+with the Earth between commands. The geometric elevation cutoff is 10 degrees.
+The [Astropy satellite-coordinate guide](https://docs.astropy.org/en/stable/coordinates/satellites.html)
+explains the TEME/ITRS convention.
 
-## Ground systems and physical roles
+Detection, clutter, slew torque/inertia, drive efficiency and power remain the
+[documented model assumptions](physical-sensor-assumptions.md). The model has no
+weather, illumination, atmospheric refraction or continuous exposure/settling
+simulation. Reported energy is modeled pointing energy, not total station or
+spacecraft consumption. No measured NEXT ground observations calibrate it.
 
-The user has been asked whether ground systems are tracking sensors or
-communications gateways, and whether NEXT is a tracked constellation or assumed
-sensor-host constellation. These roles require different observation/link
-models. No ground stations have silently been fabricated or counted as included.
+Dropout suppresses simulated sensor returns while preserving evaluation truth.
+Historical ephemeris positions remain available as geometric predictions; this
+is not a position-estimation error experiment. Independent loss and persistent
+sensor-return outages are distinct processes at the same nominal loss probability.
+Their realized accepted-look loss fractions need not be identical. Outages suppress returns while pointing commands can still consume energy; station-wide power or communication failures are not modeled.
 
-NEXT orbital positions alone do not justify treating these spacecraft as optical
-or radar observers. Aireon's documented hosted payloads receive aircraft ADS-B
-signals; their presence does not validate the earlier assumed space-to-space
-optical tasking model. See [Aireon's constellation description](https://aireon.com/iridium-constellation/).
-The existing ground reference datasets concern other missions and cannot be
-relabelled as matched NEXT observations. Integration requires explicit roles,
-site coordinates, observation/link assumptions and separate validation.
+## Execution and validation
 
-The current orbital-only campaign runner therefore fails with a clear ground-
-system requirement rather than emitting results labelled NEXT plus ground.
+The default config has six ground agents and all 80 target slots. Training uses
+three dated one-hour scenes, development selection one scene, and held-out
+validation two separate 2026 scenes. The finite 40-episode training budget does
+not establish convergence or continuous four-year operations.
 
-## Optional MEO
+The supported full runner is:
 
-MEO is disabled. No generic MEO objects, GPS, Galileo or other constellation is
-automatically added. A future extension needs a named constellation, explicit
-membership, historical elements and a compatible scenario implementation; merely
-changing the existing `regime` argument is insufficient. GEO/HEO and other LEO
-constellations are outside the requested participant scope.
+```bash
+python -m scripts.experiments.run_iridium_ground_study \
+  --output outputs/iridium-next-ground-20261104
+```
 
-## Evidence
+It registers the plan and source hashes before the experiment; runs the 16/15/31
+screen/CCD/BO comparison and five-seed retraining; adds 45 development-only CCD
+diagnostic runs with distinct seeds; and evaluates paired observation losses.
+The extra diagnostics are not hidden inside the 31-treatment search budget.
 
-The shared [scope audit](../reports/evidence/iridium-next-scope/audit.json) independently compares the raw
-NEXT list, pinned membership, SATCAT payload types, all historical object IDs,
-and every prepared fixture ID. It explicitly records that ground systems and
-MEO are not included in those arrays. No new tracking-performance claim follows
-from a membership audit.
+Frame/elevation cross-checks precede training. Saved policies are replayed, and
+selected action traces are reconstructed independently for visibility, detection,
+clutter, true custody and torque work. Actual run results and their limits are
+linked from [the results index](../reports/README.md).
 
-The focused scope/environment checks passed: 30 tests, two optional skips.
-Scope tests include legacy-Iridium rejection, MEO rejection, pin tampering,
-cache contamination and the ground-required execution gate.
+The scope gate admits only the configured ground model with matching coordinate
+pins. Older orbital-only and mixed-catalogue tasking runners remain excluded.
+Earlier membership-check fixtures and mixed-satellite results are historical
+artifacts, not performance results for this rerun.

@@ -36,7 +36,9 @@ def validate_preparation(config, regime, root=ROOT):
         return None
     if regime != 'leo':
         raise ValueError('Active study permits Iridium NEXT LEO only. Optional MEO is disabled until a named constellation and explicit membership are configured; GEO/HEO and mixed all-orbit runs are excluded.')
-    if config.get('sensor_cohort') != 'iridium_next' or config.get('target_cohort') != 'iridium_next':
+    ground = config.get('scenario_kind') == 'ground_tracks_iridium_next_v1'
+    expected_sensor = 'ground_sites' if ground else 'iridium_next'
+    if config.get('sensor_cohort') != expected_sensor or config.get('target_cohort') != 'iridium_next':
         raise ValueError('Active study requires iridium_next cohorts for orbital participants; mixed-catalogue configurations are archived and cannot be prepared as current-study scenarios.')
     if config.get('allow_non_payload_sensor_hosts', False):
         raise ValueError('Non-payload sensor hosts are outside the active study scope')
@@ -51,7 +53,19 @@ def validate_selected(ids, root=ROOT, permitted=None):
             raise ValueError(f'Orbital participants outside Iridium NEXT allowlist: {sorted(outside)}')
 
 
-def validate_execution(root=ROOT):
+def validate_execution(root=ROOT, config=None):
     policy = active_scope(root)
     if policy and policy.get('ground_systems_required'):
+        if (config and config.get('scenario_kind') == 'ground_tracks_iridium_next_v1'
+                and config.get('sensor_cohort') == 'ground_sites'
+                and config.get('target_cohort') == 'iridium_next'
+                and config.get('sensor_response_model') == 'ground_tracking_gimbal_and_clutter_v1'
+                and policy.get('ground_system_role') == 'tracking_sensors'):
+            validate_preparation(config, 'leo', root)
+            sites = Path(root)/policy['ground_sites']
+            if (hashlib.sha256(sites.read_bytes()).hexdigest() == policy['ground_sites_sha256']
+                    == config.get('ground_sites_sha256')
+                    and config.get('ground_sites') == policy['ground_sites']):
+                return
+            raise ValueError('Ground system coordinates/configuration do not match the active scope')
         raise ValueError('Current study requires ground systems. The existing orbital-only campaign runner cannot represent them. Ground-system roles and a compatible scenario implementation must be established before a new campaign; an orbital-only result must not be labeled Iridium NEXT plus ground.')

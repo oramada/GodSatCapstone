@@ -1,6 +1,6 @@
 {
   "agents": 6,
-  "targets": 18,
+  "targets": 80,
   "duration_minutes": 60,
   "step_seconds": 60,
   "max_element_age_hours": 72,
@@ -42,7 +42,8 @@
     "2025-10-15T00:00:00Z"
   ],
   "test_dates": [
-    "2026-10-01T00:00:00Z"
+    "2026-08-15T00:00:00Z",
+    "2026-09-15T00:00:00Z"
   ],
   "baseline": {
     "learning_rate": 0.0003,
@@ -63,11 +64,11 @@
     401,
     503
   ],
-  "sensor_cohort": "iridium_next",
+  "sensor_cohort": "ground_sites",
   "target_cohort": "iridium_next",
   "compute_device": "cpu",
-  "study_kind": "Iridium NEXT plus ground systems; ground role pending, orbital-only campaigns blocked",
-  "sensor_response_model": "assumed_gimbal_and_clutter_v1",
+  "study_kind": "Iridium NEXT full pinned target membership observed by six hypothetical ground sensors; fixed 40-episode comparison, not convergence claim",
+  "sensor_response_model": "ground_tracking_gimbal_and_clutter_v1",
   "gimbal_inertia_kg_m2": 2.0,
   "gimbal_max_torque_nm": 0.02,
   "gimbal_efficiency": 0.65,
@@ -88,5 +89,22 @@
   "test_regimes": [
     "leo"
   ],
-  "ground_systems_required": true
+  "ground_systems_required": true,
+  "scenario_kind": "ground_tracks_iridium_next_v1",
+  "ground_sites": "configs/ground-tracking-sites.json",
+  "ground_sites_sha256": "625a18d0f61f1ee8c557370e9a07136b12ae97d39aaadf43e7d09046d37e0f29",
+  "ground_min_elevation_deg": 10.0,
+  "fixed_critic_width": 128,
+  "parallel_treatments": 4,
+  "dropout_model_seeds": [
+    101,
+    211,
+    307,
+    401,
+    503
+  ],
+  "dropout_dates": [
+    "2026-08-15T00:00:00Z",
+    "2026-09-15T00:00:00Z"
+  ]
 }

@@ -1,0 +1,467 @@
+{
+  "status": "completed",
+  "study_kind": "Iridium NEXT full pinned target membership observed by six hypothetical ground sensors; fixed 40-episode comparison, not convergence claim",
+  "screening_runs": 16,
+  "rsm_runs": 15,
+  "bayesian_runs": 31,
+  "rsm_center_replicates": 1,
+  "rsm_augmented_for_pure_error": false,
+  "validation_retrains": 15,
+  "selected_factors": [
+    "entropy",
+    "claim_resolution",
+    "actor_width"
+  ],
+  "recommended_hyperparameters": {
+    "learning_rate": 0.000505,
+    "discount": 0.9450000000000001,
+    "actor_width": 151,
+    "critic_depth": 3,
+    "entropy": 0.009999999999999995,
+    "claim_resolution": 128,
+    "target_tau": 0.025500000000000002
+  },
+  "sensor_cohort": "ground_sites",
+  "sensor_host_status_interpretation": null,
+  "compute_device": "cpu",
+  "compute_device_requested": "cpu",
+  "device_provenance": {
+    "requested": "cpu",
+    "selected": "cpu"
+  },
+  "scenario_sha256": "7bc8466eb2e5fe92289cf4aa688b26bd16a89b0002de70c5d161fcc0644d6ef0",
+  "runtime": {
+    "godsat_factorial": "0.2.0",
+    "source_sha256": "786adc6ec3799ffee66664d1c07562daf6302bedbb3034f2c80eb433e63658df",
+    "python": "3.12.12",
+    "python_implementation": "CPython",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "machine": "aarch64",
+    "packages": {
+      "duckdb": "1.5.6",
+      "matplotlib": "3.11.2",
+      "numpy": "2.5.4",
+      "pyarrow": "26.0.0",
+      "pytz": "2026.5",
+      "scipy": "1.18.1",
+      "sgp4": "2.27",
+      "torch": "2.14.1"
+    },
+    "astropy": "7.2.3"
+  },
+  "sensor_response_model": "ground_tracking_gimbal_and_clutter_v1",
+  "additional_responses": [
+    "slew_energy_joules",
+    "false_track_rate",
+    "false_observation_rate"
+  ],
+  "total_gpu_hours": 0.0,
+  "energy_estimates_available": false,
+  "target_cohort": "iridium_next",
+  "comparison_configurations": {
+    "baseline": {
+      "learning_rate": 0.0003,
+      "discount": 0.95,
+      "actor_width": 128,
+      "critic_depth": 3,
+      "entropy": 0.03,
+      "claim_resolution": 64,
+      "target_tau": 0.01
+    },
+    "doe_recommended": {
+      "learning_rate": 0.000505,
+      "discount": 0.9450000000000001,
+      "actor_width": 151,
+      "critic_depth": 3,
+      "entropy": 0.009999999999999995,
+      "claim_resolution": 128,
+      "target_tau": 0.025500000000000002
+    },
+    "bayesian_best": {
+      "learning_rate": 0.0001557042654307214,
+      "discount": 0.9771213090291909,
+      "actor_width": 163,
+      "critic_depth": 4,
+      "entropy": 0.08600095396740964,
+      "claim_resolution": 126,
+      "target_tau": 0.009978627261980904,
+      "critic_width": 128
+    }
+  },
+  "heldout_test_dates": [
+    "2026-08-15T00:00:00Z",
+    "2026-09-15T00:00:00Z"
+  ],
+  "scenario_regimes": {
+    "training": [
+      "leo"
+    ],
+    "validation": [
+      "leo"
+    ],
+    "test": [
+      "leo"
+    ]
+  },
+  "test_summary": {
+    "baseline": {
+      "objective": {
+        "mean": 0.08809319687492194,
+        "ci95_half_width": 0.002283240296531955,
+        "n": 5
+      },
+      "custody_continuity": {
+        "mean": 0.09575,
+        "ci95_half_width": 0.0023342197281223916,
+        "n": 5
+      },
+      "slew_energy_proxy": {
+        "mean": 0.046737675329025015,
+        "ci95_half_width": 0.0011681727853239975,
+        "n": 5
+      },
+      "false_track_proxy": {
+        "mean": 0.04758237852845136,
+        "ci95_half_width": 0.006008636356382286,
+        "n": 5
+      },
+      "wall_seconds": {
+        "mean": 5.463576383329928,
+        "ci95_half_width": 0.6894267378526082,
+        "n": 5
+      },
+      "gpu_hours": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      },
+      "slew_energy_joules": {
+        "mean": 0.766158752633299,
+        "ci95_half_width": 0.006701776001000842,
+        "n": 5
+      },
+      "false_track_rate": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      },
+      "false_observation_rate": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      }
+    },
+    "doe_recommended": {
+      "objective": {
+        "mean": 0.08822526485973968,
+        "ci95_half_width": 0.0009066328192030485,
+        "n": 5
+      },
+      "custody_continuity": {
+        "mean": 0.096,
+        "ci95_half_width": 0.0009308886515436848,
+        "n": 5
+      },
+      "slew_energy_proxy": {
+        "mean": 0.04733017968515103,
+        "ci95_half_width": 0.0007317809884570479,
+        "n": 5
+      },
+      "false_track_proxy": {
+        "mean": 0.05021401645707104,
+        "ci95_half_width": 0.005775295819434696,
+        "n": 5
+      },
+      "wall_seconds": {
+        "mean": 4.7431290371343495,
+        "ci95_half_width": 0.08045634794454927,
+        "n": 5
+      },
+      "gpu_hours": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      },
+      "slew_energy_joules": {
+        "mean": 0.7724002962280075,
+        "ci95_half_width": 0.008879893767283173,
+        "n": 5
+      },
+      "false_track_rate": {
+        "mean": 0.00021645021645021645,
+        "ci95_half_width": 0.0006009621439822063,
+        "n": 5
+      },
+      "false_observation_rate": {
+        "mean": 0.0003484320557491289,
+        "ci95_half_width": 0.0009674024756786738,
+        "n": 5
+      }
+    },
+    "bayesian_best": {
+      "objective": {
+        "mean": 0.08802761813250366,
+        "ci95_half_width": 0.0016667022434665494,
+        "n": 5
+      },
+      "custody_continuity": {
+        "mean": 0.09566666666666666,
+        "ci95_half_width": 0.001828229018260424,
+        "n": 5
+      },
+      "slew_energy_proxy": {
+        "mean": 0.0462261395071019,
+        "ci95_half_width": 0.002498245923021833,
+        "n": 5
+      },
+      "false_track_proxy": {
+        "mean": 0.05420902138227812,
+        "ci95_half_width": 0.004432061842343631,
+        "n": 5
+      },
+      "wall_seconds": {
+        "mean": 4.766973081789911,
+        "ci95_half_width": 0.08126267991533802,
+        "n": 5
+      },
+      "gpu_hours": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      },
+      "slew_energy_joules": {
+        "mean": 0.7643821841350903,
+        "ci95_half_width": 0.020321712038631257,
+        "n": 5
+      },
+      "false_track_rate": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      },
+      "false_observation_rate": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      }
+    },
+    "greedy": {
+      "objective": {
+        "mean": 0.10611944722406275,
+        "ci95_half_width": 0.0010720413051023725,
+        "n": 5
+      },
+      "custody_continuity": {
+        "mean": 0.11566666666666667,
+        "ci95_half_width": 0.0010997703443813146,
+        "n": 5
+      },
+      "slew_energy_proxy": {
+        "mean": 0.06896646656874557,
+        "ci95_half_width": 0.0007629015363747103,
+        "n": 5
+      },
+      "false_track_proxy": {
+        "mean": 0.04890348847968908,
+        "ci95_half_width": 0.007820267790315177,
+        "n": 5
+      },
+      "wall_seconds": {
+        "mean": 0.17181053273379804,
+        "ci95_half_width": 0.00028137113174045675,
+        "n": 5
+      },
+      "gpu_hours": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      },
+      "slew_energy_joules": {
+        "mean": 0.9553185082301863,
+        "ci95_half_width": 0.005236987271539242,
+        "n": 5
+      },
+      "false_track_rate": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      },
+      "false_observation_rate": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      }
+    },
+    "random": {
+      "objective": {
+        "mean": 0.08157745116394946,
+        "ci95_half_width": 0.002205078141039293,
+        "n": 5
+      },
+      "custody_continuity": {
+        "mean": 0.08791666666666667,
+        "ci95_half_width": 0.002311895966244128,
+        "n": 5
+      },
+      "slew_energy_proxy": {
+        "mean": 0.04600228862485028,
+        "ci95_half_width": 0.0027437994191028625,
+        "n": 5
+      },
+      "false_track_proxy": {
+        "mean": 0.04859836764599966,
+        "ci95_half_width": 0.013284423319347063,
+        "n": 5
+      },
+      "wall_seconds": {
+        "mean": 0.16240693121217192,
+        "ci95_half_width": 0.00025236298762610693,
+        "n": 5
+      },
+      "gpu_hours": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      },
+      "slew_energy_joules": {
+        "mean": 0.634317660111701,
+        "ci95_half_width": 0.018085708646426172,
+        "n": 5
+      },
+      "false_track_rate": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      },
+      "false_observation_rate": {
+        "mean": 0.0,
+        "ci95_half_width": 0.0,
+        "n": 5
+      }
+    }
+  },
+  "paired_comparisons": {
+    "custody_continuity": {
+      "paired_mean_change": 0.00025000000000001686,
+      "paired_ci95_half_width": 0.0019585509929490345,
+      "relative_change_percent": 0.26109660574411553
+    },
+    "slew_energy_proxy": {
+      "paired_mean_change": 0.0005925043561260196,
+      "paired_ci95_half_width": 0.0017750114318959428,
+      "relative_change_percent": 1.2677232060749555
+    },
+    "false_track_proxy": {
+      "paired_mean_change": 0.0026316379286196747,
+      "paired_ci95_half_width": 0.00583187923790067,
+      "relative_change_percent": 5.530698569526371
+    },
+    "objective": {
+      "paired_mean_change": 0.00013206798481773808,
+      "paired_ci95_half_width": 0.002055260571492486,
+      "relative_change_percent": 0.14991848349568127
+    },
+    "slew_energy_joules": {
+      "paired_mean_change": 0.006241543594708521,
+      "paired_ci95_half_width": 0.010980154113251928,
+      "relative_change_percent": 0.8146540874533148
+    },
+    "false_track_rate": {
+      "paired_mean_change": 0.00021645021645021645,
+      "paired_ci95_half_width": 0.0006009621439822063,
+      "relative_change_percent": null
+    },
+    "false_observation_rate": {
+      "paired_mean_change": 0.0003484320557491289,
+      "paired_ci95_half_width": 0.0009674024756786738,
+      "relative_change_percent": null
+    }
+  },
+  "cost_performance_ratios": {
+    "baseline": {
+      "custody_per_wall_second": {
+        "mean": 0.017710240929083302,
+        "ci95_half_width": 0.0028537126465378,
+        "n": 5
+      },
+      "slew_proxy_per_wall_second": {
+        "mean": 0.008621022351908373,
+        "ci95_half_width": 0.001022650296958336,
+        "n": 5
+      }
+    },
+    "bayesian_best": {
+      "custody_per_wall_second": {
+        "mean": 0.020070648895109046,
+        "ci95_half_width": 0.0004329192880435667,
+        "n": 5
+      },
+      "slew_proxy_per_wall_second": {
+        "mean": 0.0096985455039146,
+        "ci95_half_width": 0.0005411074801580608,
+        "n": 5
+      }
+    },
+    "doe_recommended": {
+      "custody_per_wall_second": {
+        "mean": 0.020243990917217198,
+        "ci95_half_width": 0.0004992217404217949,
+        "n": 5
+      },
+      "slew_proxy_per_wall_second": {
+        "mean": 0.009980168310161788,
+        "ci95_half_width": 0.0002285681017520626,
+        "n": 5
+      }
+    },
+    "greedy": {
+      "custody_per_wall_second": {
+        "mean": 0.6732193926987087,
+        "ci95_half_width": 0.005695313030355472,
+        "n": 5
+      },
+      "slew_proxy_per_wall_second": {
+        "mean": 0.40140921066303603,
+        "ci95_half_width": 0.004251759587120866,
+        "n": 5
+      }
+    },
+    "random": {
+      "custody_per_wall_second": {
+        "mean": 0.5413454877714983,
+        "ci95_half_width": 0.014907811258463629,
+        "n": 5
+      },
+      "slew_proxy_per_wall_second": {
+        "mean": 0.28326490070162247,
+        "ci95_half_width": 0.017249321941504716,
+        "n": 5
+      }
+    }
+  },
+  "total_training_wall_seconds": 359.1954450381454,
+  "published_baseline_available": false,
+  "sensor_data_provenance": {
+    "ground_sensor_observations": "No measured NEXT ground observations used",
+    "ground_coordinates": "configs/ground-tracking-sites.json",
+    "ground_coordinates_sha256": "625a18d0f61f1ee8c557370e9a07136b12ae97d39aaadf43e7d09046d37e0f29",
+    "target_history": "Historical elements for the pinned NEXT membership only",
+    "sensor_model": "Assumed detection/clutter, elevation mask and rest-to-rest ground pointing energy"
+  },
+  "limitations": [
+    "Hypothetical ground-sensor performance, not actual NEXT service or calibrated station measurements",
+    "Fixed training budget does not establish convergence",
+    "Listed spares included as targets; historical availability follows valid elements",
+    "60-second slot geometry and excluded continuous exposure/settling/weather effects",
+    "Only declared held-out dates; uncertainty is conditional on those scenes",
+    "No original published actor-critic checkpoint reproduced",
+    "Candidate recommendations require independently replicated adequacy checks"
+  ],
+  "participating_systems": {
+    "ground_sites": 6,
+    "tracked_iridium_next_members": 80,
+    "meo_included": false,
+    "ground_role": "hypothetical tracking sensors at published monuments",
+    "scope_source": "configs/active-study-scope.json"
+  }
+}

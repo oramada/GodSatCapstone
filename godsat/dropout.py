@@ -104,7 +104,7 @@ def parse_response_row(row):
 
 def run_dropout_study(config, baseline_output, output, rates=None, replicates=20):
     from .scope import validate_execution
-    validate_execution()
+    validate_execution(config=config)
     """Evaluate a DOE-recommended policy across historical outage scenarios.
 
     This separate extension does not train dropout into the policy; it holds the

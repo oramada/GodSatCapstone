@@ -33,6 +33,7 @@ def environment_report(config, root=ROOT):
         'current_payload': root / 'data/current_payload_orbit_history.parquet',
         'current_active_payload': root / 'data/current_active_payload_orbit_history.parquet',
         'iridium_next': root / 'data/iridium_next_orbit_history.parquet',
+        'ground_sites': root / config.get('ground_sites','configs/ground-tracking-sites.json'),
         'all': None,
     }
     if cohort not in cohort_files:
@@ -41,6 +42,7 @@ def environment_report(config, root=ROOT):
     cohort_ready = all(item['size_matches'] for item in archive) if cohort == 'all' else (
         cohort_path is not None and cohort_path.is_file()
     )
+    target_ready=(root/'data/iridium_next_orbit_history.parquet').is_file() if cohort=='ground_sites' else True
     satcat = root / 'data/raw/satcat.csv'
     disk = shutil.disk_usage(root)
     requested_device = config.get('compute_device', 'cpu')
@@ -65,7 +67,8 @@ def environment_report(config, root=ROOT):
         'archive_ready': all(item['size_matches'] for item in archive),
         'catalog_snapshot_ready': satcat.is_file(),
         'cohort_ready': cohort_ready,
-        'data_ready': all(item['size_matches'] for item in archive) and satcat.is_file() and cohort_ready,
+        'target_cohort_ready':target_ready,
+        'data_ready': all(item['size_matches'] for item in archive) and satcat.is_file() and cohort_ready and target_ready,
         'data_download_bytes': sum(item['expected_bytes'] for item in archive),
         'free_disk_bytes': disk.free,
         'recommended_free_disk_bytes': 10_000_000_000,

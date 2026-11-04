@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "treatment_signatures_checked": 122,
+  "finite_episode_losses": 4880,
+  "exact_full_training_replays": [
+    "screen_00",
+    "rsm_00",
+    "validate_baseline_101"
+  ],
+  "scenario_sha256": "7bc8466eb2e5fe92289cf4aa688b26bd16a89b0002de70c5d161fcc0644d6ef0",
+  "scope": "All signatures/histories checked against registered execution inputs; three complete training trajectories and weights repeated. Not convergence."
+}

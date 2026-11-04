@@ -2,7 +2,7 @@
 
 Satellite-tasking experiments, sensor-dropout analysis, and Lean verification for the supplied [methodology paper](docs/papers/methodology.pdf).
 
-**Current scope: Iridium NEXT and ground systems.** MEO is an optional future extension and is disabled. Ground-system roles are unresolved, so the current orbital-only runner rejects a combined-study campaign. Earlier experiments used different satellite selections and do not establish results for this new scope.
+**Current scope: Iridium NEXT and ground systems.** The rerun uses a documented model in which six hypothetical ground tracking sensors observe all 80 pinned NEXT spacecraft, including listed spares. Published station coordinates determine geometry; detection and energy remain simulation assumptions. MEO is disabled. Earlier mixed-catalogue results remain separate.
 
 ## Start here
 
@@ -22,12 +22,12 @@ Use Python 3.11 or newer. From the repository root:
 python -m venv .venv
 # macOS/Linux: source .venv/bin/activate
 # Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install -e ".[test]"
+python -m pip install -e ".[test,ground]"
 python -m pytest -q
 python -m godsat doctor
 ```
 
-Tests do not require the large datasets. `doctor` reports missing local data; it does not download it or certify that the ground-system model is ready. See [setup](docs/setup.md) for data preparation and optional dependencies.
+Tests do not require the large datasets. `doctor` reports missing local data; it does not download it or validate sensor assumptions. See [setup](docs/setup.md) for data preparation and optional dependencies.
 
 ## Repository map
 

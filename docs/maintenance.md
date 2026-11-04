@@ -45,6 +45,5 @@ study. The tool index separates the short current setup from the broader researc
 tool collection. The setup guide distinguishes data availability, orbital-input
 preparation and actual campaign readiness.
 
-Remaining scientific limits are stated rather than hidden: ground-system roles
-are unresolved, MEO is disabled, published-baseline reproduction is unverified,
+Remaining scientific limits are stated rather than hidden: the subsequent NEXT rerun uses an explicit hypothetical ground-tracking role, MEO is disabled, published-baseline reproduction is unverified,
 and the draft's numerical gains have not been established.

@@ -13,6 +13,8 @@ def config(path,quick=False):
     c=json.loads(pathlib.Path(path).read_text())
     if quick:
         c.update(agents=4,targets=12,duration_minutes=20,training_episodes=4,study_kind='quick execution check')
+        if c.get('scenario_kind') == 'ground_tracks_iridium_next_v1':
+            c.update(agents=6,targets=80)
     else:c.setdefault('study_kind','research training run')
     return c
 
@@ -44,6 +46,8 @@ def main():
         if args.center_replicates<1:p.error('center-replicates must be positive')
         result=campaign(c,args.output,args.center_replicates);print(json.dumps(result,indent=2))
     elif args.command=='awp-check':
+        if c.get('scenario_kind')=='ground_tracks_iridium_next_v1' and args.norad is None:
+            p.error('Ground scenarios require --norad for an explicit Iridium NEXT target; a ground site is not an orbit-propagation initial state')
         s=load(prepare(args.date,c,regime=args.regime));times=np.arange(len(s['times']))*c['step_seconds'];
         reference_states=s['states'][:,0,:]
         if args.norad is None:

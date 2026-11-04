@@ -46,13 +46,25 @@ def _timed(function,device):
         return result,float(start.elapsed_time(end))/1000.
     return function(),0.
 
+def resolved_hyperparameters(hp, config):
+    hp = dict(hp)
+    if config.get('fixed_critic_width') is not None:
+        width = int(config['fixed_critic_width'])
+        if width <= 0 or width != config['fixed_critic_width']:
+            raise ValueError('fixed_critic_width must be a positive integer')
+        if 'critic_width' in hp and hp['critic_width'] != width:
+            raise ValueError('Checkpoint/config critic widths disagree')
+        hp['critic_width'] = width
+    return hp
+
+
 class Agent(nn.Module):
     def __init__(self,obs_dim,actions,hp):
         super().__init__();w=int(hp['actor_width'])
         self.actor=nn.Sequential(nn.Linear(obs_dim,w),nn.Tanh(),nn.Linear(w,w),nn.Tanh(),nn.Linear(w,actions))
-        layers=[];size=obs_dim*2
+        layers=[];size=obs_dim*2;cw=int(hp.get('critic_width',w))
         for _ in range(int(hp['critic_depth'])):
-            layers.extend([nn.Linear(size,w),nn.Tanh()]);size=w
+            layers.extend([nn.Linear(size,cw),nn.Tanh()]);size=cw
         self.critic=nn.Sequential(*layers,nn.Linear(size,1))
         self.target_critic=copy.deepcopy(self.critic)
         for p in self.target_critic.parameters():p.requires_grad_(False)
@@ -72,6 +84,7 @@ class Agent(nn.Module):
             for t,p in zip(self.target_critic.parameters(),self.critic.parameters()): t.lerp_(p,tau)
 
 def train(scenarios,config,hp,seed,episodes=None):
+    hp=resolved_hyperparameters(hp,config)
     device=compute_device(config)
     configure(seed,device);start=time.perf_counter();episodes=episodes or config['training_episodes']
     gpu_seconds=0.
@@ -111,13 +124,15 @@ def train(scenarios,config,hp,seed,episodes=None):
         history.append(dict(episode=episode,loss=float(loss.detach().cpu().item()),**env.metrics()))
     return model,history,time.perf_counter()-start,gpu_seconds
 
-def evaluate(model,scenarios,config,hp,seed,policy='learned',traces=False):
+def evaluate(model,scenarios,config,hp,seed,policy='learned',traces=False,
+             dropout_probability=0.,dropout_mode='independent'):
     records=[];trace_data=[]
     env_type=environment_class(config) if config.get('sensor_response_model') else TaskingEnv
     device=next(model.parameters()).device if policy=='learned' and model is not None else torch.device('cpu')
     gpu_seconds=0.
     for si,scenario in enumerate(scenarios):
-        env=env_type(scenario,config,hp['claim_resolution'],seed+si*1009)
+        env=env_type(scenario,config,hp['claim_resolution'],seed+si*1009,
+                     dropout_probability=dropout_probability,dropout_mode=dropout_mode)
         ob,mask=env.reset()
         for _ in range(env.steps):
             if policy=='learned':

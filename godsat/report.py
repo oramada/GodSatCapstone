@@ -18,6 +18,8 @@ def generate(folder,x,screen,local,responses,analyses,surfaces,summary):
         sensor_provenance=(f"**Ground-sensor data:** the workspace includes {ground_summary['raw_measurement_records']:,} ILRS LAGEOS-1 laser-ranging normal points from {ground_summary['ground_stations']} stations. These observations were not used to fit the tasking policy or dropout model. The tasking study still assumes hypothetical satellite-hosted optical/radar sensors; no catalog-wide calibration or failed-acquisition telemetry is available.")
     else:
         sensor_provenance=('**Ground-sensor data:** no ground-ranging archive was available at this run’s execution time. This study assumes hypothetical satellite-hosted optical/radar sensors; no catalog-wide calibration or failed-acquisition telemetry is available.')
+    if summary.get('participating_systems',{}).get('ground_role'):
+        sensor_provenance=('**Ground systems:** six hypothetical tracking sensors at published ILRS monument coordinates observe the full pinned Iridium NEXT target membership. Detection, clutter and pointing energy are assumptions. No measured NEXT station observations or calibrated station performance are used. MEO is excluded.')
     effects=np.array([analyses['objective']['main_effects'][f] for f in FACTORS])
     fig,ax=plt.subplots(figsize=(10,4));ax.bar(FACTORS,effects);ax.tick_params(axis='x',rotation=25);ax.set_ylabel('Objective high-minus-low effect');fig.savefig(plots/'main_effects.png');plt.close(fig)
     absolute=np.sort(np.abs(effects));q=halfnorm.ppf((np.arange(1,len(effects)+1)-.5)/len(effects))
@@ -156,4 +158,16 @@ def generate(folder,x,screen,local,responses,analyses,surfaces,summary):
         'See design CSVs, per-run JSON metadata, model checkpoints, validation seeds, raw responses, coefficients/covariance, ANOVA, and cached scenario source epochs. The baseline is an explicitly chosen reference configuration, not the unpublished original baseline.','',
         'The full campaign completed as configured, but the results remain exploratory. Short episode windows, one date in each validation/test split, unavailable published baseline implementation/configuration, missing catalog-wide sensor calibration, and reduced-precision orbital elements limit scientific conclusions. The ILRS observations are not used as sensor-model calibration or dropout labels. Original raw TLE/OMM and representative calibrated sensor data are needed for operational claims.',
         'The independent center-point replication and lack-of-fit audit is reported separately in `outputs/all-orbits-active-hosts-center-replication/center_replication_report.md`; it rejects the quadratic fit for both objective and custody, so this campaign’s fitted optimum is not accepted as validated.']
+    if summary.get('participating_systems',{}).get('ground_role'):
+        lines=['# Iridium NEXT ground-tracking campaign','',sensor_provenance,'',
+            'All 80 pinned NEXT targets and six published ground sites are included. No MEO. Missing historical states remain unavailable. Training uses three dated hours, development selection one hour, and held-out evaluation two dated hours.',
+            '','The implementation baseline is predefined; no published actor–critic checkpoint was reproduced. Forty training episodes per treatment do not establish convergence.',
+            '',f"Executed {summary['screening_runs']} screening, {summary['rsm_runs']} CCD, {summary['bayesian_runs']} BO treatments and {summary['validation_retrains']} retrains. Search budgets match treatment count, not elapsed time.",
+            '','| Policy | True custody | Modeled pointing J / ground sensor-step |',
+            '| --- | ---: | ---: |']
+        for label,stats in summary['test_summary'].items():
+            lines.append(f"| {label} | {100*stats['custody_continuity']['mean']:.3f}% | {stats['slew_energy_joules']['mean']:.6f} |")
+        lines+=['','Means average the five validation seeds over the two test scenes. Raw paired effects and descriptive intervals are in summary.json and validation.csv. Energy excludes full station operating power.',
+            '','The original 15-point CCD has no pure-error estimate. Independent replicated diagnostics, final audit and dropout effects are separate outputs of run_iridium_ground_study; this primary-campaign report alone does not establish their completion.',
+            '','The manuscript’s positive numerical claims must be assessed from the actual paired effects. Nonrejection of a lack-of-fit test cannot prove adequacy or an optimal policy.']
     (folder/'report.md').write_text('\n'.join(lines)+'\n')

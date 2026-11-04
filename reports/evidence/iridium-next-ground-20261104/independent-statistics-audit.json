@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "validation_summary_statistics_checked": true,
+  "family_adjusted_primary_intervals_checked": true,
+  "dropout_rows_checked": 5280,
+  "zero_loss_cross_process_control_pairs": 440,
+  "dropout_effect_intervals_checked": 108,
+  "independent_ccd_fit_responses_checked": 4,
+  "registered_scientific_source_hashes_checked": 20,
+  "input_sha256": {
+    "registered-plan.json": "9ba818b87f5c39825f307c523f0051a7d2353682b6d17ce23fcbd22b60cc97f7",
+    "summary.json": "4a2e99e71422cd2cc450e6a431646d04debea82b47bdd87c9cba5e7ddd0776e8",
+    "validation.csv": "ca40fcf5bb3f21933fac58f03f0b4b539b34791d4c01ab9727fff9c8166efde0",
+    "dropout-responses.csv": "47dc7559aacd707d67f741f7646d2ff8d6c56aa9d72056ec7115546af6b49e1e",
+    "dropout-effects.json": "4b34595a9d49a32ce91599c8a047dbc708cf23b1fcb85acca44af1ba18c3d9fe",
+    "independent-ccd-adequacy.json": "179effbb4e53a47db676e8c33e65873b0490345dcaf90b4ec12b454d05fed63c",
+    "rerun-audit.json": "0d76a514123c5982ab3e98b93bb0c4ae806b4acd74acb0281904e9e6f21ae979",
+    "scenario-audit.json": "127120c2433f5bbd1d9e564bcae2ae53a612616d61901c3cef5318889925eb9a",
+    "training-signature-audit.json": "1af97fe188ee0ec61335efdf2bcf01cf77999427e6ef67360e3945e6a97cca0f"
+  },
+  "scope": "Source/data/statistic reconciliation, not empirical calibration, convergence, or population-wide validity."
+}
