@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>GoDSAT · Experiment Studio</title><link rel="stylesheet" href="/studio/style.css"><link rel="stylesheet" href="/studio/vendor/cesium/Widgets/widgets.css"></head>
+<body>
+<header><a class="brand" href="/">G<span>◉</span>DSAT <small>EXPERIMENT STUDIO</small></a><div class="header-right"><span class="status-dot"></span> LOCAL · READ ONLY <span id="compute-backend">Loading compute core</span></div></header>
+<main>
+<aside class="sidebar"><button class="settings-toggle" id="settings-toggle" aria-expanded="false">Scene settings <span>Layers · source</span></button><div class="sidebar-controls">
+<div class="eyebrow">WORKSPACE</div><h1>A closer look<br>at the experiment.</h1><p class="intro">Follow objects through space.<br>See what the tracker actually knows.</p>
+<div class="segmented" id="modes"><button data-mode="single" class="active">Single example</button><button data-mode="system">Whole system</button></div>
+<label class="field">Scene source<select id="source"><option value="demo">Illustrative demonstration</option></select></label>
+<label class="field">Focus object<select id="focus"></select></label>
+<div class="section-label">WORLD LAYERS <span>DISPLAY</span></div>
+<label class="toggle">Atmosphere <input type="checkbox" id="atmosphere" checked></label>
+<label class="toggle">Ionosphere <input type="checkbox" id="ionosphere"></label>
+<label class="field compact">Cloud cover<select id="clouds"><option value="natural">Texture</option><option value="clear">Clear</option><option value="dense">Overcast variant</option></select></label>
+<label class="toggle">Sun & moon <input type="checkbox" id="celestial" checked></label>
+<label class="toggle">Orbit trails <input type="checkbox" id="trails" checked></label>
+<label class="toggle">Last known position <input type="checkbox" id="ghosts" checked></label>
+<label class="field compact">Render quality<select id="quality"><option value="high">High definition</option><option value="balanced">Balanced</option></select></label>
+<p class="fine">Cloud and ionosphere layers are visual context. They do not change the detector or simulate weather, plasma, or radio propagation.</p>
+<div class="sidebar-bottom"><span class="status-dot"></span><span id="inventory-status">Discovering artifacts…</span><button id="refresh" title="Refresh artifacts">↻</button></div>
+</div></aside>
+<section class="workspace">
+<div class="scene-heading"><div><div class="eyebrow">ORBITAL OBSERVATORY <span id="source-badge">ILLUSTRATIVE</span></div><h2 id="scene-title">Loading the scene…</h2></div><button id="reset">Reset view ↗</button></div>
+<div class="scene-layout">
+<div class="globe-card"><div id="cesium-globe" aria-label="Cesium 3D Earth and satellite trajectories"></div><div class="canvas-top"><span id="frame-label">ITRS · KM</span><span>DRAG TO ORBIT · SCROLL TO ZOOM</span></div><div class="canvas-bottom"><span class="legend-dot mint"></span>Object position <span class="legend-dot amber"></span>Last sighting <span class="legend-dot red"></span>Track lost</div><div id="loading" class="loading">Preparing scene…</div><div class="celestial-note" id="celestial-note"></div><div id="engine-credits"></div></div>
+<div class="detail-card"><div class="eyebrow">TRACKER VIEW</div><h3 id="object-title">IRIDIUM 106</h3><p id="object-meta">NORAD 41917</p><div class="detail-stage"><canvas id="detail" aria-label="Spacecraft orientation and last observed track"></canvas><div id="lost-overlay" hidden>TRACK LOST<small>No current observation</small></div></div><div class="track-state"><span id="state-dot"></span><strong id="state-name">Loading</strong><span id="age">Just now</span></div><p id="state-caption">Choose a scene to inspect its observation history.</p><div class="metrics"><div><span>In custody</span><b id="custody-count">—</b></div><div><span>Targets</span><b id="object-count">—</b></div></div><p class="fine">Spacecraft enlarged. Earth-pointing pose is illustrative unless an explicit attitude adapter supplies it.</p></div>
+</div>
+<div class="timeline-card"><div class="timeline-top"><button id="play" class="play" aria-label="Play animation">▶</button><div><strong id="elapsed">00:00</strong><span id="utc">UTC</span></div><label class="speed"><select id="speed" aria-label="Playback speed"><option value=".1">Slow · 0.1 steps/s</option><option value=".35" selected>0.35 steps/s</option><option value="1">1 step/s</option><option value="3">3 steps/s</option></select></label><button id="export">Export scene ↓</button></div><input type="range" id="scrub" min="0" max="12" step=".01" value="0" aria-label="Scene timeline"><div id="timeline-events"></div><div class="timeline-labels"><span>START</span><span id="duration">12 MINUTES</span><span>END</span></div></div>
+<div class="narrative"><span id="step-number">01</span><div><strong id="step-title">A fresh observation</strong><p id="step-body">The object keeps moving even when the tracker loses sight of it.</p></div></div>
+<details class="provenance"><summary>Scene provenance & scientific limits</summary><pre id="provenance"></pre></details>
+<section class="artifact-panel"><div class="artifact-heading"><div><div class="eyebrow">EXPERIMENT LIBRARY</div><h2>Data, results & evidence</h2></div><input id="search" placeholder="Search files, formats, runs…" aria-label="Search artifacts"></div><div class="library-grid"><div class="artifact-list" id="artifacts"></div><div class="inspector"><div class="inspector-heading"><strong id="inspect-title">Select an artifact</strong><button id="load-artifact" hidden>Open as scene ↗</button></div><div id="inspect-body"><p class="fine">Inspect run summaries, response tables, trajectory arrays, attitude telemetry, source products and validation evidence. Unsupported spatial formats stay in their original representation.</p></div></div></div></section>
+</section></main><div id="toast" role="status" hidden></div><script>window.CESIUM_BASE_URL="/studio/vendor/cesium/";</script><script src="/studio/vendor/cesium/Cesium.js"></script><script type="module" src="/studio/app.js"></script></body></html>

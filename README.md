@@ -50,3 +50,7 @@ Use `python -m scripts.<group>.<tool>` for research tools. The [tool index](scri
 ## Attribution
 
 Original repository code is MIT licensed. Orbital source data, the original GoDSAT framework, and optional AWP code have separate terms. See [data sources](docs/data-sources.md), [upstream GoDSAT attribution](formal/UPSTREAM-LICENSE), and [AWP notes](docs/awp.md).
+
+## Experiment Studio
+
+Run `python -m godsat.studio --output outputs/iridium-next-ground` and open http://127.0.0.1:8765 for the 3D experiment frontend (CesiumJS globe, Rust/WebAssembly frame evaluation, one canonical visualization). Explore a single target or a full saved scene, inspect results and evidence, and replay observation loss. See [the studio guide](docs/experiment-studio.md) for data adapters, display assumptions and additional artifact roots. Both server commands open the same Studio. Older dashboard links redirect to it.

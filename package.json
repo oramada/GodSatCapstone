@@ -1,0 +1,11 @@
+{
+  "name": "godsat-experiment-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:studio": "node --test tests/web/*.test.js",
+    "build:wasm": "python3 scripts/studio/build_wasm.py",
+    "test:rust": "cargo test --manifest-path rust/studio-core/Cargo.toml",
+    "bench:compute": "node scripts/studio/benchmark_compute.mjs"
+  }
+}

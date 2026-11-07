@@ -1,0 +1,12 @@
+{
+  "crate": "godsat-studio-core",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+  "target": "wasm32-unknown-unknown",
+  "profile": "release",
+  "wasm_sha256": "5efce72e68e47c3024551c6d061124b7e8ebf1ef8c5136453093ff0b4a5e2a89",
+  "source_sha256": {
+    "rust/studio-core/Cargo.toml": "27528082fec2fa983fd5f43486842ed0b2a9637983a61671c3e589d14c9689a4",
+    "rust/studio-core/Cargo.lock": "3e1a076e5f3ea646b56aea5598934f1985823b3e85fbc03843528b8144d810fd",
+    "rust/studio-core/src/lib.rs": "4d6621cbd810212a2ed5cdd447075b6427eb5502f362a524a9d8018d96822767"
+  }
+}

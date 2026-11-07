@@ -1,0 +1,54 @@
+// Uses Cesium's maintained globe, atmosphere, materials and celestial renderers.
+// No handwritten GLSL is used in this renderer.
+import {DetailView} from './detail.js';
+import {computedPosition} from './compute.js';
+import {trackState} from './model.js';
+const C=window.Cesium;
+const radius=6378137;
+const colors={observed:'#83e3cf',stale:'#ffcf88',lost:'#ff788a',unknown:'#97adbc',unavailable:'#97adbc'};
+function color(css,alpha=1){return C.Color.fromCssColorString(css).withAlpha(alpha);}
+export class CesiumObservatory {
+ constructor(container,detail){
+  this.assetsReady=false;this.container=container;this.detail=new DetailView(detail);this.mode='single';this.generation=0;
+  this.widget=new C.CesiumWidget(container,{baseLayer:false,terrainProvider:new C.EllipsoidTerrainProvider(),useDefaultRenderLoop:false,requestRenderMode:true,contextOptions:{webgl:{alpha:true,antialias:true,preserveDrawingBuffer:false}},creditContainer:document.getElementById('engine-credits')});
+  this.scene=this.widget.scene;this.scene.backgroundColor=color('#080f19');this.scene.globe.enableLighting=true;this.scene.globe.dynamicAtmosphereLighting=true;this.scene.globe.dynamicAtmosphereLightingFromSun=true;this.scene.globe.showGroundAtmosphere=true;this.scene.globe.baseColor=color('#143342');this.scene.light=new C.SunLight({intensity:1.5});this.scene.fog.enabled=false;this.scene.highDynamicRange=true;
+  this.scene.postProcessStages.fxaa.enabled=true;
+  this.widget.clock.shouldAnimate=false;
+  this.points=this.scene.primitives.add(new C.PointPrimitiveCollection());this.labels=this.scene.primitives.add(new C.LabelCollection());this.lines=this.scene.primitives.add(new C.PolylineCollection());
+  this.ghostPoint=this.points.add({show:false,color:color('#ffcf88',.6),pixelSize:16,outlineColor:color('#ffcf88'),outlineWidth:1});
+  this.focusLabel=this.labels.add({text:'',show:false,font:'12px sans-serif',fillColor:color('#d9e7ed'),showBackground:true,backgroundColor:color('#081420',.6),pixelOffset:new C.Cartesian2(0,-35),verticalOrigin:C.VerticalOrigin.BOTTOM});
+  this.ionosphere=this.scene.primitives.add(new C.Primitive({geometryInstances:new C.GeometryInstance({geometry:new C.EllipsoidGeometry({radii:new C.Cartesian3(radius+350000,radius+350000,6356752+350000),vertexFormat:C.MaterialAppearance.MaterialSupport.TEXTURED.vertexFormat})}),appearance:new C.MaterialAppearance({material:C.Material.fromType('Grid',{color:color('#6ce0c8',.1),cellAlpha:0,lineCount:new C.Cartesian2(48,24),lineThickness:new C.Cartesian2(.5,.5)}),translucent:true,closed:true}),show:false}));
+  this.clouds=this.scene.primitives.add(new C.Primitive({geometryInstances:new C.GeometryInstance({geometry:new C.EllipsoidGeometry({radii:new C.Cartesian3(radius+12000,radius+12000,6356752+12000),vertexFormat:C.MaterialAppearance.MaterialSupport.TEXTURED.vertexFormat})}),appearance:new C.MaterialAppearance({material:C.Material.fromType('Image',{image:'/studio/assets/earth-clouds.png',color:C.Color.WHITE.withAlpha(.5),transparent:true}),translucent:true,closed:true})}));
+  C.SingleTileImageryProvider.fromUrl('/studio/assets/earth-day.jpg',{credit:'Earth imagery: Three.js example texture'}).then(provider=>{if(!this.widget.isDestroyed()){this.scene.imageryLayers.addImageryProvider(provider);this.assetsReady=true;this.scene.requestRender();}}).catch(error=>this.notify(error.message));
+  this.setQuality('high');this.observer=new ResizeObserver(()=>{this.widget.resize();this.scene.requestRender();});this.observer.observe(container);
+ }
+ get readyToDisplay(){return this.assetsReady&&this.scene.globe.tilesLoaded;}
+ notify(message){this.container.dispatchEvent(new CustomEvent('renderererror',{detail:message,bubbles:true}));}
+ setQuality(q){this.widget.resolutionScale=q==='high'?Math.min(devicePixelRatio,2):1;this.detail.setQuality(q);this.scene.requestRender();}
+ fixed(p,time){if(!p)return undefined;const v=new C.Cartesian3(p[0]*1000,p[1]*1000,p[2]*1000);if(this.data.frame==='ITRS')return v;
+  const transform=this.data.frame==='TEME'?C.CelestialFrameTransforms.computeTemeToPseudoFixedMatrix(time):C.CelestialFrameTransforms.computeIcrfToFixedMatrix(time);
+  return transform?C.Matrix3.multiplyByVector(transform,v,new C.Cartesian3()):undefined;
+ }
+ sample(object,step){const accelerated=computedPosition(this.data,object.id,step);if(accelerated!==undefined)return this.fixed(accelerated,this.widget.clock.currentTime);const i=Math.floor(step),j=Math.min(i+1,this.dates.length-1);const a=this.fixed(object.positions_km[i],this.dates[i]),b=this.fixed(object.positions_km[j],this.dates[j]);return a&&b?C.Cartesian3.lerp(a,b,step-i,new C.Cartesian3()):undefined;}
+ setScene(data,focus){this.data=data;this.focus=focus;this.generation++;const generation=this.generation;
+  this.points.removeAll();this.labels.removeAll();this.lines.removeAll();if(this.model)this.scene.primitives.remove(this.model);if(this.ghostModel)this.scene.primitives.remove(this.ghostModel);this.model=this.ghostModel=null;
+  this.dates=data.times.map(t=>C.JulianDate.fromIso8601(t));this.widget.clock.startTime=this.dates[0];this.widget.clock.stopTime=this.dates.at(-1);this.widget.clock.currentTime=this.dates[0];
+  const make=()=>{if(generation!==this.generation)return;this.items=data.objects.map(object=>({object,point:this.points.add({pixelSize:object.kind==='station'?6:7,color:color(object.kind==='station'?'#ffcf88':'#83e3cf'),outlineColor:color('#081420'),outlineWidth:1}),lines:[]}));
+   for(const item of this.items){let run=[];const flush=()=>{if(run.length>1)item.lines.push(this.lines.add({positions:run,width:1,material:C.Material.fromType('Color',{color:color('#6da2ae',.35)})}));run=[];};item.object.positions_km.forEach((p,i)=>{const v=this.fixed(p,this.dates[i]);if(v)run.push(v);else flush();});flush();}
+   this.ghostPoint=this.points.add({show:false,color:color('#ffcf88',.3),pixelSize:18,outlineColor:color('#ffcf88'),outlineWidth:2});this.focusLabel=this.labels.add({text:'',show:false,font:'12px sans-serif',fillColor:color('#d9e7ed'),showBackground:true,backgroundColor:color('#081420',.65),pixelOffset:new C.Cartesian2(0,-35),verticalOrigin:C.VerticalOrigin.BOTTOM});this.ready=true;this.setFocus(focus);this.reset();};
+  this.ready=false;this.items=[];
+  if(data.frame==='GCRS')C.CelestialFrameTransforms.preloadIcrfFixed(new C.TimeInterval({start:this.dates[0],stop:this.dates.at(-1)})).then(make).catch(e=>this.notify('Frame transform unavailable: '+e.message));else make();
+  for(const ghost of [false,true])C.Model.fromGltfAsync({url:'/studio/assets/iridium-illustrative.gltf',minimumPixelSize:ghost?40:44,maximumScale:2000000,scale:18000,show:false,upAxis:C.Axis.Z,color:ghost?color('#ffcf88',.35):C.Color.WHITE,colorBlendMode:C.ColorBlendMode.MIX,colorBlendAmount:ghost?.6:0,enableVerticalExaggeration:false}).then(model=>{if(generation!==this.generation||this.widget.isDestroyed()){model.destroy();return;}this.scene.primitives.add(model);if(ghost)this.ghostModel=model;else this.model=model;}).catch(e=>this.notify('Spacecraft model unavailable: '+e.message));
+ }
+ setFocus(id){this.focus=id;if(this.focusLabel)this.focusLabel.text=this.data?.objects.find(o=>o.id===id)?.name||'';}
+ reset(){if(!this.data)return;const object=this.data.objects.find(o=>o.id===this.focus);let extent=radius*1.15;const objects=this.mode==='single'&&object?[object]:this.data.objects;for(const o of objects)for(const p of o.positions_km)if(p)extent=Math.max(extent,Math.hypot(...p)*1000);const p=object?.positions_km.find(Boolean);const center=p?this.fixed(p,this.dates[object.positions_km.indexOf(p)]):undefined;const direction=center?C.Cartesian3.normalize(center,new C.Cartesian3()):C.Cartesian3.fromDegrees(110,-25);C.Cartesian3.normalize(direction,direction);const destination=C.Cartesian3.multiplyByScalar(direction,extent*3.4,new C.Cartesian3());this.scene.camera.setView({destination,orientation:{direction:C.Cartesian3.negate(direction,new C.Cartesian3()),up:C.Cartesian3.UNIT_Z}});this.scene.requestRender();}
+ pose(object,step,position){const i=Math.floor(step),j=Math.min(i+1,this.dates.length-1);const a=this.fixed(object.positions_km[i],this.dates[i]),b=this.fixed(object.positions_km[j],this.dates[j]);const y=C.Cartesian3.normalize(position,new C.Cartesian3());let x=a&&b?C.Cartesian3.subtract(b,a,new C.Cartesian3()):new C.Cartesian3(1,0,0);x=C.Cartesian3.subtract(x,C.Cartesian3.multiplyByScalar(y,C.Cartesian3.dot(x,y),new C.Cartesian3()),x);if(C.Cartesian3.magnitude(x)<1e-6)x=C.Cartesian3.cross(y,C.Cartesian3.UNIT_Z,x);C.Cartesian3.normalize(x,x);const z=C.Cartesian3.normalize(C.Cartesian3.cross(x,y,new C.Cartesian3()),new C.Cartesian3());return C.Matrix4.fromRotationTranslation(C.Matrix3.fromColumnMajorArray([x.x,x.y,x.z,y.x,y.y,y.z,z.x,z.y,z.z]),position);}
+ update(step,layers){if(!this.data)return;const i=Math.floor(step),j=Math.min(i+1,this.dates.length-1);this.widget.clock.currentTime=C.JulianDate.addSeconds(this.dates[i],C.JulianDate.secondsDifference(this.dates[j],this.dates[i])*(step-i),new C.JulianDate());this.scene.skyAtmosphere.show=layers.atmosphere;this.scene.globe.showGroundAtmosphere=layers.atmosphere;this.scene.sun.show=layers.celestial;this.scene.moon.show=layers.celestial;this.clouds.show=layers.clouds!=='clear';this.clouds.appearance.material.uniforms.color.alpha=layers.clouds==='dense'?.9:.45;this.ionosphere.show=layers.ionosphere;
+  for(const item of this.items){const {object,point}=item,position=this.sample(object,step),shown=this.mode==='system'||object.id===this.focus||['station','sensor'].includes(object.kind),st=trackState(this.data,object.id,step);point.show=!!position&&shown;if(position)point.position=position;point.color=color(object.kind==='station'?'#ffcf88':colors[st.state],st.state==='lost'?.25:1);for(const line of item.lines)line.show=layers.trails&&shown;}
+  const object=this.data.objects.find(o=>o.id===this.focus),position=object?this.sample(object,step):undefined,st=trackState(this.data,this.focus,step);this.focusLabel.show=!!position;if(position)this.focusLabel.position=position;
+  if(this.model){this.model.show=!!position;if(position){this.model.modelMatrix=this.pose(object,step,position);this.model.color=C.Color.WHITE.withAlpha(st.state==='lost'?.18:1);}}
+  const ghost=layers.ghosts&&st.last>=0&&st.state!=='observed'&&object?this.fixed(object.positions_km[st.last],this.dates[st.last]):undefined;this.ghostPoint.show=!!ghost;if(ghost)this.ghostPoint.position=ghost;if(this.ghostModel){this.ghostModel.show=!!ghost;if(ghost)this.ghostModel.modelMatrix=this.pose(object,st.last,ghost);}
+  this.detail.update(this.data,this.focus,step);this.scene.requestRender();this.widget.resize();this.widget.render();
+ }
+ destroy(){this.generation++;this.observer.disconnect();this.detail.destroy();this.widget.destroy();}
+}

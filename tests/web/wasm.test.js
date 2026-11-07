@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {initializeCompute,prepareScene,computeFrame,computedState,computedPosition,releaseScene} from '../../web/studio/compute.js';
+const binary=await readFile(new URL('../../web/studio/wasm/godsat_studio_core.wasm',import.meta.url));
+assert.equal(await initializeCompute(binary),true);
+const scene={times:Array.from({length:7},(_,i)=>new Date(Date.UTC(2026,0,1,0,i)).toISOString()),custody_seconds:180,objects:[{id:'1',positions_km:Array.from({length:7},(_,i)=>[7000+i,0,0])},{id:'2',positions_km:Array.from({length:7},()=>[7100,0,0])}],observations:Array.from({length:7},(_,i)=>i===5?null:{detected:i===0||i===6?['1']:[]})};
+test('compiled Rust WASM preserves custody boundary, unknown frames and reacquisition',()=>{prepareScene(scene);for(const [step,status] of [[0,'observed'],[3,'stale'],[4,'lost'],[5,'unknown'],[6,'observed']]){computeFrame(scene,step);assert.equal(computedState(scene,'1',step).state,status);}assert.equal(computedState(scene,'2',6).state,'lost');});
+test('compiled Rust interpolates coordinates and keeps missing data empty',()=>{prepareScene(scene);computeFrame(scene,.5);assert.deepEqual(computedPosition(scene,'1',.5),[7000.5,0,0]);scene.objects[0].positions_km[1]=null;prepareScene(scene);computeFrame(scene,.5);assert.equal(computedPosition(scene,'1',.5),null);computeFrame(scene,1);assert.equal(computedState(scene,'1',1).state,'unavailable');});
+test('scene buffers can be released and replaced without stale state',()=>{releaseScene();assert.equal(computeFrame(scene,0),null);prepareScene(scene);computeFrame(scene,6);assert.equal(computedState(scene,'1',6).state,'observed');releaseScene();});

@@ -33,3 +33,6 @@ dist/
 *.ckpt
 *.npz
 *.parquet
+
+# Rust build products (the checked-in WASM is the browser artifact).
+/rust/studio-core/target/

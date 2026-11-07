@@ -1,0 +1,25 @@
+{
+  "scope": "Synthetic CPU interpolation and custody evaluation; not browser FPS or end-to-end experiment speed",
+  "runtime": "v24.22.1",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cpu": "Apple M4 Pro",
+  "results": [
+    {
+      "objects": 80,
+      "frames": 600,
+      "iterations": 5000,
+      "js_median_ms": 9.358833000000004,
+      "wasm_median_ms": 4.305833000000007,
+      "ratio": 2.173524379603201
+    },
+    {
+      "objects": 2000,
+      "frames": 600,
+      "iterations": 5000,
+      "js_median_ms": 243.05275000000006,
+      "wasm_median_ms": 128.4190840000001,
+      "ratio": 1.892652886388754
+    }
+  ]
+}

@@ -1127,12 +1127,15 @@ def ztf_real_image_association_payload(root=ROOT):
 
 
 def serve(output,port):
-    output=output.resolve();web=ROOT/'web'
+    from .studio.service import StudioService
+    output=output.resolve()
+    studio=StudioService(ROOT, output)
     if output.name=='all-orbits-study':dropout_name='all-orbits-dropout-study'
     elif output.name in {'all-orbits-all-catalog-targets','all-orbits-paper-exact'}:dropout_name='all-orbits-all-catalog-targets-dropout'
     else:dropout_name='dropout-study'
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self):
+            if studio.handle(self): return
             parsed=urlsplit(self.path);path=parsed.path
             if path=='/api/current-active-snapshot':
                 try:
@@ -1244,7 +1247,7 @@ def serve(output,port):
                 except FileNotFoundError:
                     self.send_error(404,'State-vector coverage index is not available');return
                 self.send_response(200);self.send_header('Content-Type','application/json');self.send_header('Content-Length',str(len(body)));self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(body);return
-            paths={'/':(web/'index.html','text/html'),'/api/summary':(output/'summary.json','application/json'),
+            paths={'/api/summary':(output/'summary.json','application/json'),
                 '/api/config':(output/'config.json','application/json'),
                 '/api/coverage':(ROOT/'data/coverage.json','application/json'),
                 '/api/regime-coverage':(ROOT/'data/all_catalog_orbit_regime_coverage.json','application/json'),
@@ -1438,5 +1441,5 @@ def serve(output,port):
             file,mime=paths[path]
             if not file.is_file():self.send_error(404,'Run output not available yet');return
             body=file.read_bytes();self.send_response(200);self.send_header('Content-Type',mime);self.send_header('Content-Length',str(len(body)));self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(body)
-    print(f'GoDSAT dashboard: http://127.0.0.1:{port}',flush=True)
+    print(f'GoDSAT Experiment Studio: http://127.0.0.1:{port}',flush=True)
     ThreadingHTTPServer(('127.0.0.1',port),Handler).serve_forever()

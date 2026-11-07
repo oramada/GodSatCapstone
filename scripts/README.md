@@ -39,3 +39,7 @@ The other groups preserve earlier experiments, validation methods and their
 reproducibility tools. Use them only for the corresponding documented study;
 they are not extra setup steps. See the [maintenance review](../docs/maintenance.md)
 for the removal decision and the [results index](../reports/README.md) for evidence.
+
+## Studio tooling
+
+`python3 scripts/studio/build_wasm.py` rebuilds the Rust/WebAssembly frontend core. `node scripts/studio/benchmark_compute.mjs` compares packed Rust/WASM and JavaScript frame evaluation using synthetic inputs; it does not measure experiment or browser rendering performance.
