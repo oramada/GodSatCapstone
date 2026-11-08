@@ -3,8 +3,8 @@ const $=id=>document.getElementById(id);
 function el(tag,text,className){const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;}
 const date=t=>new Date(t*1000).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
 export class WorkspaceUI {
- constructor({onPage,onFilter,onScene,inspect}){
-  Object.assign(this,{onPage,onFilter,onScene,inspect,artifacts:[],groups:[],selected:null,page:'overview',comparison:0});
+ constructor({onFilter,onScene,inspect}){
+  Object.assign(this,{onFilter,onScene,inspect,artifacts:[],groups:[],selected:null,page:'overview',comparison:0});
   const setSidebar=collapsed=>{
    $('workspace-sidebar').hidden=collapsed;
    document.querySelector('main').classList.toggle('sidebar-collapsed',collapsed);
@@ -16,25 +16,24 @@ export class WorkspaceUI {
   let collapsed=false;try{collapsed=localStorage.getItem('godsat.sidebar.collapsed')==='true';}catch{}
   setSidebar(collapsed);
   $('sidebar-toggle').onclick=()=>setSidebar(!$('workspace-sidebar').hidden);
-  document.querySelectorAll('[data-page]').forEach(button=>button.addEventListener('click',()=>this.show(button.dataset.page)));
+  document.querySelectorAll('[data-page]').forEach(button=>button.addEventListener('click',()=>this.reveal(button.dataset.page)));
   $('run-search').oninput=()=>this.renderRuns();$('artifact-category').onchange=onFilter;
   $('clear-run').onclick=()=>{this.selected=null;this.renderScope();onFilter();};
   $('compare-button').onclick=()=>this.compare();
   for(const id of ['compare-a','compare-b'])$(id).onchange=()=>{++this.comparison;this.setComparing(false);$('comparison-table').replaceChildren();$('comparison-status').textContent='Selection changed. Compare products to read the selected files.';};
-  this.show('overview',{focus:false});
+  this.reveal('visualization',{focus:false});
  }
- show(page,{focus=true}={}){
-  this.page=page;for(const node of document.querySelectorAll('[data-workspace-page]'))node.hidden=node.dataset.workspacePage!==page;
-  document.querySelectorAll('.workspace-nav [data-page]').forEach(button=>{button.classList.toggle('active',button.dataset.page===page);if(button.dataset.page===page)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
-  $('visualization-controls').hidden=page!=='visualization';$('visualization-status').hidden=page!=='visualization';
-  this.onPage(page);
-  if(focus){const heading=document.querySelector(`[data-workspace-page="${page}"] h1, [data-workspace-page="${page}"] h2`);if(heading){heading.tabIndex=-1;heading.focus();}}
+ reveal(page,{focus=true}={}){
+  this.page=page;
+  const drawer=$(page+'-drawer');if(drawer)drawer.open=true;
+  if(page==='runs')$('collections-panel').open=true;
+  if(focus){const target=drawer?.querySelector('summary')||(page==='runs'?$('collections-panel').querySelector('summary'):$('scene-title'));target.tabIndex=-1;target.focus({preventScroll:true});target.scrollIntoView({block:'nearest',behavior:'auto'});}
  }
  setArtifacts(artifacts){
   this.artifacts=artifacts;this.groups=collections(artifacts);
   if(this.selected)this.selected=this.groups.find(g=>g.id===this.selected.id)||null;
   for(const [id,count] of [['stat-collections',this.groups.length],['stat-artifacts',artifacts.length],['stat-tables',artifacts.filter(a=>artifactCategory(a)==='tables').length],['stat-inputs',artifacts.filter(a=>artifactCategory(a)==='inputs').length]])$(id).textContent=count.toLocaleString();
-  this.renderRuns();this.renderScope();this.renderRecent();
+  this.renderRuns();this.renderScope();
   const candidates=artifacts.filter(a=>a.local&&a.format==='json'&&!sceneCandidate(a)&&!/-window-\d{5}\.json$/.test(a.path));
   candidates.sort((a,b)=>Number(!/summary|benchmark|result|response/i.test(a.name))-Number(!/summary|benchmark|result|response/i.test(b.name))||b.modified-a.modified);
   let changed=false;for(const [index,id] of ['compare-a','compare-b'].entries()){
@@ -55,7 +54,7 @@ export class WorkspaceUI {
   $('library-context').textContent=this.selected?`${this.selected.path} · ${this.selected.artifacts.length} artifacts`:'Inputs, saved outputs, reports and source products across the workspace.';
   $('clear-run').hidden=!this.selected;
  }
- openCollection(group){this.selected=group;$('artifact-category').value='all';$('search').value='';this.renderScope();this.onFilter();this.show('library');}
+ openCollection(group){this.selected=group;$('artifact-category').value='all';$('search').value='';this.renderScope();this.onFilter();this.reveal('library');}
  card(group){
   const card=el('article',undefined,'run-card'),top=el('div',undefined,'run-card-top');top.append(el('span',group.kind,'collection-kind'),el('span',date(group.modified),'collection-date'));
   const title=el('h3',group.name),path=el('p',group.path,'collection-path'),stats=el('p',`${group.artifacts.length} artifacts · ${group.artifacts.filter(a=>artifactCategory(a)==='tables').length} tables · ${group.artifacts.filter(a=>artifactCategory(a)==='figures').length} figures`,'collection-stats');
@@ -69,15 +68,6 @@ export class WorkspaceUI {
   const query=$('run-search').value.trim().toLowerCase(),groups=this.groups.filter(g=>`${g.name} ${g.path}`.toLowerCase().includes(query));
   $('run-grid').replaceChildren(...groups.map(g=>this.card(g)));
   $('runs-empty').hidden=groups.length>0;$('run-count').textContent=`${groups.length} collections`;
- }
- renderRecent(){
-  $('recent-runs').replaceChildren(...this.groups.slice(0,4).map(g=>this.card(g)));
-  $('overview-empty').hidden=this.groups.length>0;
-  const recent=[...this.artifacts].sort((a,b)=>b.modified-a.modified).slice(0,5);
-  $('recent-artifacts').replaceChildren(...recent.map(a=>{
-   const row=el('button',undefined,'recent-artifact');row.append(el('span',a.name),el('small',a.path));
-   row.onclick=()=>{this.selected=null;this.renderScope();$('artifact-category').value='all';$('search').value=a.name;this.onFilter();this.show('library');this.inspect(a.id);};return row;
-  }));
  }
  setComparing(busy){
   this.comparing=busy;

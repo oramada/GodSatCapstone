@@ -1,14 +1,15 @@
 # Experiment Studio
 
-The repository frontend is **GoDSAT Experiment Studio**, a shared workspace for saved experiments. It opens on a collection overview rather than an individual replay. Visualization is one view alongside the run collections, data library, and result comparison. Its globe renderer is CesiumJS 1.147.0, with a Rust/WebAssembly CPU core. Three.js supplies the embedded spacecraft close-up. Studio remains the sole application; old `/legacy`, `/index.html` and `/studio/` links redirect to `/`.
+The repository frontend is **GoDSAT Experiment Studio**, one integrated simulation and analysis page. Its globe renderer is CesiumJS 1.147.0, with a Rust/WebAssembly CPU core. Three.js supplies the embedded spacecraft close-up. Studio remains the sole application; old `/legacy`, `/index.html` and `/studio/` links redirect to `/`.
 
-## Workspace views
+## Workspace layout
 
-- **Overview** shows counts from the live local inventory, recently modified collections, and recent files. It does not automatically open a demonstration or allocate a globe renderer.
-- **Run collections** groups `outputs/<collection>`, `reports/evidence/<study>`, and `reports/archive/<study>` folders. External artifact roots are also grouped. These are file collections, not inferred job states: modification dates do not prove execution or completion.
-- **Data library** supports workspace-wide or collection-scoped browsing, text search, and filters for inputs/configuration, tables, figures/PDFs, reports, spatial candidates and other products. Changing scope clears an inspector selection that no longer belongs to the visible set.
-- **Compare results** reads two selected JSON objects through the existing bounded artifact inspector. It displays numeric scalar fields, missing values, and B minus A; arrays and booleans are excluded. Paths use JSON Pointer escaping so different nested keys cannot collide. A matching field name does not establish matching units, experimental conditions, or statistical significance. The comparison shows when the files were read, and changing selections clears the previous result.
-- **Visualization** retains the existing scene, sequence, layer, timeline, object, provenance and ground-link tools. It initializes when opened and pauses when another workspace view is selected. The illustrative replay remains explicitly labeled as an example. File names are only spatial candidates; the existing scientific adapter still validates coordinates, frames and time before playback.
+- **Left: sources and layers.** Choose a scene, search satellites, set focus, or expand environment/display controls. Saved collections are an inline disclosure with search and actions to inspect files or load a spatial product. The panel can be collapsed; on narrow screens it becomes an overlay so the globe remains near the top.
+- **Center: globe and playback.** The scene, timeline, playback, export, and narrative remain visible while working with other tools. Startup opens an available saved scene sequence, then a canonical scene/replay, or the explicitly illustrative example if neither exists. All objects are shown initially.
+- **Right: inspection.** Object state, counts, supplied attitude, provenance, and available ground-link estimates sit beside the scene, stacking underneath it on smaller screens.
+- **Below: data and comparisons.** Expandable sections contain searchable artifacts and side-by-side numeric comparisons. Opening a comparison or file never replaces the globe or discards playback context. Comparisons exclude arrays and booleans, preserve missing values, and use JSON Pointer field paths. Matching field names do not establish matching units or experimental conditions.
+
+Inventory counts reflect local files. Collections group output/study folders; file modification dates do not prove experiment execution or completion. Filename suggestions remain candidates validated by the scientific adapter before playback.
 
 The workspace is read-only. Collection browsing and comparisons do not launch experiments, edit source files, or claim that a saved artifact has been freshly rerun.
 
@@ -131,4 +132,4 @@ accuracy/scalability work. These extend the same Studio entry point.
 
 The generic workspace was reviewed using [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), using its data-dense dashboard guidance. The implementation keeps the Studio's dark surfaces and mint accent, uses system sans-serif text and monospace numeric values, and prioritizes saved collections, searchable inputs, comparable results, and spatial inspection. Marketing conversion layouts returned by the design-system search were excluded because this is a research application.
 
-Shared controls have visible keyboard focus, a skip-to-content link, 44px minimum button/select heights, and reduced-motion styles. The overview was checked at 375, 768, 1024, and 1440 CSS pixels without page-level horizontal overflow. Mobile navigation wraps before labels shrink; comparison selectors stack. Collection dates remain file modification dates; no execution status is inferred from folder contents.
+Shared controls have visible keyboard focus, a skip-to-content link, 44px minimum touch targets on coarse-pointer devices, and reduced-motion styles. The integrated workspace was checked at 375, 768, 1024, and 1440 CSS pixels without page-level horizontal overflow. On narrow screens, setup opens in a collapsible overlay and comparison selectors stack. Collection dates remain file modification dates; no execution status is inferred from folder contents.
