@@ -4,14 +4,16 @@ The repository frontend is **GoDSAT Experiment Studio**, one integrated simulati
 
 ## Workspace layout
 
-- **Left: sources and layers.** Choose a scene, search satellites, set focus, or expand environment/display controls. Saved collections are an inline disclosure with search and actions to inspect files or load a spatial product. The panel can be collapsed; on narrow screens it becomes an overlay so the globe remains near the top.
-- **Center: globe and playback.** The scene, timeline, playback, export, and narrative remain visible while working with other tools. Startup opens an available saved scene sequence, then a canonical scene/replay, or the explicitly illustrative example if neither exists. All objects are shown initially.
-- **Right: inspection.** Object state, counts, supplied attitude, provenance, and available ground-link estimates sit beside the scene, stacking underneath it on smaller screens.
-- **Below: data and comparisons.** Expandable sections contain searchable artifacts and side-by-side numeric comparisons. Opening a comparison or file never replaces the globe or discards playback context. Comparisons exclude arrays and booleans, preserve missing values, and use JSON Pointer field paths. Matching field names do not establish matching units or experimental conditions.
+- **Globe:** Earth occupies the full viewport and stays centered when panels open. Startup loads an available saved sequence, a canonical scene/replay, or an explicitly illustrative example. Satellite points are visible; orbit trails, textured clouds, celestial bodies, and persistent object labels start off.
+- **Top toolbar:** choose the scene and open **Experiment**, **Layers**, **Data**, or **Inspect**. All panels start closed. Only one panel opens at a time; each has a close button, and Escape closes it and returns focus to its toolbar button. Panels overlay the globe without resizing its canvas.
+- **Bottom playback bar:** play/pause, UTC time, scrubber and speed stay accessible. The options menu contains camera reset, scene export, and compute/performance status.
+- **Layers:** environment and display controls, plus focused/all-object visibility.
+- **Data:** searchable collections, artifact inspection, numeric product comparison, and the orbital analysis workbench. Matching numeric field names do not establish matching units or experimental conditions.
+- **Inspect:** satellite search, object state, supplied attitude, counts, provenance and available ground-link estimates. Clicking a rendered satellite selects it; its compact selection chip opens inspection. Keyboard users can choose the same object through the inspector's search and select controls.
 
 Inventory counts reflect local files. Collections group output/study folders; file modification dates do not prove experiment execution or completion. Filename suggestions remain candidates validated by the scientific adapter before playback.
 
-The workspace is read-only. Collection browsing and comparisons do not launch experiments, edit source files, or claim that a saved artifact has been freshly rerun.
+Collection browsing and comparisons remain read-only. The **Experiment** panel can validate and launch bounded local numerical simulations, cancel a running worker, and open its saved result. See [experiment launcher](experiment-launcher.md) for inputs, limits and API safeguards. Existing source artifacts are not edited.
 
 ## Start
 
@@ -91,7 +93,7 @@ Adapters must supply explicit reference frames, units and provenance. In particu
 
 The Cesium renderer uses its own UTC-driven Sun/Moon rendering and built-in frame transforms. The API also supplies offline Astropy ephemerides as scene metadata. Rendering does not apply forces to a replay. Cesium converts positions to Earth-fixed display coordinates (TEME uses its pseudo-fixed transform; GCRS uses its ICRF transform). These display transforms do not replace the scientific repository's Astropy frame transformations. Static textures, star field and ionosphere coloration do not alter observations, energy, pointing, drag or propagation. No TEC, electron-density or weather data is invented. Original frame coordinates remain unmodified in exported scenes.
 
-The API is read-only, loopback-bound and uses opaque discovered IDs, not arbitrary file paths. Symlinked files are excluded. Previews and replay dimensions are bounded (64 MiB scene input, 1,200 times, 20,000 objects, 1,200,000 position samples, 200,000 table rows). These are explicit interactive limits, not a claim to stream arbitrarily large campaigns. Export a time window from larger products.
+Artifact APIs are read-only, loopback-bound and uses opaque discovered IDs, not arbitrary file paths. Symlinked files are excluded. Previews and replay dimensions are bounded (64 MiB scene input, 1,200 times, 20,000 objects, 1,200,000 position samples, 200,000 table rows). These are explicit interactive limits, not a claim to stream arbitrarily large campaigns. Export a time window from larger products.
 
 ## Checks
 

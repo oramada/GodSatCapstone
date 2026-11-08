@@ -1,0 +1,117 @@
+{
+  "schema": "godsat.extended-forces-benchmark.v1",
+  "scope": "Synthetic osculating initial states and spacecraft parameters. Paired displacements are model sensitivities, not tracking accuracy.",
+  "objects": 1000,
+  "frames": 61,
+  "duration_seconds": 3600,
+  "step_seconds": 10,
+  "run_seconds": 16.762084041998605,
+  "platform": "macOS-27.3-arm64-arm-64bit",
+  "python": "3.12.12",
+  "paired_objects": 16,
+  "paired_final_displacement_m": {
+    "higher_zonals": {
+      "min": 66.45712576817624,
+      "median": 80.59261136293986,
+      "max": 94.3665220329233
+    },
+    "solar_radiation_pressure": {
+      "min": 0.1446962900734084,
+      "median": 0.35835943517270835,
+      "max": 0.5675356672947154
+    },
+    "schwarzschild": {
+      "min": 0.1313417775930004,
+      "median": 0.13134667137960057,
+      "max": 0.13135144369912108
+    }
+  },
+  "convergence": {
+    "10_vs_5_s_max_m": 0.013250568398655006,
+    "5_vs_2.5_s_max_m": 0.0008443758441644172
+  },
+  "forces": {
+    "j2": false,
+    "drag": true,
+    "third_bodies": true,
+    "zonal_gravity": true,
+    "solar_radiation_pressure": true,
+    "schwarzschild": true
+  },
+  "gravity_model": {
+    "reference": "WGS-84 constants in Vallado et al., Revisiting Spacetrack Report #3, https://celestrak.org/publications/AIAA/2006-6753/AIAA-2006-6753-Rev3.pdf ; zonal-only truncation J2-J4",
+    "normalization": "unnormalized_Jn",
+    "mu_km3_s2": 398600.5,
+    "reference_radius_km": 6378.137,
+    "coefficients": {
+      "2": 0.00108262998905,
+      "3": -2.53215306e-06,
+      "4": -1.61098761e-06
+    }
+  },
+  "solar_radiation": {
+    "model": "Cannonball, inverse-square flux, uniform angular-disc overlap; spherical Earth occultor",
+    "pressure_at_1au_n_m2": 4.56e-06,
+    "au_km": 149597870.7,
+    "sun_radius_km": 695700.0,
+    "sampled_illumination_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "atmosphere": {
+    "model": "NRLMSIS 2.1",
+    "implementation": "pymsis",
+    "version": "0.12.0",
+    "adapter_sha256": "1b10bbabb03f1d9979129ed437af8828c1c1e2f62ea63f3d5650732575eea5f5",
+    "ap_mode": "history",
+    "parameter_sha256": "a322a749f368e73117dd20f3fdcf7389dabc5509f4c27073cc5580999381b508",
+    "drivers": {
+      "name": "space-weather.csv",
+      "sha256": "7aaa9ab0b1e65676f17a9f9818ca33cce8612f3254bb1bf173961fa41121256b",
+      "reference": "https://celestrak.org/SpaceData/SpaceWx-format.php",
+      "semantics": "Previous-day observed-distance F10.7; current centered 81-day average; explicit seven-element Ap history.",
+      "limits": "Centered averages and current/future rows may include estimates or predictions; flux qualifiers are retained. The CSV does not supply a separate provenance flag for each Ap bin.",
+      "used_bins": [
+        {
+          "time_bin_utc": "2026-11-08T18:00:00Z",
+          "f107_sfu": 127.4,
+          "f107a_sfu": 97.4,
+          "aps": [
+            19.0,
+            22.0,
+            18.0,
+            9.0,
+            18.0,
+            25.125,
+            10.125
+          ],
+          "previous_flux_qualifier": "OBS",
+          "current_flux_qualifier": "PRD"
+        }
+      ]
+    },
+    "limits": "Empirical neutral atmosphere, not measured density. No implicit drivers or downloads. Model errors are not solver error estimates."
+  },
+  "frame_transform": {
+    "astropy_version": "7.2.3",
+    "earth_orientation_table": "IERS_Auto",
+    "eop_sha256": "95a61292c957fa74ed624bd4f7a84b1b984077e412b43ed39b99e092f38de9da",
+    "eop_status_codes": [
+      2
+    ],
+    "eop_status_meaning": {
+      "-2": "beyond range",
+      "-1": "before range",
+      "0": "IERS B",
+      "1": "IERS A",
+      "2": "IERS A prediction"
+    },
+    "warnings": [],
+    "third_body_ephemeris": "Astropy builtin instantaneous barycentric position differences; Newtonian GCRS-axis approximation"
+  },
+  "experiment_sha256": "f53fbf59fcf895dda66bc661cb2a0afa889418e82f36cc74ec9a6cf59e9cffab",
+  "numerical_source_sha256": "36b9b22f14d9e135f34de4cc82b438cd5ab0755a3978a3bc548bcd558ccbb76e",
+  "additional_forces_source_sha256": "aabafbb8df208908ad3d449e7cc05f6770791dc35f7637557f7645abe01654b8",
+  "benchmark_source_sha256": "c5359865107a49694a4e14f9c6cc4fb33cf2ec3f843981c31309d8b883089a24"
+}

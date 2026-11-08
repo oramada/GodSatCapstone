@@ -5,6 +5,8 @@ import {WindowSequence} from './sequence.js';
 import {WorkspaceUI} from './workspace-ui.js';
 import {sceneCandidate} from './workspace.js';
 import {tablePlot} from './charts.js';
+import {ExperimentPanel} from './experiment-panel.js';
+import {AnalysisPanel} from './analysis-panel.js';
 const $=id=>document.getElementById(id);
 function put(id,value){const element=$(id),text=String(value);if(element.textContent!==text)element.textContent=text;}
 let scene=null, mode='system', time=0, playing=false, previous=0, artifacts=[],selectedArtifact=null,sceneRequest=0,inspectRequest=0,currentModified=null, activeSource='demo',sceneLoading=false;
@@ -20,13 +22,14 @@ function initializeView(){
  catch(error){view=null;notify('Renderer unavailable: '+error.message);$('loading').textContent='3D rendering is unavailable. Check that WebGL is enabled and reload Studio.';$('loading').hidden=false;}
 }
 document.addEventListener('renderererror',e=>notify(e.detail));
-let platform;
+document.addEventListener('objectselected',e=>{renderFocusOptions(e.detail);changeFocus();$('selection-chip').hidden=false;});
+let platform,analysis;
 function openSpatial(id){if(![...$('source').options].some(o=>o.value===id))$('source').add(new Option(artifacts.find(a=>a.id===id)?.path||id,id));$('source').value=id;platform.reveal('visualization');loadScene(id);}
 
 let focusObjects=[];
 function focalObjects(){return focusObjects;}
 function renderFocusOptions(selected=$('focus').value){const query=$('focus-search').value.trim().toLowerCase(),matches=focusObjects.filter(o=>`${o.name} ${o.id}`.toLowerCase().includes(query)),visible=matches.slice(0,200),current=focusObjects.find(o=>o.id===selected);if(current&&!visible.some(o=>o.id===selected))visible.unshift(current);$('focus').replaceChildren(...visible.map(o=>new Option(o.name,o.id)));if(current)$('focus').value=selected;put('focus-count',`${matches.length.toLocaleString()} matches · ${visible.length} listed`);}
-function changeFocus(){renderFocusOptions();view?.setFocus($('focus').value);drawEvents();updateText();refreshLinks();}
+function changeFocus(){if(view)view.selectedByUser=true;$('selection-chip').hidden=false;renderFocusOptions();analysis?.setFocus($('focus').value);view?.setFocus($('focus').value);drawEvents();updateText();refreshLinks();}
 async function loadScene(value='demo',preserve=false){
  const before=globalTime();const request=++sceneRequest;++windowRequest;windowLoading=false;sceneLoading=true;$('loading').hidden=false;$('loading').textContent='Preparing scene…';
  try{const next=await api(value==='demo'?`/api/studio/scene?demo=${mode}`:`/api/studio/scene?id=${encodeURIComponent(value)}`);if(request!==sceneRequest)return;
@@ -35,14 +38,14 @@ async function loadScene(value='demo',preserve=false){
 }
 
 function installScene(next,value,preserve,keepCamera=false,local=null){
-  const old=$('focus').value;scene=next;prepareScene(scene);$('compute-backend').textContent=computeBackend();if(!preserve){time=0;playing=false;}if(local!==null)time=local;$('play').textContent=playing?'Ⅱ':'▶';$('play').setAttribute('aria-label',playing?'Pause animation':'Play animation');time=Math.min(time,scene.times.length-1);
+  const old=$('focus').value;$('selection-chip').hidden=true;if(view)view.selectedByUser=false;scene=next;prepareScene(scene);$('compute-backend').textContent=computeBackend();if(!preserve){time=0;playing=false;}if(local!==null)time=local;$('play').textContent=playing?'Ⅱ':'▶';$('play').setAttribute('aria-label',playing?'Pause animation':'Play animation');time=Math.min(time,scene.times.length-1);
   $('scene-title').textContent=scene.title;$('source-badge').textContent=scene.source.kind==='illustrative'?'ILLUSTRATIVE':scene.source.kind==='modeled'?'MODELED':'SAVED DATA';$('frame-label').textContent=`${scene.frame} · KM`;
   focusObjects=scene.objects.filter(o=>!['station','sensor'].includes(o.kind));renderFocusOptions(old);
   if(!$('focus').value&&scene.objects.length)$('focus').append(new Option(scene.objects[0].name,scene.objects[0].id));
   $('scrub').max=scene.sequence?scene.sequence.total_frames-1:scene.times.length-1;view?.setScene(scene,$('focus').value,keepCamera);if(view){view.mode=mode;if(!keepCamera)view.reset();}activeSource=value;$('sequence-status').textContent=scene.sequence?`Window ${scene.sequence.index+1} of ${scene.sequence.windows.length}`:'';$('export').textContent=scene.sequence?'Export window ↓':'Export scene ↓';
   $('provenance').textContent=JSON.stringify({source:scene.source,frame:scene.frame,units:scene.units,custody_seconds:scene.custody_seconds,warnings:scene.warnings,environment:scene.environment?.sources||[],celestial:'CesiumJS built-in celestial rendering at scene UTC',renderer:'CesiumJS',display:'Earth texture and cloud pattern are static visual assets, not observations at the scene epoch. Ionosphere is qualitative. Cesium converts source frames for display. Spacecraft sizes are exaggerated. No antenna or propagation physics is inferred.'},null,2);
   $('celestial-note').textContent='CesiumJS · built-in atmosphere, lighting, Sun & Moon';
-  sceneLoading=false;$('loading').hidden=view?.readyToDisplay!==false;drawEvents();updateText();if(sequence)sequence.prefetch(globalTime());refreshLinks();
+  analysis?.setScene(scene,$('focus').value);sceneLoading=false;$('loading').hidden=view?.readyToDisplay!==false;drawEvents();updateText();if(sequence)sequence.prefetch(globalTime());refreshLinks();
 }
 async function seekWindow(global){
  if(!sequence)return;const player=sequence,{index,local}=player.position(global);
@@ -77,11 +80,11 @@ function updateLinks(){
 $('link-station').onchange=refreshLinks;
 
 function drawEvents(){if(!scene)return;$('timeline-events').style.display=scene.sequence?'none':'';const nodes=scene.times.map((_,i)=>{const x=document.createElement('i'),s=trackState(scene,$('focus').value,i).state;x.style.background=({observed:'#83e3cf',stale:'#ffcf88',lost:'#ff788a',unknown:'#536775',unavailable:'#283542'})[s];x.title=`${scene.times[i]}: ${s}`;return x;});$('timeline-events').replaceChildren(...nodes);}
-function updateText(){if(!scene)return;const i=Math.min(Math.floor(time),scene.times.length-1),state=trackState(scene,$('focus').value,time),object=scene.objects.find(o=>o.id===$('focus').value),colors={observed:'#83e3cf',stale:'#ffcf88',lost:'#ff788a',unknown:'#97adbc',unavailable:'#97adbc'};
+function updateText(){if(!scene)return;analysis?.update(time);const i=Math.min(Math.floor(time),scene.times.length-1),state=trackState(scene,$('focus').value,time),object=scene.objects.find(o=>o.id===$('focus').value),colors={observed:'#83e3cf',stale:'#ffcf88',lost:'#ff788a',unknown:'#97adbc',unavailable:'#97adbc'};
  const next=Math.min(i+1,scene.times.length-1),instant=Date.parse(scene.times[i])+(Date.parse(scene.times[next])-Date.parse(scene.times[i]))*(time-i);
  const seconds=(instant-Date.parse(scene.sequence?.start||scene.times[0]))/1000,duration=(Date.parse(scene.sequence?.end||scene.times.at(-1))-Date.parse(scene.sequence?.start||scene.times[0]))/60000;
  if(Number($('scrub').value)!==globalTime())$('scrub').value=globalTime();put('elapsed',`${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(Math.floor(seconds%60)).padStart(2,'0')}`);put('utc',new Date(instant).toISOString().replace('T',' ').replace('Z',' UTC'));$('sequence-status').dataset.cachedWindows=String(sequence?.cache.size||0);put('duration',`${duration.toFixed(duration%1?1:0)} MINUTES`);
- put('object-title',object?.name||'No target');put('object-meta',object?`${object.kind.toUpperCase()} · ${object.id}`:'');
+ put('object-title',object?.name||'No target');put('selection-chip',`${object?.name||'Selected satellite'} · Inspect →`);put('object-meta',object?`${object.kind.toUpperCase()} · ${object.id}`:'');
  put('state-name',({observed:'Observed now',stale:'Last sighting',lost:'Track lost',unknown:'Status unknown',unavailable:'Position unavailable'})[state.state]);$('state-dot').style.background=colors[state.state];put('age',state.age===null?'No known sighting':state.age===0?'Just now':`${Math.round(state.age)}s ago`);
  const copy={observed:['A fresh observation','The sensor sees this object. Its track has just been updated.'],stale:['No new sighting','The object keeps moving. The amber marker stays at the last observed position while the track ages.'],lost:['The track expires','The object is still in space, but its last sighting is older than the custody window. The tracker no longer has a current track.'],unknown:['Geometry without observation history','This source contains positions but no observation record at this step. We cannot tell whether the tracker sees the object.'],unavailable:['No position at this step','The source has no valid position for this object. We leave the gap visible rather than inventing a trajectory.']};
  put('state-caption',copy[state.state][1]);put('step-title',copy[state.state][0]);put('step-body',scene.observations?.[i]?.cause||copy[state.state][1]);put('step-number',String(Math.floor(globalTime())+1).padStart(2,'0'));$('lost-overlay').hidden=state.state!=='lost';
@@ -102,6 +105,8 @@ async function inspect(id,highlight=true){const request=++inspectRequest;selecte
 $('load-artifact').onclick=()=>{if(selectedArtifact)openSpatial(selectedArtifact);};
 $('refresh').onclick=refresh;$('search').oninput=renderArtifacts;
 platform=new WorkspaceUI({onFilter:renderArtifacts,onScene:openSpatial,inspect});
+new ExperimentPanel({onOpen:async id=>{await refresh();openSpatial(id);}});
+analysis=new AnalysisPanel({onFocus:id=>{renderFocusOptions(id);changeFocus();},onSeek:local=>{time=local;updateText();analysis.update(time,true);},onPause:()=>{playing=false;$('play').textContent='▶';$('play').setAttribute('aria-label','Play animation');}});
 await initializeCompute();await refresh();initializeView();
 const initialScene=[...$('source').options].find(o=>/scene-sequence\.json$/.test(o.text))||[...$('source').options].find(o=>/(?:\/| \/ )(scene|replay)\.json$/.test(o.text));
 $('source').value=initialScene?.value||'demo';await loadScene($('source').value);requestAnimationFrame(render);setInterval(()=>{if(!document.hidden)refresh();},15000);

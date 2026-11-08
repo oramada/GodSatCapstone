@@ -45,7 +45,7 @@ class Catalog:
 
     def scan(self):
         artifacts = []
-        self.paths = {}
+        paths = {}
         seen = set()
         for folder in self.roots:
             if not folder.is_dir(): continue
@@ -57,12 +57,13 @@ class Catalog:
                 seen.add(resolved)
                 stat = path.stat()
                 identity = hashlib.sha256(str(resolved).encode()).hexdigest()[:20]
-                self.paths[identity] = resolved
+                paths[identity] = resolved
                 artifacts.append({'id': identity, 'name': path.name,
                     'path': str(path.relative_to(self.root)) if path.is_relative_to(self.root) else str(path.relative_to(folder)),
                     'root': str(folder), 'format': path.suffix[1:].lower(),
                     'kind': FORMATS[path.suffix.lower()], 'bytes': stat.st_size,
                     'modified': stat.st_mtime, 'local': not bool(getattr(stat, 'st_flags', 0) & 0x40000000)})
+        self.paths = paths
         return {'artifacts': artifacts, 'roots': [str(p) for p in self.roots],
                 'limit': 10000, 'truncated': len(artifacts) >= 10000}
 

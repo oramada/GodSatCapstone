@@ -1,0 +1,52 @@
+{
+  "schema": "godsat.numerical.v1",
+  "frame": "GCRS",
+  "epoch": "2026-11-08T18:55:00Z",
+  "duration_seconds": 3600,
+  "integration_step_seconds": 5,
+  "output_step_seconds": 30,
+  "forces": {
+    "j2": false,
+    "drag": false,
+    "third_bodies": true,
+    "zonal_gravity": true,
+    "solar_radiation_pressure": true,
+    "schwarzschild": true
+  },
+  "source": {
+    "kind": "illustrative",
+    "reference": "Synthetic osculating state and hypothetical spacecraft mass, area, Cd and Cr; not measured geometry or orbit"
+  },
+  "objects": [
+    {
+      "id": "synthetic-1",
+      "name": "Synthetic numerical 1",
+      "position_gcrs_km": [
+        6778.1366,
+        0.0,
+        0.0
+      ],
+      "velocity_gcrs_km_s": [
+        -0.0,
+        4.615053652050122,
+        6.124383050453475
+      ],
+      "mass_kg": 120.0,
+      "drag_area_m2": 1.2,
+      "drag_coefficient": 2.2,
+      "radiation_area_m2": 1.2,
+      "radiation_coefficient": 1.3
+    }
+  ],
+  "gravity_model": {
+    "reference": "WGS-84 constants in Vallado et al., Revisiting Spacetrack Report #3, https://celestrak.org/publications/AIAA/2006-6753/AIAA-2006-6753-Rev3.pdf ; zonal-only truncation J2-J4",
+    "normalization": "unnormalized_Jn",
+    "mu_km3_s2": 398600.5,
+    "reference_radius_km": 6378.137,
+    "coefficients": {
+      "2": 0.00108262998905,
+      "3": -2.53215306e-06,
+      "4": -1.61098761e-06
+    }
+  }
+}

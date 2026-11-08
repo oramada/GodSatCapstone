@@ -4,6 +4,7 @@ import hashlib
 import datetime as dt
 import mimetypes
 import threading
+import secrets
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit, unquote
 from .catalog import Catalog, clean
@@ -39,6 +40,8 @@ class StudioService:
         self.catalog = Catalog(root, output, data_roots)
         self.sky_cache = {}
         self.link_lock=threading.Lock()
+        from .experiments import ExperimentJobs
+        self.experiments=ExperimentJobs(self.root,self.catalog)
 
     def read_scene(self,identity,index=0):
         source_path=self.catalog.get(identity)
@@ -66,6 +69,12 @@ class StudioService:
         try:
             query = parse_qs(parsed.query)
             def arg(key, default=''): return query.get(key, [default])[0]
+            if path == '/api/studio/experiments/options':
+                return self.json(handler,self.experiments.options())
+            if path == '/api/studio/experiments/template':
+                return self.json(handler,self.experiments.template(arg('id')))
+            if path == '/api/studio/experiments/job':
+                return self.json(handler,self.experiments.get(arg('id')))
             if path == '/api/studio/catalog':
                 return self.json(handler, self.catalog.scan())
             if path == '/api/studio/inspect':
@@ -106,6 +115,33 @@ class StudioService:
             return self.json(handler, {'error': str(exc)}, 404)
         except (OSError, ImportError) as exc:
             return self.json(handler, {'error': 'Artifact unavailable: '+str(exc)}, 503)
+
+    def handle_post(self,handler):
+        path=urlsplit(handler.path).path
+        if not path.startswith('/api/studio/experiments/'):return False
+        try:
+            # Rebinding and cross-origin requests cannot launch local processes.
+            host=handler.headers.get('Host','')
+            hostname=urlsplit('http://'+host).hostname
+            if hostname not in {'localhost','127.0.0.1','::1'}:raise ValueError('Local host required')
+            origin=handler.headers.get('Origin')
+            if origin and origin!='http://'+host:raise ValueError('Same-origin request required')
+            if not secrets.compare_digest(handler.headers.get('X-Studio-Token',''),self.experiments.token):
+                raise ValueError('Session changed. Reload Studio before launching a run.')
+            if handler.headers.get('Content-Type','').split(';')[0]!='application/json':raise ValueError('JSON request required')
+            from .experiments import MAX_REQUEST
+            length=int(handler.headers.get('Content-Length','0'))
+            if not 0<length<=MAX_REQUEST:raise ValueError('Invalid experiment request size')
+            payload=json.loads(handler.rfile.read(length))
+            if not isinstance(payload,dict):raise ValueError('Expected experiment object')
+            if path.endswith('/validate'):
+                _,_,summary=self.experiments.prepare(payload)
+                return self.json(handler,{'valid':True,'summary':summary})
+            if path.endswith('/run'):return self.json(handler,self.experiments.start(payload),202)
+            if path.endswith('/cancel'):return self.json(handler,self.experiments.cancel(payload.get('id')))
+            return self.json(handler,{'error':'Unknown experiment endpoint'},404)
+        except (ValueError,KeyError,TypeError,ImportError,OSError) as exc:
+            return self.json(handler,{'error':str(exc)},400)
 
     def json(self, handler, value, status=200):
         return self.send(handler, json.dumps(clean(value), allow_nan=False).encode(), 'application/json', status)

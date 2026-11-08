@@ -5,18 +5,16 @@ const date=t=>new Date(t*1000).toLocaleDateString(undefined,{month:'short',day:'
 export class WorkspaceUI {
  constructor({onFilter,onScene,inspect}){
   Object.assign(this,{onFilter,onScene,inspect,artifacts:[],groups:[],selected:null,page:'overview',comparison:0});
-  const setSidebar=collapsed=>{
-   $('workspace-sidebar').hidden=collapsed;
-   document.querySelector('main').classList.toggle('sidebar-collapsed',collapsed);
-   $('sidebar-toggle').setAttribute('aria-expanded',String(!collapsed));
-   const label=collapsed?'Expand left panel':'Collapse left panel';
-   $('sidebar-toggle').setAttribute('aria-label',label);$('sidebar-toggle').title=label;
-   try{localStorage.setItem('godsat.sidebar.collapsed',String(collapsed));}catch{}
+  this.panels=[['experiment-panel','experiment-toggle'],['workspace-sidebar','sidebar-toggle'],['data-panel','data-toggle'],['inspect-panel','inspect-toggle']];
+  this.setPanel=(id,open=true,focus=true)=>{
+   for(const [panelId,buttonId] of this.panels){const active=panelId===id&&open;$(panelId).hidden=!active;$(buttonId).setAttribute('aria-expanded',String(active));}
+   if(open&&id&&focus){const heading=$(id).querySelector('h2');heading.tabIndex=-1;heading.focus({preventScroll:true});}
   };
-  let collapsed=false;try{collapsed=localStorage.getItem('godsat.sidebar.collapsed')==='true';}catch{}
-  setSidebar(collapsed);
-  $('sidebar-toggle').onclick=()=>setSidebar(!$('workspace-sidebar').hidden);
-  document.querySelectorAll('[data-page]').forEach(button=>button.addEventListener('click',()=>this.reveal(button.dataset.page)));
+  for(const [id,button] of this.panels)$(button).onclick=()=>this.setPanel(id,$(id).hidden);
+  document.querySelectorAll('[data-close-panel]').forEach(button=>button.onclick=()=>{const id=button.closest('.overlay-panel').id;this.setPanel(null,false);$(this.panels.find(p=>p[0]===id)[1]).focus();});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'){const active=this.panels.find(([id])=>!$(id).hidden);if(active){this.setPanel(null,false);$(active[1]).focus();event.preventDefault();}}});
+  $('selection-chip').onclick=()=>this.setPanel('inspect-panel');
+  this.setPanel(null,false,false);
   $('run-search').oninput=()=>this.renderRuns();$('artifact-category').onchange=onFilter;
   $('clear-run').onclick=()=>{this.selected=null;this.renderScope();onFilter();};
   $('compare-button').onclick=()=>this.compare();
@@ -25,9 +23,10 @@ export class WorkspaceUI {
  }
  reveal(page,{focus=true}={}){
   this.page=page;
-  const drawer=$(page+'-drawer');if(drawer)drawer.open=true;
-  if(page==='runs')$('collections-panel').open=true;
-  if(focus){const target=drawer?.querySelector('summary')||(page==='runs'?$('collections-panel').querySelector('summary'):$('scene-title'));target.tabIndex=-1;target.focus({preventScroll:true});target.scrollIntoView({block:'nearest',behavior:'auto'});}
+  if(page==='visualization'){this.setPanel(null,false,false);return;}
+  this.setPanel('data-panel',true,false);
+  const target=page==='runs'?$('collections-panel'):$(page+'-drawer');
+  if(target){target.open=true;if(focus){const summary=target.querySelector('summary');summary.focus({preventScroll:true});summary.scrollIntoView({block:'nearest'});}}
  }
  setArtifacts(artifacts){
   this.artifacts=artifacts;this.groups=collections(artifacts);

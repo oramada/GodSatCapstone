@@ -1134,6 +1134,8 @@ def serve(output,port):
     elif output.name in {'all-orbits-all-catalog-targets','all-orbits-paper-exact'}:dropout_name='all-orbits-all-catalog-targets-dropout'
     else:dropout_name='dropout-study'
     class Handler(BaseHTTPRequestHandler):
+        def do_POST(self):
+            if not studio.handle_post(self): self.send_error(404)
         def do_GET(self):
             if studio.handle(self): return
             parsed=urlsplit(self.path);path=parsed.path

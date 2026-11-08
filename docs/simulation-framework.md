@@ -143,7 +143,10 @@ python -m scripts.studio.benchmark_numerical --objects 1000 \
 
 The example initial state and spacecraft properties are explicitly synthetic.
 The numerical branch supports central gravity, J2 in Earth-fixed axes,
-atmospheric drag, and optional geometric Sun/Moon third-body gravity. It uses
+atmospheric drag, optional geometric Sun/Moon third-body gravity, and the optional
+[extended force models](extended-force-models.md): zonal gravity through degree 8,
+solar radiation pressure with spherical-Earth eclipses, and the leading
+Schwarzschild correction. It uses
 vectorized fixed-step RK4. Positions and velocities are transformed with
 Astropy/IERS at every RK stage; co-rotating atmospheric velocity is subtracted
 before computing drag. Position units are km, velocity km/s, while density and
@@ -175,8 +178,10 @@ A domain failure aborts export; it does not silently substitute zero drag.
 Output cadence must be an integer multiple of the integration step. Smaller
 steps must be checked for convergence for the actual configuration.
 
-This remains a model experiment. Neutral winds, solar radiation pressure,
-maneuvers, higher gravity harmonics, tides and relativistic terms are omitted.
+This remains a model experiment. Neutral winds, maneuvers, tesseral/sectoral
+gravity, tides, thermal recoil and full relativistic time-scale treatment are
+omitted. Optional zonal, solar-pressure and Schwarzschild terms have the explicit
+assumptions documented in [extended force models](extended-force-models.md).
 The built-in third-body ephemeris is not a precision navigation ephemeris.
 No measured attitude or covariance is invented, and the generic spacecraft
 shape/pose remains an illustration. Integration convergence is separate from

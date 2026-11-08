@@ -49,6 +49,18 @@
         },
         "third_bodies": {
           "type": "boolean"
+        },
+        "zonal_gravity": {
+          "type": "boolean",
+          "default": false
+        },
+        "solar_radiation_pressure": {
+          "type": "boolean",
+          "default": false
+        },
+        "schwarzschild": {
+          "type": "boolean",
+          "default": false
         }
       }
     },
@@ -118,9 +130,156 @@
           "drag_coefficient": {
             "type": "number",
             "exclusiveMinimum": 0
+          },
+          "radiation_area_m2": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "radiation_coefficient": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        }
+      }
+    },
+    "gravity_model": {
+      "type": "object",
+      "required": [
+        "reference",
+        "normalization",
+        "mu_km3_s2",
+        "reference_radius_km",
+        "coefficients"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "normalization": {
+          "const": "unnormalized_Jn"
+        },
+        "mu_km3_s2": {
+          "type": "number",
+          "exclusiveMinimum": 390000,
+          "exclusiveMaximum": 410000
+        },
+        "reference_radius_km": {
+          "type": "number",
+          "exclusiveMinimum": 6300,
+          "exclusiveMaximum": 6400
+        },
+        "coefficients": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "2": {
+              "type": "number",
+              "minimum": -0.01,
+              "maximum": 0.01
+            },
+            "3": {
+              "type": "number",
+              "minimum": -0.01,
+              "maximum": 0.01
+            },
+            "4": {
+              "type": "number",
+              "minimum": -0.01,
+              "maximum": 0.01
+            },
+            "5": {
+              "type": "number",
+              "minimum": -0.01,
+              "maximum": 0.01
+            },
+            "6": {
+              "type": "number",
+              "minimum": -0.01,
+              "maximum": 0.01
+            },
+            "7": {
+              "type": "number",
+              "minimum": -0.01,
+              "maximum": 0.01
+            },
+            "8": {
+              "type": "number",
+              "minimum": -0.01,
+              "maximum": 0.01
+            }
           }
         }
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "forces"
+        ],
+        "properties": {
+          "forces": {
+            "required": [
+              "zonal_gravity"
+            ],
+            "properties": {
+              "zonal_gravity": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "gravity_model"
+        ],
+        "properties": {
+          "forces": {
+            "properties": {
+              "j2": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "forces"
+        ],
+        "properties": {
+          "forces": {
+            "required": [
+              "solar_radiation_pressure"
+            ],
+            "properties": {
+              "solar_radiation_pressure": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "objects": {
+            "items": {
+              "required": [
+                "mass_kg",
+                "radiation_area_m2",
+                "radiation_coefficient"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
 }
