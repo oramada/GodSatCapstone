@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://godsat.local/schemas/godsat.attitude.v1.schema.json",
+  "title": "Explicit body-to-reference attitude samples",
+  "type": "object",
+  "required": [
+    "frame",
+    "direction",
+    "order",
+    "source",
+    "body_axes",
+    "quaternions"
+  ],
+  "properties": {
+    "frame": {
+      "enum": [
+        "ITRS",
+        "TEME",
+        "GCRS"
+      ]
+    },
+    "direction": {
+      "const": "body_to_reference"
+    },
+    "order": {
+      "const": "xyzw"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "kind",
+        "reference"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "observed",
+            "modeled",
+            "illustrative"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "body_axes": {
+      "type": "object",
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "string",
+          "minLength": 1
+        },
+        "y": {
+          "type": "string",
+          "minLength": 1
+        },
+        "z": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "quaternions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1200,
+      "description": "Hamilton unit quaternions at scene times; null denotes missing attitude. Scene validation enforces matching frame, count and unit norm.",
+      "items": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "number"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

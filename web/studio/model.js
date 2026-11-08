@@ -6,7 +6,7 @@ export function sample(track, time) {
   const accelerated=computedTrack(track,time);if(accelerated!==undefined)return vector(accelerated);
   const a = Math.floor(time), b = Math.min(a+1, track.length-1), p = vector(track[a]), q = vector(track[b]);
   // Do not bridge missing source samples.
-  return p && q ? p.lerp(q, time-a) : null;
+  return time===a?p:(p && q ? p.lerp(q, time-a) : null);
 }
 export function trackState(scene, id, time) {
   const accelerated=computedState(scene,id,time);if(accelerated)return accelerated;

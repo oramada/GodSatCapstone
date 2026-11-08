@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://godsat.local/schemas/godsat.environment.v1.schema.json",
+  "type": "object",
+  "required": [
+    "schema",
+    "sources",
+    "samples"
+  ],
+  "properties": {
+    "schema": {
+      "const": "godsat.environment.v1"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "reference"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "observed",
+              "modeled",
+              "illustrative"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "samples": {
+      "type": "array",
+      "maxItems": 100000,
+      "items": {
+        "type": "object",
+        "required": [
+          "source_id",
+          "time_utc",
+          "valid_until_utc",
+          "latitude_deg",
+          "longitude_deg",
+          "altitude_km",
+          "values"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string"
+          },
+          "time_utc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "valid_until_utc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "latitude_deg": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude_deg": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "altitude_km": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 100000
+          },
+          "values": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "properties": {
+              "vertical_tec_tecu": {
+                "type": "number",
+                "minimum": 0
+              },
+              "electron_density_m3": {
+                "type": "number",
+                "minimum": 0
+              },
+              "magnetic_east_nt": {
+                "type": "number"
+              },
+              "magnetic_north_nt": {
+                "type": "number"
+              },
+              "magnetic_up_nt": {
+                "type": "number"
+              },
+              "cloud_fraction": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "pressure_pa": {
+                "type": "number",
+                "minimum": 0
+              },
+              "temperature_k": {
+                "type": "number",
+                "minimum": 0
+              },
+              "neutral_density_kg_m3": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

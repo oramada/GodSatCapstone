@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://godsat.local/schemas/godsat.sequence.v1.schema.json",
+  "title": "GoDSAT bounded catalog playback sequence",
+  "type": "object",
+  "required": ["schema", "title", "frame", "objects", "roster_sha256", "total_frames", "windows"],
+  "properties": {
+    "schema": {"const": "godsat.sequence.v1"},
+    "title": {"type": "string"},
+    "frame": {"enum": ["TEME", "ITRS", "GCRS"]},
+    "objects": {"type": "integer", "minimum": 1, "maximum": 20000},
+    "roster_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "total_frames": {"type": "integer", "minimum": 2},
+    "windows": {
+      "type": "array", "minItems": 1, "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "required": ["file", "offset", "frames", "start", "end", "sha256", "start_state_sha256", "end_state_sha256"],
+        "properties": {
+          "file": {"type": "string", "pattern": "^[^/\\\\]+\\.json$"},
+          "offset": {"type": "integer", "minimum": 0},
+          "frames": {"type": "integer", "minimum": 2, "maximum": 1200},
+          "start": {"type": "string", "format": "date-time"},
+          "end": {"type": "string", "format": "date-time"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "start_state_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "end_state_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    }
+  }
+}

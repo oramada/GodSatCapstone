@@ -1,0 +1,9 @@
+{
+  "reference": "outputs/simulation-hermite/interpolation-reference.json",
+  "samples": 15000,
+  "wasm_max_error_m": 0.004541973569852966,
+  "wasm_rms_error_m": 0.002197404943427434,
+  "js_max_error_m": 0.004541973569852966,
+  "backend_disagreement_m": 0,
+  "scope": "Interpolation error against direct SGP4/Astropy positions; not real-world orbit accuracy"
+}

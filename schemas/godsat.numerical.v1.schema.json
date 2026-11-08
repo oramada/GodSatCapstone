@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://godsat.local/schemas/godsat.numerical.v1.schema.json",
+  "type": "object",
+  "required": [
+    "schema",
+    "frame",
+    "epoch",
+    "duration_seconds",
+    "integration_step_seconds",
+    "output_step_seconds",
+    "source",
+    "objects"
+  ],
+  "properties": {
+    "schema": {
+      "const": "godsat.numerical.v1"
+    },
+    "frame": {
+      "const": "GCRS"
+    },
+    "epoch": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 86400
+    },
+    "integration_step_seconds": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 30
+    },
+    "output_step_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "forces": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "j2": {
+          "type": "boolean"
+        },
+        "drag": {
+          "type": "boolean"
+        },
+        "third_bodies": {
+          "type": "boolean"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "kind",
+        "reference"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "observed",
+            "modeled",
+            "illustrative"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "objects": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20000,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "position_gcrs_km",
+          "velocity_gcrs_km_s"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string"
+          },
+          "position_gcrs_km": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number"
+            }
+          },
+          "velocity_gcrs_km_s": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number"
+            }
+          },
+          "mass_kg": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "drag_area_m2": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "drag_coefficient": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        }
+      }
+    }
+  }
+}

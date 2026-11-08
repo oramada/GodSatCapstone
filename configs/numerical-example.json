@@ -1,0 +1,36 @@
+{
+  "schema": "godsat.numerical.v1",
+  "frame": "GCRS",
+  "epoch": "2026-11-08T18:55:00Z",
+  "duration_seconds": 3600,
+  "integration_step_seconds": 5,
+  "output_step_seconds": 30,
+  "forces": {
+    "j2": true,
+    "drag": true,
+    "third_bodies": true
+  },
+  "source": {
+    "kind": "illustrative",
+    "reference": "Generated circular LEO initial states and hypothetical mass/area/Cd; not catalog or measured spacecraft states"
+  },
+  "objects": [
+    {
+      "id": "synthetic-1",
+      "name": "Synthetic numerical 1",
+      "position_gcrs_km": [
+        6778.1366,
+        0.0,
+        0.0
+      ],
+      "velocity_gcrs_km_s": [
+        -0.0,
+        4.615053652050122,
+        6.124383050453475
+      ],
+      "mass_kg": 120.0,
+      "drag_area_m2": 1.2,
+      "drag_coefficient": 2.2
+    }
+  ]
+}

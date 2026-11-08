@@ -1,0 +1,149 @@
+{
+  "scene_sha256": "48afd074a1e89beea5bffa274382eb713ced47616e2e79c56308bb787d2c6901",
+  "scene_bytes": 45897076,
+  "objects": 16896,
+  "frames": 21,
+  "status_counts": {
+    "-2": 42,
+    "-1": 1995,
+    "0": 352758,
+    "1": 21
+  },
+  "source": {
+    "kind": "modeled",
+    "description": "SGP4 propagation of supplied catalog mean elements; not measured positions.",
+    "catalog": {
+      "path": "catalog-active.json",
+      "sha256": "def22a47c49a0300c83401b7fd20f625c3b148d6e11b3d6bbb74fc8e49ad51f3",
+      "format": "omm",
+      "objects": 16896,
+      "download": {
+        "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=json",
+        "retrieved_utc": "2026-11-08T19:23:11.744732+00:00",
+        "sha256": "def22a47c49a0300c83401b7fd20f625c3b148d6e11b3d6bbb74fc8e49ad51f3",
+        "bytes": 7115249,
+        "objects": 16896
+      }
+    },
+    "propagator": "SGP4",
+    "sgp4_version": "2.27",
+    "gravity_constants": "WGS72",
+    "max_element_age_hours": 72,
+    "element_age_hours_range": [
+      -48.80657989327058,
+      716.6202527733334
+    ],
+    "status_counts": {
+      "-2": 42,
+      "-1": 1995,
+      "0": 352758,
+      "1": 21
+    },
+    "status_meaning": {
+      "1": "mean eccentricity is outside the range 0.0 to 1.0",
+      "2": "nm is less than zero",
+      "3": "perturbed eccentricity is outside the range 0.0 to 1.0",
+      "4": "semilatus rectum is less than zero",
+      "5": "(error 5 no longer in use; it meant the satellite was underground)",
+      "6": "mrt is less than 1.0 which indicates the satellite has decayed",
+      "-1": "stale elements",
+      "-2": "future elements rejected",
+      "-3": "nonfinite state",
+      "0": "valid"
+    },
+    "frame_transform": {
+      "library": "Astropy",
+      "version": "7.2.3",
+      "source_frame": "TEME",
+      "target_frame": "ITRS",
+      "earth_orientation_table": "IERS_Auto",
+      "eop_status_codes": [
+        2
+      ],
+      "eop_status_meaning": {
+        "-2": "beyond range",
+        "-1": "before range",
+        "0": "IERS B",
+        "1": "IERS A",
+        "2": "IERS A prediction"
+      },
+      "eop_sha256": "95a61292c957fa74ed624bd4f7a84b1b984077e412b43ed39b99e092f38de9da",
+      "warnings": []
+    },
+    "velocity_derivation": "Centered derivative of SGP4 position curve, +/- 0.25 seconds; transformed with the position to the scene frame. Not the independent SGP4 state-velocity output.",
+    "interpolation": "Cubic Hermite with position and velocity in the declared frame"
+  },
+  "environment_sources": [
+    {
+      "id": "glotec",
+      "name": "NOAA GloTEC assimilative ionosphere",
+      "kind": "modeled",
+      "reference": "https://www.spaceweather.gov/products/glotec",
+      "input": {
+        "url": "https://services.swpc.noaa.gov/products/glotec/geojson_2d_urt/glotec_icao_20261108T185500Z.geojson",
+        "retrieved_utc": "2026-11-08T19:24:14.876801+00:00",
+        "sha256": "43a79a8dace7fab1c94d95b8e427bd3579deffe2c169b7aba5e4be889dd9008a",
+        "bytes": 2502196,
+        "index": {
+          "url": "https://services.swpc.noaa.gov/products/glotec/geojson_2d_urt.json",
+          "retrieved_utc": "2026-11-08T19:24:14.274151+00:00",
+          "sha256": "ad4ed7c25e8c7ce31b00c4d019f6adc236a60a783fa5e726c34bdc6be5fdef42",
+          "bytes": 522405
+        }
+      },
+      "product_time_utc": "2026-11-08T18:55:00+00:00",
+      "quality_flag_counts": {
+        "0": 3571,
+        "1": 239,
+        "2": 215,
+        "4": 167,
+        "5": 823,
+        "3": 169
+      },
+      "missing_values": 0,
+      "temporal_policy": "Explicit sample hold of 600 seconds; no temporal interpolation",
+      "limits": "Assimilative model estimates, not direct point observations. TEC is a column plotted at ground coordinates; NmF2 is located at the modeled hmF2 altitude. Quality flag 0 can be background-dominated.",
+      "input_sha256": "3b50b01152977f19368abe69eff816f6ba176f2ed42108bd961cab42e8fa10f3"
+    },
+    {
+      "id": "igrf14",
+      "name": "IGRF-14 internal main magnetic field",
+      "kind": "modeled",
+      "reference": "https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field",
+      "implementation": "ppigrf",
+      "version": "2.1.0",
+      "coefficients_sha256": "717f6dce821a8f2bfcc6a77f79cc227ba91f61aeb458d5433e8c72450d48f8e0",
+      "coordinate_system": "WGS84 geodetic input; local east/north/up components in nT",
+      "temporal_policy": "Explicit sample hold of 600 seconds",
+      "limits": "Internal main field only; excludes external storm fields, small-scale crustal anomalies and ionospheric currents. Restricted to 0\u20132,000 km in this adapter.",
+      "input_sha256": "3b3f49fa143a211645ca5ff935d2f5be5a77de8e3ac666ebd62900ebb916aa22"
+    },
+    {
+      "id": "open-meteo",
+      "name": "Open-Meteo current weather model output",
+      "kind": "modeled",
+      "reference": "https://open-meteo.com/en/docs",
+      "input": {
+        "url": "https://api.open-meteo.com/v1/forecast?latitude=0.0&longitude=0.0&current=temperature_2m%2Csurface_pressure%2Ccloud_cover&timezone=UTC",
+        "retrieved_utc": "2026-11-08T19:23:10.261342+00:00",
+        "sha256": "998a9715793201fb6143324c7d589b80718439c3f63d24fa0f8d9e2cce3be434",
+        "bytes": 406
+      },
+      "temporal_policy": "Explicit zero-order hold of instantaneous model sample for 900 seconds; not independently established validity",
+      "limits": "Grid-cell model values; no station observations. Total cloud fraction is a column quantity located at the surface, not a cloud height.",
+      "input_sha256": "ef014e116c7bcf5098fd29497fe94792b880f1558cae15208d2dcc878ebbdc01"
+    }
+  ],
+  "active_environment_samples": {
+    "2026-11-08T18:55:00+00:00": {
+      "glotec": 10368,
+      "igrf14": 408,
+      "open-meteo": 0
+    },
+    "2026-11-08T19:05:00+00:00": {
+      "glotec": 10368,
+      "igrf14": 408,
+      "open-meteo": 0
+    }
+  }
+}

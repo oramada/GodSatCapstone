@@ -1,0 +1,108 @@
+{
+  "scope": "Integrated local framework validation, not proof of real-world orbit prediction accuracy or performance on other hardware",
+  "recorded_utc": "2026-11-08T19:53:56.944415+00:00",
+  "platform": "macOS-27.3-arm64-arm-64bit",
+  "tests": {
+    "python_passed": 57,
+    "javascript_passed": 21,
+    "rust_passed": 3,
+    "command": ".venv/bin/python -m pytest tests/unit/test_attitude.py tests/unit/test_numerical.py tests/unit/test_simulation.py tests/unit/test_ground_links.py tests/unit/test_sequence.py tests/unit/test_simulation_providers.py tests/unit/test_studio.py -q && npm run test:studio && cargo test --manifest-path rust/studio-core/Cargo.toml",
+    "git_diff_check": "passed"
+  },
+  "scenes": {
+    "catalog-links": {
+      "sha256": "291f1284ff7aecc4932d57c4e4fe344f1864d7d938fe19ef3dc74e0296721ca0",
+      "objects": 16896,
+      "frames": 11,
+      "source_kind": "modeled"
+    },
+    "numerical-benchmark": {
+      "sha256": "cb4630684cda7c088e11ef0319e395ee245f243955c5f809c90743a50a7e7143",
+      "objects": 1000,
+      "frames": 61,
+      "source_kind": "illustrative"
+    },
+    "attitude-validation": {
+      "sha256": "5bf9201b56799ac56b364738eaac928b17f531a81a7a302bbd407a641e49486b",
+      "objects": 1,
+      "frames": 5,
+      "source_kind": "illustrative"
+    }
+  },
+  "sequence": {
+    "windows_validated": 12,
+    "objects": 16896,
+    "total_frames": 121,
+    "checks": "Every window content hash, roster, frame, epoch and boundary state validated"
+  },
+  "browser": {
+    "scope": "Sampled local browser state after final attitude integration; not sustained GPU or cross-device timing",
+    "environment-status": null,
+    "frame-performance": "58.3 FPS \u00b7 CPU p95 11.8 ms",
+    "object-count": "16896",
+    "scene-title": "Catalog satellite simulation",
+    "sequence-status": "",
+    "source-badge": "MODELED",
+    "utc": "2026-11-08 18:56:28.112 UTC"
+  },
+  "attitude_browser": {
+    "valid_sample": "Supplied illustrative source, frame, body axes and SLERP labels shown",
+    "missing_sample": "At index 2 the model is hidden and missing attitude is labeled",
+    "screenshots": [
+      "outputs/attitude-validation/rotation.png",
+      "outputs/attitude-validation/missing.png"
+    ]
+  },
+  "evidence": {
+    "catalog-interpolation-validation": {
+      "path": "docs/benchmarks/catalog-interpolation-validation.json",
+      "sha256": "ea62b0820a2bfb3a5c001c3cb752d902fc824f959aeded3adf2d632a99f31d1b"
+    },
+    "igrf14-reference": {
+      "path": "docs/benchmarks/igrf14-reference.json",
+      "sha256": "9d3127ed57df3f9937bf07285f672a66b983c0baabcb92f0cf8be1686f70057b"
+    },
+    "numerical-1000": {
+      "path": "docs/benchmarks/numerical-1000.json",
+      "sha256": "cdac481f020f02679ea1acbf3b55d23737b8f6ecba8557e3df4f53f5640fbb5e"
+    },
+    "ground-link-effects": {
+      "path": "docs/benchmarks/ground-link-effects.json",
+      "sha256": "82c6816a09c1be039b5c4442cce53f37305e329fe63986cc31aaf00f0e5fa333"
+    },
+    "sequence-browser": {
+      "path": "docs/benchmarks/sequence-browser.json",
+      "sha256": "13c0f7db72f092f6a2f26f6a6754d4e09e3eb6f3915a6d304377cded1a88ac6b"
+    }
+  },
+  "implementation_sha256": {
+    "godsat/simulation/catalog.py": "83fe48ede69751495aa03ef2d1040dd738e121baa6c4f52cc47ca5a26dbac045",
+    "godsat/simulation/sequence.py": "423bc70f50afa9f423e7c660f33caf2a2ad167e611bc4286ecc5d61eacfc3765",
+    "godsat/simulation/__init__.py": "ceef7966d4d094fb52b26a83a1b0894d9f20a13a867dc64c34adb119b4a08ae3",
+    "godsat/simulation/links.py": "3a96f961db778006a8811b59a8a6c6b6de2b2d770117e177f65bf9ad0ab9db96",
+    "godsat/simulation/numerical.py": "534cb1bc29cc92741c41dbfb723c42c0c09ca7cbcdd80a03d7b3ca355ec3dda2",
+    "godsat/simulation/providers.py": "7264e812552569c670cca7e8643d5fb5769a99aee95b02f521be7b3a58529ac9",
+    "godsat/simulation/inputs.py": "f1dfecd042300dd9c85300979e61cb8992b5b766f14cf81b9bd5f2245477e254",
+    "godsat/simulation/environment.py": "3352f068d32edfcff564be65e732ca509529b2d256cce34559068c24004cc30b",
+    "godsat/simulation/atmosphere.py": "1b10bbabb03f1d9979129ed437af8828c1c1e2f62ea63f3d5650732575eea5f5",
+    "godsat/simulation/__main__.py": "a6ea2219b41789ba99e5d65bffa8f12440bcd5d8ded6d16bd2fc9ab98cdcab0b",
+    "godsat/studio/scene.py": "3302543b850a0efb4d4394d8af5fda215f8d1fa18b93ff1fc0126148162106a9",
+    "godsat/studio/attitude.py": "e6e288a42cc4d82f032ba721d33eabf1d1459780707add0ba11b518eb5732512",
+    "godsat/studio/sequence.py": "b92b791c2e11d02160577af08c8233e13b446770ec4246524f5454bda7282ba5",
+    "web/studio/detail.js": "c3943f1a48578a6aaab66144400be2aca9dc0d3e7d9b7ccc0cbfb7c7088cd8e7",
+    "web/studio/attitude.js": "05539291e125eb8a030d5aedb52c15a9121ece8f748da408d9f03ac2a1f31311",
+    "web/studio/app.js": "9d26c18c28ed03b46a72b8a89f607e91ca4b9ebc3cd2f72e9c51bee3f977434c",
+    "web/studio/cesium-renderer.js": "1bf4179b83629fc3a0a259fffe6d1ae05af05f9fe981261e8dc61ca2882601fe",
+    "web/studio/compute.js": "90ba6b2d426e06f46b17832b8ca7cb367c8b01fc8e388cb3a155f98955f8101e",
+    "web/studio/wasm/godsat_studio_core.wasm": "c2f7ed01f847b2591102fdace70e51c6c15c9e0d9fb5a3c30b673af952d63ec7"
+  },
+  "limits": [
+    "SGP4 and empirical environmental models are predictions, not observed orbit truth.",
+    "Interpolation and integrator errors are distinct from initial state, force model and measurement errors.",
+    "Current Earth orientation includes IERS predictions; space-weather qualifiers include predicted inputs.",
+    "Cloud texture, generic spacecraft geometry and unsupplied attitude are illustrative.",
+    "Radio estimates omit iterative light time, relativity, wet delay and complete receiver/link-budget physics.",
+    "No tracking/detection history or covariance is inferred from orbital geometry.",
+    "Performance is sampled on this local machine; environmental displays cap rendered samples explicitly."
+  ]
+}

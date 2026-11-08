@@ -1,0 +1,9 @@
+{
+  "reference": "outputs/catalog-environment/interpolation-reference.json",
+  "samples": 13300,
+  "wasm_max_error_m": 0.029941997414366008,
+  "wasm_rms_error_m": 0.0110779874578495,
+  "js_max_error_m": 0.029941997414366008,
+  "backend_disagreement_m": 0,
+  "scope": "Interpolation error against direct SGP4/Astropy positions; not real-world orbit accuracy"
+}

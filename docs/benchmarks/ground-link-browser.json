@@ -1,0 +1,10 @@
+{
+  "description": "Manual browser inspection after linked-scenario playback; sampled UI performance, not a sustained benchmark",
+  "dry": "2.311 m",
+  "epoch": "2026-11-08 19:00:00.000 UTC",
+  "faraday": "2.838°",
+  "ionosphere": "7.519 m",
+  "performance": "59.5 FPS · CPU p95 7.8 ms",
+  "scope": "Sample epoch 2026-11-08T19:00:00+00:00. ",
+  "station": "Equatorial example station"
+}

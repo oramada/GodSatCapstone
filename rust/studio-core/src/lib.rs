@@ -80,9 +80,11 @@ pub fn frame(
         let pa = (a * objects + j) * 3;
         let pb = (b * objects + j) * 3;
         let valid = positions[pa..pa + 3].iter().all(|v| v.is_finite());
-        let interpolable = valid && positions[pb..pb + 3].iter().all(|v| v.is_finite());
+        let interpolable = valid && (alpha == 0. || positions[pb..pb + 3].iter().all(|v| v.is_finite()));
         for axis in 0..3 {
-            out[oi + axis] = if interpolable {
+            out[oi + axis] = if valid && alpha == 0. {
+                positions[pa + axis]
+            } else if interpolable {
                 positions[pa + axis] + (positions[pb + axis] - positions[pa + axis]) * alpha
             } else {
                 f64::NAN
@@ -160,9 +162,59 @@ pub unsafe extern "C" fn evaluate(
     );
 }
 
+/// Replace position interpolation for objects with supplied frame derivatives.
+/// # Safety
+/// positions/velocities each contain frames*objects*3 f64 values; modes contains
+/// objects u8 values; times contains frames f64 values; out contains objects*6
+/// writable f64 values. All allocations must be live and non-overlapping.
+#[no_mangle]
+pub unsafe extern "C" fn interpolate_hermite(
+    positions: *const f64, velocities: *const f64, modes: *const u8,
+    times: *const f64, frames: usize, objects: usize, step: f64, out: *mut f64,
+) {
+    if frames == 0 { return; }
+    hermite_positions(
+        slice::from_raw_parts(positions, frames*objects*3),
+        slice::from_raw_parts(velocities, frames*objects*3),
+        slice::from_raw_parts(modes, objects), slice::from_raw_parts(times, frames),
+        objects, step, slice::from_raw_parts_mut(out, objects*6));
+}
+
+pub fn hermite_positions(p: &[f64], v: &[f64], modes: &[u8], times: &[f64], objects: usize, step: f64, out: &mut [f64]) {
+    if times.is_empty() { return; }
+    let step = step.max(0.).min((times.len()-1) as f64);
+    let a = step.floor() as usize;
+    let b = (a+1).min(times.len()-1);
+    let u = step-a as f64;
+    if u == 0. { return; }
+    let h = (times[b]-times[a])/1000.;
+    let u2=u*u; let u3=u2*u;
+    for j in 0..objects {
+        if modes[j] == 0 { continue; }
+        let pa=(a*objects+j)*3; let pb=(b*objects+j)*3;
+        let valid=p[pa..pa+3].iter().chain(&p[pb..pb+3]).chain(&v[pa..pa+3]).chain(&v[pb..pb+3]).all(|x| x.is_finite());
+        for k in 0..3 {
+            out[j*6+k] = if valid {
+                (2.*u3-3.*u2+1.)*p[pa+k]+(u3-2.*u2+u)*h*v[pa+k]
+                +(-2.*u3+3.*u2)*p[pb+k]+(u3-u2)*h*v[pb+k]
+            } else { f64::NAN };
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn hermite_reconstructs_cubic_and_keeps_missing_derivatives_empty() {
+        let p=[0.,0.,1.,8.,4.,1.]; let mut v=[0.,2.,0.,12.,2.,0.];
+        let mut out=[0.;6];
+        hermite_positions(&p,&v,&[1],&[0.,2000.],1,0.5,&mut out);
+        assert_eq!(&out[..3], &[1.,2.,1.]);
+        v[0]=f64::NAN;
+        hermite_positions(&p,&v,&[1],&[0.,2000.],1,0.5,&mut out);
+        assert!(out[0].is_nan());
+    }
     #[test]
     fn expiry_boundary_reacquisition_and_gap() {
         let times: Vec<f64> = (0..7).map(|i| i as f64 * 60000.).collect();

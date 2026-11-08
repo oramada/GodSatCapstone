@@ -1,0 +1,99 @@
+{
+  "scope": "First-order component estimates for a hypothetical L-band station-to-MTG-S1 ray; not measured link performance or a complete ranging solution.",
+  "scene_sha256": "291f1284ff7aecc4932d57c4e4fe344f1864d7d938fe19ef3dc74e0296721ca0",
+  "station": {
+    "id": "equator-example",
+    "name": "Equatorial example station",
+    "latitude_deg": 0,
+    "longitude_deg": 0,
+    "altitude_km": 0,
+    "orthometric_height_km": 0,
+    "reference": "Hypothetical WGS84 site at 0 N, 0 E and zero ellipsoidal height; not an operational tracking station"
+  },
+  "object_id": "64723",
+  "frequency_hz": 1575420000,
+  "samples": 11,
+  "first_epoch": "2026-11-08T18:55:00+00:00",
+  "first_snapshot": {
+    "elevation_deg": 89.86956362486244,
+    "range_km": 35782.971266812056,
+    "vacuum_time_ms": 119.35914434115637,
+    "dry_slant_delay_m": 2.31095776015688,
+    "ionosphere_group_delay_m": 7.51938646066112,
+    "uplink_faraday_deg": 2.8367726958963377,
+    "cloud_fraction": 0.2,
+    "inputs": {
+      "pressure": {
+        "source_id": "open-meteo",
+        "sample_time": "2026-11-08T18:00:00+00:00",
+        "distance_km": 3.9084331759900666,
+        "height_difference_km": 0.0,
+        "pressure_pa": 101230.0,
+        "vertical_datum": "mean_sea_level"
+      },
+      "tec": {
+        "source_id": "glotec",
+        "sample_time": "2026-11-08T18:55:00+00:00",
+        "distance_km": 311.4905212939319,
+        "pierce_latitude_deg": -0.007892370112213996,
+        "pierce_longitude_deg": -0.0031950095391266586,
+        "vertical_tecu": 46.30939262645556,
+        "slant_tecu": 46.30949755256754,
+        "mapping": 1.000002265763078,
+        "column_top_km": 8500,
+        "interpolation": "bilinear within one epoch; no hole filling",
+        "corners": [
+          {
+            "latitude_deg": -1.25,
+            "longitude_deg": -2.5,
+            "weight": 0.2518999922721791,
+            "vertical_tecu": 48.3923416472332,
+            "distance_km": 310.06981980759616,
+            "quality_flag": 0
+          },
+          {
+            "latitude_deg": -1.25,
+            "longitude_deg": 2.5,
+            "weight": 0.25125695577270657,
+            "vertical_tecu": 45.13362115044579,
+            "distance_km": 310.70608459235615,
+            "quality_flag": 0
+          },
+          {
+            "latitude_deg": 1.25,
+            "longitude_deg": -2.5,
+            "weight": 0.24873900963564627,
+            "vertical_tecu": 47.41026319385245,
+            "distance_km": 310.855860837572,
+            "quality_flag": 0
+          },
+          {
+            "latitude_deg": 1.25,
+            "longitude_deg": 2.5,
+            "weight": 0.24810404231946812,
+            "vertical_tecu": 44.28160005016953,
+            "distance_km": 311.4905212939319,
+            "quality_flag": 0
+          }
+        ]
+      },
+      "magnetic": {
+        "model": "IGRF-14",
+        "version": "2.1.0",
+        "coefficients_sha256": "717f6dce821a8f2bfcc6a77f79cc227ba91f61aeb458d5433e8c72450d48f8e0",
+        "parallel_t": 1.1243785266255838e-05
+      }
+    },
+    "unavailable": {}
+  },
+  "limits": [
+    "Straight geometric ray; no refraction, diffraction, multipath or receiver model.",
+    "Instantaneous geometry; no signal light-time iteration, Sagnac, relativity or clock corrections.",
+    "Dry delay uses Saastamoinen zenith hydrostatic delay and secant elevation mapping; wet delay is not estimated.",
+    "TEC is mapped through one spherical shell; targets inside the source column are unsupported.",
+    "Faraday rotation assumes the main magnetic field at that shell represents the TEC-weighted field; external storm fields are omitted.",
+    "Cloud fraction is contextual area coverage, not optical path opacity or a detection probability.",
+    "Radio frequency is a scenario parameter, not verified satellite hardware or an operational link assignment.",
+    "Results are sampled at saved epochs. No inference of observations or custody, and no changes to SGP4 orbits."
+  ]
+}

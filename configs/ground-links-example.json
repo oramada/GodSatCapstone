@@ -1,0 +1,17 @@
+{
+  "schema": "godsat.ground-links.v1",
+  "frequency_hz": 1575420000,
+  "minimum_elevation_deg": 15,
+  "shell_height_km": 450,
+  "tec_source_id": "glotec",
+  "weather_source_id": "open-meteo",
+  "tec_interpolation": "bilinear",
+  "max_tec_distance_km": 800,
+  "max_weather_distance_km": 50,
+  "max_weather_height_difference_km": 0.1,
+  "stations": [{
+    "id": "equator-example", "name": "Equatorial example station",
+    "latitude_deg": 0, "longitude_deg": 0, "altitude_km": 0, "orthometric_height_km": 0,
+    "reference": "Hypothetical WGS84 site at 0 N, 0 E and zero ellipsoidal height; not an operational tracking station"
+  }]
+}

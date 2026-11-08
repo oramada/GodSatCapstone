@@ -1,0 +1,107 @@
+{
+  "scope": "All saved window hashes, rosters, endpoints and shared-boundary digests checked by the production loader. Browser residency tested separately.",
+  "manifest_sha256": "439e025c1e58b5f09f13d9e12a7ca7217fd007c6d97567bbaf3936a609611f5b",
+  "objects": 16896,
+  "windows": 12,
+  "total_frames": 121,
+  "duration_seconds": 3600,
+  "validation_seconds": 11.370387625007425,
+  "results": [
+    {
+      "index": 0,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 0,
+      "bytes": 26178512,
+      "environment_samples": 10776
+    },
+    {
+      "index": 1,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 10,
+      "bytes": 26177174,
+      "environment_samples": 10776
+    },
+    {
+      "index": 2,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 20,
+      "bytes": 26177648,
+      "environment_samples": 10776
+    },
+    {
+      "index": 3,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 30,
+      "bytes": 23291975,
+      "environment_samples": 2
+    },
+    {
+      "index": 4,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 40,
+      "bytes": 23291453,
+      "environment_samples": 2
+    },
+    {
+      "index": 5,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 50,
+      "bytes": 23291619,
+      "environment_samples": 2
+    },
+    {
+      "index": 6,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 60,
+      "bytes": 23290186,
+      "environment_samples": 2
+    },
+    {
+      "index": 7,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 70,
+      "bytes": 23290502,
+      "environment_samples": 2
+    },
+    {
+      "index": 8,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 80,
+      "bytes": 23290659,
+      "environment_samples": 0
+    },
+    {
+      "index": 9,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 90,
+      "bytes": 23292554,
+      "environment_samples": 0
+    },
+    {
+      "index": 10,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 100,
+      "bytes": 23294495,
+      "environment_samples": 0
+    },
+    {
+      "index": 11,
+      "objects": 16896,
+      "frames": 11,
+      "offset": 110,
+      "bytes": 23295812,
+      "environment_samples": 0
+    }
+  ]
+}

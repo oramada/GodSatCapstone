@@ -1,0 +1,38 @@
+{
+  "scope": "Synthetic end-to-end scene preparation; excludes HTTP, browser and GPU. Midpoint error compares display linear interpolation to SGP4, not measured truth.",
+  "platform": "macOS-27.3-arm64-arm-64bit",
+  "python": "3.12.12",
+  "objects": 10000,
+  "frames": 31,
+  "cadence_seconds": 20.0,
+  "build_seconds": 2.205763667006977,
+  "serialize_seconds": 0.5669442920043366,
+  "bytes": 37239823,
+  "status_counts": {
+    "0": 310000
+  },
+  "interpolation_reference": "Direct SGP4 + Astropy ITRS at five fractions of every interval, first 100 synthetic objects",
+  "interpolation_linear_max_m": 424.72752785429,
+  "interpolation_linear_rms_m": 271.9623615129324,
+  "interpolation_hermite_max_m": 0.004541973569852966,
+  "interpolation_hermite_rms_m": 0.002197404947778801,
+  "frame_transform": {
+    "library": "Astropy",
+    "version": "7.2.3",
+    "source_frame": "TEME",
+    "target_frame": "ITRS",
+    "earth_orientation_table": "IERS_Auto",
+    "eop_status_codes": [
+      2
+    ],
+    "eop_status_meaning": {
+      "-2": "beyond range",
+      "-1": "before range",
+      "0": "IERS B",
+      "1": "IERS A",
+      "2": "IERS A prediction"
+    },
+    "eop_sha256": "95a61292c957fa74ed624bd4f7a84b1b984077e412b43ed39b99e092f38de9da",
+    "warnings": []
+  }
+}

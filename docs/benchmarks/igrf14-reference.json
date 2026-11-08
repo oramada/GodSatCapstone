@@ -1,0 +1,2170 @@
+{
+  "source": "https://www.ngdc.noaa.gov/IAGA/vmod/igrf14.f",
+  "source_sha256": "0c4fe0664d837b86c1d1fb4d2a354d6a14a29bbf028b550ab1342e1b828dd2c0",
+  "compiler": "GNU Fortran (Homebrew GCC 15.2.0) 15.2.0",
+  "cases": 180,
+  "maximum_component_error_nt": 0.016660769048030488,
+  "scope": "Implementation agreement for main-field synthesis only; not comparison with measured magnetic field",
+  "reference": [
+    {
+      "year": 1900,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        12905.491887291466,
+        4711.989428242451,
+        64461.05199811117
+      ],
+      "max_component_error_nt": 0.016347388962458353
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        10294.15383825798,
+        4365.433642140816,
+        52882.98195869023
+      ],
+      "max_component_error_nt": 0.012596887434483506
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        4705.330613674159,
+        2889.8158573788874,
+        27111.803532465718
+      ],
+      "max_component_error_nt": 0.005390176331275143
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -5723.8769561452455,
+        17215.553923767562,
+        54496.86485127159
+      ],
+      "max_component_error_nt": 0.009882578466203995
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -5040.51617641074,
+        13536.679759292403,
+        45682.642762787094
+      ],
+      "max_component_error_nt": 0.008126306340273004
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -2911.367408382724,
+        6033.148082574262,
+        24710.30305388651
+      ],
+      "max_component_error_nt": 0.00409325444343267
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -7330.484064953059,
+        -4698.495338019078,
+        65636.7110937426
+      ],
+      "max_component_error_nt": 0.016208956643822603
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -5369.465800493671,
+        -3807.2040509712897,
+        54465.75993040172
+      ],
+      "max_component_error_nt": 0.012946096518135164
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -1836.9408374886268,
+        -1778.4822062849728,
+        28546.06355879439
+      ],
+      "max_component_error_nt": 0.0059628185590554494
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        8853.554548769871,
+        25010.7226775277,
+        44593.1510345274
+      ],
+      "max_component_error_nt": 0.008453197919152444
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        7270.13135831319,
+        20642.6207938045,
+        36700.12579717413
+      ],
+      "max_component_error_nt": 0.006651521911408054
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        3626.64838060601,
+        10764.23772658123,
+        18781.669049824035
+      ],
+      "max_component_error_nt": 0.0029689748280361528
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -9246.844282835113,
+        18010.10346348209,
+        28996.86312855728
+      ],
+      "max_component_error_nt": 0.003943805175367743
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -7485.941348079594,
+        15485.921014007094,
+        24955.358799148147
+      ],
+      "max_component_error_nt": 0.003405733214094653
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -3647.210152956449,
+        8913.800942503454,
+        14458.310632146573
+      ],
+      "max_component_error_nt": 0.0019228247419960098
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -2534.8069821350045,
+        16645.86792575317,
+        60972.83284974174
+      ],
+      "max_component_error_nt": 0.008804759927443229
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -1913.4893933698063,
+        13992.286254872462,
+        50218.316629811445
+      ],
+      "max_component_error_nt": 0.00693736687026103
+    },
+    {
+      "year": 1900,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -679.7270847562986,
+        7600.195708269635,
+        25754.851292843134
+      ],
+      "max_component_error_nt": 0.003071316077694064
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        4195.6179250960295,
+        34203.022226384004,
+        -3968.7848714514053
+      ],
+      "max_component_error_nt": 0.002761892414127942
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        3732.8468226598907,
+        28336.647672979296,
+        -3661.6075307739993
+      ],
+      "max_component_error_nt": 0.0022941277238714974
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        2253.3276830952927,
+        14731.988305096951,
+        -2416.6786525811335
+      ],
+      "max_component_error_nt": 0.001207937903018319
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -8560.305825174006,
+        28027.936644541332,
+        5589.797703619031
+      ],
+      "max_component_error_nt": 0.002404229286185
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -7069.838943589017,
+        23370.62708815034,
+        3694.847877864506
+      ],
+      "max_component_error_nt": 0.0019817578831862193
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -3544.7945367325656,
+        12470.142687458518,
+        684.3852225078139
+      ],
+      "max_component_error_nt": 0.0010362899502069922
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        1489.428170355625,
+        38452.979644886116,
+        10705.579990445869
+      ],
+      "max_component_error_nt": 0.0032827584727783687
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        1099.2220431789356,
+        31573.06587157977,
+        9062.7053361105
+      ],
+      "max_component_error_nt": 0.0027161006510141306
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        426.6006893619791,
+        16001.616583987001,
+        4939.204604857122
+      ],
+      "max_component_error_nt": 0.0013998584709042916
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        7606.241806732045,
+        19539.56133943882,
+        -54823.77980270054
+      ],
+      "max_component_error_nt": 0.008288261051347945
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        5839.939952005782,
+        16213.879472397495,
+        -45119.29941593021
+      ],
+      "max_component_error_nt": 0.006387101462678402
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        2505.2471547597547,
+        8586.26148264376,
+        -23163.103996052934
+      ],
+      "max_component_error_nt": 0.002693847078262479
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -5556.277462015392,
+        20442.974761613,
+        -40219.76004629693
+      ],
+      "max_component_error_nt": 0.006463150170020526
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -4699.959629363834,
+        17364.37579244257,
+        -33789.64648193212
+      ],
+      "max_component_error_nt": 0.005228002650255803
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -2573.0043607557836,
+        9522.775984299336,
+        -18405.70176624952
+      ],
+      "max_component_error_nt": 0.002465562649376807
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -2227.5209484869238,
+        25733.10109894719,
+        -49144.267556650986
+      ],
+      "max_component_error_nt": 0.0088432649281458
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -1344.0761550649859,
+        21398.811111910672,
+        -39813.44398995108
+      ],
+      "max_component_error_nt": 0.006842603062978014
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -86.68275034253901,
+        11366.90512694832,
+        -19533.902024228493
+      ],
+      "max_component_error_nt": 0.0029147433524485677
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        1743.4894557099667,
+        -1159.6689561896123,
+        -58484.055259335444
+      ],
+      "max_component_error_nt": 0.012541884934762493
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        1666.6518388736927,
+        -537.9319364680405,
+        -49529.46962524013
+      ],
+      "max_component_error_nt": 0.010424601161503233
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        1144.2194941674072,
+        205.06434107304008,
+        -27170.552582984892
+      ],
+      "max_component_error_nt": 0.005249373374681454
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -3428.933243916394,
+        7215.673599891358,
+        -53941.59489962085
+      ],
+      "max_component_error_nt": 0.010067805560538545
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -3085.8846007896236,
+        5808.1936541094165,
+        -46183.16214674423
+      ],
+      "max_component_error_nt": 0.008701980630576145
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -1923.9621524691383,
+        2758.4866794137083,
+        -25949.23948338146
+      ],
+      "max_component_error_nt": 0.004739166884974111
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        1679.4849340884907,
+        3520.5343472729046,
+        -59022.45673594478
+      ],
+      "max_component_error_nt": 0.013552665812312625
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        1418.5194801480627,
+        3841.0806328496433,
+        -49434.21577559462
+      ],
+      "max_component_error_nt": 0.010877794149564579
+    },
+    {
+      "year": 1900,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        777.4454783233766,
+        3132.5429917116608,
+        -26533.69023039152
+      ],
+      "max_component_error_nt": 0.005147056119312765
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        15014.862132668306,
+        5551.507315508937,
+        59499.383024161085
+      ],
+      "max_component_error_nt": 0.014547947037499398
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        11829.736489515817,
+        4900.171217632078,
+        48912.56994401603
+      ],
+      "max_component_error_nt": 0.01125211209000554
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        5228.277178754484,
+        3011.573999518595,
+        25285.809646209884
+      ],
+      "max_component_error_nt": 0.004885500049567781
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -6670.6344149754905,
+        18002.202044070717,
+        48871.18179004821
+      ],
+      "max_component_error_nt": 0.007765506394207478
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -5737.653027529089,
+        14017.925358063747,
+        41297.28747519607
+      ],
+      "max_component_error_nt": 0.006603513895242941
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -3162.549367080665,
+        6093.98944452935,
+        22783.871941492627
+      ],
+      "max_component_error_nt": 0.0035551364489947446
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -8340.492624194134,
+        -7644.400102899319,
+        63315.34791857643
+      ],
+      "max_component_error_nt": 0.016379659617086872
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -6069.140163937482,
+        -6030.179806199709,
+        52381.05835753391
+      ],
+      "max_component_error_nt": 0.012948131530720275
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -2052.098820682816,
+        -2622.9040443702247,
+        27323.66845488686
+      ],
+      "max_component_error_nt": 0.005832649523654254
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        10193.951938055056,
+        23162.95201336111,
+        40953.64316175776
+      ],
+      "max_component_error_nt": 0.007846959386370145
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        8273.642580140544,
+        19285.60887925661,
+        33653.422060422075
+      ],
+      "max_component_error_nt": 0.006156450381240575
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        4005.5505171550244,
+        10240.232689384933,
+        17279.70530645929
+      ],
+      "max_component_error_nt": 0.0027665175730362535
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -6975.872554151632,
+        13767.676358028866,
+        27247.50939721639
+      ],
+      "max_component_error_nt": 0.0025892980283970246
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -5833.2851275679795,
+        12233.866882584769,
+        23484.42606831761
+      ],
+      "max_component_error_nt": 0.0023848058190196753
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -3099.429689266863,
+        7601.078173191845,
+        13720.098630821552
+      ],
+      "max_component_error_nt": 0.001551072007714538
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -2369.2875107196705,
+        14985.553648881762,
+        62542.27070818134
+      ],
+      "max_component_error_nt": 0.00887685794805293
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -1893.7200031784985,
+        12629.083277224436,
+        51327.379819034046
+      ],
+      "max_component_error_nt": 0.006952201993044582
+    },
+    {
+      "year": 1950,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -782.6226202587508,
+        6912.848720861823,
+        26030.380452915535
+      ],
+      "max_component_error_nt": 0.0030257722919486696
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        4969.523546537766,
+        32553.442022634506,
+        -4499.515668848261
+      ],
+      "max_component_error_nt": 0.002595846224721754
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        4353.436819123699,
+        26941.1761086135,
+        -4152.61505224224
+      ],
+      "max_component_error_nt": 0.002147950042854063
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        2516.506502665762,
+        14006.739366377322,
+        -2699.3888517816513
+      ],
+      "max_component_error_nt": 0.0011286908593319822
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -6399.73069966848,
+        27959.594296743107,
+        11349.782556032485
+      ],
+      "max_component_error_nt": 0.0025929998300853185
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -5344.487256135256,
+        23168.43105171457,
+        8032.24494866238
+      ],
+      "max_component_error_nt": 0.002100212157529313
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -2800.504156346594,
+        12195.964543974418,
+        2335.261763944651
+      ],
+      "max_component_error_nt": 0.0010542739437369164
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        1960.3993238490539,
+        38930.14495804737,
+        12277.307556413214
+      ],
+      "max_component_error_nt": 0.003419902132009156
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        1321.262491833108,
+        31933.85083109786,
+        10272.42009386635
+      ],
+      "max_component_error_nt": 0.0028207868526806124
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        362.7467503112462,
+        16092.589285084403,
+        5455.046893080609
+      ],
+      "max_component_error_nt": 0.0014395439429790713
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        7175.739469016087,
+        18988.3735358799,
+        -52562.10758161888
+      ],
+      "max_component_error_nt": 0.007953219159389846
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        5569.876965738145,
+        15700.683561253078,
+        -43262.99564826644
+      ],
+      "max_component_error_nt": 0.006102842482505366
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        2441.530353163047,
+        8277.019757788938,
+        -22268.85543721353
+      ],
+      "max_component_error_nt": 0.0025649687595432624
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -3067.2130001796204,
+        21407.758155746837,
+        -39738.31278319189
+      ],
+      "max_component_error_nt": 0.0068868672133248765
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -2760.9740784137334,
+        18099.142359977133,
+        -33233.335351431604
+      ],
+      "max_component_error_nt": 0.005517596880963538
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -1768.4955630297914,
+        9794.18846602128,
+        -17912.39312315646
+      ],
+      "max_component_error_nt": 0.0025433146947761998
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -3422.549371029129,
+        25618.95511663615,
+        -50109.02125397264
+      ],
+      "max_component_error_nt": 0.009121667528233957
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -2285.241067726231,
+        21289.93478885559,
+        -40453.25255535423
+      ],
+      "max_component_error_nt": 0.007014154318312649
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -506.4977452801737,
+        11295.73945622644,
+        -19659.018538182303
+      ],
+      "max_component_error_nt": 0.0029498623407562263
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        1315.5185668009776,
+        -271.7290402022379,
+        -57240.76796310968
+      ],
+      "max_component_error_nt": 0.01239206158061279
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        1305.3600535331739,
+        187.25426983816024,
+        -48390.3344769674
+      ],
+      "max_component_error_nt": 0.010232153115794063
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        963.2066583886884,
+        543.5324764673351,
+        -26484.88648780729
+      ],
+      "max_component_error_nt": 0.005107788510940736
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -2086.61671452182,
+        6900.878783201272,
+        -53060.5012193341
+      ],
+      "max_component_error_nt": 0.009959141869330779
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -1951.1323079118301,
+        5573.654970205958,
+        -45422.3877990275
+      ],
+      "max_component_error_nt": 0.00860107435437385
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -1362.2746848528864,
+        2684.4264426716377,
+        -25501.979431081752
+      ],
+      "max_component_error_nt": 0.004676392185501754
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        843.0048733119211,
+        2745.8911173683655,
+        -57956.38255807828
+      ],
+      "max_component_error_nt": 0.013187587916036136
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        693.7400176677739,
+        3155.1828059515087,
+        -48640.78780349546
+      ],
+      "max_component_error_nt": 0.010663190922059584
+    },
+    {
+      "year": 1950,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        412.48344925984793,
+        2764.4957713008484,
+        -26173.200016374838
+      ],
+      "max_component_error_nt": 0.0051001274077862035
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        15686.433371317808,
+        5451.636255730264,
+        54293.59236591762
+      ],
+      "max_component_error_nt": 0.013843487620761152
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        12278.013369188951,
+        4838.549957584518,
+        44782.6924702923
+      ],
+      "max_component_error_nt": 0.01075989834498614
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        5307.368507200871,
+        2979.607167634179,
+        23396.93427768002
+      ],
+      "max_component_error_nt": 0.004760498522955459
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -6932.902958564172,
+        17855.071999003554,
+        43583.52759830036
+      ],
+      "max_component_error_nt": 0.007285100939043332
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -5943.582872315124,
+        13846.524005352705,
+        37072.37414667609
+      ],
+      "max_component_error_nt": 0.006263183917326387
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -3225.220960705944,
+        5910.797435681994,
+        20880.470702502604
+      ],
+      "max_component_error_nt": 0.00351453764596954
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -8314.133073945855,
+        -9724.57410116299,
+        59349.481265370494
+      ],
+      "max_component_error_nt": 0.016660769048030488
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -6040.371627265302,
+        -7562.956240674054,
+        49173.65388543132
+      ],
+      "max_component_error_nt": 0.01318354946852196
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -2006.70723773709,
+        -3154.4029460732736,
+        25772.532405895774
+      ],
+      "max_component_error_nt": 0.0059711098692787345
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        10354.64631285877,
+        21519.055942109262,
+        36501.94957880715
+      ],
+      "max_component_error_nt": 0.007301327070308616
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        8337.15445846035,
+        17979.558122076745,
+        30235.018899708975
+      ],
+      "max_component_error_nt": 0.005848730961588444
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        3922.418309727145,
+        9632.431021820434,
+        15806.025338480275
+      ],
+      "max_component_error_nt": 0.0027299082503304817
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -4424.421466481702,
+        10654.708560423269,
+        22910.215422434216
+      ],
+      "max_component_error_nt": 0.002349461614358006
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -4002.481796931509,
+        9789.212729918198,
+        20343.204165786352
+      ],
+      "max_component_error_nt": 0.0019539232707757037
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -2455.1657879899058,
+        6510.19544392738,
+        12621.123367054763
+      ],
+      "max_component_error_nt": 0.0013600061738543445
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -2022.3526281622526,
+        13877.635762438393,
+        62482.907069592744
+      ],
+      "max_component_error_nt": 0.0092536269712582
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -1609.648556159468,
+        11647.529230858716,
+        51188.332631022415
+      ],
+      "max_component_error_nt": 0.007218254924737266
+    },
+    {
+      "year": 2000,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -670.7603365162925,
+        6389.266554862834,
+        25770.784642173807
+      ],
+      "max_component_error_nt": 0.0031980321145965718
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        5017.169689950565,
+        30552.72774886237,
+        -5042.170976511362
+      ],
+      "max_component_error_nt": 0.002462717762682587
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        4266.696487261447,
+        25338.469255031134,
+        -4514.6437251906855
+      ],
+      "max_component_error_nt": 0.002064373758912552
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        2305.32307245947,
+        13244.771331069436,
+        -2771.509544673367
+      ],
+      "max_component_error_nt": 0.0011218677464057691
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -3504.153400469013,
+        27464.948919821138,
+        14827.762704716872
+      ],
+      "max_component_error_nt": 0.0033295236935373396
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -3013.6959461458005,
+        22637.600943409914,
+        10791.086104314176
+      ],
+      "max_component_error_nt": 0.002659923728060676
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -1750.126169826637,
+        11811.821560178922,
+        3540.511300400239
+      ],
+      "max_component_error_nt": 0.0012905013591080206
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        810.6557072203138,
+        39441.809912503944,
+        12219.799091698005
+      ],
+      "max_component_error_nt": 0.0039488598486059345
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        582.0179642923094,
+        32255.939388185318,
+        10244.655658374628
+      ],
+      "max_component_error_nt": 0.0032484538096468896
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        182.66016606648168,
+        16117.730514943498,
+        5400.377281268211
+      ],
+      "max_component_error_nt": 0.0016439849205198698
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        6039.51768974432,
+        19465.02964759331,
+        -50386.33361686964
+      ],
+      "max_component_error_nt": 0.007887835428846302
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        4638.414662500627,
+        16027.920523707448,
+        -41571.26565633917
+      ],
+      "max_component_error_nt": 0.006088005202400382
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        1965.6193349717742,
+        8348.42053454522,
+        -21487.352475750777
+      ],
+      "max_component_error_nt": 0.0025902791567204986
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -888.6277047790155,
+        22701.981588379236,
+        -40298.079208153584
+      ],
+      "max_component_error_nt": 0.007613877605763264
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -1004.1381567641058,
+        19123.75108148357,
+        -33457.051301605934
+      ],
+      "max_component_error_nt": 0.006073120403016219
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -928.5051409632597,
+        10224.917858192708,
+        -17679.687673922293
+      ],
+      "max_component_error_nt": 0.00276719305475126
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -3629.024529918221,
+        24990.636262985066,
+        -50379.34765083663
+      ],
+      "max_component_error_nt": 0.009127876088314224
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -2501.334756132813,
+        20847.229676468498,
+        -40722.350182089685
+      ],
+      "max_component_error_nt": 0.007088821344950702
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -640.2584140385693,
+        11116.645024795042,
+        -19830.269888906463
+      ],
+      "max_component_error_nt": 0.0030433105621341383
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        968.7817399136874,
+        630.5557167931563,
+        -57251.1438630104
+      ],
+      "max_component_error_nt": 0.013033778945100494
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        943.1467232992022,
+        956.019715531658,
+        -48383.85294375677
+      ],
+      "max_component_error_nt": 0.010804787481902167
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        667.831394719175,
+        929.4429945339566,
+        -26365.702582445636
+      ],
+      "max_component_error_nt": 0.0054045983124524355
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -1166.800763991902,
+        6638.875091993848,
+        -54057.33696965702
+      ],
+      "max_component_error_nt": 0.011422256808145903
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -1134.3631015952508,
+        5464.086141757441,
+        -46105.107100885885
+      ],
+      "max_component_error_nt": 0.009722660564875696
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -875.456091652511,
+        2757.2036251401205,
+        -25613.85723586941
+      ],
+      "max_component_error_nt": 0.005136869564012159
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        58.430067356801445,
+        2432.2053676961805,
+        -58274.017490419246
+      ],
+      "max_component_error_nt": 0.014023579860804603
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        143.5926436998739,
+        2836.2367126849854,
+        -48899.229626231965
+      ],
+      "max_component_error_nt": 0.011372736684279516
+    },
+    {
+      "year": 2000,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        220.4523123569458,
+        2493.259139159453,
+        -26255.63649654448
+      ],
+      "max_component_error_nt": 0.0054775748103566
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        15740.10113721453,
+        6116.21272990363,
+        52029.92758022469
+      ],
+      "max_component_error_nt": 0.01218010682350723
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        12282.707008862006,
+        5319.026380743079,
+        43032.098526304144
+      ],
+      "max_component_error_nt": 0.009478060943365563
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        5245.920347773368,
+        3131.2461707603566,
+        22660.33338406818
+      ],
+      "max_component_error_nt": 0.004214894033793826
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -7694.519682585808,
+        17528.587377444102,
+        41931.142636006516
+      ],
+      "max_component_error_nt": 0.006752057397534372
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -6497.969631224564,
+        13551.486086055413,
+        35795.488900239034
+      ],
+      "max_component_error_nt": 0.005280175573716406
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -3389.805338010328,
+        5728.169064871222,
+        20339.714407608022
+      ],
+      "max_component_error_nt": 0.003058544833038468
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -7548.2654069234195,
+        -10732.5294207627,
+        58468.44286170985
+      ],
+      "max_component_error_nt": 0.015857525439059827
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -5450.448885510892,
+        -8272.274867958284,
+        48417.171153463634
+      ],
+      "max_component_error_nt": 0.012481650883273687
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -1769.2777450362298,
+        -3351.9911641245635,
+        25359.328327521893
+      ],
+      "max_component_error_nt": 0.005577881911449367
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        10090.633777181742,
+        20602.2066983274,
+        34532.85013567343
+      ],
+      "max_component_error_nt": 0.006342406293697422
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        8089.222352510937,
+        17286.212345965716,
+        28677.611200458403
+      ],
+      "max_component_error_nt": 0.005113845596497413
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        3749.763044035119,
+        9339.595338200092,
+        15131.659758674788
+      ],
+      "max_component_error_nt": 0.002420989447273314
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -3979.7293686493904,
+        10064.257923058887,
+        21163.621224678544
+      ],
+      "max_component_error_nt": 0.0012064341044606408
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -3660.7502247400025,
+        9265.307625948573,
+        19142.945626221688
+      ],
+      "max_component_error_nt": 0.0014379324529727455
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -2289.6795316040425,
+        6217.586351075325,
+        12296.271596537192
+      ],
+      "max_component_error_nt": 0.0012649152804442565
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -1560.4332303381127,
+        14279.025435684012,
+        62467.597739059296
+      ],
+      "max_component_error_nt": 0.009094575731069199
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -1241.8712394984898,
+        11925.500417727777,
+        51118.27762002815
+      ],
+      "max_component_error_nt": 0.007063615972583648
+    },
+    {
+      "year": 2025,
+      "latitude_deg": -45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -517.0751421852116,
+        6471.19254539088,
+        25640.376867441664
+      ],
+      "max_component_error_nt": 0.0030069709118834
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        4323.2642713240475,
+        29461.832427251353,
+        -5453.1191431513835
+      ],
+      "max_component_error_nt": 0.0021810140715388115
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        3680.015562698835,
+        24435.435577890985,
+        -4737.558394910201
+      ],
+      "max_component_error_nt": 0.0018135095888283104
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 0.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        1985.209764539657,
+        12801.86100787941,
+        -2733.861330528786
+      ],
+      "max_component_error_nt": 0.0009678721598902484
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -1926.5486554072747,
+        27456.624611798987,
+        15997.35386095905
+      ],
+      "max_component_error_nt": 0.002849038763088174
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -1730.7889508705266,
+        22574.752965855027,
+        11668.725905462035
+      ],
+      "max_component_error_nt": 0.0022684478099108674
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -1155.4193598598065,
+        11741.667369070346,
+        3905.4817120742673
+      ],
+      "max_component_error_nt": 0.001098230475690798
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -111.16196802715854,
+        39676.190324533934,
+        10576.07601318595
+      ],
+      "max_component_error_nt": 0.0037550722117885016
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -69.19140555505614,
+        32455.302572862634,
+        8968.725188474175
+      ],
+      "max_component_error_nt": 0.0030718069392605685
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 0.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -25.67035980860477,
+        16215.17742036674,
+        4831.295281848165
+      ],
+      "max_component_error_nt": 0.0015280338848242536
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        4853.8787654751095,
+        19399.49615529084,
+        -47861.95459956009
+      ],
+      "max_component_error_nt": 0.007178807038144441
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        3683.177565295963,
+        16027.354479386453,
+        -39627.329654767076
+      ],
+      "max_component_error_nt": 0.005579356313319295
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 45.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        1514.6562038058723,
+        8396.000353159308,
+        -20665.212926478755
+      ],
+      "max_component_error_nt": 0.0024136378360708477
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        513.4874899696489,
+        23117.83118586392,
+        -40936.12507567176
+      ],
+      "max_component_error_nt": 0.0072581801177875604
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        169.06332111493325,
+        19464.361686938817,
+        -33862.72886282815
+      ],
+      "max_component_error_nt": 0.005770915940956911
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 45.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -320.5196677097052,
+        10380.271353842332,
+        -17719.222863295676
+      ],
+      "max_component_error_nt": 0.0025990553167503094
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -4214.445738310699,
+        24366.14841690467,
+        -50917.8907309734
+      ],
+      "max_component_error_nt": 0.008598975640779827
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -2975.129703370099,
+        20396.933892354766,
+        -41296.63890035402
+      ],
+      "max_component_error_nt": 0.006705707772198366
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 45.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -864.3196020286789,
+        10926.447797513028,
+        -20257.231029701055
+      ],
+      "max_component_error_nt": 0.0028936952076037414
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        104.32242357124986,
+        2225.8639750770158,
+        -57082.99072257747
+      ],
+      "max_component_error_nt": 0.0117667962986161
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        239.10450996700737,
+        2178.028279253363,
+        -48215.68580646182
+      ],
+      "max_component_error_nt": 0.009811506868572906
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 80.0,
+      "longitude_deg": -120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        317.6604395729379,
+        1444.1236105561704,
+        -26220.549050015183
+      ],
+      "max_component_error_nt": 0.004940023514791392
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        141.59590281167849,
+        6527.400932140966,
+        -54782.54142822975
+      ],
+      "max_component_error_nt": 0.010593793209409341
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -39.264937255802806,
+        5403.093877084732,
+        -46603.58699140525
+      ],
+      "max_component_error_nt": 0.009030657151015475
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 80.0,
+      "longitude_deg": 0.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        -308.64758822971515,
+        2772.4616604890484,
+        -25729.71670095256
+      ],
+      "max_component_error_nt": 0.004772932530613616
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 0.0,
+      "reference_enu_nt": [
+        -338.38042574512303,
+        1814.9996403801342,
+        -59016.41358027274
+      ],
+      "max_component_error_nt": 0.013179611421946902
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 400.0,
+      "reference_enu_nt": [
+        -230.20850769144118,
+        2249.3339099560453,
+        -49470.75142694588
+      ],
+      "max_component_error_nt": 0.010695013843360357
+    },
+    {
+      "year": 2025,
+      "latitude_deg": 80.0,
+      "longitude_deg": 120.0,
+      "altitude_km": 2000.0,
+      "reference_enu_nt": [
+        1.6865082407113612,
+        2112.9038574494657,
+        -26483.05514703293
+      ],
+      "max_component_error_nt": 0.0051450292085064575
+    }
+  ]
+}

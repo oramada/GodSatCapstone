@@ -1,6 +1,16 @@
 # Experiment Studio
 
-The repository frontend is now **GoDSAT Experiment Studio**. Its default globe renderer is CesiumJS 1.147.0, with a Rust/WebAssembly CPU core. Three.js supplies only the embedded spacecraft close-up using standard PBR materials; it is not a separate visualization. It uses one 3D renderer for a single target, all exported objects in a run, and deliberately illustrative teaching scenes. Studio is the sole application. Old `/legacy`, `/index.html` and `/studio/` links redirect to `/`.
+The repository frontend is **GoDSAT Experiment Studio**, a shared workspace for saved experiments. It opens on a collection overview rather than an individual replay. Visualization is one view alongside the run collections, data library, and result comparison. Its globe renderer is CesiumJS 1.147.0, with a Rust/WebAssembly CPU core. Three.js supplies the embedded spacecraft close-up. Studio remains the sole application; old `/legacy`, `/index.html` and `/studio/` links redirect to `/`.
+
+## Workspace views
+
+- **Overview** shows counts from the live local inventory, recently modified collections, and recent files. It does not automatically open a demonstration or allocate a globe renderer.
+- **Run collections** groups `outputs/<collection>`, `reports/evidence/<study>`, and `reports/archive/<study>` folders. External artifact roots are also grouped. These are file collections, not inferred job states: modification dates do not prove execution or completion.
+- **Data library** supports workspace-wide or collection-scoped browsing, text search, and filters for inputs/configuration, tables, figures/PDFs, reports, spatial candidates and other products. Changing scope clears an inspector selection that no longer belongs to the visible set.
+- **Compare results** reads two selected JSON objects through the existing bounded artifact inspector. It displays numeric scalar fields, missing values, and B minus A; arrays and booleans are excluded. Paths use JSON Pointer escaping so different nested keys cannot collide. A matching field name does not establish matching units, experimental conditions, or statistical significance. The comparison shows when the files were read, and changing selections clears the previous result.
+- **Visualization** retains the existing scene, sequence, layer, timeline, object, provenance and ground-link tools. It initializes when opened and pauses when another workspace view is selected. The illustrative replay remains explicitly labeled as an example. File names are only spatial candidates; the existing scientific adapter still validates coordinates, frames and time before playback.
+
+The workspace is read-only. Collection browsing and comparisons do not launch experiments, edit source files, or claim that a saved artifact has been freshly rerun.
 
 ## Start
 
@@ -26,7 +36,7 @@ The existing `python -m godsat serve --output ...` command also serves the studi
 
 ## Explore
 
-- **Single example / Whole system**: one focused target plus sensors, or all exported objects. The built-in examples use one or all 80 pinned Iridium NEXT names and one or six configured stations. Their geometry and observations are constructed, not an experimental result.
+- **Focused object / All objects**: one focused target plus sensors, or all exported objects. The built-in examples use one or all 80 pinned Iridium NEXT names and one or six configured stations. Their geometry and observations are constructed, not an experimental result.
 - **Scene source**: choose a saved replay, scenario or state table. The inspector's **Open as scene** also works for eligible files not suggested in the menu.
 - **Focus object**: choose a target for the enlarged spacecraft and tracking history. Drag to orbit, scroll to zoom, reset to reframe. Pause and scrub frame-by-frame; speeds are explicit steps per second.
 - **World layers**: textured Earth, atmospheric limb shader, qualitative ionosphere shader, static cloud texture or overcast variant, epoch-aligned Sun/Moon, orbit trails, last-sighting marker and a capped high-DPI mode.
@@ -80,7 +90,7 @@ Adapters must supply explicit reference frames, units and provenance. In particu
 
 The Cesium renderer uses its own UTC-driven Sun/Moon rendering and built-in frame transforms. The API also supplies offline Astropy ephemerides as scene metadata. Rendering does not apply forces to a replay. Cesium converts positions to Earth-fixed display coordinates (TEME uses its pseudo-fixed transform; GCRS uses its ICRF transform). These display transforms do not replace the scientific repository's Astropy frame transformations. Static textures, star field and ionosphere coloration do not alter observations, energy, pointing, drag or propagation. No TEC, electron-density or weather data is invented. Original frame coordinates remain unmodified in exported scenes.
 
-The API is read-only, loopback-bound and uses opaque discovered IDs, not arbitrary file paths. Symlinked files are excluded. Previews and replay dimensions are bounded (64 MiB scene input, 1,200 times, 2,000 objects, 200,000 table rows). These are explicit interactive limits, not a claim to stream arbitrarily large campaigns. Export a time window from larger products.
+The API is read-only, loopback-bound and uses opaque discovered IDs, not arbitrary file paths. Symlinked files are excluded. Previews and replay dimensions are bounded (64 MiB scene input, 1,200 times, 20,000 objects, 1,200,000 position samples, 200,000 table rows). These are explicit interactive limits, not a claim to stream arbitrarily large campaigns. Export a time window from larger products.
 
 ## Checks
 
@@ -110,3 +120,15 @@ The recorded [synthetic CPU microbenchmark](benchmarks/studio-compute-node.json)
 The default Cesium renderer uses its existing atmospheric scattering, Sun, Moon, terrain/globe lighting, image materials and grid materials. No custom GLSL is written in `cesium-renderer.js`. The cloud layer is a textured shell; the ionosphere is an explicitly qualitative grid shell. Neither is a volumetric plasma or weather solver. The retired standalone Three.js globe and old dashboard have been removed. Single-object demonstrations and whole-system playback are modes within this one application.
 
 Cesium is a browser engine. Unity and Unreal are not bundled. Unity would require a separate WebAssembly build; Unreal Pixel Streaming would add a GPU host and streaming service. The versioned scene contract keeps those possible future renderers separate from scientific data adapters. See [Cesium SkyAtmosphere](https://cesium.com/learn/cesiumjs/ref-doc/SkyAtmosphere.html), [Unity Web compatibility](https://docs.unity.com/en-us/engine/6000.0/manual/platform-specific/webgl/intro/browsercompatibility), and [Unreal Pixel Streaming](https://dev.epicgames.com/documentation/unreal-engine/pixel-streaming-in-unreal-engine).
+
+## Catalog simulation and environmental data
+
+See [simulation framework](simulation-framework.md) for the SGP4 catalog exporter,
+explicitly sourced environmental point layers, validation results and remaining
+accuracy/scalability work. These extend the same Studio entry point.
+
+### Workspace UI design guidance
+
+The generic workspace was reviewed using [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), using its data-dense dashboard guidance. The implementation keeps the Studio's dark surfaces and mint accent, uses system sans-serif text and monospace numeric values, and prioritizes saved collections, searchable inputs, comparable results, and spatial inspection. Marketing conversion layouts returned by the design-system search were excluded because this is a research application.
+
+Shared controls have visible keyboard focus, a skip-to-content link, 44px minimum button/select heights, and reduced-motion styles. The overview was checked at 375, 768, 1024, and 1440 CSS pixels without page-level horizontal overflow. Mobile navigation wraps before labels shrink; comparison selectors stack. Collection dates remain file modification dates; no execution status is inferred from folder contents.

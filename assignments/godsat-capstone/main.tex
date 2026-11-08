@@ -1,0 +1,224 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,tabularx,array,enumitem,xcolor,hyperref,fancyhdr}
+\definecolor{navy}{HTML}{16364A}
+\hypersetup{colorlinks=true,urlcolor=navy,linkcolor=navy}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist[itemize]{leftmargin=*,nosep,topsep=3pt}
+\setlist[enumerate]{leftmargin=*,itemsep=3pt,topsep=3pt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small GoDSAT Capstone}\fancyhead[R]{\small Assignment specification}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\newcommand{\pageheading}[2]{\section*{\color{navy}#1}\textit{#2}\par}
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\deliver}[1]{\medskip\textbf{Evidence to submit.} #1}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries\color{navy} End-to-End Optimization of\\GoDSAT Sensor-Tasking Agents}\par\medskip
+{\large A capstone in experimental design, efficient neural policies,\\and satellite communication constraints}\par\medskip
+Graduate assignment $\mid$ Core: 100 points $\mid$ Optional bonus: up to 10 points
+\end{center}
+\pageheading{1. Mission and scope}{Use the capstone methodology to answer one defensible GoDSAT research question.}
+Design, execute, and report an end-to-end optimization study using this repository's neural actor--critic satellite-tasking framework. Your goal is to select an efficient policy under explicit constraints while preserving tracking performance. A well-supported negative result is a valid outcome.
+
+\textbf{Primary question.} Can a policy selected through fractional-factorial screening, response-surface refinement, ablation, and compression meet a declared custody requirement with lower inference cost than a locked reference policy?
+
+\textbf{Required pipeline}
+\begin{center}
+\fbox{\small DOE screening $\to$ RSM refinement $\to$ Ablation $\to$ Compression $\to$ Selection}
+\end{center}
+Complete the pipeline and the required uplink-time analysis on page 6. Optional atmospheric and antenna investigations appear on page 7. These are extensions; they do not replace core stages.
+
+\textbf{Adaptation of the source capstone.} This assignment retains its experimental controls, statistical and ML evidence, compression, multi-objective selection, paper, reproducibility package, and presentation. GoDSAT replaces its vehicle-loan dataset and lending-specific ethics case. CIFAR-10 practice results and loan-model accuracy targets are not GoDSAT requirements. The responsible-use appendix instead addresses orbital-data provenance, uncertainty, communication failure, and limits of autonomous tasking.
+
+\textbf{Current study boundary.} Use the pinned 80 Iridium NEXT targets and six hypothetical ground sensors defined by \code{configs/iridium-next-ground.json}. Retain the ground-system scope. Published station coordinates provide geometry; detection, false-track generation, and gimbal energy are modeled. Catalog propagation is not measured tracking truth. Do not present the manuscript's claimed gains as replicated results.
+
+\textbf{Learning outcomes}
+\begin{itemize}
+\item Construct and interpret a resolution-IV screen and a local response surface.
+\item Test model choices with paired controls and independent training seeds.
+\item Compare a neural reference and compressed policy using custody, parameters, latency, and computation cost.
+\item Explain uplink timing and distinguish communication availability from tracking custody.
+\item Package evidence that another student can reproduce and audit.
+\end{itemize}
+\textbf{Schedule.} Suggested duration: six weeks. Weeks 1--2: proposal, data, baseline and screen; weeks 3--4: refinement, ablation and compression; week 5: locked evaluation; week 6: paper and talk. Course announcements set calendar deadlines and team size. Each student must be able to defend the full pipeline.
+
+\newpage
+\pageheading{2. Freeze the experiment before searching}{A runnable baseline and a design card are the first checkpoint.}
+\textbf{Design card (about 800-word proposal).} State the research question; data sources and usage terms; train/validation/test windows; factor table; episode and elapsed-time budgets by stage; seeds; baselines; compression method; latency protocol; selection rule; risks; and intended evidence. Include a small diagram of the workflow.
+
+\textbf{Locked controls.} Begin with the current configuration: 40 training episodes per treatment; training dates in 2022--2024; validation in October 2025; held-out test windows in August and September 2026. Use its exact timestamps and target/station manifests. Test windows must not influence factor ranking, teacher choice, compression tuning, or thresholds. If a data window is unavailable, document and freeze a replacement split in the proposal before search. Never silently fill missing trajectories.
+
+Use training seed 17 and design seed 2026 where the configuration specifies them. Final independent retraining uses seeds 101, 211, 307, 401, and 503. Pair configurations on the same scenario windows and seed schedule; distinguish independent retraining from repeated evaluations of one checkpoint.
+
+\textbf{Baseline table.} Evaluate the configured neural reference, a greedy tasking policy, and a random feasible-action policy. Define every response and denominator: true custody fraction, modeled gimbal energy per sensor-step, and false-track rate. Record training time, actor parameter count, serialized size, and inference latency. Controller training cost and simulated sensor energy are different quantities.
+
+\textbf{Setup from the repository root}
+\begin{verbatim}
+python -m venv .venv
+# Activate .venv using your platform's command.
+python -m pip install -e ".[test,ground]"
+python -m godsat doctor
+python -m godsat --device cpu prepare --date 2026-10-01T00:00:00Z
+python -m godsat --device cpu campaign --quick \
+  --output outputs/capstone-smoke
+\end{verbatim}
+The quick campaign is a smoke check, not final experimental evidence. Global options such as \code{--config} and \code{--device} precede the subcommand. Final execution may use the registered runner or your documented stage scripts; one campaign invocation does not implement the compression and ablation requirements.
+
+\textbf{Data readiness.} \code{docs/setup.md} provides preparation commands. The historical source archive is approximately 4.41 GB; allow at least 10 GB for it and derived files. An instructor may distribute a checksummed prepared subset with the same scope. Missing data is not permission to substitute synthetic results for empirical findings. Record all overrides and resource limitations.
+
+\deliver{A frozen design card, baseline results, exact revision plus patch for local edits, configuration and data hashes, environment versions, hardware, seeds, and a successful smoke-check log. Keep smoke, tuning, and final-test outputs in separate directories.}
+
+\newpage
+\pageheading{3. Stage A: fractional-factorial screening}{Use the research paper's factor region and verify the design independently.}
+\begin{center}\small
+\begin{tabularx}{\linewidth}{clXrr}
+\toprule
+Code & Repository key & Meaning & Low & High\\\midrule
+A & learning\_rate & Learning rate & $10^{-5}$ & $10^{-3}$\\
+B & discount & Discount factor & 0.90 & 0.99\\
+C & actor\_width & Actor hidden width & 64 & 256\\
+D & critic\_depth & Critic hidden layers & 2 & 4\\
+E & entropy & Entropy coefficient & 0.01 & 0.10\\
+F & claim\_resolution & Claim-map resolution & 32 & 128\\
+G & target\_tau & Target update rate & 0.001 & 0.05\\\bottomrule
+\end{tabularx}
+\end{center}
+Use the repository's linear coding,
+\[
+x_j=\frac{a_j-(a_j^-+a_j^+)/2}{(a_j^+-a_j^-)/2},
+\qquad E=ABC,\quad F=ABD,\quad G=ACD.
+\]
+Generate all 16 treatments and randomize their execution order with a saved seed. Keep critic width at the configured value of 128, and record the rounding rule for integer-valued factors. A logarithmic learning-rate design would be a different experiment and must not be silently substituted.
+
+\textbf{Design audit.} Derive the complete defining relation from these generators, identify the resolution, and enumerate all two-factor alias chains. The research PDF's printed defining relation is inconsistent with its generators. Follow the generators, document the discrepancy, and check the result against \code{godsat/design.py}. Explain which effects can and cannot be separated.
+
+\textbf{Response and analysis.} Freeze the screening objective before execution, for example validation true custody subject to an energy cap. Report every response, not just the selected objective. Compute main-effect contrasts, show a half-normal plot and at least one interaction/alias plot, and rank candidate factors. Do not name an individual interaction as causal when its alias chain is unresolved.
+
+The 16-treatment design is unreplicated. Residual alias contrasts are not pure error. If you pool effects, state the inactivity assumptions and the degrees of freedom; do not attach unsupported significance claims. Select three factors using your observed responses and declared rule, not the paper's illustrative ranking.
+
+\textbf{Compute accounting.} The initial screen has 16 treatment fits. Record episodes, elapsed time, CPU time or GPU-hours, failures, and retries. Equal treatment counts do not establish equal computation cost when architectures differ. Any early stopping or staged episode budget must be fixed in the design card and applied consistently.
+
+\deliver{The coded and decoded design matrices, random order, per-run seeds and responses, alias audit, effect plots, factor-selection justification, and a table of consumed versus planned budget.}
+
+\newpage
+\pageheading{4. Stages B and C: refine, then challenge}{Separate a fitted optimum from a validated improvement.}
+\textbf{Stage B: local response surface.} Refine the three selected factors with a face-centered central composite design: eight cube points, six axial points, and one center treatment. Hold the other four factors at declared fixed values. Fit the full quadratic model, including all three cross terms:
+\[
+\hat y=\beta_0+\sum_{i=1}^{3}\beta_i x_i+
+\sum_{i=1}^{3}\beta_{ii}x_i^2+
+\sum_{i<j}\beta_{ij}x_ix_j.
+\]
+Report coefficients, residual degrees of freedom, residual-versus-fitted and normal-probability plots, and surface slices. Classify the stationary point and compare it with a constrained recommendation inside the experimental region. Retrain the actual decoded, rounded architecture rather than claiming a fractional layer count.
+
+\textbf{Center replication is required.} Add at least two independent center retrains beyond the original center observation. This produces at least three center observations and 17 total RSM fits. Budget and label the two extra fits separately from the paper's 15-treatment design. Repeated evaluation of one trained checkpoint does not estimate training variability. Explain pure-error and lack-of-fit degrees of freedom and their assumptions; an underpowered or nonsignificant test does not prove adequacy.
+
+If integer decoding makes design points coincide or the quadratic matrix loses rank, report it and use a documented staged/discrete refinement instead. Do not claim an identifiable continuous surface. A surface rejected by diagnostics may still guide explicitly exploratory confirmation; it is not an established optimum.
+
+\textbf{Stage C: paired ablation.} Define at least two contrasts that challenge the explanation of the candidate's performance. Examples: restore one promoted factor to its reference level; remove a claimed component; or compare the compressed policy against its uncompressed parent. Keep data, budgets, evaluation method, and all other intended controls fixed.
+
+Evaluate the parent and both variants using five independent training seeds. Report paired differences, uncertainty intervals, and all seed-level outcomes. State the uncertainty unit. Multiple windows from one trained policy are not independent training replicates; average within each seed or use a justified hierarchical method. Keep the two held-out test windows sealed during these choices.
+
+\textbf{Minimum planned fits.} Screen: 16; RSM: 15 plus at least 2 extra center fits; ablation: 3 configurations $\times$ 5 seeds, counting the parent. Compression, final retraining, and any search comparator require additional declared resources. Reuse a run only when its full configuration, split, seed, budget, and code match; identify it in both tables.
+
+\deliver{Design and fit diagnostics, bounded candidate, center-repeat evidence, two matched ablation contrasts, seed-level outcomes and intervals, plus an updated compute ledger.}
+
+\newpage
+\pageheading{5. Stages D and E: compress and select}{Deployment claims require measurements of the deployed actor.}
+\textbf{Compression is core work.} Implement at least one method: policy distillation, structured pruning with fine-tuning, or quantization supported by your execution backend. The repository supplies the neural actor--critic and design machinery; you must add and document the selected compression path. Compare the parent policy and compressed version under the same evaluation protocol.
+
+For distillation, generate teacher observations and legal-action masks from training scenarios only. Preserve action semantics and mask infeasible actions consistently. Report teacher architecture and checkpoint, student architecture, loss, temperature if used, sample count, optimizer, and training budget. If using pruning or quantization instead, state which layers change, calibration/fine-tuning data, precision, backend, and saved representation. Zero-valued weights alone do not prove reduced storage or faster inference.
+
+\textbf{Two kinds of evaluation.} Teacher-action agreement is a diagnostic. The primary test is a closed-loop rollout in which the student chooses actions and changes later observations. Report true custody, modeled sensor energy, and false tracks from these rollouts. Keep teacher generation, student fitting, fine-tuning, and model selection out of the final test windows.
+
+\textbf{Inference protocol.} Measure the actor used to produce actions, not the training-only critic. Report actor and full-checkpoint sizes separately. Use a fixed device, thread count, batch/agent count, observation shape, action mask, precision, and timing boundary. Warm up for at least 100 calls, time at least 1,000 calls, and report median and p95 latency. Synchronize accelerator execution. Report any preprocessing separately; identify in-memory versus end-to-end timing.
+
+\textbf{Freeze a selection rule.} One acceptable rule is to minimize median actor latency among candidates satisfying
+\[
+C_{\rm val}\ge C_{\rm ref,val}-\delta_C,\quad
+E_{\rm val}\le E_{\max},\quad
+F_{\rm val}\le F_{\max},\quad P_{\rm actor}\le P_{\max}.
+\]
+Choose numerical tolerances and caps in the proposal, after baseline calibration and before search. $C$ denotes true custody, $E$ modeled gimbal energy, $F$ false-track rate, and $P$ actor parameters. Express $\delta_C$ in percentage points. State tie-breaking and how uncertainty affects acceptance. If none qualifies, report no feasible candidate.
+
+Lock the winning configuration, then independently retrain the reference, optimized parent, and compressed candidate using the five specified seeds and evaluate on held-out test windows. Report absolute changes, percentage-point custody changes, uncertainty, and a Pareto plot. Test results describe generalization; do not use them to choose another winner.
+
+\deliver{Compression implementation and checkpoint, closed-loop evaluation, baseline/parent/student comparison, parameter counts, bytes, latency statistics, training cost, final five-seed evidence, and the frozen decision rule applied as written.}
+
+\newpage
+\pageheading{6. Required question: explain uplink time}{A communication deadline is more than light-travel time.}
+Provide a derivation, numerical calculation, and a short operational interpretation. Define uplink as ground-to-space commands and downlink as space-to-ground telemetry or payload data. Distinguish both from the sensing measurements that establish tracking custody.
+
+\textbf{Q1. Timing decomposition.} For an error-free link with constant rate during transmission, model the elapsed time from a ready command to complete reception as
+\[
+T_{\rm up}=T_{\rm wait}+T_{\rm acquire}+T_{\rm queue}
++\frac{B_{\rm wire}}{R_{\rm up}}+\frac{\rho}{c}+T_{\rm process},
+\]
+where $B_{\rm wire}$ includes overhead in bits, $R_{\rm up}$ is bits/s, $\rho$ is slant range in metres, and $c=299{,}792{,}458$ m/s. Define the start/end event for every term and avoid double counting. Explain how retries, changing rates, link handover, or loss of visibility alter this simple model. For an acknowledgement, add the relevant downlink serialization, processing, and return propagation terms; a one-way expression is not round-trip latency.
+
+\textbf{Q2. Numerical case (hypothetical, not Iridium specifications).} Use $\rho=1{,}500$ km, a 4,096-byte command, 25\% overhead relative to the payload, $R_{\rm up}=64{,}000$ bit/s, acquisition 0.20 s, queue 0.05 s, processing 0.01 s, and zero wait. Calculate propagation time, serialization time, and total time. An already identified opportunity ends 0.80 s after the command is ready. Does complete reception fit? State whether another required acknowledgement would change the decision and which inputs are missing to compute it.
+
+\textbf{Q3. Connect computation to tasking.} Add a measured actor decision time before the uplink. Derive a sufficient deadline condition for decision, command reception, spacecraft response, and the planned observation. Use one saved GoDSAT geometry/window example to estimate available time and disclose the sampling resolution. Compare seconds, milliseconds, and the configured 60-second simulation step: sub-step latency cannot be validated merely by a step-level custody metric.
+
+\textbf{Q4. Atmosphere and availability.} Explain the distinction between excess group delay and attenuation, interference, scintillation, or pointing loss. For a suitable radio path,
+\[
+\Delta \rho_{\rm iono}=40.3\,\frac{\mathrm{STEC}}{f^2},\qquad
+\Delta T_{\rm iono}=\Delta \rho_{\rm iono}/c,
+\]
+with STEC in electrons/m$^2$ and frequency in Hz. At $f=1.57542$ GHz and 10 TECU of \emph{slant} TEC, calculate the extra range and time; $1$ TECU $=10^{16}$ electrons/m$^2$. Explain why a small delay does not establish a reliable link. Full-column vertical TEC cannot be applied directly to a LEO path ending inside that column.
+
+\deliver{A timing diagram, units-checked calculations, one geometry-linked deadline example, and a clear boundary between existing code, analytical assumptions, and newly implemented communication logic. A live radio or flight-hardware experiment is not required.}
+
+\newpage
+\pageheading{7. Optional bonus: atmosphere, outages, and dish size}{Up to 10 additional points; choose one investigation and modify the code.}
+Students have freedom to add models, data adapters, configuration fields, diagnostics, or policies. Keep changes reproducible and identify all assumptions. Choose the question, frequency bands, station, operating thresholds, and relevant conditions before looking at results. Preserve the core study as a separate experiment.
+
+\textbf{Option A: When does the ionosphere affect tracking?} Study quiet/disturbed conditions, elevation, frequency, slant electron content, and either tracking error or communication failure. Distinguish code delay, carrier phase, Faraday rotation, and scintillation. Implement a suitable correction, uncertainty model, or dropout mechanism and compare correction enabled/disabled. A bulk TEC value is not itself a scintillation model. For NEXT/LEO, obtain or model electron density integrated only to satellite altitude; return unavailable when the data do not support that path. A modeled vertical profile is acceptable if labeled and justified.
+
+\textbf{Option B: When is uplink or downlink no longer effective?} Add separate directional link budgets and a declared receiver criterion. Include frequency, transmit power, antenna gains, path losses, noise temperature/bandwidth or $G/T$, coding/modulation threshold, and required margin. For example,
+\[
+P_r=P_t+G_t+G_r-L_{\rm fs}-L_{\rm atm}-L_{\rm point}-L_{\rm other},
+\quad L_{\rm fs}=20\log_{10}(4\pi\rho/\lambda).
+\]
+Use dBW/dBi/dB consistently. Define outage by your required $E_b/N_0$, packet error, throughput, or delivery deadline, including its evaluation interval. Compare uplink and downlink failures; identical geometry does not imply identical power, antenna, noise, or rate. Connect modeled failures to missed commands or telemetry age, and test their effect on custody. Do not equate below-horizon geometry with a complete receiver model.
+
+\textbf{Option C: How do dish size and weather change capability?} Sweep at least three diameters and two documented weather regimes at a declared band. Use
+\[
+G=\eta_a(\pi D/\lambda)^2,\qquad G_{\rm dBi}=10\log_{10}G.
+\]
+State aperture efficiency and include a pointing-loss/beamwidth assumption: more gain can require tighter pointing. Model rain/cloud/gas attenuation using justified parameters and a cited method; cloud fraction alone is not attenuation in dB. Report the smallest diameter meeting a declared availability or deadline target over the modeled conditions. Do not infer annual availability from two snapshots.
+
+\textbf{Code starting points.} \code{godsat/simulation/links.py} estimates selected delays and Faraday rotation; \code{godsat/simulation/environment.py} validates environmental samples; \code{godsat/sensorphysics.py} handles tasking sensor physics. The current propagation layer does not implement a complete receiver/link budget or automatically change saved custody. Document any bridge you add and test unavailable/stale inputs.
+
+\textbf{Bonus evidence and points.} Physical assumptions and cited domain of validity (2); implemented extension with boundary/unit checks (3); controlled sensitivity study and uncertainty (3); reproducible interpretation and limitations (2). Submit a 1--2 page supplement and code patch. Maximum bonus is 10 points regardless of the number of options attempted.
+
+\newpage
+\pageheading{8. Deliverables, grading, and reference map}{Reproducible evidence matters more than a claimed improvement.}
+\begin{enumerate}
+\item \textbf{Proposal/design card:} about 800 words, before the experimental search.
+\item \textbf{Conference-style paper:} 6--8 main-text pages, plus references. Include the research question; controls; DOE/RSM; ablation; compression; baseline and final results; Pareto view; uplink answer; and limitations. Show units, denominators, seed count, and uncertainty on quantitative claims.
+\item \textbf{Reproducibility package:} source changes, locked configs, environment file, data manifests/hashes, run ledger, raw response tables, checkpoints or retrieval instructions, and scripts that regenerate the main tables. Include a README with commands and expected artifacts. Large data need not be committed.
+\item \textbf{Responsible-use appendix:} 1--2 pages on provenance/permissions, modeled versus observed quantities, missingness, invalid commands, stale telemetry, possible failures of autonomous tasking, and compute/energy assumptions.
+\item \textbf{Presentation:} 8--12 minutes explaining the design, strongest evidence, selected tradeoff, and limits. Include contributions when working as a team.
+\end{enumerate}
+\begin{center}\small
+\begin{tabularx}{\linewidth}{Xr}
+\toprule
+Core criterion & Points\\\midrule
+Experimental design: factors, aliasing, refinement, controls and budgets & 20\\
+Statistical evidence: diagnostics, independent replication and ablation & 15\\
+ML/system evidence: baselines, custody/cost/latency and uplink analysis & 20\\
+Pipeline completeness: implemented compression and valid selection & 15\\
+Paper quality: traceable claims, readable figures and limitations & 15\\
+Reproducibility: executable package, provenance and run accounting & 10\\
+Responsible-use appendix and presentation & 5\\\midrule
+Total core points & 100\\\bottomrule
+\end{tabularx}
+\end{center}
+Within ML/system evidence, the required uplink analysis is worth 8 points: timing decomposition (2), numerical case (2), computation/deadline example (2), atmospheric distinction (2). Remaining ML/system evidence is worth 12 points. Bonus is reported separately as $+0$ to $+10$. Failed improvement is not penalized when the experiment and interpretation are sound; fabricated or unsupported results are not acceptable evidence.
+
+\textbf{Source and repository map.} This assignment adapts the supplied \emph{Capstone: End-to-End Neural Network Optimization}, Sections 4, 6--8, and \emph{Systematic Hyperparameter Optimization of GoDSAT Sensor Tasking Agents via Fractional Factorial Design and Response Surface Methodology}, Section 3. The research design's claims are hypotheses, not required numerical outcomes. See \code{docs/setup.md}, \code{docs/governing-pdf-audit.md}, \code{docs/physical-sensor-assumptions.md}, and \code{docs/simulation-framework.md}. Core implementation: \code{godsat/design.py}, \code{learning.py}, \code{experiment.py}, and \code{sensorphysics.py} under \code{godsat/}.
+
+\textbf{Propagation references.} ESA, \href{https://gssc.esa.int/navipedia/index.php/Ionospheric_Delay}{Navipedia: Ionospheric Delay}; ITU-R, \href{https://www.itu.int/rec/R-REC-P.531/en}{P.531: Ionospheric propagation}; ITU-R, \href{https://www.itu.int/rec/R-REC-P.618/en}{P.618: Earth-space propagation}. Cite the edition and applicability of every model actually used. Treat empirical models, source products, and hypothetical scenarios as distinct evidence.
+\end{document}

@@ -1,0 +1,8 @@
+{
+  "scope": "Manual automatic playback across all 12 windows; UI readings are sampled, not a sustained performance benchmark",
+  "elapsed": "60:00",
+  "epoch": "2026-11-08 19:55:00 UTC",
+  "performance": "59.5 FPS · CPU p95 10.8 ms",
+  "playing": "Play animation",
+  "window": "Window 12 of 12 · two-window cache"
+}

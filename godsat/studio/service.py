@@ -3,10 +3,12 @@ import json
 import hashlib
 import datetime as dt
 import mimetypes
+import threading
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit, unquote
 from .catalog import Catalog, clean
 from .scene import demo_scene, load_scene
+from .sequence import load_window
 
 
 def astronomy(times, frame):
@@ -36,6 +38,20 @@ class StudioService:
         self.web = self.root/'web'/'studio'
         self.catalog = Catalog(root, output, data_roots)
         self.sky_cache = {}
+        self.link_lock=threading.Lock()
+
+    def read_scene(self,identity,index=0):
+        source_path=self.catalog.get(identity)
+        header=json.loads(source_path.read_text()) if source_path.suffix=='.json' and source_path.stat().st_size<2*1024*1024 else None
+        if isinstance(header,dict) and header.get('schema')=='godsat.sequence.v1':
+            scene=load_window(source_path,index,identity)
+            scene['source']['manifest_sha256']=hashlib.sha256(source_path.read_bytes()).hexdigest()
+        else:
+            if index!=0:raise ValueError('Scene is not a windowed sequence')
+            scene=load_scene(source_path)
+            scene['source']['sha256']=hashlib.sha256(source_path.read_bytes()).hexdigest()
+        scene['source']['artifact_id']=identity
+        return scene
 
     def handle(self, handler):
         parsed = urlsplit(handler.path); path = unquote(parsed.path)
@@ -58,16 +74,22 @@ class StudioService:
                 if arg('demo'):
                     scene = demo_scene(self.root, arg('demo') == 'system')
                 else:
-                    source_path = self.catalog.get(arg('id'))
-                    scene = load_scene(source_path)
-                    scene['source']['artifact_id'] = arg('id')
-                    scene['source']['sha256'] = hashlib.sha256(source_path.read_bytes()).hexdigest()
+                    scene=self.read_scene(arg('id'))
                 key = (scene['frame'], tuple(scene['times']))
                 if key not in self.sky_cache:
                     if len(self.sky_cache) >= 8: self.sky_cache.clear()
                     self.sky_cache[key] = astronomy(scene['times'], scene['frame'])
                 scene['celestial'] = self.sky_cache[key]
                 return self.json(handler, scene)
+            if path == '/api/studio/window':
+                scene=load_window(self.catalog.get(arg('id')),int(arg('index')),arg('id'))
+                return self.json(handler,scene)
+            if path == '/api/studio/links':
+                from godsat.simulation.links import evaluate_links
+                with self.link_lock:
+                    scene=self.read_scene(arg('id'),int(arg('window','0')))
+                    result=evaluate_links(scene,arg('object'),arg('station'))
+                return self.json(handler,result)
             if path == '/api/studio/artifact':
                 file = self.catalog.get(arg('id'))
                 if file.suffix.lower() not in {'.png', '.jpg', '.jpeg', '.pdf'}: raise ValueError('Inline serving is limited to report images and PDFs')

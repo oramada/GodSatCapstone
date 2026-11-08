@@ -12,7 +12,8 @@ from .catalog import MAX_BYTES, clean
 
 VERSION = 'godsat.scene.v1'
 MAX_FRAMES = 1200
-MAX_OBJECTS = 2000
+MAX_OBJECTS = 20000
+MAX_SAMPLES = 1200000
 
 
 def base(title, frame, times, objects, source, **extra):
@@ -21,16 +22,26 @@ def base(title, frame, times, objects, source, **extra):
     stamps = [dt.datetime.fromisoformat(str(t).replace('Z', '+00:00')) for t in times]
     if any(t.tzinfo is None for t in stamps) or any(a >= b for a, b in zip(stamps, stamps[1:])):
         raise ValueError('Scene timestamps must be timezone-aware and strictly increasing')
-    if len(times) > MAX_FRAMES or len(objects) > MAX_OBJECTS:
-        raise ValueError('Scene exceeds the 1,200 frame / 2,000 object interactive limit; export a bounded window')
+    if len(times) > MAX_FRAMES or len(objects) > MAX_OBJECTS or len(times)*len(objects) > MAX_SAMPLES:
+        raise ValueError('Scene exceeds 1,200 frames, 20,000 objects or 1,200,000 position samples; export a bounded window')
     if len({o['id'] for o in objects}) != len(objects): raise ValueError('Object IDs must be unique')
     for obj in objects:
+        if 'attitude' in obj:
+            from .attitude import validate_attitude
+            validate_attitude(obj['attitude'], frame, len(times))
         if not isinstance(obj['id'], str) or obj.get('kind') not in {'satellite', 'sensor', 'station'}:
             raise ValueError('Objects require string IDs and a supported kind')
         if len(obj['positions_km']) != len(times): raise ValueError('Position timeline does not match scene times')
         for p in obj['positions_km']:
             if p is not None and (len(p) != 3 or not all(isinstance(v, (float, int)) and math.isfinite(v) for v in p)):
                 raise ValueError('Positions must be finite three-vectors or null')
+        if 'velocities_km_s' in obj:
+            velocities = obj['velocities_km_s']
+            if not isinstance(velocities, list) or len(velocities) != len(times):
+                raise ValueError('Velocity timeline does not match scene times')
+            for v in velocities:
+                if v is not None and (len(v) != 3 or not all(isinstance(x, (float, int)) and not isinstance(x, bool) and math.isfinite(x) for x in v)):
+                    raise ValueError('Velocities must be finite three-vectors in km/s or null')
     observations = extra.get('observations')
     if observations is not None:
         if len(observations) != len(times): raise ValueError('Observation timeline does not match scene times')
@@ -43,6 +54,9 @@ def base(title, frame, times, objects, source, **extra):
                 if action.get('sensor') not in ids or action.get('target') not in ids:
                     raise ValueError('Actions must refer to scene objects')
     custody = extra.get('custody_seconds', 180)
+    if 'ground_links' in extra:
+        from godsat.simulation.links import validate_config
+        validate_config(extra['ground_links'])
     if not isinstance(custody, (int, float)) or not math.isfinite(custody) or custody < 0:
         raise ValueError('Custody window must be finite and nonnegative')
     return clean({'schema': VERSION, 'title': title, 'frame': frame, 'units': 'km',
@@ -87,7 +101,7 @@ def demo_scene(root, system=False):
         observations=observations, warnings=['Orbit, Earth-pointing pose and dropout sequence are illustrative. No attitude telemetry or measured atmosphere is used.'])
 
 
-def load_scene(path):
+def load_scene(path, json_bytes=None):
     path = Path(path)
     if path.stat().st_size > MAX_BYTES: raise ValueError('Export a scene window below 64 MiB before replay')
     if path.suffix == '.npz':
@@ -105,11 +119,17 @@ def load_scene(path):
             if sidecar.is_file(): value['frame'] = json.loads(sidecar.read_text()).get('frame', 'TEME')
         return replay_scene(value, path.name)
     if path.suffix == '.json':
-        value = json.loads(path.read_text())
+        if json_bytes is not None and len(json_bytes)>MAX_BYTES: raise ValueError('JSON exceeds 64 MiB')
+        value = json.loads(path.read_text() if json_bytes is None else json_bytes)
         if isinstance(value, dict) and value.get('schema') == VERSION:
             if value.get('units') != 'km': raise ValueError('Scene coordinates must use kilometers')
+            extra = {}
+            if 'ground_links' in value:extra['ground_links']=value['ground_links']
+            if 'environment' in value:
+                from godsat.simulation.environment import validate_environment
+                extra['environment'] = validate_environment(value['environment'])
             result = base(value['title'], value['frame'], value['times'], value['objects'], value['source'],
-                observations=value.get('observations'), custody_seconds=value.get('custody_seconds', 180), warnings=value.get('warnings', []))
+                observations=value.get('observations'), custody_seconds=value.get('custody_seconds', 180), warnings=value.get('warnings', []), **extra)
             if result['observations'] is not None and len(result['observations']) != len(result['times']):
                 raise ValueError('Observation timeline does not match scene times')
             return result

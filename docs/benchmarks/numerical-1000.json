@@ -1,0 +1,71 @@
+{
+  "scope": "Synthetic initial states and spacecraft properties; actual pinned space-weather input. Drag displacement is model sensitivity, not measured orbit error.",
+  "platform": "macOS-27.3-arm64-arm-64bit",
+  "python": "3.12.12",
+  "objects": 1000,
+  "duration_seconds": 3600,
+  "integration_step_seconds": 10,
+  "frames": 61,
+  "coupled_run_seconds": 11.45889670800534,
+  "force_evaluations": 1440,
+  "drag_displacement_m": {
+    "min": 13.912932851602326,
+    "median": 19.74863830780984,
+    "max": 33.44761895388236
+  },
+  "half_step_comparison": {
+    "objects": 16,
+    "maximum_position_difference_m": 0.01322814095118831
+  },
+  "atmosphere": {
+    "model": "NRLMSIS 2.1",
+    "implementation": "pymsis",
+    "version": "0.12.0",
+    "adapter_sha256": "1b10bbabb03f1d9979129ed437af8828c1c1e2f62ea63f3d5650732575eea5f5",
+    "ap_mode": "history",
+    "parameter_sha256": "a322a749f368e73117dd20f3fdcf7389dabc5509f4c27073cc5580999381b508",
+    "drivers": {
+      "name": "space-weather.csv",
+      "sha256": "7aaa9ab0b1e65676f17a9f9818ca33cce8612f3254bb1bf173961fa41121256b",
+      "reference": "https://celestrak.org/SpaceData/SpaceWx-format.php",
+      "semantics": "Previous-day observed-distance F10.7; current centered 81-day average; explicit seven-element Ap history.",
+      "limits": "Centered averages and current/future rows may include estimates or predictions; flux qualifiers are retained. The CSV does not supply a separate provenance flag for each Ap bin.",
+      "used_bins": [
+        {
+          "time_bin_utc": "2026-11-08T18:00:00Z",
+          "f107_sfu": 127.4,
+          "f107a_sfu": 97.4,
+          "aps": [
+            19.0,
+            22.0,
+            18.0,
+            9.0,
+            18.0,
+            25.125,
+            10.125
+          ],
+          "previous_flux_qualifier": "OBS",
+          "current_flux_qualifier": "PRD"
+        }
+      ]
+    },
+    "limits": "Empirical neutral atmosphere, not measured density. No implicit drivers or downloads. Model errors are not solver error estimates."
+  },
+  "frame_transform": {
+    "astropy_version": "7.2.3",
+    "earth_orientation_table": "IERS_Auto",
+    "eop_sha256": "95a61292c957fa74ed624bd4f7a84b1b984077e412b43ed39b99e092f38de9da",
+    "eop_status_codes": [
+      2
+    ],
+    "eop_status_meaning": {
+      "-2": "beyond range",
+      "-1": "before range",
+      "0": "IERS B",
+      "1": "IERS A",
+      "2": "IERS A prediction"
+    },
+    "warnings": [],
+    "third_body_ephemeris": "Astropy builtin instantaneous barycentric position differences; Newtonian GCRS-axis approximation"
+  }
+}
