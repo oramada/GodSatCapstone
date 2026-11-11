@@ -6,6 +6,9 @@
     "test:studio": "node --test tests/web/*.test.js",
     "build:wasm": "python3 scripts/studio/build_wasm.py",
     "test:rust": "cargo test --manifest-path rust/studio-core/Cargo.toml",
-    "bench:compute": "node scripts/studio/benchmark_compute.mjs"
+    "bench:compute": "node scripts/studio/benchmark_compute.mjs",
+    "ui:build": "cd web/ui && bun run build",
+    "ui:check": "cd web/ui && bun run check && bun run test",
+    "ui:dev": "cd web/ui && bun run dev"
   }
 }

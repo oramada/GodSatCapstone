@@ -92,7 +92,7 @@ def test_ground_link_http_endpoint_matches_scene_and_rejects_unknown_station(tmp
     service=StudioService(Path(__file__).parents[2],tmp_path)
     identity=next(a['id'] for a in service.catalog.scan()['artifacts'] if a['name']=='scene.json')
     class Handler:
-        def __init__(self,url):self.path=url;self.wfile=io.BytesIO()
+        def __init__(self,url):self.path=url;self.wfile=io.BytesIO();self.headers={'Host':'127.0.0.1:8765'}
         def send_response(self,status):self.status=status
         def send_header(self,*args):pass
         def end_headers(self):pass

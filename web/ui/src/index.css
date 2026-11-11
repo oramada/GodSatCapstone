@@ -1,0 +1,3 @@
+/* The one stylesheet: the kit's tokens, theme and motion, and Tailwind scanning this app. */
+@import "@sam/design-system/styles.css";
+@source "./";

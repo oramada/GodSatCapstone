@@ -11,6 +11,8 @@ from .catalog import Catalog, clean
 from .scene import demo_scene, load_scene
 from .sequence import load_window
 
+LOCAL_HOSTS = frozenset({'localhost', '127.0.0.1', '::1'})
+
 
 def astronomy(times, frame):
     """Offline Astropy builtin ephemeris in the scene's declared geocentric frame."""
@@ -66,6 +68,9 @@ class StudioService:
             return True
         if not (path in {'/'} or path.startswith('/studio/') or path.startswith('/api/studio/')):
             return False
+        # DNS rebinding: a page on another name that resolves here must not read artifacts or the token.
+        if self.local_host(handler) is None:
+            return self.json(handler, {'error': 'Local host required'}, 403)
         try:
             query = parse_qs(parsed.query)
             def arg(key, default=''): return query.get(key, [default])[0]
@@ -105,7 +110,8 @@ class StudioService:
                 if file.stat().st_size > 64*1024*1024: raise ValueError('Artifact too large for inline preview')
                 return self.send(handler, file.read_bytes(), mimetypes.guess_type(file.name)[0])
             if path.startswith('/api/'): raise FileNotFoundError('Unknown studio endpoint')
-            relative = 'index.html' if path in {'/', '/studio', '/studio/'} else path.removeprefix('/studio/')
+            # The window is the built React app (web/ui, built into web/studio/app); its page is the root.
+            relative = 'app/index.html' if path == '/' else path.removeprefix('/studio/')
             file = (self.web/relative).resolve()
             if not file.is_relative_to(self.web) or not file.is_file(): raise FileNotFoundError('Unknown studio asset')
             return self.send(handler, file.read_bytes(), mimetypes.guess_type(file.name)[0] or 'application/octet-stream')
@@ -119,11 +125,10 @@ class StudioService:
     def handle_post(self,handler):
         path=urlsplit(handler.path).path
         if not path.startswith('/api/studio/experiments/'):return False
+        # Rebinding and cross-origin requests cannot launch local processes.
+        host=self.local_host(handler)
+        if host is None:return self.json(handler,{'error':'Local host required'},403)
         try:
-            # Rebinding and cross-origin requests cannot launch local processes.
-            host=handler.headers.get('Host','')
-            hostname=urlsplit('http://'+host).hostname
-            if hostname not in {'localhost','127.0.0.1','::1'}:raise ValueError('Local host required')
             origin=handler.headers.get('Origin')
             if origin and origin!='http://'+host:raise ValueError('Same-origin request required')
             if not secrets.compare_digest(handler.headers.get('X-Studio-Token',''),self.experiments.token):
@@ -143,6 +148,15 @@ class StudioService:
         except (ValueError,KeyError,TypeError,ImportError,OSError) as exc:
             return self.json(handler,{'error':str(exc)},400)
 
+    @staticmethod
+    def local_host(handler):
+        """The request's Host header when it names this machine's loopback, else None."""
+        host=(getattr(handler,'headers',None) or {}).get('Host') or ''
+        if not host or any(c in host for c in '@/\\?# '):return None
+        try:hostname=urlsplit('http://'+host).hostname
+        except ValueError:return None
+        return host if hostname in LOCAL_HOSTS else None
+
     def json(self, handler, value, status=200):
         return self.send(handler, json.dumps(clean(value), allow_nan=False).encode(), 'application/json', status)
 
@@ -153,5 +167,8 @@ class StudioService:
         handler.send_header('Content-Length', str(len(body)))
         handler.send_header('Cache-Control', 'no-store')
         handler.send_header('X-Content-Type-Options', 'nosniff')
+        # Only Studio may frame Studio (its own PDF preview): another page can't overlay it and steer clicks.
+        handler.send_header('Content-Security-Policy', "frame-ancestors 'self'")
+        handler.send_header('X-Frame-Options', 'SAMEORIGIN')
         handler.end_headers(); handler.wfile.write(body)
         return True

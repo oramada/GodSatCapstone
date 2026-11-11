@@ -39,3 +39,8 @@ test('twenty-thousand-object scan remains bounded and limits result rows',()=>{
 test('CSV escapes quotes and mitigates spreadsheet formula strings without changing numeric values',()=>{
  assert.equal(csvRows([['=2+2','a"b',-3,null]]),'"\'=2+2","a""b","-3",""\r\n');
 });
+test('CSV keeps plain negative-number text and still guards every formula lead',()=>{
+ const cell=s=>csvRows([[s]]).slice(1,-3);
+ for(const plain of ['-1234','-0','-1.5','-.5','-2.','-1e5','-3.2E-4','1234','station-7'])assert.equal(cell(plain),plain,plain);
+ for(const risky of ['=1','+1234','@SUM(A1)','-','-x','-1+2','-1,2','-1;cmd','--1',' -1',' =1','\t1','\rfoo','-1e','-cmd|"/c calc"!A0'])assert.equal(cell(risky),"'"+risky.replaceAll('"','""'),JSON.stringify(risky));
+});

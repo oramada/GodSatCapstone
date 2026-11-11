@@ -51,10 +51,11 @@ class Request:
 
 def test_execution_boundary_requires_same_origin_token_and_loopback_host(tmp_path):
     service=StudioService(tmp_path,tmp_path/'outputs')
-    for token,origin,host in [(None,'http://localhost:8765','localhost:8765'),
-                              (service.experiments.token,'http://evil.test','localhost:8765'),
-                              (service.experiments.token,'http://evil.test','evil.test')]:
-        request=Request(token,origin,host);service.handle_post(request);assert request.status==400
+    for token,origin,host,status in [(None,'http://localhost:8765','localhost:8765',400),
+                                     (service.experiments.token,'http://evil.test','localhost:8765',400),
+                                     (service.experiments.token,'http://evil.test','evil.test',403),
+                                     (service.experiments.token,'http://evil.test:8765','evil.test:8765',403)]:
+        request=Request(token,origin,host);service.handle_post(request);assert request.status==status
     request=Request(service.experiments.token);service.handle_post(request)
     assert request.status==200 and json.loads(request.wfile.getvalue())['valid']
     request=Request(service.experiments.token);request.headers['Content-Length']='999999999'

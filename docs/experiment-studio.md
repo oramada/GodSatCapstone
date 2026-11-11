@@ -5,7 +5,7 @@ The repository frontend is **GoDSAT Experiment Studio**, one integrated simulati
 ## Workspace layout
 
 - **Globe:** Earth occupies the full viewport and stays centered when panels open. Startup loads an available saved sequence, a canonical scene/replay, or an explicitly illustrative example. Satellite points are visible; orbit trails, textured clouds, celestial bodies, and persistent object labels start off.
-- **Top toolbar:** choose the scene and open **Experiment**, **Layers**, **Data**, or **Inspect**. All panels start closed. Only one panel opens at a time; each has a close button, and Escape closes it and returns focus to its toolbar button. Panels overlay the globe without resizing its canvas.
+- **Top toolbar:** choose the scene and open **Experiment**, **Layers**, **Data**, or **Inspect**. All panels start closed. Only one panel opens at a time; each has a close button, and Escape closes it and returns focus to its toolbar button. A panel grows from its toolbar button and closes back to it; it stays mounted while closed, so a half-filled form, a running screen or the spacecraft close-up survives. Panels overlay the globe without resizing its canvas. Space plays or pauses when focus isn't on a control.
 - **Bottom playback bar:** play/pause, UTC time, scrubber and speed stay accessible. The options menu contains camera reset, scene export, and compute/performance status.
 - **Layers:** environment and display controls, plus focused/all-object visibility.
 - **Data:** searchable collections, artifact inspection, numeric product comparison, and the orbital analysis workbench. Matching numeric field names do not establish matching units or experimental conditions.
@@ -13,7 +13,7 @@ The repository frontend is **GoDSAT Experiment Studio**, one integrated simulati
 
 Inventory counts reflect local files. Collections group output/study folders; file modification dates do not prove experiment execution or completion. Filename suggestions remain candidates validated by the scientific adapter before playback.
 
-Collection browsing and comparisons remain read-only. The **Experiment** panel can validate and launch bounded local numerical simulations, cancel a running worker, and open its saved result. See [experiment launcher](experiment-launcher.md) for inputs, limits and API safeguards. Existing source artifacts are not edited.
+Collection browsing and comparisons remain read-only. The **Experiment** panel can validate and launch bounded local numerical simulations, cancel a running worker (after a confirmation), and open its saved result. A trail at its foot shows the stage (set up, validate, run, open result), ⌘/Ctrl+Enter runs a validated setup, and a meter shows time used against the 180 s run limit. See [experiment launcher](experiment-launcher.md) for inputs, limits and API safeguards. Existing source artifacts are not edited.
 
 ## Start
 
@@ -93,16 +93,23 @@ Adapters must supply explicit reference frames, units and provenance. In particu
 
 The Cesium renderer uses its own UTC-driven Sun/Moon rendering and built-in frame transforms. The API also supplies offline Astropy ephemerides as scene metadata. Rendering does not apply forces to a replay. Cesium converts positions to Earth-fixed display coordinates (TEME uses its pseudo-fixed transform; GCRS uses its ICRF transform). These display transforms do not replace the scientific repository's Astropy frame transformations. Static textures, star field and ionosphere coloration do not alter observations, energy, pointing, drag or propagation. No TEC, electron-density or weather data is invented. Original frame coordinates remain unmodified in exported scenes.
 
-Artifact APIs are read-only, loopback-bound and uses opaque discovered IDs, not arbitrary file paths. Symlinked files are excluded. Previews and replay dimensions are bounded (64 MiB scene input, 1,200 times, 20,000 objects, 1,200,000 position samples, 200,000 table rows). These are explicit interactive limits, not a claim to stream arbitrarily large campaigns. Export a time window from larger products.
+Artifact APIs are read-only, loopback-bound and use opaque discovered IDs, not arbitrary file paths. Every Studio request must name a loopback Host (`127.0.0.1`, `localhost` or `[::1]`), so a page on another name that resolves here can't read artifacts or the run token. Studio replies can only be framed by Studio itself. Symlinked files are excluded. Previews and replay dimensions are bounded (64 MiB scene input, 1,200 times, 20,000 objects, 1,200,000 position samples, 200,000 table rows). These are explicit interactive limits, not a claim to stream arbitrarily large campaigns. Export a time window from larger products.
+
+## Interface
+
+The interface is a React app in `web/ui/`, built only from `@sam/design-system` (vendored at `web/ui/vendor/sam-design-system`): its components, tokens and motion. A missing look becomes a variant in the design system, not a class on a screen. `bun run ui:build` type-checks it and writes the static app to `web/studio/app/`, which the Python service serves at `/`. The built files are committed, so running Studio needs no JavaScript toolchain. `web/studio/` keeps the renderer modules the app drives (`cesium-renderer.js`, `detail.js` and the compute core).
 
 ## Checks
 
 ```sh
 python -m pytest tests/unit/test_studio.py tests/research/test_server.py
 npm run test:studio
+bun run ui:check   # design-system rules, then the app's unit tests
 ```
 
-New adapters belong in `godsat/studio/scene.py`; all presentation belongs in `web/studio/`. Vendor changes must update the pinned version and license. The browser never loads untrusted artifact HTML or executes experiment code.
+`tests/unit/test_studio.py` fails if `web/studio/app/` is stale against `web/ui/src`; rebuild with `bun run ui:build`.
+
+New adapters belong in `godsat/studio/scene.py`; all presentation belongs in `web/ui/`. Vendor changes must update the pinned version and license. The browser never loads untrusted artifact HTML or executes experiment code.
 
 ## Rust core and rendering engine
 

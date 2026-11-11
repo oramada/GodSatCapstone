@@ -43,4 +43,8 @@ export function screenSamples({positions,focus,objects,frames,focusIndex,thresho
  rows.sort((a,b)=>a.distanceKm-b.distanceKm||a.objectIndex-b.objectIndex);
  return {rows:rows.slice(0,100),matchingObjects:rows.length,unavailableObjects,comparisons};
 }
-export function csvRows(rows){return rows.map(row=>row.map(value=>{let s=String(value??'');if(typeof value==='string'&&/^[\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';}).join(',')).join('\r\n')+'\r\n';}
+// Spreadsheet formula guard: a text cell a spreadsheet would run (=, +, @, -, or a leading tab
+// or carriage return) gets a leading quote. A plain negative number such as a station id -1234 is data.
+const plainNumber=/^-(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?$/;
+function formula(s){return /^[\t\r]/.test(s)||/^\s*[=+@]/.test(s)||(/^\s*-/.test(s)&&!plainNumber.test(s));}
+export function csvRows(rows){return rows.map(row=>row.map(value=>{let s=String(value??'');if(typeof value==='string'&&formula(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';}).join(',')).join('\r\n')+'\r\n';}

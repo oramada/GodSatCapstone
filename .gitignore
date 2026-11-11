@@ -36,3 +36,7 @@ dist/
 
 # Rust build products (the checked-in WASM is the browser artifact).
 /rust/studio-core/target/
+.gstack/
+
+# Studio window (web/ui) dependencies.
+node_modules/
