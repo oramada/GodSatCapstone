@@ -8,17 +8,46 @@ export function sample(track, time) {
   // Do not bridge missing source samples.
   return time===a?p:(p && q ? p.lerp(q, time-a) : null);
 }
-export function trackState(scene, id, time) {
-  const accelerated=computedState(scene,id,time);if(accelerated)return accelerated;
-  const step = Math.min(Math.floor(time), scene.times.length-1);
-  const obj = scene.objects.find(o => o.id === id);
+// The reference path's lookups, built once per scene rather than per call: the object for an
+// id (the first with it, as Array.find would pick) and each step's detections as a Set.
+const objectIndex=new WeakMap(),detectedSets=new WeakMap();
+function objectFor(scene,id){
+  let entry=objectIndex.get(scene);
+  if(!entry||entry.objects!==scene.objects){
+    const index=new Map();scene.objects.forEach((o,j)=>{if(!index.has(o.id))index.set(o.id,j);});
+    entry={objects:scene.objects,index};objectIndex.set(scene,entry);
+  }
+  const j=entry.index.get(id);return j===undefined?undefined:scene.objects[j];
+}
+function detects(observation,id){
+  const list=observation?.detected;if(!list)return false;
+  let set=detectedSets.get(list);if(!set){set=new Set(list);detectedSets.set(list,set);}
+  return set.has(id);
+}
+function stateAt(scene,obj,step,last){
   if (!obj || !obj.positions_km[step]) return {state:'unavailable', last:-1, age:null};
   if (!scene.observations || !scene.observations[step]) return {state:'unknown', last:-1, age:null};
-  let last=-1;
-  for (let i=step; i>=0; i--) if (scene.observations[i]?.detected.includes(id)) {last=i; break;}
   if (last<0) return {state:'lost', last, age:null};
   const seconds = (Date.parse(scene.times[step])-Date.parse(scene.times[last]))/1000;
   return {state: seconds===0 ? 'observed' : seconds <= scene.custody_seconds ? 'stale' : 'lost', last, age:seconds};
+}
+export function trackState(scene, id, time) {
+  const accelerated=computedState(scene,id,time);if(accelerated)return accelerated;
+  const step = Math.min(Math.floor(time), scene.times.length-1);
+  const obj = objectFor(scene, id);
+  if (!obj || !obj.positions_km[step] || !scene.observations || !scene.observations[step]) return stateAt(scene,obj,step,-1);
+  let last=-1;
+  for (let i=step; i>=0; i--) if (detects(scene.observations[i], id)) {last=i; break;}
+  return stateAt(scene,obj,step,last);
+}
+// trackState at every saved epoch, in one forward pass (the timeline's marks).
+export function trackStates(scene, id) {
+  const obj=objectFor(scene,id),states=[];let last=-1;
+  for (let step=0; step<scene.times.length; step++) {
+    if (scene.observations && detects(scene.observations[step], id)) last=step;
+    states.push(stateAt(scene,obj,step,last));
+  }
+  return states;
 }
 export function craft() {
   const group = new THREE.Group();
