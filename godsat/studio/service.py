@@ -7,9 +7,11 @@ import threading
 import secrets
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit, unquote
-from .catalog import Catalog, clean
-from .scene import demo_scene, load_scene
-from .sequence import load_window
+from .catalog import Catalog, MAX_BYTES, clean
+from .scene import VERSION, decode_json_scene, demo_scene, load_scene
+from .sequence import VERSION as SEQUENCE_VERSION, decode_window, load_manifest, load_window, read_verified_window
+from .response_cache import SceneResponseCache
+from .packed_scene import MIME as PACKED_MIME, encode_packed_scene
 
 LOCAL_HOSTS = frozenset({'localhost', '127.0.0.1', '::1'})
 
@@ -41,6 +43,7 @@ class StudioService:
         self.web = self.root/'web'/'studio'
         self.catalog = Catalog(root, output, data_roots)
         self.sky_cache = {}
+        self.scene_responses = SceneResponseCache()
         self.link_lock=threading.Lock()
         from .experiments import ExperimentJobs
         self.experiments=ExperimentJobs(self.root,self.catalog)
@@ -57,6 +60,55 @@ class StudioService:
             scene['source']['sha256']=hashlib.sha256(source_path.read_bytes()).hexdigest()
         scene['source']['artifact_id']=identity
         return scene
+
+    def scene_response(self, identity, index=0, *, include_sky=True, packed=False):
+        """Serialize once per verified snapshot. Legacy sidecar inputs stay uncached."""
+        path = self.catalog.get(identity)
+        if path.suffix != '.json':
+            if not include_sky: raise ValueError('Not a playback sequence')
+            return self.encode_scene(self.read_scene(identity), include_sky, packed)
+        if path.stat().st_size > MAX_BYTES: raise ValueError('Export a scene window below 64 MiB before replay')
+        with path.open('rb') as stream:
+            raw = stream.read(MAX_BYTES + 1)
+        if len(raw) > MAX_BYTES: raise ValueError('JSON exceeds 64 MiB')
+        digest = hashlib.sha256(raw).hexdigest()
+        key = (identity, digest, index, include_sky, packed)
+        if include_sky:
+            # Only canonical standalone scenes use the source-only key. A sequence
+            # must first verify its window bytes, even on repeated requests.
+            cached = self.scene_responses.get(key)
+            if cached is not None: return cached
+        value = json.loads(raw)
+        if isinstance(value, dict) and value.get('schema') == SEQUENCE_VERSION:
+            manifest = load_manifest(path, json_bytes=raw)
+            file, window_raw = read_verified_window(path, index, manifest)
+            key += (manifest['windows'][index]['sha256'],)
+            cached = self.scene_responses.get(key)
+            if cached is not None: return cached
+            value = json.loads(window_raw)
+            scene = decode_window(manifest, index, identity, file, window_raw, value=value)
+            if include_sky: scene['source']['manifest_sha256'] = digest
+            cacheable = isinstance(value, dict) and value.get('schema') == VERSION
+        else:
+            if not include_sky: raise ValueError('Not a playback sequence')
+            scene = decode_json_scene(path, value)
+            scene['source']['sha256'] = digest
+            scene['source']['artifact_id'] = identity
+            cacheable = isinstance(value, dict) and value.get('schema') == VERSION
+        body = self.encode_scene(scene, include_sky, packed)
+        if cacheable: self.scene_responses.put(key, body)
+        return body
+
+    def encode_scene(self, scene, include_sky, packed=False):
+        if include_sky:
+            key = (scene['frame'], tuple(scene['times']))
+            if key not in self.sky_cache:
+                if len(self.sky_cache) >= 8: self.sky_cache.clear()
+                self.sky_cache[key] = clean(astronomy(scene['times'], scene['frame']))
+            scene['celestial'] = self.sky_cache[key]
+        if packed: return encode_packed_scene(scene)
+        # The scene adapters already sanitize the validated tree.
+        return json.dumps(scene, separators=(',', ':'), allow_nan=False).encode()
 
     def handle(self, handler):
         parsed = urlsplit(handler.path); path = unquote(parsed.path)
@@ -84,20 +136,18 @@ class StudioService:
                 return self.json(handler, self.catalog.scan())
             if path == '/api/studio/inspect':
                 return self.json(handler, self.catalog.inspect(arg('id')))
+            if path in {'/api/studio/scene', '/api/studio/window'}:
+                packed = any(part.strip() == PACKED_MIME for part in (handler.headers.get('Accept') or '').split(','))
+                mime = PACKED_MIME if packed else 'application/json'
             if path == '/api/studio/scene':
                 if arg('demo'):
-                    scene = demo_scene(self.root, arg('demo') == 'system')
+                    body = self.encode_scene(demo_scene(self.root, arg('demo') == 'system'), True, packed)
                 else:
-                    scene=self.read_scene(arg('id'))
-                key = (scene['frame'], tuple(scene['times']))
-                if key not in self.sky_cache:
-                    if len(self.sky_cache) >= 8: self.sky_cache.clear()
-                    self.sky_cache[key] = astronomy(scene['times'], scene['frame'])
-                scene['celestial'] = self.sky_cache[key]
-                return self.json(handler, scene)
+                    body = self.scene_response(arg('id'), packed=packed)
+                return self.send(handler, body, mime)
             if path == '/api/studio/window':
-                scene=load_window(self.catalog.get(arg('id')),int(arg('index')),arg('id'))
-                return self.json(handler,scene)
+                body = self.scene_response(arg('id'), int(arg('index')), include_sky=False, packed=packed)
+                return self.send(handler, body, mime)
             if path == '/api/studio/links':
                 from godsat.simulation.links import evaluate_links
                 with self.link_lock:
@@ -114,7 +164,15 @@ class StudioService:
             relative = 'app/index.html' if path == '/' else path.removeprefix('/studio/')
             file = (self.web/relative).resolve()
             if not file.is_relative_to(self.web) or not file.is_file(): raise FileNotFoundError('Unknown studio asset')
-            return self.send(handler, file.read_bytes(), mimetypes.guess_type(file.name)[0] or 'application/octet-stream')
+            body = file.read_bytes()
+            mime = mimetypes.guess_type(file.name)[0] or 'application/octet-stream'
+            # Hash the bytes actually served. Revalidate even on reload so a rebuilt
+            # UI or changed local texture never appears under a stale validator.
+            etag = '"' + hashlib.sha256(body).hexdigest() + '"'
+            validators = (handler.headers.get('If-None-Match') or '').split(',')
+            if any(tag.strip().removeprefix('W/') in {etag, '*'} for tag in validators):
+                return self.send(handler, b'', mime, 304, etag=etag)
+            return self.send(handler, body, mime, etag=etag)
         except (ValueError, KeyError, TypeError, IndexError) as exc:
             return self.json(handler, {'error': str(exc)}, 400)
         except FileNotFoundError as exc:
@@ -161,14 +219,16 @@ class StudioService:
         return self.send(handler, json.dumps(clean(value), allow_nan=False).encode(), 'application/json', status)
 
     @staticmethod
-    def send(handler, body, mime, status=200):
+    def send(handler, body, mime, status=200, *, etag=None):
         handler.send_response(status)
         handler.send_header('Content-Type', mime)
-        handler.send_header('Content-Length', str(len(body)))
-        handler.send_header('Cache-Control', 'no-store')
+        if status != 304: handler.send_header('Content-Length', str(len(body)))
+        handler.send_header('Cache-Control', 'private, no-cache' if etag else 'no-store')
+        if etag: handler.send_header('ETag', etag)
         handler.send_header('X-Content-Type-Options', 'nosniff')
         # Only Studio may frame Studio (its own PDF preview): another page can't overlay it and steer clicks.
         handler.send_header('Content-Security-Policy', "frame-ancestors 'self'")
         handler.send_header('X-Frame-Options', 'SAMEORIGIN')
-        handler.end_headers(); handler.wfile.write(body)
+        handler.end_headers()
+        if body: handler.wfile.write(body)
         return True

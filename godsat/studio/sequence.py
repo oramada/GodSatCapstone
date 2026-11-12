@@ -2,7 +2,7 @@
 import hashlib
 import json
 from pathlib import Path
-from .scene import load_scene, MAX_FRAMES, MAX_OBJECTS
+from .scene import decode_json_scene, load_scene, MAX_FRAMES, MAX_OBJECTS
 from .catalog import MAX_BYTES
 
 VERSION='godsat.sequence.v1'
@@ -26,10 +26,11 @@ def boundary_hash(objects,index):
     return hashlib.sha256(json.dumps(rows,separators=(',',':')).encode()).hexdigest()
 
 
-def load_manifest(path):
+def load_manifest(path, json_bytes=None):
     path=Path(path)
     if path.stat().st_size>2*1024*1024: raise ValueError('Sequence manifest exceeds 2 MiB')
-    value=json.loads(path.read_text())
+    if json_bytes is not None and len(json_bytes)>2*1024*1024: raise ValueError('Sequence manifest exceeds 2 MiB')
+    value=json.loads(path.read_text() if json_bytes is None else json_bytes)
     if value.get('schema')!=VERSION: raise ValueError('Not a playback sequence')
     windows=value.get('windows')
     if not isinstance(windows,list) or not 1<=len(windows)<=10000: raise ValueError('Sequence requires 1–10,000 windows')
@@ -58,16 +59,22 @@ def load_manifest(path):
     return value
 
 
-def load_window(manifest_path, index, identity):
+def read_verified_window(manifest_path, index, manifest):
+    """Read a bounded byte snapshot and check its digest even on a cache hit."""
     manifest_path=Path(manifest_path)
-    manifest=load_manifest(manifest_path)
     if type(index) is not int or not 0<=index<len(manifest['windows']): raise ValueError('Window index outside sequence')
     window=manifest['windows'][index]; file=manifest_path.parent/window['file']
     if file.is_symlink() or not file.resolve().is_relative_to(manifest_path.parent.resolve()): raise ValueError('Window cannot be a symlink or escape its directory')
     if file.stat().st_size>MAX_BYTES: raise ValueError('Window exceeds 64 MiB')
-    raw=file.read_bytes()
+    with file.open('rb') as stream: raw=stream.read(MAX_BYTES+1)
+    if len(raw)>MAX_BYTES: raise ValueError('Window exceeds 64 MiB')
     if hashlib.sha256(raw).hexdigest()!=window['sha256']: raise ValueError('Window content hash changed')
-    scene=load_scene(file,json_bytes=raw)
+    return file,raw
+
+
+def decode_window(manifest, index, identity, file, raw, *, value=None):
+    window=manifest['windows'][index]
+    scene=load_scene(file,json_bytes=raw) if value is None else decode_json_scene(file,value)
     if scene['frame']!=manifest['frame'] or len(scene['objects'])!=manifest['objects'] or roster_hash(scene['objects'])!=manifest['roster_sha256']:
         raise ValueError('Window object roster or reference frame changed')
     if scene['observations'] is not None: raise ValueError('Catalog sequences require unknown observations; saved detection histories need explicit cross-window custody state')
@@ -81,3 +88,9 @@ def load_window(manifest_path, index, identity):
         'total_frames':manifest['total_frames'],'start':manifest['windows'][0]['start'],'end':manifest['windows'][-1]['end'],
         'windows':[{'offset':w['offset'],'frames':w['frames']} for w in manifest['windows']]}
     return scene
+
+
+def load_window(manifest_path, index, identity):
+    manifest=load_manifest(manifest_path)
+    file,raw=read_verified_window(manifest_path,index,manifest)
+    return decode_window(manifest,index,identity,file,raw)

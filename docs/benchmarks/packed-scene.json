@@ -1,0 +1,62 @@
+{
+  "window_index": 1,
+  "service": [
+    {
+      "format": "json",
+      "attempt": "first",
+      "seconds": 1.1159135830239393,
+      "bytes": 26177764
+    },
+    {
+      "format": "json",
+      "attempt": "repeat",
+      "seconds": 0.014572709013009444,
+      "bytes": 26177764
+    },
+    {
+      "format": "packed",
+      "attempt": "first",
+      "seconds": 0.798379957996076,
+      "bytes": 12868881
+    },
+    {
+      "format": "packed",
+      "attempt": "repeat",
+      "seconds": 0.014363041002070531,
+      "bytes": 12868881
+    }
+  ],
+  "node": {
+    "equivalent": true,
+    "objects": 16896,
+    "frames": 11,
+    "decodeMedianMs": {
+      "json": 59.68729199999996,
+      "packed": 13.985791999999947
+    }
+  },
+  "browser_cold_seek_ms": {
+    "json_previous_spot": 1302,
+    "packed_spot": 892
+  },
+  "browser_quality_spots": [
+    {
+      "quality": "high",
+      "buffer": [
+        2560,
+        1440
+      ],
+      "draws_per_second": 26.0,
+      "cpu_p95_ms": 6.5
+    },
+    {
+      "quality": "balanced",
+      "buffer": [
+        1280,
+        720
+      ],
+      "draws_per_second": 53.6,
+      "cpu_p95_ms": 5.3
+    }
+  ]
+}

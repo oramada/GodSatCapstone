@@ -16,7 +16,7 @@ MAX_OBJECTS = 20000
 MAX_SAMPLES = 1200000
 
 
-def base(title, frame, times, objects, source, **extra):
+def base(title, frame, times, objects, source, *, _json_coordinates=False, **extra):
     if frame not in {'TEME', 'GCRS', 'ITRS'}: raise ValueError('Scene requires an explicit TEME, GCRS or ITRS frame')
     if not times: raise ValueError('Scene has no time samples')
     stamps = [dt.datetime.fromisoformat(str(t).replace('Z', '+00:00')) for t in times]
@@ -33,7 +33,7 @@ def base(title, frame, times, objects, source, **extra):
             raise ValueError('Objects require string IDs and a supported kind')
         if len(obj['positions_km']) != len(times): raise ValueError('Position timeline does not match scene times')
         for p in obj['positions_km']:
-            if p is not None and (len(p) != 3 or not all(isinstance(v, (float, int)) and math.isfinite(v) for v in p)):
+            if p is not None and (len(p) != 3 or not all(isinstance(v, (float, int)) and not isinstance(v, bool) and math.isfinite(v) for v in p)):
                 raise ValueError('Positions must be finite three-vectors or null')
         if 'velocities_km_s' in obj:
             velocities = obj['velocities_km_s']
@@ -59,9 +59,21 @@ def base(title, frame, times, objects, source, **extra):
         validate_config(extra['ground_links'])
     if not isinstance(custody, (int, float)) or not math.isfinite(custody) or custody < 0:
         raise ValueError('Custody window must be finite and nonnegative')
-    return clean({'schema': VERSION, 'title': title, 'frame': frame, 'units': 'km',
+    scene = {'schema': VERSION, 'title': title, 'frame': frame, 'units': 'km',
         'times': times, 'objects': objects, 'source': source, 'custody_seconds': 180,
-        'observations': None, 'warnings': [], **extra})
+        'observations': None, 'warnings': [], **extra}
+    if not _json_coordinates:
+        return clean(scene)
+    # The JSON decoder owns these arrays, and validation above already checked
+    # every coordinate. Copy and sanitize metadata without walking the arrays again.
+    return {
+        key: clean(value) if key != 'objects' else [
+            {name: field if name in {'positions_km', 'velocities_km_s'} else clean(field)
+             for name, field in obj.items()}
+            for obj in objects
+        ]
+        for key, value in scene.items()
+    }
 
 
 def demo_scene(root, system=False):
@@ -121,26 +133,7 @@ def load_scene(path, json_bytes=None):
     if path.suffix == '.json':
         if json_bytes is not None and len(json_bytes)>MAX_BYTES: raise ValueError('JSON exceeds 64 MiB')
         value = json.loads(path.read_text() if json_bytes is None else json_bytes)
-        if isinstance(value, dict) and value.get('schema') == VERSION:
-            if value.get('units') != 'km': raise ValueError('Scene coordinates must use kilometers')
-            extra = {}
-            if 'ground_links' in value:extra['ground_links']=value['ground_links']
-            if 'environment' in value:
-                from godsat.simulation.environment import validate_environment
-                extra['environment'] = validate_environment(value['environment'])
-            result = base(value['title'], value['frame'], value['times'], value['objects'], value['source'],
-                observations=value.get('observations'), custody_seconds=value.get('custody_seconds', 180), warnings=value.get('warnings', []), **extra)
-            if result['observations'] is not None and len(result['observations']) != len(result['times']):
-                raise ValueError('Observation timeline does not match scene times')
-            return result
-        if isinstance(value, dict) and {'positions_km', 'times', 'ids'} <= value.keys():
-            config_path = path.parent/'config.json'
-            if not config_path.is_file() and path.parent.name == 'replays': config_path = path.parent.parent/'config.json'
-            if config_path.is_file() and config_path.stat().st_size < MAX_BYTES:
-                config = json.loads(config_path.read_text())
-                value.setdefault('custody_seconds', config.get('custody_seconds', 180))
-            return replay_scene(value, path.name)
-        raise ValueError('This JSON is not a scene or replay. Open it in the artifact inspector.')
+        return decode_json_scene(path, value)
     if path.suffix in {'.csv', '.parquet'}:
         if path.suffix == '.csv':
             with path.open(newline='') as f:
@@ -155,6 +148,30 @@ def load_scene(path, json_bytes=None):
             rows = pf.read().to_pylist()
         return table_scene(rows, path.name)
     raise ValueError('This format has no spatial adapter. Open the processed product in the inspector.')
+
+
+def decode_json_scene(path, value):
+    """Normalize an already parsed scene or legacy replay."""
+    if isinstance(value, dict) and value.get('schema') == VERSION:
+        if value.get('units') != 'km': raise ValueError('Scene coordinates must use kilometers')
+        extra = {}
+        if 'ground_links' in value:extra['ground_links']=value['ground_links']
+        if 'environment' in value:
+            from godsat.simulation.environment import validate_environment
+            extra['environment'] = validate_environment(value['environment'])
+        result = base(value['title'], value['frame'], value['times'], value['objects'], value['source'], _json_coordinates=True,
+            observations=value.get('observations'), custody_seconds=value.get('custody_seconds', 180), warnings=value.get('warnings', []), **extra)
+        if result['observations'] is not None and len(result['observations']) != len(result['times']):
+            raise ValueError('Observation timeline does not match scene times')
+        return result
+    if isinstance(value, dict) and {'positions_km', 'times', 'ids'} <= value.keys():
+        config_path = path.parent/'config.json'
+        if not config_path.is_file() and path.parent.name == 'replays': config_path = path.parent.parent/'config.json'
+        if config_path.is_file() and config_path.stat().st_size < MAX_BYTES:
+            config = json.loads(config_path.read_text())
+            value.setdefault('custody_seconds', config.get('custody_seconds', 180))
+        return replay_scene(value, path.name)
+    raise ValueError('This JSON is not a scene or replay. Open it in the artifact inspector.')
 
 
 def replay_scene(value, name):

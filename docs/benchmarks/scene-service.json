@@ -1,0 +1,116 @@
+{
+  "scope": "Local service handler timings; same 16,896-object artifacts; excludes network and browser work",
+  "baseline_commit": "680c242",
+  "baseline": [
+    {
+      "workload": "standalone",
+      "attempt": "first",
+      "seconds": 2.9984128330252133,
+      "bytes": 27632445,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "7bd8cbe5989cb961122c2fce5674ed96a2a6f147aa79294e41e90c5ab2f65a93"
+    },
+    {
+      "workload": "standalone",
+      "attempt": "repeat",
+      "seconds": 2.2625765839766245,
+      "bytes": 27632445,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "7bd8cbe5989cb961122c2fce5674ed96a2a6f147aa79294e41e90c5ab2f65a93"
+    },
+    {
+      "workload": "sequence_start",
+      "attempt": "first",
+      "seconds": 2.579140665999148,
+      "bytes": 27631740,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "fb74962d7d3c41579b39f5c23b630595d818464d69c6a3d7cce1d9e3debbf0da"
+    },
+    {
+      "workload": "sequence_start",
+      "attempt": "repeat",
+      "seconds": 2.564426375000039,
+      "bytes": 27631740,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "fb74962d7d3c41579b39f5c23b630595d818464d69c6a3d7cce1d9e3debbf0da"
+    },
+    {
+      "workload": "next_window",
+      "attempt": "first",
+      "seconds": 2.5727607080189046,
+      "bytes": 27628794,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "3a61ade352dd783a73c8a1824bebab5a9c7a7c64860f64a5e3f74912cf28b497"
+    },
+    {
+      "workload": "next_window",
+      "attempt": "repeat",
+      "seconds": 2.56713754098746,
+      "bytes": 27628794,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "3a61ade352dd783a73c8a1824bebab5a9c7a7c64860f64a5e3f74912cf28b497"
+    }
+  ],
+  "optimized": [
+    {
+      "workload": "standalone",
+      "attempt": "first",
+      "seconds": 1.239995584008284,
+      "bytes": 26181327,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "7bd8cbe5989cb961122c2fce5674ed96a2a6f147aa79294e41e90c5ab2f65a93"
+    },
+    {
+      "workload": "standalone",
+      "attempt": "repeat",
+      "seconds": 0.011857292003696784,
+      "bytes": 26181327,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "7bd8cbe5989cb961122c2fce5674ed96a2a6f147aa79294e41e90c5ab2f65a93"
+    },
+    {
+      "workload": "sequence_start",
+      "attempt": "first",
+      "seconds": 1.0359926669916604,
+      "bytes": 26180637,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "fb74962d7d3c41579b39f5c23b630595d818464d69c6a3d7cce1d9e3debbf0da"
+    },
+    {
+      "workload": "sequence_start",
+      "attempt": "repeat",
+      "seconds": 0.012498458992922679,
+      "bytes": 26180637,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "fb74962d7d3c41579b39f5c23b630595d818464d69c6a3d7cce1d9e3debbf0da"
+    },
+    {
+      "workload": "next_window",
+      "attempt": "first",
+      "seconds": 0.9628756669990253,
+      "bytes": 26177764,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "3a61ade352dd783a73c8a1824bebab5a9c7a7c64860f64a5e3f74912cf28b497"
+    },
+    {
+      "workload": "next_window",
+      "attempt": "repeat",
+      "seconds": 0.011390874977223575,
+      "bytes": 26177764,
+      "objects": 16896,
+      "frames": 11,
+      "semantic_sha256": "3a61ade352dd783a73c8a1824bebab5a9c7a7c64860f64a5e3f74912cf28b497"
+    }
+  ]
+}

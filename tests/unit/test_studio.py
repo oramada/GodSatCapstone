@@ -273,3 +273,35 @@ def test_built_studio_matches_its_source():
     assert build['source_sha256'] == {rel(p): _sha256(p) for p in sources}, 'web/ui changed without `bun run build` in web/ui'
     bundle = _studio_files(out, lambda p: p.name != 'build.json')
     assert build['bundle_sha256'] == {rel(p): _sha256(p) for p in bundle}, 'web/studio/app was edited by hand'
+
+
+def test_static_asset_revalidates_exact_bytes_without_caching_artifacts(tmp_path):
+    import os
+    from godsat.studio.service import StudioService
+    from scripts.studio.benchmark_scene_service import Request
+
+    assets = tmp_path / 'web' / 'studio' / 'app'
+    assets.mkdir(parents=True)
+    path = assets / 'index.html'
+    path.write_bytes(b'<html>A</html>')
+    service = StudioService(tmp_path, tmp_path / 'outputs')
+    first = Request('/')
+    assert service.handle(first) and first.status == 200
+    etag = first.response_headers['ETag']
+    assert first.response_headers['Cache-Control'] == 'private, no-cache'
+    repeat = Request('/')
+    repeat.headers = {**Request.headers, 'If-None-Match': 'W/' + etag}
+    assert service.handle(repeat) and repeat.status == 304
+    assert not hasattr(repeat, 'body')
+    assert 'Content-Length' not in repeat.response_headers
+    stat = path.stat()
+    path.write_bytes(b'<html>B</html>')
+    os.utime(path, ns=(stat.st_atime_ns, stat.st_mtime_ns))
+    changed = Request('/')
+    changed.headers = repeat.headers
+    assert service.handle(changed) and changed.status == 200
+    assert changed.body == b'<html>B</html>' and changed.response_headers['ETag'] != etag
+    api = Request('/api/studio/catalog')
+    api.headers = {**Request.headers, 'If-None-Match': '*'}
+    assert service.handle(api) and api.status == 200
+    assert api.response_headers['Cache-Control'] == 'no-store' and 'ETag' not in api.response_headers

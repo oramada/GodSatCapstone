@@ -6,7 +6,7 @@
 // React never drives a frame. It reads two stores: `state` (changes on an action: a scene,
 // the focus, a layer) and `readout` (the clock's words and numbers, at most every 100 ms).
 
-import { download, getJson, isAbort, messageOf } from "./api";
+import { download, getJson, getScene, isAbort, messageOf } from "./api";
 import {
   CesiumObservatory,
   computeBackend,
@@ -205,6 +205,7 @@ export class StudioEngine {
   private lastPaint = 0;
   private lastReadout = 0;
   private performanceStart = 0;
+  private performanceDraws = 0;
   private frameDurations: number[] = [];
   private run = 0;
   private readonly listeners: [string, EventListener][] = [];
@@ -316,6 +317,8 @@ export class StudioEngine {
     this.view = null;
     this.globe = null;
     this.sceneLoading = this.windowLoading = false;
+    this.performanceStart = this.performanceDraws = 0;
+    this.frameDurations = [];
     if (this.s.started) this.state.set({ started: false });
   }
 
@@ -345,11 +348,11 @@ export class StudioEngine {
     this.state.set({ loading: "Preparing scene…", sourceValue: value });
     let sequence: WindowSequence | null = null;
     try {
-      const next = await getJson<Scene>(this.loadSceneUrl(value), controller.signal);
+      const next = await getScene(this.loadSceneUrl(value), controller.signal);
       if (request !== this.sceneRequest) return;
       if (next.sequence) {
         const player = new WindowSequence(next, (id, index, signal) =>
-          getJson<Scene>(`/api/studio/window?id=${encodeURIComponent(id)}&index=${index}`, signal),
+          getScene(`/api/studio/window?id=${encodeURIComponent(id)}&index=${index}`, signal),
         );
         controller.signal.addEventListener("abort", () => player.clear(), { once: true });
         sequence = player;
@@ -767,12 +770,19 @@ export class StudioEngine {
       this.lastReadout = ts;
     }
     this.frameDurations.push(performance.now() - frameStart);
-    if (!this.performanceStart) this.performanceStart = ts;
+    const draws = this.view?.drawCount ?? 0;
+    if (!this.performanceStart) {
+      this.performanceStart = ts;
+      this.performanceDraws = draws;
+    }
     if (ts - this.performanceStart >= 2000) {
       const sorted = [...this.frameDurations].sort((a, b) => a - b);
       const fps = (this.frameDurations.length * 1000) / (ts - this.performanceStart);
       const p95 = sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.95))] ?? 0;
-      this.state.set({ framePerformance: `${fps.toFixed(1)} FPS · CPU p95 ${p95.toFixed(1)} ms` });
+      const drawRate = (draws - this.performanceDraws) * 1000 / (ts - this.performanceStart);
+      const gpu = this.view?.gpuReadout?.();
+      this.state.set({ framePerformance: `${fps.toFixed(1)} updates/s · ${drawRate.toFixed(1)} draws/s · CPU p95 ${p95.toFixed(1)} ms${gpu ? ` · ${gpu}` : ""}` });
+      this.performanceDraws = draws;
       this.performanceStart = ts;
       this.frameDurations = [];
     }

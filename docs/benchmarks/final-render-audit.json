@@ -1,0 +1,269 @@
+{
+  "layers": {
+    "all": [
+      "43.1 updates/s \u00b7 10.4 draws/s \u00b7 CPU p95 4.9 ms \u00b7 GPU p50 50.5 / p95 81.1 ms (7 draws)",
+      "26.8 updates/s \u00b7 26.8 draws/s \u00b7 CPU p95 4.7 ms \u00b7 GPU p50 45.7 / p95 54.6 ms (18 draws)",
+      "27.8 updates/s \u00b7 27.8 draws/s \u00b7 CPU p95 4.5 ms \u00b7 GPU p50 45.3 / p95 52.5 ms (19 draws)"
+    ],
+    "points-off": [
+      "34.0 updates/s \u00b7 33.5 draws/s \u00b7 CPU p95 43.5 ms \u00b7 GPU p50 42.0 / p95 65.0 ms (24 draws) \u00b7 points-off",
+      "37.5 updates/s \u00b7 37.5 draws/s \u00b7 CPU p95 3.3 ms \u00b7 GPU p50 39.8 / p95 44.2 ms (25 draws) \u00b7 points-off",
+      "36.3 updates/s \u00b7 36.3 draws/s \u00b7 CPU p95 3.4 ms \u00b7 GPU p50 39.4 / p95 46.9 ms (24 draws) \u00b7 points-off"
+    ],
+    "atmosphere-off": [
+      "25.3 updates/s \u00b7 24.8 draws/s \u00b7 CPU p95 75.4 ms \u00b7 GPU p50 48.2 / p95 79.5 ms (17 draws) \u00b7 atmosphere-off",
+      "27.4 updates/s \u00b7 27.4 draws/s \u00b7 CPU p95 5.1 ms \u00b7 GPU p50 44.6 / p95 52.2 ms (18 draws) \u00b7 atmosphere-off",
+      "27.6 updates/s \u00b7 27.6 draws/s \u00b7 CPU p95 5.0 ms \u00b7 GPU p50 46.9 / p95 54.8 ms (19 draws) \u00b7 atmosphere-off"
+    ],
+    "globe-off": [
+      "26.5 updates/s \u00b7 26.0 draws/s \u00b7 CPU p95 73.3 ms \u00b7 GPU p50 36.8 / p95 83.0 ms (15 draws) \u00b7 globe-off",
+      "28.2 updates/s \u00b7 28.2 draws/s \u00b7 CPU p95 4.5 ms \u00b7 GPU p50 34.8 / p95 42.1 ms (14 draws) \u00b7 globe-off",
+      "29.2 updates/s \u00b7 29.2 draws/s \u00b7 CPU p95 4.4 ms \u00b7 GPU p50 35.8 / p95 42.7 ms (15 draws) \u00b7 globe-off"
+    ]
+  },
+  "static_assets": {
+    "before": {
+      "origin": "http://127.0.0.1:8768",
+      "assets": [
+        {
+          "path": "/",
+          "first_bytes": 893,
+          "repeat_bytes": 893,
+          "repeat_status": 200,
+          "first_ms": 2.7342500000000007,
+          "repeat_ms": 0.5305000000000032
+        },
+        {
+          "path": "/studio/app/theme-boot.js",
+          "first_bytes": 2697,
+          "repeat_bytes": 2697,
+          "repeat_status": 200,
+          "first_ms": 0.6226250000000016,
+          "repeat_ms": 0.4194169999999983
+        },
+        {
+          "path": "/studio/vendor/cesium/Widgets/widgets.css",
+          "first_bytes": 30710,
+          "repeat_bytes": 30710,
+          "repeat_status": 200,
+          "first_ms": 0.7873330000000012,
+          "repeat_ms": 0.551834000000001
+        },
+        {
+          "path": "/studio/app/cesium-base.js",
+          "first_bytes": 194,
+          "repeat_bytes": 194,
+          "repeat_status": 200,
+          "first_ms": 0.7187500000000041,
+          "repeat_ms": 0.5550420000000056
+        },
+        {
+          "path": "/studio/vendor/cesium/Cesium.js",
+          "first_bytes": 6095011,
+          "repeat_bytes": 6095011,
+          "repeat_status": 200,
+          "first_ms": 4.320000000000005,
+          "repeat_ms": 2.6969160000000074
+        },
+        {
+          "path": "/studio/app/assets/index-nwHxtxjV.js",
+          "first_bytes": 1229835,
+          "repeat_bytes": 1229835,
+          "repeat_status": 200,
+          "first_ms": 1.2195829999999963,
+          "repeat_ms": 0.8305410000000041
+        },
+        {
+          "path": "/studio/app/assets/index-DFBA7XAK.css",
+          "first_bytes": 319853,
+          "repeat_bytes": 319853,
+          "repeat_status": 200,
+          "first_ms": 0.7690830000000037,
+          "repeat_ms": 0.4400420000000016
+        },
+        {
+          "path": "/studio/wasm/godsat_studio_core.wasm",
+          "first_bytes": 21554,
+          "repeat_bytes": 21554,
+          "repeat_status": 200,
+          "first_ms": 0.5043329999999957,
+          "repeat_ms": 0.38674999999999127
+        },
+        {
+          "path": "/studio/assets/earth-day.jpg",
+          "first_bytes": 512606,
+          "repeat_bytes": 512606,
+          "repeat_status": 200,
+          "first_ms": 0.9025419999999923,
+          "repeat_ms": 0.5351670000000031
+        }
+      ],
+      "first_bytes": 8213353,
+      "repeat_bytes": 8213353
+    },
+    "after": {
+      "origin": "http://127.0.0.1:8769",
+      "assets": [
+        {
+          "path": "/",
+          "first_bytes": 893,
+          "repeat_bytes": 0,
+          "repeat_status": 304,
+          "first_ms": 3.9246660000000038,
+          "repeat_ms": 0.6489589999999976
+        },
+        {
+          "path": "/studio/app/theme-boot.js",
+          "first_bytes": 2697,
+          "repeat_bytes": 0,
+          "repeat_status": 304,
+          "first_ms": 0.5102919999999955,
+          "repeat_ms": 0.41037499999999755
+        },
+        {
+          "path": "/studio/vendor/cesium/Widgets/widgets.css",
+          "first_bytes": 30710,
+          "repeat_bytes": 0,
+          "repeat_status": 304,
+          "first_ms": 0.430332999999998,
+          "repeat_ms": 0.37200000000000427
+        },
+        {
+          "path": "/studio/app/cesium-base.js",
+          "first_bytes": 194,
+          "repeat_bytes": 0,
+          "repeat_status": 304,
+          "first_ms": 0.3456659999999945,
+          "repeat_ms": 0.4853329999999975
+        },
+        {
+          "path": "/studio/vendor/cesium/Cesium.js",
+          "first_bytes": 6095011,
+          "repeat_bytes": 0,
+          "repeat_status": 304,
+          "first_ms": 4.432959,
+          "repeat_ms": 3.3045420000000005
+        },
+        {
+          "path": "/studio/app/assets/index-nwHxtxjV.js",
+          "first_bytes": 1229835,
+          "repeat_bytes": 0,
+          "repeat_status": 304,
+          "first_ms": 1.6322500000000018,
+          "repeat_ms": 0.9827500000000045
+        },
+        {
+          "path": "/studio/app/assets/index-DFBA7XAK.css",
+          "first_bytes": 319853,
+          "repeat_bytes": 0,
+          "repeat_status": 304,
+          "first_ms": 0.7831250000000025,
+          "repeat_ms": 0.7471669999999999
+        },
+        {
+          "path": "/studio/wasm/godsat_studio_core.wasm",
+          "first_bytes": 21554,
+          "repeat_bytes": 0,
+          "repeat_status": 304,
+          "first_ms": 0.577374999999998,
+          "repeat_ms": 0.4849590000000001
+        },
+        {
+          "path": "/studio/assets/earth-day.jpg",
+          "first_bytes": 512606,
+          "repeat_bytes": 0,
+          "repeat_status": 304,
+          "first_ms": 0.7311249999999991,
+          "repeat_ms": 0.5706659999999975
+        }
+      ],
+      "first_bytes": 8213353,
+      "repeat_bytes": 0
+    }
+  },
+  "transport_audit": [
+    {
+      "window": 1,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 2,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 3,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 4,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 5,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 6,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 7,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 8,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 9,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 10,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 11,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "window": 12,
+      "total": 12,
+      "objects": 16896,
+      "exactFrames": 21
+    },
+    {
+      "windows": 12,
+      "objects": 16896,
+      "exactFrames": 252
+    }
+  ],
+  "tests": {
+    "python": 104,
+    "studio_js": 39,
+    "react_ui": 67,
+    "rust": 3
+  }
+}

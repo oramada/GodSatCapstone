@@ -1,3 +1,6 @@
+import { decodePackedScene, PACKED_SCENE_MIME } from "../../../studio/packed-scene.js";
+import type { Scene } from "./types";
+
 // The service's JSON boundary. Every read skips the HTTP cache (the catalog changes on disk
 // under a running studio); an error body's `error` is the message a person reads.
 
@@ -48,6 +51,17 @@ async function send(url: string, init: RequestInit): Promise<Response> {
 
 export async function getJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   return read<T>(await send(url, { cache: "no-store", ...(signal ? { signal } : {}) }));
+}
+
+export async function getScene(url: string, signal?: AbortSignal): Promise<Scene> {
+  const response = await send(url, { cache: "no-store", headers: { Accept: PACKED_SCENE_MIME }, ...(signal ? { signal } : {}) });
+  if (!response.ok || response.headers.get("Content-Type") !== PACKED_SCENE_MIME) return read<Scene>(response);
+  try {
+    return decodePackedScene(await response.arrayBuffer()) as Scene;
+  } catch (error) {
+    if (isAbort(error)) throw error;
+    throw new ApiError("The Studio service sent an invalid packed scene. Reload Studio and try again.", response.status);
+  }
 }
 
 export async function postJson<T>(url: string, payload: unknown, token: string): Promise<T> {

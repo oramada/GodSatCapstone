@@ -122,6 +122,8 @@ export interface Observatory {
   selectedByUser: boolean;
   station: string | null;
   readonly readyToDisplay: boolean;
+  readonly drawCount?: number;
+  gpuReadout?(): string | undefined;
   environmentMessage: string;
   detail: { caption: string };
   setScene(scene: Scene, focus: string, keepCamera?: boolean): void;
