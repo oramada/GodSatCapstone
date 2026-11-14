@@ -46,7 +46,7 @@ export function TopBar({
           value={value}
           options={options}
           onChange={(next) => engine.setSource(next)}
-          className="min-w-0 flex-1 sm:w-72 sm:flex-none"
+          className="studio-hud-select min-w-0 flex-1 sm:w-56 sm:flex-none"
         />
         {kind ? (
           <Badge variant="outline" className="shrink-0">

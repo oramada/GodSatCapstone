@@ -4,14 +4,14 @@
 // when the focus isn't on a control.
 
 import { Button, toastManager } from "@sam/design-system";
-import { ChevronRightIcon, SatelliteIcon } from "lucide-react";
+import { ChevronRightIcon, SatelliteIcon, TargetIcon, XIcon } from "lucide-react";
 import { type RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 import { GlobeStage } from "./components/GlobeStage";
 import { type PanelId } from "./components/Panel";
 import { PlaybackBar } from "./components/PlaybackBar";
 import { TopBar } from "./components/TopBar";
-import { EngineProvider, useStudio } from "./engine/context";
+import { EngineProvider, useEngine, useStudio } from "./engine/context";
 import { StudioEngine } from "./engine/studio";
 import { DataPanel } from "./panels/DataPanel";
 import { ExperimentPanel } from "./panels/ExperimentPanel";
@@ -145,16 +145,26 @@ function inDialog(target: EventTarget | null): boolean {
 
 /** A satellite picked on the globe: one press opens it in Inspect. Arrives with the pick (rule 1). */
 function SelectionChip({ hidden, onInspect }: { hidden: boolean; onInspect: () => void }) {
+  const engine = useEngine();
+  const count = useStudio((s) => s.selectedIds.length);
+  const tracking = useStudio((s) => s.tracking);
   const shown = useStudio((s) => s.selectedByUser);
   const focusId = useStudio((s) => s.focusId);
   const name = useStudio((s) => s.scene?.objects.find((o) => o.id === s.focusId)?.name ?? "Selected satellite");
   if (!shown || hidden) return null;
   return (
-    <div key={focusId} className="motion-enter fixed bottom-32 left-1/2 z-20 max-w-full -translate-x-1/2 sm:bottom-36">
+    <div key={focusId} className="motion-enter fixed bottom-32 left-1/2 z-20 flex w-max max-w-[calc(100%-1rem)] -translate-x-1/2 gap-1 sm:bottom-36">
       <Button variant="glass" size="sm" shape="capsule" onClick={onInspect}>
         <SatelliteIcon />
-        <span className="truncate">Inspect {name}</span>
+        <span className="truncate">{count > 1 ? `${count.toLocaleString()} satellites selected` : `Inspect ${name}`}</span>
         <ChevronRightIcon />
+      </Button>
+      <Button variant="glass" size="sm" shape="capsule" aria-label={tracking ? "Recenter on satellite" : "Zoom to satellite"}
+        onClick={() => engine.followSatellite()}>
+        <TargetIcon />
+      </Button>
+      <Button variant="glass" size="sm" shape="capsule" aria-label="Clear satellite selection" onClick={() => engine.selectSatellites([])}>
+        <XIcon />
       </Button>
     </div>
   );

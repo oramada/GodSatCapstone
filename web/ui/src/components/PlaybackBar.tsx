@@ -20,11 +20,11 @@ import {
   Text,
 } from "@sam/design-system";
 import { setAppearance, useTheme, type Appearance } from "@sam/design-system/theme";
-import { DownloadIcon, EllipsisIcon, PauseIcon, PlayIcon, RotateCcwIcon } from "lucide-react";
+import { DownloadIcon, EllipsisIcon, PauseIcon, PlayIcon, RotateCcwIcon, ScanIcon, SunIcon, TargetIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { useEngine, useReadout, useStudio } from "../engine/context";
-import type { Speed } from "../engine/studio";
+import type { CameraMode, Speed } from "../engine/studio";
 import type { TrackStateName } from "../engine/types";
 import { TONE } from "./tone";
 
@@ -43,6 +43,9 @@ const APPEARANCES: { value: Appearance; label: string }[] = [
 
 export function PlaybackBar() {
   const engine = useEngine();
+  const selected = useStudio((s) => s.selectedByUser);
+  const boxSelection = useStudio((s) => s.boxSelection);
+  const cameraMode = useStudio((s) => s.cameraMode);
   const playing = useStudio((s) => s.playing);
   const speed = useStudio((s) => s.speed);
   const max = useStudio((s) => s.scrubMax);
@@ -100,7 +103,7 @@ export function PlaybackBar() {
           value={speed}
           options={SPEEDS}
           onChange={(next) => engine.setSpeed(next)}
-          className="ms-auto hidden w-40 sm:flex"
+          className="studio-hud-select ms-auto hidden sm:flex sm:w-36"
         />
         <Menu>
           <MenuTrigger
@@ -115,6 +118,26 @@ export function PlaybackBar() {
               <RotateCcwIcon />
               Reset view
             </MenuItem>
+            <MenuItem disabled={!ready} onClick={() => engine.lookAtSun()}>
+              <SunIcon />
+              Look at Sun
+            </MenuItem>
+            <MenuItem disabled={!selected} onClick={() => engine.followSatellite()}>
+              <TargetIcon />
+              Zoom to satellite
+            </MenuItem>
+            <MenuItem disabled={!ready} onClick={() => engine.setBoxSelection(!boxSelection)}>
+              <ScanIcon />
+              {boxSelection ? "Exit box selection" : "Box select satellites"}
+            </MenuItem>
+            <MenuGroup>
+              <MenuGroupLabel>Camera</MenuGroupLabel>
+              <MenuRadioGroup value={cameraMode} onValueChange={(next) => engine.setCameraMode(next as CameraMode)}>
+                <MenuRadioItem value="orbit">Orbit</MenuRadioItem>
+                <MenuRadioItem value="free" disabled={!ready}>Free flight</MenuRadioItem>
+              </MenuRadioGroup>
+            </MenuGroup>
+            <MenuSeparator />
             <MenuItem disabled={!ready} onClick={() => engine.exportScene()}>
               <DownloadIcon />
               {windowed ? "Export window" : "Export scene"}

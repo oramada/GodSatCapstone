@@ -20,6 +20,13 @@ const fakes = vi.hoisted(() => {
     setScene = vi.fn();
     setFocus = vi.fn();
     setQuality = vi.fn();
+    setCameraMode = vi.fn();
+    lookAtSun = vi.fn();
+    setSelection = vi.fn();
+    setBoxSelection = vi.fn();
+    followSatellite = vi.fn(() => true);
+    zoomSatellite = vi.fn();
+    stopFollowing = vi.fn();
     reset = vi.fn();
     update = vi.fn();
     destroy = vi.fn();

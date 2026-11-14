@@ -25,6 +25,7 @@ import { Store } from "./store";
 import type { Artifact, Catalog, GroundLinks, LinkResult, LinkRow, Scene, SceneObject, TrackState, TrackStateName } from "./types";
 
 export type Mode = "single" | "system";
+export type CameraMode = "orbit" | "free";
 export type Framing = "earth" | "all";
 export type Quality = "high" | "balanced";
 export type Speed = "0.1" | "0.35" | "1" | "3";
@@ -59,6 +60,10 @@ export interface StudioState {
   mode: Mode;
   layers: RendererLayers;
   framing: Framing;
+  cameraMode: CameraMode;
+  tracking: boolean;
+  boxSelection: boolean;
+  selectedIds: string[];
   quality: Quality;
   focusId: string;
   focusQuery: string;
@@ -108,7 +113,7 @@ export interface Readout {
 const LAYERS_DEFAULT: RendererLayers = {
   atmosphere: true,
   ionosphere: false,
-  celestial: false,
+  celestial: true,
   trails: false,
   ghosts: false,
   clouds: "clear",
@@ -224,6 +229,10 @@ export class StudioEngine {
       mode: "system",
       layers: LAYERS_DEFAULT,
       framing: "earth",
+      cameraMode: "orbit",
+      tracking: false,
+      boxSelection: false,
+      selectedIds: [],
       quality: "high",
       focusId: "",
       focusQuery: "",
@@ -265,7 +274,7 @@ export class StudioEngine {
   async start(globe: HTMLElement, detail: HTMLCanvasElement, credits: HTMLElement): Promise<void> {
     this.stop();
     const run = this.run;
-    this.state.set({ started: true, rendererError: null });
+    this.state.set({ started: true, rendererError: null, tracking: false, boxSelection: false });
     this.globe = globe;
     this.rendererFailed = false;
     this.listen(globe, "renderererror", (event) => {
@@ -273,6 +282,11 @@ export class StudioEngine {
       this.onNotice(String((event as CustomEvent).detail));
     });
     this.listen(globe, "objectselected", (event) => this.focus(String((event as CustomEvent).detail)));
+    this.listen(globe, "satelliteselection", (event) => {
+      const { ids, primary, zoom } = (event as CustomEvent<{ ids: string[]; primary?: string; zoom: boolean }>).detail;
+      this.selectSatellites(ids, primary);
+      if (zoom && primary) this.followSatellite();
+    });
     await initializeCompute();
     if (this.stale(run)) return;
     await this.refresh();
@@ -280,6 +294,7 @@ export class StudioEngine {
     try {
       this.view = new CesiumObservatory(globe, detail, { credits, palette: readGlobePalette() });
       this.view.setQuality(this.s.quality);
+      this.view.setCameraMode(this.s.cameraMode);
       this.view.framing = this.s.framing;
     } catch (error) {
       this.view = null;
@@ -375,7 +390,9 @@ export class StudioEngine {
 
   private installScene(next: Scene, value: string, preserve: boolean, keepCamera: boolean, local: number | null) {
     const old = this.s.focusId;
-    if (this.view) this.view.selectedByUser = false;
+    const validIds = new Set(next.objects.filter((o) => o.kind !== "station" && o.kind !== "sensor").map((o) => o.id));
+    const selectedIds = keepCamera ? this.s.selectedIds.filter((id) => validIds.has(id)) : [];
+    if (this.view) this.view.selectedByUser = selectedIds.length > 0;
     prepareScene(next);
     let playing = this.s.playing;
     if (!preserve) {
@@ -388,6 +405,9 @@ export class StudioEngine {
     const focusId = focusObjects.some((o) => o.id === old)
       ? old
       : (focusMatches(focusObjects, this.s.focusQuery, "").listed[0]?.id ?? next.objects[0]?.id ?? "");
+    const tracking = keepCamera && focusId === old && this.s.tracking;
+    if (!tracking && this.s.tracking) this.view?.stopFollowing();
+    this.view?.setSelection(selectedIds);
     this.view?.setScene(next, focusId, keepCamera);
     if (this.view) {
       this.view.mode = this.s.mode;
@@ -400,7 +420,9 @@ export class StudioEngine {
       sourceValue: value,
       sourceOptions: this.withOpened(this.s.sourceOptions, value),
       playing,
-      selectedByUser: false,
+      selectedByUser: selectedIds.length > 0,
+      selectedIds,
+      tracking,
       computeBackend: computeBackend(),
       focusObjects,
       focusId,
@@ -581,7 +603,7 @@ export class StudioEngine {
 
   setMode(mode: Mode): void {
     if (mode === this.s.mode) return;
-    this.state.set({ mode });
+    this.state.set({ mode, tracking: false });
     if (this.view) {
       this.view.mode = mode;
       this.view.reset();
@@ -594,7 +616,7 @@ export class StudioEngine {
   }
 
   setFraming(framing: Framing): void {
-    this.state.set({ framing });
+    this.state.set({ framing, tracking: false });
     if (this.view) {
       this.view.framing = framing;
       this.view.reset();
@@ -606,8 +628,49 @@ export class StudioEngine {
     this.view?.setQuality(quality);
   }
 
+  setCameraMode(cameraMode: CameraMode): void {
+    this.view?.setCameraMode(cameraMode);
+    this.state.set({ cameraMode, tracking: cameraMode === "orbit" && this.s.tracking });
+  }
+
+  lookAtSun(): void {
+    if (!this.scene || !this.view) return;
+    if (!this.s.layers.celestial) this.setLayer("celestial", true);
+    this.view.lookAtSun();
+    this.state.set({ tracking: false });
+  }
+
   resetView(): void {
     this.view?.reset();
+    this.state.set({ tracking: false });
+  }
+
+  followSatellite(): void {
+    if (!this.view || !this.s.focusObjects.some((o) => o.id === this.s.focusId)) return;
+    const previous = this.s.cameraMode;
+    if (previous === "free") this.view.setCameraMode("orbit");
+    if (this.view.followSatellite(this.s.focusId)) {
+      this.state.set({ tracking: true, cameraMode: "orbit" });
+    } else {
+      if (previous === "free") this.view.setCameraMode(previous);
+      this.onNotice("This satellite has no position at the current scene time.");
+    }
+  }
+
+  zoomSatellite(factor: number): void {
+    this.view?.zoomSatellite(factor);
+  }
+
+  setBoxSelection(boxSelection: boolean): void {
+    this.view?.setBoxSelection(boxSelection);
+    this.state.set({ boxSelection });
+  }
+
+  selectSatellites(selectedIds: string[], primary?: string): void {
+    this.view?.setSelection(selectedIds);
+    this.state.set({ selectedIds, selectedByUser: selectedIds.length > 0 });
+    if (primary) this.focus(primary);
+    else if (this.view) this.view.selectedByUser = false;
   }
 
   // --- Focus --------------------------------------------------------------------------------
@@ -620,6 +683,14 @@ export class StudioEngine {
   focus(id: string): void {
     const scene = this.scene;
     if (!scene || !this.s.focusObjects.some((o) => o.id === id)) return;
+    if (this.s.tracking && id !== this.s.focusId) {
+      this.view?.stopFollowing();
+      this.state.set({ tracking: false });
+    }
+    if (!this.s.selectedIds.includes(id)) {
+      this.view?.setSelection([id]);
+      this.state.set({ selectedIds: [id] });
+    }
     if (this.view) this.view.selectedByUser = true;
     this.state.set({ focusId: id, selectedByUser: true, marks: this.marksFor(scene, id) });
     this.view?.setFocus(id);

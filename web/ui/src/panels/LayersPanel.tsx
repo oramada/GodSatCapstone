@@ -40,9 +40,9 @@ const MODES: { value: Mode; label: string; icon: ReactNode }[] = [
   { value: "system", label: "All objects", icon: <OrbitIcon /> },
 ];
 const CLOUDS: { value: CloudCover; label: string }[] = [
-  { value: "natural", label: "Texture" },
+  { value: "natural", label: "NOAA snapshot" },
   { value: "clear", label: "Clear" },
-  { value: "dense", label: "Overcast variant" },
+  { value: "dense", label: "NOAA snapshot · high opacity" },
 ];
 const ENVIRONMENT = [
   { value: "none", label: "Off" },
@@ -113,6 +113,7 @@ export function LayersPanel(props: {
               inline
               media={<CloudIcon />}
               title="Cloud cover"
+              description="NOAA CPC · 2 Jun 2014, 00:00 UTC · 4,096 × 2,048"
               control={
                 <ChoiceSelect
                   label="Cloud cover"
@@ -159,9 +160,7 @@ export function LayersPanel(props: {
             />
           </ListGroup>
           <Fine>
-            The textured clouds and ionosphere shell are illustrative. Environmental data shows supplied samples valid at
-            scene time. Above 500 objects, orbit trails show only the focused satellite. They don’t change the detector or
-            simulate weather, plasma, or radio propagation.
+            The NOAA cloud snapshot is a fixed historical overlay. The ionosphere shell is illustrative. Environmental data shows supplied samples valid at scene time. Above 500 objects, orbit trails show only the focused satellite.
           </Fine>
         </div>
       </Disclosure>

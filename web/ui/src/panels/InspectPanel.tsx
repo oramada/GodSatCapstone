@@ -1,5 +1,6 @@
 import {
   Badge,
+  Button,
   Card,
   ChoiceSelect,
   CodeBlock,
@@ -16,8 +17,8 @@ import {
   Swap,
   Text,
 } from "@sam/design-system";
-import { BracesIcon, RadioTowerIcon, ScrollTextIcon, SearchIcon } from "lucide-react";
-import { type Ref, type RefObject, useMemo } from "react";
+import { BracesIcon, RadioTowerIcon, ScrollTextIcon, SearchIcon, TargetIcon } from "lucide-react";
+import { type Ref, type RefObject, useMemo, useState } from "react";
 
 import { Fine, Panel } from "../components/Panel";
 import { PANEL_ICON } from "../components/icons";
@@ -60,12 +61,22 @@ export function InspectPanel({
 function FocusPicker() {
   const engine = useEngine();
   const objects = useStudio((s) => s.focusObjects);
+  const selectedIds = useStudio((s) => s.selectedIds);
+  const selected = useMemo(() => new Set(selectedIds), [selectedIds]);
+  const [selectionOnly, setSelectionOnly] = useState(false);
+  const scoped = useMemo(() => selectionOnly && selected.size ? objects.filter((o) => selected.has(o.id)) : objects,
+    [selectionOnly, selected, objects]);
   const query = useStudio((s) => s.focusQuery);
   const focusId = useStudio((s) => s.focusId);
-  const { count, listed } = useMemo(() => focusMatches(objects, query, focusId), [objects, query, focusId]);
+  const { count, listed } = useMemo(() => focusMatches(scoped, query, focusId), [scoped, query, focusId]);
   const options = useMemo(() => listed.map((o) => ({ value: o.id, label: o.name })), [listed]);
   return (
     <div className="flex flex-col gap-3">
+      {selectedIds.length > 1 ? (
+        <Button variant="ghost" size="sm" aria-pressed={selectionOnly} onClick={() => setSelectionOnly(!selectionOnly)}>
+          {selectionOnly ? "Search all satellites" : `Search ${selectedIds.length.toLocaleString()} selected satellites`}
+        </Button>
+      ) : null}
       <Field label="Find satellite" htmlFor="focus-search">
         <Input
           id="focus-search"
@@ -87,6 +98,10 @@ function FocusPicker() {
           className="sm:w-full"
         />
       </Field>
+      <Button variant="ghost" size="sm" disabled={!focusId} onClick={() => engine.followSatellite()}>
+        <TargetIcon />
+        Zoom to satellite
+      </Button>
     </div>
   );
 }

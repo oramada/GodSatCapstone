@@ -6,6 +6,8 @@ import {trackState} from './model.js';
 import {EnvironmentLayer} from './environment.js';
 import {GpuProfile} from './gpu-profile.js';
 import {interpolatePosition} from './interpolation.js';
+import {FreeCamera,pointAtSun} from './camera.js';
+import {SatelliteCamera,SatelliteSelection,satellitesInBox} from './satellite-controls.js';
 const C=window.Cesium;
 const radius=6378137;
 // Colours come from the page: the window reads its design tokens and hands them over as
@@ -23,6 +25,7 @@ export class CesiumObservatory {
   const probeOptions=new URLSearchParams(window.location.search);
   this.widget=new C.CesiumWidget(container,{baseLayer:false,terrainProvider:new C.EllipsoidTerrainProvider(),useDefaultRenderLoop:false,requestRenderMode:true,contextOptions:{webgl:{alpha:true,antialias:true,preserveDrawingBuffer:false}},creditContainer:credits});
   this.scene=this.widget.scene;this.scene.backgroundColor=color(palette.background);this.scene.globe.enableLighting=true;this.scene.globe.dynamicAtmosphereLighting=true;this.scene.globe.dynamicAtmosphereLightingFromSun=true;this.scene.globe.showGroundAtmosphere=true;this.scene.globe.baseColor=color(palette.globe);this.scene.light=new C.SunLight({intensity:1.5});this.scene.fog.enabled=false;this.scene.highDynamicRange=true;
+  this.freeCamera=new FreeCamera(container,this.scene,C.CameraEventType.LEFT_DRAG);
   this.gpuProbe=probeOptions.get('gpu-profile')==='1'?new GpuProfile(this.scene.canvas):null;
   const isolate=probeOptions.get('isolate');
   this.probeIsolation=this.gpuProbe&&['globe-off','points-off','atmosphere-off'].includes(isolate)?isolate:null;
@@ -31,8 +34,13 @@ export class CesiumObservatory {
   this.scene.postProcessStages.fxaa.enabled=true;
   this.widget.clock.shouldAnimate=false;
   if(this.scene.skyBox)this.scene.skyBox.show=false;
+  this.selectedIds=new Set();
+  this.satelliteCamera=new SatelliteCamera(C,this.scene);
+  this.selection=new SatelliteSelection(C,container,this.scene,bounds=>this.pickSatellites(bounds,true));
   this.picker=new C.ScreenSpaceEventHandler(this.scene.canvas);
-  this.picker.setInputAction(event=>{const picked=this.scene.pick(event.position);if(picked?.id&&this.data?.objects.some(o=>o.id===picked.id)){this.selectedByUser=true;this.container.dispatchEvent(new CustomEvent('objectselected',{detail:picked.id,bubbles:true}));}},C.ScreenSpaceEventType.LEFT_CLICK);
+  const clickBox=({position:{x,y}})=>({left:x-12,right:x+12,top:y-12,bottom:y+12});
+  this.picker.setInputAction(event=>this.pickSatellites(clickBox(event)),C.ScreenSpaceEventType.LEFT_CLICK);
+  this.picker.setInputAction(event=>this.pickSatellites(clickBox(event),false,true),C.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 
   this.points=this.scene.primitives.add(new C.PointPrimitiveCollection());this.points.show=this.probeIsolation!=='points-off';this.labels=this.scene.primitives.add(new C.LabelCollection());this.lines=this.scene.primitives.add(new C.PolylineCollection());
   this.environment=new EnvironmentLayer(this.scene,C);
@@ -40,7 +48,7 @@ export class CesiumObservatory {
   this.ghostPoint=this.points.add({show:false,color:color(palette.stale,.6),pixelSize:16,outlineColor:color(palette.stale),outlineWidth:1});
   this.focusLabel=this.labels.add({text:'',show:false,font:'12px sans-serif',fillColor:color(palette.label),showBackground:true,backgroundColor:color(palette.labelBackground,.6),pixelOffset:new C.Cartesian2(0,-35),verticalOrigin:C.VerticalOrigin.BOTTOM});
   this.ionosphere=this.scene.primitives.add(new C.Primitive({geometryInstances:new C.GeometryInstance({geometry:new C.EllipsoidGeometry({radii:new C.Cartesian3(radius+350000,radius+350000,6356752+350000),vertexFormat:C.MaterialAppearance.MaterialSupport.TEXTURED.vertexFormat})}),appearance:new C.MaterialAppearance({material:C.Material.fromType('Grid',{color:color(palette.ionosphere,.1),cellAlpha:0,lineCount:new C.Cartesian2(48,24),lineThickness:new C.Cartesian2(.5,.5)}),translucent:true,closed:true}),show:false}));
-  this.clouds=this.scene.primitives.add(new C.Primitive({geometryInstances:new C.GeometryInstance({geometry:new C.EllipsoidGeometry({radii:new C.Cartesian3(radius+12000,radius+12000,6356752+12000),vertexFormat:C.MaterialAppearance.MaterialSupport.TEXTURED.vertexFormat})}),appearance:new C.MaterialAppearance({material:C.Material.fromType('Image',{image:'/studio/assets/earth-clouds.png',color:C.Color.WHITE.withAlpha(.5),transparent:true}),translucent:true,closed:true})}));
+  this.clouds=this.scene.primitives.add(new C.Primitive({geometryInstances:new C.GeometryInstance({geometry:new C.EllipsoidGeometry({radii:new C.Cartesian3(radius+12000,radius+12000,6356752+12000),vertexFormat:C.MaterialAppearance.MaterialSupport.TEXTURED.vertexFormat})}),appearance:new C.MaterialAppearance({material:C.Material.fromType('Image',{image:'/studio/assets/earth-clouds-cpc.webp',color:C.Color.WHITE.withAlpha(.5),transparent:true}),translucent:true,closed:true}),show:false}));
   C.SingleTileImageryProvider.fromUrl('/studio/assets/earth-day.jpg',{credit:'Earth imagery: Three.js example texture'}).then(provider=>{if(!this.widget.isDestroyed()){this.scene.imageryLayers.addImageryProvider(provider);this.assetsReady=true;this.scene.requestRender();}}).catch(error=>this.notify(error.message));
   this.setQuality('high');this.observer=new ResizeObserver(()=>{this.widget.resize();this.scene.requestRender();});this.observer.observe(container);
  }
@@ -71,17 +79,17 @@ export class CesiumObservatory {
  }
  setFocus(id){this.focus=id;if(this.focusLabel)this.focusLabel.text=this.data?.objects.find(o=>o.id===id)?.name||'';this.rebuildTrails();}
  rebuildTrails(){if(!this.items)return;this.lines.removeAll();for(const item of this.items){item.lines=[];if(this.items.length>500&&item.object.id!==this.focus)continue;let run=[];const flush=()=>{if(run.length>1)item.lines.push(this.lines.add({positions:run,width:1,material:C.Material.fromType('Color',{color:color(this.palette.trail,.35)})}));run=[];};item.object.positions_km.forEach((p,i)=>{const v=this.fixed(p,this.dates[i]);if(v)run.push(v);else flush();});flush();}}
- reset(){if(!this.data)return;const object=this.data.objects.find(o=>o.id===this.focus);let extent=radius*1.15;const objects=this.mode==='single'&&object?[object]:this.framing==='all'?this.data.objects:[];for(const o of objects)for(const p of o.positions_km)if(p)extent=Math.max(extent,Math.hypot(...p)*1000);const p=object?.positions_km.find(Boolean);const center=p?this.fixed(p,this.dates[object.positions_km.indexOf(p)]):undefined;const direction=center?C.Cartesian3.normalize(center,new C.Cartesian3()):C.Cartesian3.fromDegrees(110,-25);C.Cartesian3.normalize(direction,direction);const destination=C.Cartesian3.multiplyByScalar(direction,extent*3.4,new C.Cartesian3());this.scene.camera.setView({destination,orientation:{direction:C.Cartesian3.negate(direction,new C.Cartesian3()),up:C.Cartesian3.UNIT_Z}});this.scene.requestRender();}
+ reset(){this.satelliteCamera?.stop();this.lastFrame=null;if(!this.data)return;const object=this.data.objects.find(o=>o.id===this.focus);let extent=radius*1.15;const objects=this.mode==='single'&&object?[object]:this.framing==='all'?this.data.objects:[];for(const o of objects)for(const p of o.positions_km)if(p)extent=Math.max(extent,Math.hypot(...p)*1000);const p=object?.positions_km.find(Boolean);const center=p?this.fixed(p,this.dates[object.positions_km.indexOf(p)]):undefined;const direction=center?C.Cartesian3.normalize(center,new C.Cartesian3()):C.Cartesian3.fromDegrees(110,-25);C.Cartesian3.normalize(direction,direction);const destination=C.Cartesian3.multiplyByScalar(direction,extent*3.4,new C.Cartesian3());this.scene.camera.setView({destination,orientation:{direction:C.Cartesian3.negate(direction,new C.Cartesian3()),up:C.Cartesian3.UNIT_Z}});this.scene.requestRender();}
  pose(object,step,position){const i=Math.floor(step),j=Math.min(i+1,this.dates.length-1);const a=this.fixed(object.positions_km[i],this.dates[i]),b=this.fixed(object.positions_km[j],this.dates[j]);const y=C.Cartesian3.normalize(position,new C.Cartesian3());let x=a&&b?C.Cartesian3.subtract(b,a,new C.Cartesian3()):new C.Cartesian3(1,0,0);x=C.Cartesian3.subtract(x,C.Cartesian3.multiplyByScalar(y,C.Cartesian3.dot(x,y),new C.Cartesian3()),x);if(C.Cartesian3.magnitude(x)<1e-6)x=C.Cartesian3.cross(y,C.Cartesian3.UNIT_Z,x);C.Cartesian3.normalize(x,x);const z=C.Cartesian3.normalize(C.Cartesian3.cross(x,y,new C.Cartesian3()),new C.Cartesian3());return C.Matrix4.fromRotationTranslation(C.Matrix3.fromColumnMajorArray([x.x,x.y,x.z,y.x,y.y,y.z,z.x,z.y,z.z]),position);}
  update(step,layers){if(!this.data)return;const profileStart=performance.now();let profileEnvironment,profileObjects,profileDetails;
   // Keep Cesium's update loop alive for camera input, inertia and asynchronous tiles.
   // Request a draw only when our scene content changes; the widget detects camera changes itself.
   const last=this.lastFrame;
-  if(last&&last.step===step&&last.layers===layers&&last.items===this.items&&last.mode===this.mode&&last.focus===this.focus&&last.selected===this.selectedByUser&&last.station===this.station&&last.model===this.model&&last.ghostModel===this.ghostModel){
+  if(last&&last.step===step&&last.layers===layers&&last.items===this.items&&last.mode===this.mode&&last.focus===this.focus&&last.selection===this.selectedIds&&last.selected===this.selectedByUser&&last.station===this.station&&last.model===this.model&&last.ghostModel===this.ghostModel){
    if(this.detail.dirty)this.detail.update(this.data,this.focus,step);
    const beforeRender=performance.now();this.renderWidget();this.profile={environment:0,objects:0,details:beforeRender-profileStart,render:performance.now()-beforeRender};return;
   }
-  this.lastFrame={step,layers,items:this.items,mode:this.mode,focus:this.focus,selected:this.selectedByUser,station:this.station,model:this.model,ghostModel:this.ghostModel};
+  this.lastFrame={step,layers,items:this.items,mode:this.mode,focus:this.focus,selection:this.selectedIds,selected:this.selectedByUser,station:this.station,model:this.model,ghostModel:this.ghostModel};
   const i=Math.floor(step),j=Math.min(i+1,this.dates.length-1);this.widget.clock.currentTime=C.JulianDate.addSeconds(this.dates[i],C.JulianDate.secondsDifference(this.dates[j],this.dates[i])*(step-i),new C.JulianDate());this.scene.skyAtmosphere.show=layers.atmosphere&&this.probeIsolation!=='atmosphere-off';this.scene.globe.showGroundAtmosphere=layers.atmosphere&&this.probeIsolation!=='atmosphere-off';this.scene.sun.show=layers.celestial;this.scene.moon.show=layers.celestial;this.clouds.show=layers.clouds!=='clear';this.clouds.appearance.material.uniforms.color.alpha=layers.clouds==='dense'?.9:.45;this.ionosphere.show=layers.ionosphere;
   const message=this.environment.update(Date.parse(this.data.times[i])+(Date.parse(this.data.times[j])-Date.parse(this.data.times[i]))*(step-i),layers.environment||'none');this.environmentMessage=message;
   profileEnvironment=performance.now();
@@ -103,23 +111,49 @@ export class CesiumObservatory {
    if(point.show!==!!position)point.show=!!position;
    // PointPrimitive copies the position; this scratch is safe to reuse for every point.
    if(position)point.position=position;
-   if(item.focused!==focused||item.state!==state){
-    point.pixelSize=focused?8:object.kind==='station'?6:this.items.length>2000?1.5:this.items.length>500?3:7;
+   const selected=this.selectedIds?.has(object.id)??false;
+   if(item.focused!==focused||item.selected!==selected||item.state!==state){
+    point.outlineWidth=selected?1.5:this.items.length>500?0:1;
+    if(selected||item.selected)point.outlineColor=color(selected?this.palette.station:this.palette.outline);
+    point.pixelSize=focused?(selected?11:8):selected?6:object.kind==='station'?6:this.items.length>2000?1.5:this.items.length>500?3:7;
     point.color=color(object.kind==='station'?this.palette.station:this.colors[state],state==='lost'?.25:focused?1:.7);
-    item.focused=focused;item.state=state;
+    item.focused=focused;item.selected=selected;item.state=state;
    }
   }
-  profileObjects=performance.now();const object=this.data.objects.find(o=>o.id===this.focus),position=object?this.sample(object,step):undefined,st=trackState(this.data,this.focus,step);this.focusLabel.show=!!position&&this.selectedByUser;if(position)this.focusLabel.position=position;
+  profileObjects=performance.now();const object=this.data.objects.find(o=>o.id===this.focus),position=object?this.sample(object,step):undefined,st=trackState(this.data,this.focus,step);const close=!!this.satelliteCamera?.offset;this.focusLabel.show=!!position&&(this.selectedByUser||close);if(position)this.focusLabel.position=position;
+  this.satelliteCamera?.update(position);
   const radioKey=`${this.generation}:${this.focus}:${this.station}:${step}`;if(radioKey!==this.radioKey){this.radioKey=radioKey;const ground=this.groundStations?.get(this.station);this.radioLine.show=false;if(ground&&position){const ray=C.Cartesian3.subtract(position,ground,new C.Cartesian3()),normal=C.Ellipsoid.WGS84.geodeticSurfaceNormal(ground,new C.Cartesian3());const sine=C.Cartesian3.magnitude(ray)>0?C.Cartesian3.dot(C.Cartesian3.normalize(ray,ray),normal):-1;if(sine>=Math.sin((this.data.ground_links.minimum_elevation_deg??15)*Math.PI/180)){this.radioLine.positions=[ground,position];this.radioLine.show=true;}}}
-  if(this.model){this.model.show=!!position&&(this.selectedByUser||this.mode==='single');if(this.model.show){this.model.modelMatrix=this.pose(object,step,position);this.model.color=C.Color.WHITE.withAlpha(st.state==='lost'?.18:1);}}
+  if(this.model){this.model.show=!!position&&(this.selectedByUser||close||this.mode==='single');if(this.model.show){this.model.modelMatrix=this.pose(object,step,position);
+   this.model.minimumPixelSize=close?0:44;
+   this.model.scale=close?12:18000;this.model.color=C.Color.WHITE.withAlpha(st.state==='lost'?.18:1);}}
   const ghost=layers.ghosts&&st.last>=0&&st.state!=='observed'&&object?this.fixed(object.positions_km[st.last],this.dates[st.last]):undefined;this.ghostPoint.show=!!ghost;if(ghost)this.ghostPoint.position=ghost;if(this.ghostModel){this.ghostModel.show=!!ghost;if(ghost)this.ghostModel.modelMatrix=this.pose(object,st.last,ghost);}
   this.detail.update(this.data,this.focus,step);profileDetails=performance.now();this.scene.requestRender();this.renderWidget();const done=performance.now();this.profile={environment:profileEnvironment-profileStart,objects:profileObjects-profileEnvironment,details:profileDetails-profileObjects,render:done-profileDetails};
  }
+ pickSatellites(bounds,group=false,zoom=false){
+  if(!this.ready||!this.points.show)return;
+  const {matches,closest}=satellitesInBox(C,this.scene,this.items,bounds);
+  if(!group&&!closest)return;
+  this.container.dispatchEvent(new CustomEvent('satelliteselection',{detail:{ids:group?matches:[closest],primary:closest,zoom}}));
+ }
+ setBoxSelection(active){this.selection.enabled=active;if(!active)this.selection.cancel();}
+ setSelection(ids){this.selectedIds=new Set(ids);}
+ followSatellite(id){
+  const item=this.items?.find(({object})=>object.id===id);
+  if(!item?.point.show)return false;
+  this.satelliteCamera.follow(item.point.position);
+  this.lastFrame=null;
+  return true;
+ }
+ zoomSatellite(factor){this.satelliteCamera.zoom(factor);}
+ stopFollowing(){this.satelliteCamera.stop();this.lastFrame=null;}
+ setCameraMode(mode){if(mode==='free')this.stopFollowing();this.freeCamera.setMode(mode);}
+ lookAtSun(){this.stopFollowing();pointAtSun(C,this.scene,this.widget.clock.currentTime);}
  renderWidget(){
+  this.freeCamera?.update(performance.now());
   if(!this.gpuProbe){this.widget.render();return;}
   const before=this.drawCount,query=this.gpuProbe.begin();
   try{this.widget.render();}finally{this.gpuProbe.end(query,this.drawCount!==before);}
  }
  gpuReadout(){const value=this.gpuProbe?.readout();return this.probeIsolation&&value?`${value} · ${this.probeIsolation}`:value;}
- destroy(){this.gpuProbe?.destroy();this.generation++;this.observer.disconnect();this.picker.destroy();this.detail.destroy();this.widget.destroy();}
+ destroy(){this.freeCamera.destroy();this.satelliteCamera.destroy();this.selection.destroy();this.gpuProbe?.destroy();this.generation++;this.observer.disconnect();this.picker.destroy();this.detail.destroy();this.widget.destroy();}
 }

@@ -1,3 +1,40 @@
 /* The one stylesheet: the kit's tokens, theme and motion, and Tailwind scanning this app. */
 @import "@sam/design-system/styles.css";
 @source "./";
+
+.studio-hud-select[data-slot="select-trigger"] {
+  min-width: 0;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+  padding-inline: 0.75rem;
+}
+
+.studio-hud-select[data-slot="select-trigger"]::before {
+  box-shadow: none;
+}
+
+.studio-hud-select[data-slot="select-trigger"]:is(:hover, [data-popup-open]) {
+  background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+}
+
+.studio-hud-select[data-slot="select-trigger"]:focus-visible {
+  border-color: var(--color-ring);
+  outline: 2px solid var(--color-ring);
+  outline-offset: 1px;
+}
+
+.studio-hud-select [data-slot="select-value"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studio-selection-box {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  border: 1px solid #65daff;
+  background: rgb(101 218 255 / 16%);
+}

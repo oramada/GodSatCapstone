@@ -129,6 +129,13 @@ export interface Observatory {
   setScene(scene: Scene, focus: string, keepCamera?: boolean): void;
   setFocus(id: string): void;
   setQuality(quality: "high" | "balanced"): void;
+  setCameraMode(mode: "orbit" | "free"): void;
+  lookAtSun(): void;
+  setSelection(ids: readonly string[]): void;
+  setBoxSelection(active: boolean): void;
+  followSatellite(id: string): boolean;
+  zoomSatellite(factor: number): void;
+  stopFollowing(): void;
   reset(): void;
   update(step: number, layers: RendererLayers): void;
   destroy(): void;
